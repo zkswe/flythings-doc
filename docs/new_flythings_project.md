@@ -1,4 +1,4 @@
-# 如何新建FlyThings项目
+# <span id="new_flythings_project">如何新建FlyThings项目</span>
 新建一个FlyThings项目十分简单。具体步骤如下：  
 1. 在编辑器顶部的菜单栏中，依次选择 **文件 -> 新建 -> FlyThings项目** 
 ![新建项目](assert/ide/new_flythings_project.gif)  
@@ -40,4 +40,4 @@
   以上属性后续都可以再次修改，所以不必过分担心填写错误。([如何修改已有项目的属性]())  
   属性都填写确认后，点击 ** 完成 ** 结束创建，创建过程会花费些许时间，耐心等待。  
   
-4. 项目创建完成后，你应该先了解 [FlyThings IDE开发工具 工作区域使用介绍](flythings-ide-layouot-introduce#ide_introduction)
+4. 项目创建完成后，你应该先了解 [FlyThings IDE开发工具 工作区域使用介绍](flythings_ide_layouot_introduce#ide_introduction)

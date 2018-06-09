@@ -1,4 +1,4 @@
-# 初次使用FlyThings 集成开发工具
+# <span id = "first_run">初次使用FlyThings 集成开发工具</span>
 如果你已经成功安装了[FlyThings IDE](),那么在你的桌面上，找到 ![ZKSW-Editor快捷方式](assert/ide/quick_link.png) 快捷方式，双击运行。  
 如果你删除了快捷方式，你还可以在安装目录中的`bin`文件夹下，找到 ![ZKSW-Editor](assert/ide/ZKSW_Editor.png) 直接运行。
 ## 选择工作空间

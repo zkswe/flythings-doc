@@ -6,7 +6,7 @@
 3. 鼠标左键点击`按键`控件不放，然后将其拖拽到任意位置，松开左键，就能看到自动生成的按键控件。
 4. 再左键点击刚才生成的按键控件，在编辑器的右侧就能看到该控件的相关属性。在这个属性表格中，你可以像填写Excel表单一样，自由修改属性！
 
- ![创建Button](assert/Button-create.gif)
+ ![创建Button](assert/Button_create.gif)
 ## 如何修改按键/按钮的颜色？
 参考[如何修改文字的颜色](#change_color)
 ## <span id = "add_button_style">如何为按钮添加更多的动画效果？</span>
