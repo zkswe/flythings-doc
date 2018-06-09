@@ -6,7 +6,7 @@
 3. 鼠标左键点击`按键`控件不放，然后将其拖拽到任意位置，松开左键，就能看到自动生成的按键控件。
 4. 再左键点击刚才生成的按键控件，在编辑器的右侧就能看到该控件的相关属性。在这个属性表格中，你可以像填写Excel表单一样，自由修改属性！
 
- ![创建Button](assert/Button_create.gif)
+ ![创建Button](assets/Button_create.gif)
 ## 如何修改按键/按钮的颜色？
 参考[如何修改文字的颜色](#change_color)
 ## <span id = "add_button_style">如何为按钮添加更多的动画效果？</span>
@@ -26,15 +26,15 @@
 
 具体示例：   
 
-![Button-pic-example](assert/Button-pic-example.png "按键属性示例")
+![Button-pic-example](assets/Button-pic-example.png "按键属性示例")
 
   效果图：  
 
-![Button-pic-example](assert/Button-pic-preview.png "按键属性示例")
+![Button-pic-example](assets/Button-pic-preview.png "按键属性示例")
 
 上图是属性表图片参数部分截图，其表示的含义为：    
   按键默认情况下显示on.png， 按键选中状态时显示off.png；  
-  图片位置的 左、上、宽、高四个参数决定了图片的显示区域（以像素为单位），以按键矩形区域的左上角为起点坐标（0，0），向右向下为正方向，终点坐标为（67，31）。 如果图片实际的宽高与指定的宽高参数不相等，则图片会根据指定的宽高进行缩放：![图片位置坐标示例](assert/Button-location.png)
+  图片位置的 左、上、宽、高四个参数决定了图片的显示区域（以像素为单位），以按键矩形区域的左上角为起点坐标（0，0），向右向下为正方向，终点坐标为（67，31）。 如果图片实际的宽高与指定的宽高参数不相等，则图片会根据指定的宽高进行缩放：![图片位置坐标示例](assets/Button-location.png)
 
 ### 理解按键控件的层级关系  
 对于一般按键控件，它会绘制四层内容，它们从上到下依次是：
@@ -51,11 +51,11 @@
 要响应按键的点击时间非常的简单。以下是具体步骤：
 1. 首先创建一个`按键`控件，将属性ID命名为`Button1`。[如何创建按键控件](#add_button) 
 
-![ID属性示例](assert/Button-properties-id-button1.png)
+![ID属性示例](assets/Button-properties-id-button1.png)
 2. 在`项目资源管理器`中，选中当前项目，右键，在弹出菜单中选择`编译FlyThings`选项。这一步的作用是 **根据当前项目内所有的UI文件自动生成模板代码** 。 [了解更多关于代码生成的细节]()
 3. 以UI文件为`main.ftu`为例，上一步完成后，将在当前项目文件夹下会生成 `jni/logic/mainLogic.cc`文件， 如下图：
 
-![](assert/Button-callback-generate.png) 
+![](assets/Button-callback-generate.png) 
 
   注意： `main.ftu`对应着`mainLogic.cc`，两者的前缀是相同的。[了解更多关于代码生成的细节]()
 4. 双击打开`mainLogic.cc` ，在文件的末尾应该会看到如下函数，

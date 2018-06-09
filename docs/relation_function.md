@@ -77,7 +77,7 @@ ___
     * **参数`ZKListView *pListView`**   是该列表控件的指针， 它与全局变量`mXXXXPtr`指向同一个对象。    
     * **参数`int index`**  是当前被点击的列表项在整个列表控件中的索引值
     * **参数`int id`** 是当前被点击的控件的整形id。注意，这个id与属性表中的ID名称不同。 它的具体宏定义在相应的`Activity.h`文件中。 例如`mainActivity.h`中  
-    ![ID宏定义](assert/ID-Macro.png)  
+    ![ID宏定义](assets/ID-Macro.png)  
     这个id参数的作用在于，当列表项中有多个子项时，可以用来区分当前被点击的是哪一个子项。  
    **例如: **如下图，我在列表项中添加了两个列表子项,并添加了图片装饰，作为开关按钮，属性ID名分别为`SubItem1`、`SubItem2`，当我点击`SubItem1`时，通过判断参数`id`与`ID_MAIN_SubItem1`、`ID_MAIN_SubItem2`的相等关系，就能确定点击的是哪一个开关。   
    具体代码：
@@ -95,4 +95,4 @@ ___
     }
    ```
      
-       ![列表outline](assert/ListView-tree.png) ![列表子项示例](assert/ListView-subitem.png)  
+       ![列表outline](assets/ListView-tree.png) ![列表子项示例](assets/ListView-subitem.png)  

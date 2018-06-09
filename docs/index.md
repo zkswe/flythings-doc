@@ -4,8 +4,8 @@
 * # [初次使用FlyThings IDE集成开发工具](flythings_ide_snapshot#first_run)
 * # [FlyThings IDE工作区域使用介绍](ide_introduce)
 * # [如何新建FlyThings项目](new_flythings_project#new_flythings_project)
-* # 控件相关
- - ## [文本](textview)
+* # 控件相关  
+ - ## [文本](textview)  
  - ## [按键](button)
  - ## [进度条/滑块](seekbar)
  - ## [指针/仪表](pointer)

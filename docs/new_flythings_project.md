@@ -1,11 +1,11 @@
 # <span id="new_flythings_project">如何新建FlyThings项目</span>
 新建一个FlyThings项目十分简单。具体步骤如下：  
 1. 在编辑器顶部的菜单栏中，依次选择 **文件 -> 新建 -> FlyThings项目** 
-![新建项目](assert/ide/new_flythings_project.gif)  
+![新建项目](assets/ide/new_flythings_project.gif)  
 
 2. 上一步选择完成后，将弹出 **FlyThings创建向导** 提示框。  
   
- ![创建向导第一步](assert/ide/wizard_new_project_page1.png)  
+ ![创建向导第一步](assets/ide/wizard_new_project_page1.png)  
  按要求填写新建项目相关的参数。  这些参数分别是：
   * **项目名**  
   项目的名称；可以是字母、数字的组合，不能出现中文及空格。
@@ -19,7 +19,7 @@
    规范填写如上必须参数后，你可以直接选择 **完成** ，来快速完成创建。但是现在，我们选择 **下一步** 来自定义更多的参数。
 3. 点击下一步之后，我们将看到更多的参数定义  
 
- ![新建参数](assert/ide/wizard_new_project_page2.png)  
+ ![新建参数](assets/ide/wizard_new_project_page2.png)  
  ## 项目各个属性的含义及作用：  
  * **屏保超时时间**  
    FlyThings系统提供屏保的功能。如果在指定的时间内，串口屏没有任何触摸操作，或者你没有通过代码重置屏保计时，那么，系统将自动进入屏保。  
