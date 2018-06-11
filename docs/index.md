@@ -16,3 +16,12 @@
  - ## [音视频](avideo)
  - ## [文本数字输入框/中文输入法支持](edittext)
  - ## [窗口容器](window)
+* ## 串口通讯 
+ - ### [简介](serial_introdoction)  
+ - ### [通讯框架讲解](serial_framework)
+ - ### [串口配置](serial_configuration)
+* ## 网络控制  
+ - ### [wifi设置](wifi)
+ - ### [热点设置](host)
+* ## [数据存储](data)
+* ## [亮度设置](brightness) 
