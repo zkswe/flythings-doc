@@ -1,13 +1,14 @@
 # <span id="new_flythings_project">如何新建FlyThings项目</span>
 新建一个FlyThings项目十分简单。具体步骤如下：  
-1. 在编辑器顶部的菜单栏中，依次选择 **文件 -> 新建 -> FlyThings项目** 
-![新建项目](assets/ide/new_flythings_project.gif)  
+1. 在编辑器顶部的菜单栏中，依次选择 **文件 -> 新建 -> FlyThings项目**   
+
+   ![新建项目](assets/ide/new_flythings_project.gif)  
 
 2. 上一步选择完成后，将弹出 **FlyThings创建向导** 提示框。  
   
- ![创建向导第一步](assets/ide/wizard_new_project_page1.png)  
- 按要求填写新建项目相关的参数。  这些参数分别是：
-  * **项目名**  
+   ![创建向导第一步](assets/ide/wizard_new_project_page1.png)  
+   按要求填写新建项目相关的参数。  这些参数分别是：
+ * **项目名**  
   项目的名称；可以是字母、数字的组合，不能出现中文及空格。
   * **位置**  
   项目的存储路径；同样不推荐出现中文，防止编译异常。
