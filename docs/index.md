@@ -32,6 +32,10 @@
   - ### [视频播放](video)
   - ### [音乐播放](audio)
 * ## [数据存储](data)
+* ## 升级及调试  
+  - ### [开机LOGO升级](update_logo)
+  - ### [自动升级](autoupgrade)
+  - ### [ADB调试](adb_debug)
 * ## 附录  
   - ### [亮度操作](brightness)
   - ### [系统时间](system_time)
