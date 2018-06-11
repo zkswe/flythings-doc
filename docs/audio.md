@@ -43,3 +43,4 @@ sMediaPlayerPtr->getCurrentPosition();	// 获取当前播放歌曲的当前播�
 ~~~
 
 # 音乐播放完整Demo代码
+[https://github.com/zkswe/MusicDemo](https://github.com/zkswe/MusicDemo)

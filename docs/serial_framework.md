@@ -1,11 +1,6 @@
-
 [TOC]
 
-# 源码路径
-为了方便讲解，我们直接拿上一节的空白工程来讲解。对应的代码路径是：https://gitee.com/zkswe/emptyProject/tree/master/src/jni/uart
-已经下载过代码的同学找到代码路径下的src/jni/uart 文件夹。
-
-# 代码逻辑和串口讲解视频
+# 视频讲解
 ~~~[youku]
 XMzIzMzA5NTQ3Ng
 ~~~
@@ -33,8 +28,6 @@ XMzIzMzA5NTQ3Ng
 |0XFFAA|Cmd|len|data|checksum|
 ProtocolParser.cpp 文件，配置文件命令格式：
 ~~~
-#define UART_DATA_BUF_LEN			16384	// 16KB
-
 /* SynchFrame CmdID  DataLen Data CheckSum */
 /*     2Byte  2Byte   1Byte	N Byte  1Byte */
 // 最小长度: 2 + 2 + 1 + 1= 6
@@ -69,7 +62,7 @@ int parseProtocol(const BYTE *pData, UINT len) {
 			break;
 		}
 
-		dataLen = MAKEWORD(pData[5], pData[4]);
+		dataLen = pData[4];
 		frameLen = dataLen + DATA_PACKAGE_MIN_LEN;
 		if (frameLen > remainLen) {
 			// 数据内容不全
@@ -86,7 +79,7 @@ int parseProtocol(const BYTE *pData, UINT len) {
 		// 检测校验码
 		if (getCheckSum(pData, frameLen - 1) == pData[frameLen - 1]) {
 			// 解析一帧数据
-			procParse(pData + DATA_PACKAGE_MIN_LEN - 1, dataLen);
+			procParse(pData, dataLen);
 		} else {
 			LOGE("CheckSum error!!!!!!\n");
 		}
@@ -139,41 +132,40 @@ BYTE getCheckSum(const BYTE *pData, int len) {
 
 * 当完成一帧数据的接收后程序会调用procParse 解析
 ~~~
-		// 检测校验码
-		if (getCheckSum(pData, frameLen - 1) == pData[frameLen - 1]) {
-			// 解析一帧数据
-			procParse(pData, frameLen);
-		} else {
-			LOGE("CheckSum error!!!!!!\n");
-		}
+// 检测校验码
+if (getCheckSum(pData, frameLen - 1) == pData[frameLen - 1]) {
+    // 解析一帧数据
+	procParse(pData, frameLen);
+} else {
+	LOGE("CheckSum error!!!!!!\n");
+}
 ~~~
 
-### 通讯协议怎么和数据UI控件对接
+### 通讯协议数据怎么和UI控件对接
 继续前面的协议框架我们进入到procParse的解析部分。
 这里重点的代码是：ProtocolParser.cpp 
 打开文件然后找到void procParse(const BYTE *pData, UINT len) 
-* 协议解析
-	*	传入参数：pData: 一帧数据的起始地址，len：帧数据长度
 ~~~
 /*
  * 协议解析
- * 输入参数：
- * pData 一帧数据的起始地址
- * len 帧数据的长度
+ * 输入参数:
+ *     pData: 一帧数据的起始地址
+ *     len: 帧数据的长度
  */
 void procParse(const BYTE *pData, UINT len) {
 	/*
-	 *通过命令解析数据方如到sProtocolData结构体中
-	 * */
+	 * 解析Cmd值获取数据赋值到sProtocolData结构体中
+     */
 	switch (MAKEWORD(pData[2], pData[3])) {
 	case CMDID_POWER:
-		sProtocolData.power = pData[4];
+		sProtocolData.power = pData[5];
 		LOGD("power status:%d",sProtocolData.power);
 		break;
 	}
 	notifyProtocolDataUpdate(sProtocolData);
 }
 ~~~
+以上 MAKEWORD(pData[2], pData[3]) 在我们的协议例子中表示Cmd值；
 当数据解析完成后通过notifyProtocolDataUpdate 通知到页面UI更新，这个部分请参照后面的UI更新部分
 
 * 数据结构
@@ -190,13 +182,13 @@ typedef struct {
 
 * UI更新
 UI界面在工具生成*Activity.cpp的时候就已经完成了registerProtocolDataUpdateListener ，也就是说当数据更新的时候logic里面页面程序就会收到数据。
-由于EmptyProject没有这个部分的代码。我们用上面SampleUI里面的新风系统做讲解。
 ~~~
 static void onProtocolDataUpdate(const SProtocolData &data) {
     // 串口数据回调接口
-	if(mProtocolData.power != data.power){
+	if (mProtocolData.power != data.power) {
 		mProtocolData.power = data.power;
 	}
+    
 	if (mProtocolData.eRunMode != data.eRunMode) {
 		mProtocolData.eRunMode = data.eRunMode;
 		mbtn_autoPtr->setSelected(mProtocolData.eRunMode == E_RUN_MODE_MANUAL);
@@ -254,39 +246,3 @@ bool sendProtocol(const BYTE *pData, UINT16 len) {
 BYTE mode[]= {0x01,0x02,0x03,0x04};
 sendProtocol(mode, 4);
 ~~~
-
-## 串口波特率修改
-参考新建工程方法-> 配置项目属性
-
-
-## 【高级货】程序自行打开串口的方法
-打开源码路径/src/jni/Main.cpp； 
-注释掉
-UARTCONTEXT->openUart；
-UARTCONTEXT->closeUart();
-~~~
-void onEasyUIInit(EasyUIContext *pContext) {
-	LOGD("onInit\n");
-	//UARTCONTEXT->openUart(CONFIGMANAGER->getUartName().c_str(), CONFIGMANAGER->getUartBaudRate());
-}
-void onEasyUIDeinit(EasyUIContext *pContext) {
-	LOGD("onDestroy\n");
-	//UARTCONTEXT->closeUart();
-}
-~~~
-
-
-### 串口的调用方法
-注意代码里面加入头文件：#include <termio.h>
-* 打开串口
-"/dev/ttyS1" :是串口设备名
-B115200：是波特率。注意前面有个B字符。
-~~~
-UARTCONTEXT->openUart("/dev/ttyS1", B115200);
-~~~
-* 关闭串口
-~~~
-UARTCONTEXT->closeUart();
-~~~
-
-更加具体的每个控件的接口我们在下面的控件章节讲解
