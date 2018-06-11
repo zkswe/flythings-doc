@@ -1,3 +1,6 @@
+---
+layout: default
+---
 # 启动wifi设置界面
 ~~~
 EASYUICONTEXT->openActivity("WifiSettingActivity");

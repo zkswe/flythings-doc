@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 
 * # [产品概要说明](product_introduction)
 * # [安装FlyThings IDE开发环境](download)

@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ## <span id = "relation_function">自动生成的关联函数</span>
 有些控件会自动生成关联函数。这些关联函数的具体讲解如下：  
 **函数中出现的`XXXX`代表控件ID**

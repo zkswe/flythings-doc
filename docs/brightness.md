@@ -1,3 +1,6 @@
+---
+layout: default
+---
 系统的亮度值范围为: 0 ~ 100 ;
 操作接口 jni/include/utils/BrightnessHelper.h
 ~~~

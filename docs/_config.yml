@@ -1,22 +1,7 @@
-# Setup
-title:        FlyThings
-tagline:      A responsive theme for your project on GitHub Pages
-#baseurl:      "index"
-#paginate:     1
-#locale:       "en"
-
-# About/contact
-author:
-  name:       Author name
-  url:        http://yourhomepage.com 
-
-# Gems rename to plugins
-plugins:
-  - jekyll-paginate
-
-#Others
-markdown: kramdown
-markdown_ext: "md"
-
-
+title: FlyThings
+description: 文档
+#baseurl: ""
+show_downloads: false
+google_analytics:
 theme: jekyll-theme-cayman
+markdown: kramdown

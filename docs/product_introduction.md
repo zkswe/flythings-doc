@@ -1,4 +1,6 @@
-
+---
+layout: default
+---
 [TOC]
 # 关于我们
 ### 目标

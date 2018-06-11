@@ -1,3 +1,6 @@
+---
+layout: default
+---
 # <span id="new_flythings_project">如何新建FlyThings项目</span>
 新建一个FlyThings项目十分简单。具体步骤如下：  
 1. 在编辑器顶部的菜单栏中，依次选择 **文件 -> 新建 -> FlyThings项目**   

@@ -1,3 +1,6 @@
+---
+layout: default
+---
 # <span id="ide_introduce"> FlyThings IDE 工作区域使用介绍</span>  
 当你新建项目完成后，你将看到如下界面    
  

@@ -1,3 +1,6 @@
+---
+layout: default
+---
 本框架提供了一套简单的数据存储接口，以键-值对的方式存储，接口见storage/StoragePreferences.h：
 ~~~
 // 存储接口

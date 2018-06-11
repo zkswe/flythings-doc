@@ -1,3 +1,6 @@
+---
+layout: default
+---
 ## SD启动卡制作步骤
 1. 选择电脑上的SD卡盘符
 ![](images/screenshot_1522837510660.png)

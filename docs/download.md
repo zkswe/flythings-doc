@@ -1,3 +1,6 @@
+---
+layout: default
+---
 # 搭建开发环境
 ## 安装FlyThings集成开发工具及SDK
 

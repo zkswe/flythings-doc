@@ -1,3 +1,6 @@
+---
+layout: default
+---
 当我们新建一个工程时，生成的模板代码里面有一个Main.cpp文件，路径： jni/Main.cpp；模板代码如下：
 ![](images/Screenshotfrom2018-06-06182629.png)
 

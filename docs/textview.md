@@ -1,3 +1,6 @@
+---
+layout: default
+---
 # 文本类 TextView
 ## <span id="add_textview">我需要显示一段文字/标签，怎么办？</span>
 如果需要显示文字，利用现有的`Textview`件就可以快速实现。具体操作步骤如下：
@@ -40,13 +43,13 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
  * 背景颜色设置  
     - 对背景色属性的扩展，可以分别设置控件各个状态下的背景颜色
 
-  具体示例：  
-  
-      ![TextView-color-example](assets/TextView-color-example.png "属性示例")
+ 具体示例：  
+ 
+   ![TextView-color-example](assets/TextView-color-example.png "属性示例")
 
-  效果图：
+ 效果图：
 
-    ![TextVIew-color-preview](assets/TextView-color-preview.png "效果图")
+   ![TextVIew-color-preview](assets/TextView-color-preview.png "效果图")
 
   上图是属性表颜色部分截图，其表示的含义为：背景颜色设置为黑色， 文字的颜色设置为白色，当控件设置为选中状态时，文字颜色变为红色。
 

@@ -1,3 +1,6 @@
+---
+layout: default
+---
 在屏幕损坏或触摸不准情况下，想要对系统进行升级，我们可以在SD卡根目录下创建一个文件 —— **zkautoupgrade** （注意：该文件是没有后缀名的）
 ![](images/Screenshotfrom2018-06-07195801.png)
 

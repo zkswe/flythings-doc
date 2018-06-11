@@ -1,3 +1,6 @@
+---
+layout: default
+---
 [TOC]
 
 # 视频讲解

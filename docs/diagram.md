@@ -1,3 +1,6 @@
+---
+layout: default
+---
 
 [TOC]
 # 控件概要

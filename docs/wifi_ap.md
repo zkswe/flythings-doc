@@ -1,3 +1,6 @@
+---
+layout: default
+---
 # 启动热点设置界面
 ~~~
 EASYUICONTEXT->openActivity("SoftApSettingActivity");

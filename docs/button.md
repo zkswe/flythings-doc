@@ -1,3 +1,6 @@
+---
+layout: default
+---
 # 按键类 Button
 ## <span id = "add_button">我需要一个按键/按钮， 如何添加，如何修改属性？</span>
 如果需要一个按键/按钮，利用现有的`Button`控件就可以快速实现。具体操作步骤如下：
@@ -6,9 +9,9 @@
 3. 鼠标左键点击`按键`控件不放，然后将其拖拽到任意位置，松开左键，就能看到自动生成的按键控件。
 4. 再左键点击刚才生成的按键控件，在编辑器的右侧就能看到该控件的相关属性。在这个属性表格中，你可以像填写Excel表单一样，自由修改属性！
 
- ![创建Button](assets/Button_create.gif)
+![创建Button](assets/Button-create.gif)
 ## 如何修改按键/按钮的颜色？
-参考[如何修改文字的颜色](#change_color)
+参考[如何修改文字的颜色](textview#change_color)
 ## <span id = "add_button_style">如何为按钮添加更多的动画效果？</span>
 参考[如何用图片来丰富按钮/按键的样式](#add_multi_state_photo_for_button)
 ## <span id = "add_multi_state_photo_for_button">如何用图片来丰富按钮/按键的样式</span>
