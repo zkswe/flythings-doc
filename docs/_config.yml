@@ -18,3 +18,5 @@ plugins:
 markdown: kramdown
 markdown_ext: "md"
 
+
+theme: jekyll-theme-cayman
