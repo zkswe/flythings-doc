@@ -1,1 +1,5 @@
-mv_image.py
+_site
+.bundle
+.sass-cache
+Gemfile.lock
+.DS_Store

@@ -22,7 +22,7 @@
   - ## [系统内置界面](internal_app)
   - ## [系统应用](system_app)
 * ## 串口通讯 
-  - ### [简介](serial_introduction)  
+  - ### [简介](serial_introdoction)  
   - ### [通讯框架讲解](serial_framework)
   - ### [串口配置](serial_configuration)
 * ## 网络控制  

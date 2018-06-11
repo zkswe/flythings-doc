@@ -40,13 +40,13 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
  * 背景颜色设置  
     - 对背景色属性的扩展，可以分别设置控件各个状态下的背景颜色
 
-  具体示例：
-
-  ![TextView-color-example](assets/TextView-color-example.png "属性示例")
+  具体示例：  
+  
+      ![TextView-color-example](assets/TextView-color-example.png "属性示例")
 
   效果图：
 
-  ![TextVIew-color-preview](assets/TextView-color-preview.png "效果图")
+    ![TextVIew-color-preview](assets/TextView-color-preview.png "效果图")
 
   上图是属性表颜色部分截图，其表示的含义为：背景颜色设置为黑色， 文字的颜色设置为白色，当控件设置为选中状态时，文字颜色变为红色。
 
