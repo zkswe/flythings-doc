@@ -1,11 +1,12 @@
 # <span id="ide_introduce"> FlyThings IDE 工作区域使用介绍</span>  
 当你新建项目完成后，你将看到如下界面    
  
-  ![新建项目完成后的界面](assets/ide/default_layout.png)
+  ![新建项目完成后的界面](assets/ide/default_layout.png)  
+  
 编辑器大致分为六个区域。分别的作用如下：  
   1. **① 区域 - 项目资源管理器** 它将项目文件夹内的资源文件、代码文件等以树形图的形式显示。你可以自由展开/收起，双击文件可以直接打开编辑。具体演示如下：  
   
-   ![项目展开/收起](assets/ide/project_open_collapsed.gif)   
+    ![项目展开/收起](assets/ide/project_open_collapsed.gif)   
  
   2. **② 区域 - UI编辑框**  主要负责UI界面的编辑和即时预览，他是开发中主要的操作区域
   3. **③ 区域 - 控件画板**  它包含了所有内置的控件，你可以点击选择需要的的控件，将其拖拽到 **②区域** 即可完成控件的创建。具体演示如下：   
