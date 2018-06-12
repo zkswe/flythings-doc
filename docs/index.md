@@ -8,11 +8,12 @@ layout: default
 * # [初次使用FlyThings IDE集成开发工具](flythings_ide_snapshot#first_run)
 * # [FlyThings IDE工作区域使用介绍](flythings_ide_layouot_introduce)
 * # [如何新建FlyThings项目](new_flythings_project#new_flythings_project)
-* # 控件相关  
+* # <span id = "views">控件相关 </span>  
   - ## [文本](textview)  
   - ## [按键](button)
   - ## [进度条/滑块](seekbar)
   - ## [指针/仪表](pointer)
+  - ## [列表](listview)
   - ## [波形图](diagram)
   - ## [滑动窗口](slidewindow)
   - ## [圆形进度条](circlebar)
