@@ -8,7 +8,7 @@ layout: default
 ![项目结构](assets/project_structure.png)  
 大致分为 **jni** 、**resources** 、 **ui** 三个文件夹。下面分别解释各个文件夹的作用。    
 * ## ui 文件夹  
-  展开** ui ** 文件夹   
+  展开 **ui** 文件夹   
   
   ![ui文件夹展开](assets/project_ui_expand.png)    
   
