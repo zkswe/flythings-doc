@@ -12,7 +12,7 @@ FlyThings 将UI与代码区分开来，方便管理。
 
 ![](assets/global_control_pointer.png)  
 
-**图中可以看到， 所有指针为静态全局变量，它们都具有相同的命名规则，具体命名规则请参考[控件ID名与指针变量名的命名规则]()；并且，你还应该注意到截图中 `#include "logic/mainLogic.cc"` 这条语句，它将 `mainLogic.cc`文件include到`mainActivity.cpp`当中，而我们的业务代码就是写在`mainLogic.cc`文件里，所以，我们可以在`mainLogic.cc`中完全使用这些控件指针。**  
+**图中可以看到， 所有指针为静态全局变量，它们都具有相同的命名规则，具体命名规则请参考[控件ID名与指针变量名的命名规则](named_rule)；并且，你还应该注意到截图中 `#include "logic/mainLogic.cc"` 这条语句，它将 `mainLogic.cc`文件include到`mainActivity.cpp`当中，而我们的业务代码就是写在`mainLogic.cc`文件里，所以，我们可以在`mainLogic.cc`中完全使用这些控件指针。**  
 如果你对这些指针的初始化感兴趣，可以在`mainActivity`的`onCreate`方法中找到。
 
 ## UI文件与Logic.cc文件的关系
