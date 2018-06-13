@@ -43,7 +43,7 @@ layout: default
    * **输入法**  
   如果你有中文输入的需求，可以勾选它， 配合 **[编辑输入框](edittext)** 控件，就可以解决中文输入了。      
   
-  以上属性后续都可以再次修改，所以不必过分担心填写错误。([如何修改已有项目的属性](set_project_properties))  
+    以上属性后续都可以再次修改，所以不必过分担心填写错误。([如何修改已有项目的属性](set_project_properties))  
   属性都填写确认后，点击 ** 完成 ** 结束创建，创建过程会花费些许时间，耐心等待。  
   
 4. 项目创建完成后，你应该先了解 [FlyThings 项目代码结构介绍](project_structure#project_structure)
