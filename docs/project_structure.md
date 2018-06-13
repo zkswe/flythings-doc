@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+
 # <span id = "project_structure">FlyThings项目代码结构介绍</span>
 开始编写代码之前，首先要了解一个FlyThings项目的基本构成，然后你就能知道自己的代码应该添加到哪个位置。  
 对于一个基本的FlyThings项目，它的目录结构是这样的：  
