@@ -33,7 +33,7 @@ WIFIMANAGER->startScan();
 ```
 连接wifi
 ```c++
-WIFIMANAGER->connect(ssid， pw);
+WIFIMANAGER->connect(ssid, pw);
 ```
 断开wifi连接
 ```c++

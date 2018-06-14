@@ -26,9 +26,10 @@ XMzIzMzA5NTQ3Ng
 ### 通讯协议格式修改
 这里我们举一个比较常见的通讯协议例子：
 
-|协议头（2字节）|命令（2字节）|数据长度（1字节）|数据（N）|校验（1字节)|
-| --- | --- | --- |--- | --- |
-|0XFFAA|Cmd|len|data|checksum|
+| 协议头（2字节） | 命令（2字节） | 数据长度（1字节） | 数据（N） | 校验（1字节) |
+| --- | --- | --- | --- | --- |
+| 0XFFAA | Cmd | len | data | checksum |
+
 ProtocolParser.cpp 文件，配置文件命令格式：
 ```c++
 /* SynchFrame CmdID  DataLen Data CheckSum */
@@ -98,6 +99,7 @@ int parseProtocol(const BYTE *pData, UINT len) {
 ```
 
 * 协议头需要修改
+
 ```c++
 1.修改协议头部分的定义，如果协议头是一个长度，则要注意修改协议头判断部分语句。
 #define DATA_PACKAGE_MIN_LEN		6
@@ -110,6 +112,7 @@ while ((mDataBufLen >= 2) && ((pData[0] != CMD_HEAD1) || (pData[1] != CMD_HEAD2)
 ```
 
 * 协议长度的位置或者长度计算方式发生变化的修改
+
 ```c++
 这里的pData[4] 代表的是第5个数据是长度的字节，如果变化了在这里修改一下。
 dataLen = pData[4];
@@ -119,6 +122,7 @@ frameLen = dataLen + DATA_PACKAGE_MIN_LEN;
 ```
 
 * 校验发生变化的情况
+
 ```c++
 当校验不一样的时候需要修改校验方法，
 1.校验内容变化修改这个位置
@@ -139,6 +143,7 @@ BYTE getCheckSum(const BYTE *pData, int len) {
 ```
 
 * 当完成一帧数据的接收后程序会调用procParse 解析
+
 ```c++
 // 检测校验码
 if (getCheckSum(pData, frameLen - 1) == pData[frameLen - 1]) {
@@ -179,6 +184,7 @@ void procParse(const BYTE *pData, UINT len) {
 当数据解析完成后通过notifyProtocolDataUpdate 通知到页面UI更新，这个部分请参照后面的UI更新部分
 
 * 数据结构
+
 上面的协议解析到了sProtocolData 结构体中，sProtocolData 是一个静态的变量，用于保存MCU（或者其他设备）串口发送过来的数据值。
 这个数据结构在ProtocolData.h文件中。这里可以添加整个项目里面需要使用到的通讯变量
 ```c++
@@ -191,6 +197,7 @@ typedef struct {
 
 * UI更新
 UI界面在工具生成*Activity.cpp的时候就已经完成了registerProtocolDataUpdateListener ，也就是说当数据更新的时候logic里面页面程序就会收到数据。
+
 ```c++
 static void onProtocolDataUpdate(const SProtocolData &data) {
     // 串口数据回调接口
