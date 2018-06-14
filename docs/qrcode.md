@@ -12,7 +12,7 @@ layout: default
 
 ## 动态更新二维码
 除了通过工具设置二维码内容外，我们还可以通过代码来动态设置二维码内容：
-~~~
+```c++
 // mQrcode1Ptr为二维码控件对象，由工具自动生成
 mQrcode1Ptr->loadQRCode("www.zkswe.com");
-~~~
+```

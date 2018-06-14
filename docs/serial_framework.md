@@ -30,11 +30,11 @@ XMzIzMzA5NTQ3Ng
 | --- | --- | --- |--- | --- |
 |0XFFAA|Cmd|len|data|checksum|
 ProtocolParser.cpp 文件，配置文件命令格式：
-~~~
+```c++
 /* SynchFrame CmdID  DataLen Data CheckSum */
 /*     2Byte  2Byte   1Byte	N Byte  1Byte */
 // 最小长度: 2 + 2 + 1 + 1= 6
-/**
+
 #define DATA_PACKAGE_MIN_LEN		6
 #define CMD_HEAD1	0xFF
 #define CMD_HEAD2	0x55
@@ -94,10 +94,10 @@ int parseProtocol(const BYTE *pData, UINT len) {
 	return len - remainLen;
 }
 
-~~~
+```
 
 * 协议头需要修改
-~~~
+```c++
 1.修改协议头部分的定义，如果协议头是一个长度，则要注意修改协议头判断部分语句。
 #define DATA_PACKAGE_MIN_LEN		6
 #define CMD_HEAD1	0xFF
@@ -105,17 +105,18 @@ int parseProtocol(const BYTE *pData, UINT len) {
 
 2.协议头长度变化的时候需要修改这里。
 while ((mDataBufLen >= 2) && ((pData[0] != CMD_HEAD1) || (pData[1] != CMD_HEAD2))) 
-    
-~~~
+```
+
 * 协议长度的位置或者长度计算方式发生变化的修改
-~~~
+```c++
 这里的pData[4] 代表的是第5个数据是长度的字节，如果变化了在这里修改一下。
 dataLen = pData[4];
 帧长度一般是数据长度加上头尾长度。如果协议中传的长度计算方式发生变化修改这个部分。
 frameLen = dataLen + DATA_PACKAGE_MIN_LEN;
-~~~
+```
+
 * 校验发生变化的情况
-~~~
+```c++
 当校验不一样的时候需要修改校验方法，
 1.校验内容变化修改这个位置
 if (getCheckSum(pData, frameLen - 1) == pData[frameLen - 1])
@@ -131,10 +132,10 @@ BYTE getCheckSum(const BYTE *pData, int len) {
 
 	return (BYTE) (~sum + 1);
 }
-~~~
+```
 
 * 当完成一帧数据的接收后程序会调用procParse 解析
-~~~
+```c++
 // 检测校验码
 if (getCheckSum(pData, frameLen - 1) == pData[frameLen - 1]) {
     // 解析一帧数据
@@ -142,13 +143,13 @@ if (getCheckSum(pData, frameLen - 1) == pData[frameLen - 1]) {
 } else {
 	LOGE("CheckSum error!!!!!!\n");
 }
-~~~
+```
 
 ### 通讯协议数据怎么和UI控件对接
 继续前面的协议框架我们进入到procParse的解析部分。
 这里重点的代码是：ProtocolParser.cpp 
 打开文件然后找到void procParse(const BYTE *pData, UINT len) 
-~~~
+```c++
 /*
  * 协议解析
  * 输入参数:
@@ -167,25 +168,25 @@ void procParse(const BYTE *pData, UINT len) {
 	}
 	notifyProtocolDataUpdate(sProtocolData);
 }
-~~~
+```
 以上 MAKEWORD(pData[2], pData[3]) 在我们的协议例子中表示Cmd值；
 当数据解析完成后通过notifyProtocolDataUpdate 通知到页面UI更新，这个部分请参照后面的UI更新部分
 
 * 数据结构
 上面的协议解析到了sProtocolData 结构体中，sProtocolData 是一个静态的变量，用于保存MCU（或者其他设备）串口发送过来的数据值。
 这个数据结构在ProtocolData.h文件中。这里可以添加整个项目里面需要使用到的通讯变量
-~~~
+```c++
 typedef struct {
 	/***
 	 * 可以在这里面添加协议的数据变量
 	 */
 	BYTE power;
 } SProtocolData;
-~~~
+```
 
 * UI更新
 UI界面在工具生成*Activity.cpp的时候就已经完成了registerProtocolDataUpdateListener ，也就是说当数据更新的时候logic里面页面程序就会收到数据。
-~~~
+```c++
 static void onProtocolDataUpdate(const SProtocolData &data) {
     // 串口数据回调接口
 	if (mProtocolData.power != data.power) {
@@ -202,23 +203,23 @@ static void onProtocolDataUpdate(const SProtocolData &data) {
 	}
     ...
 }
-~~~
+```
 在代码里面我们看到一个变量 mProtocolData，这是一个页面里面的static 的变量。在onUI_init()的时候会初始化。
 如：
-~~~
+```c++
 static SProtocolData mProtocolData;
 static void onUI_init(){
-    //Tips :添加 UI初始化的显示代码到这里,如:mText1->setText("123");
+	//Tips :添加 UI初始化的显示代码到这里,如:mText1->setText("123");
 	mProtocolData = getProtocolData(); // 初始化串口数据的结构体。
-   // 开始初始化页面的UI显示
+	// 开始初始化页面的UI显示
 }
-~~~
+```
 
 ## 串口数据发送
 打开ProtocolSender.cpp
 当APP层需要发送数据给MCU（或其他设备）的时候直接调用sendProtocol 就可以了。
 具体的协议封装由sendProtocol方法完成。用户可以根据自己的协议要求修改这个部分的代码。
-~~~
+```c++
 /**
  * 需要根据协议格式进行拼接，以下只是个模板
  */
@@ -243,9 +244,9 @@ bool sendProtocol(const BYTE *pData, UINT16 len) {
 
 	return UARTCONTEXT->send(dataBuf, frameLen);
 }
-~~~
+```
 当界面上有个按键按下的时候可以操作：
-~~~
+```c++
 BYTE mode[]= {0x01,0x02,0x03,0x04};
 sendProtocol(mode, 4);
-~~~
+```

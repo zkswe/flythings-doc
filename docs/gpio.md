@@ -3,7 +3,7 @@ layout: default
 ---
 目前只留了3组io口可以操作
 操作接口 jni/include/utils/GpioHelper.h
-~~~
+```c++
 #define GPIO_PIN_B_02		"B_02"
 #define GPIO_PIN_B_03		"B_03"
 #define GPIO_PIN_E_20		"E_20"
@@ -21,4 +21,4 @@ GpioHelper::input(GPIO_PIN_B_02);
 
 // B02 io口输出高电平
 GpioHelper::output(GPIO_PIN_B_02, 1);
-~~~
+```

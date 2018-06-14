@@ -18,31 +18,31 @@ layout: default
 
 系统提供了两个接口可以用于操作状态栏：
 显示状态栏：
-~~~
+```c++
 EASYUICONTEXT->showStatusBar();
-~~~
+```
 隐藏状态栏：
-~~~
+```c++
 EASYUICONTEXT->hideStatusBar();
-~~~
+```
 [**下载Demo代码**](https://github.com/zkswe/Z11SDemoCode/tree/master/StatusBarDemo)
 
 ## 导航栏
 解释：这个导航栏跟Android手机的导航栏概念一致，是一个悬浮在UI界面之上的一个通用操作或者显示区，一般在页面的底部。通常用于显示一些操作按键。导航栏实际上和状态栏没有什么差别。
 显示导航栏：
-~~~
+```c++
 EASYUICONTEXT->showNaviBar();
-~~~
+```
 隐藏导航栏：
-~~~
+```c++
 EASYUICONTEXT->hideNaviBar();
-~~~
+```
 
 ## 屏保应用
 解释：屏保应用是指当用户不再做系统交互的时候，时间超过某个指定时间长度。系统自动打开一个页面。
 右键工程, 选择 Properties 选项, 在弹出的属性框里，我们可以对屏保超时时间进行设置，单位为秒，-1表示不进屏保；
 我们也可以通过代码进行一些设置，见 jni/include/entry/EasyUIContext.h：
-~~~
+```c++
 // 设置屏保超时时间，单位为秒
 void setScreensaverTimeOut(int timeOut);
 
@@ -58,5 +58,5 @@ void screensaverOff();
 
 // 是否进入了屏保
 bool isScreensaverOn() const;
-~~~
+```
 [**下载Demo代码**](https://github.com/zkswe/Z11SDemoCode/tree/master/ScreensaverDemo)
