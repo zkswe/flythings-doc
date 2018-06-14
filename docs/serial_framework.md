@@ -72,6 +72,7 @@ int parseProtocol(const BYTE *pData, UINT len) {
 			break;
 		}
 
+		// 打印一帧数据，需要时定义一下DEBUG_PRO_DATA宏
 #ifdef DEBUG_PRO_DATA
 		for (int i = 0; i < frameLen; ++i) {
 			LOGD("%x ", pData[i]);
@@ -104,7 +105,8 @@ int parseProtocol(const BYTE *pData, UINT len) {
 #define CMD_HEAD2	0xAA
 
 2.协议头长度变化的时候需要修改这里。
-while ((mDataBufLen >= 2) && ((pData[0] != CMD_HEAD1) || (pData[1] != CMD_HEAD2))) 
+while ((mDataBufLen >= 2) && ((pData[0] != CMD_HEAD1) || (pData[1] != CMD_HEAD2)))
+
 ```
 
 * 协议长度的位置或者长度计算方式发生变化的修改
@@ -113,6 +115,7 @@ while ((mDataBufLen >= 2) && ((pData[0] != CMD_HEAD1) || (pData[1] != CMD_HEAD2)
 dataLen = pData[4];
 帧长度一般是数据长度加上头尾长度。如果协议中传的长度计算方式发生变化修改这个部分。
 frameLen = dataLen + DATA_PACKAGE_MIN_LEN;
+
 ```
 
 * 校验发生变化的情况
@@ -132,17 +135,19 @@ BYTE getCheckSum(const BYTE *pData, int len) {
 
 	return (BYTE) (~sum + 1);
 }
+
 ```
 
 * 当完成一帧数据的接收后程序会调用procParse 解析
 ```c++
 // 检测校验码
 if (getCheckSum(pData, frameLen - 1) == pData[frameLen - 1]) {
-    // 解析一帧数据
+	// 解析一帧数据
 	procParse(pData, frameLen);
 } else {
 	LOGE("CheckSum error!!!!!!\n");
 }
+
 ```
 
 ### 通讯协议数据怎么和UI控件对接
@@ -168,6 +173,7 @@ void procParse(const BYTE *pData, UINT len) {
 	}
 	notifyProtocolDataUpdate(sProtocolData);
 }
+
 ```
 以上 MAKEWORD(pData[2], pData[3]) 在我们的协议例子中表示Cmd值；
 当数据解析完成后通过notifyProtocolDataUpdate 通知到页面UI更新，这个部分请参照后面的UI更新部分
@@ -177,11 +183,10 @@ void procParse(const BYTE *pData, UINT len) {
 这个数据结构在ProtocolData.h文件中。这里可以添加整个项目里面需要使用到的通讯变量
 ```c++
 typedef struct {
-	/***
-	 * 可以在这里面添加协议的数据变量
-	 */
+	// 可以在这里面添加协议的数据变量
 	BYTE power;
 } SProtocolData;
+
 ```
 
 * UI更新
@@ -196,23 +201,25 @@ static void onProtocolDataUpdate(const SProtocolData &data) {
 	if (mProtocolData.eRunMode != data.eRunMode) {
 		mProtocolData.eRunMode = data.eRunMode;
 		mbtn_autoPtr->setSelected(mProtocolData.eRunMode == E_RUN_MODE_MANUAL);
-		if(mProtocolData.eRunMode != E_RUN_MODE_MANUAL){
+		if (mProtocolData.eRunMode != E_RUN_MODE_MANUAL) {
 			mbtn_external_windPtr->setText(mProtocolData.externalWindSpeedLevel);
 			mbtn_internal_windPtr->setText(mProtocolData.internalWindSpeedLevel);
 		}
 	}
     ...
 }
+
 ```
 在代码里面我们看到一个变量 mProtocolData，这是一个页面里面的static 的变量。在onUI_init()的时候会初始化。
 如：
 ```c++
 static SProtocolData mProtocolData;
-static void onUI_init(){
+static void onUI_init() {
 	//Tips :添加 UI初始化的显示代码到这里,如:mText1->setText("123");
 	mProtocolData = getProtocolData(); // 初始化串口数据的结构体。
 	// 开始初始化页面的UI显示
 }
+
 ```
 
 ## 串口数据发送
@@ -244,6 +251,7 @@ bool sendProtocol(const BYTE *pData, UINT16 len) {
 
 	return UARTCONTEXT->send(dataBuf, frameLen);
 }
+
 ```
 当界面上有个按键按下的时候可以操作：
 ```c++
