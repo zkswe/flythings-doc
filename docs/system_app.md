@@ -25,6 +25,8 @@ EASYUICONTEXT->showStatusBar();
 ~~~
 EASYUICONTEXT->hideStatusBar();
 ~~~
+演示代码路径：
+https://github.com/zkswe/Z11SDemoCode/tree/master/StatusBarDemo
 
 ## 导航栏
 解释：这个导航栏跟Android手机的导航栏概念一致，是一个悬浮在UI界面之上的一个通用操作或者显示区，一般在页面的底部。通常用于显示一些操作按键。导航栏实际上和状态栏没有什么差别。
@@ -58,3 +60,5 @@ void screensaverOff();
 // 是否进入了屏保
 bool isScreensaverOn() const;
 ~~~
+演示代码路径：
+https://github.com/zkswe/Z11SDemoCode/tree/master/ScreensaverDemo
