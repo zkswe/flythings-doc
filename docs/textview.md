@@ -82,4 +82,8 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
       mTextView1->setTextColor(0xFF0000);
    ```
 
+### 样例代码
+由于文本控件属性较多，更多属性效果参考[样例代码](https://github.com/zkswe/Z11SDemoCode/archive/master.zip)。   
+预览效果图： 
 
+![效果图](assets/textview/preview.png)

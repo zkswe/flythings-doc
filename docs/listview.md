@@ -1,95 +1,40 @@
 ---
 layout: default
 ---
-[TOC]
 
-# 控件简介
+# 列表控件
 ## 功能
 列表按键经常用于一个页面无法展示完成所有信息的时候使用，同时每个单元信息中存在一些一致的属性分类
 
 ## 场景
 WiFi列表，设备列表，表格信息
 
-# 控件贴图方法
-## 控件介绍
-![](images/screenshot_1511508754409.png)
-列表控件包含三项内容：
-1. 列表主控件
-2. 列表项：一个列表里面包含的N个列表单元，贴图的时候只需要贴一个即可
-3. 列表子项：列表子项需要贴入到列表项目中，每个列表项可以支持5个列表子项的显示，用于实现不同内容的显示和控制部分。
+# 具体如何使用
+1. 打开UI文件，创建一个列表控件,再添加两个列表子项控件到列表中 然后你就能直观的看到列表的外观样式。 具体操作如下：  
 
-## 贴图方法
-1. 先吧列表空间拖入到需要放置的空间上。调整好列表的区域后设置列表区域内的列表内容显示分配：
-![](images/screenshot_1511509603864.png)
-2. 拖入列表项 到列表区域内的第一个位置
-![](images/screenshot_1511509618172.png)
-修改一下属性：
-![](images/screenshot_1511509832739.png)
-![](images/screenshot_1511509690789.png)
-3. 加入一个子项显示和一个子项的按钮
-![](images/screenshot_1511509806141.png)
-	* 按键开关:
-	![](images/screenshot_1511509870994.png)
-	* 列表子项目1文字显示：
-	![](images/screenshot_1511509882021.png)
+![](assets/list/add_list.gif)
+2. 选中列表，可以看到它有如下属性   
+ ![](assets/list/properties.png)   
+ 
+ 每条属性你可以尝试修改，然后下载程序到机器中查看具体变化。  
+3. 现在转到大纲视图    
 
-至此可以看到目标列表的一个项目的界面显示效果
-点击生成代码
+ ![](assets/list/list_outline.png)
+ 
+ 可以看到列表下默认生成了一个 **Item**节点，它表示列表的一行或者一列， 在**Item**里包含我们添加的两个 **ListSub** 节点。  
+ 你可以点击选中各个节点，查看它们各自的属性，以及在预览图上可以看到它们作用的范围。  
+ **注意：每一个列表控件最多可以添加 5 个列表子项。**
+ 
+ **Item** 和 **列表子项** 控件的属性与 **按键**控件类似。
+ 你可以分别修改它们的属性，调整样式。我这边修改后的结果如下：  
+ 
+ ![](assets/list/preview.png)  
+ 
+ ## 代码操作 
+ 在UI文件中，我们只能调整列表的样式外观，列表中具体显示的内容还需要我们通过代码控制。
+ 这部分代码，都可以在编译后生成的关联函数中完成。
+ 具体列表的关联函数讲解可以参考[列表关联函数介绍](relation_function#list)
+ 
+ ## 样例代码
+完整列表控件的使用，参考[样例代码](https://github.com/zkswe/Z11SDemoCode/archive/master.zip)    
 
-# 控件源码操作
-1. 按照之前的方法，设置启动页面 Main.cpp
-~~~
-const char* onStartupApp(EasyUIContext *pContext) {
-	return "tesListActivity";
-}
-~~~
-2. testListLogic.cc中添加测试用的列表数据
-~~~
-
-typedef struct{
-	const char* mainText;
-	const char* subText;
-	bool bOn;
-}S_TEST_DATA;
-static S_TEST_DATA sDataTestTab[]={
-		"测试数据1","testsub1",false,
-		"测试内容2","testsub2",false,
-		"测试数据3","testsub3",false,
-		"测试测试4","testsub4",true,
-		"测试数据5","testsub5",false,
-		"测试数据6","testsub6",true,
-		"测试数据7","testsub7",false,
-		"测试数据8","testsub8",false,
-		"测试数据9","testsub9",false,
-		"测试数据10","testsub10",false,
-		"测试数据11","testsub11",false
-};
-~~~
-3. 在处理接口代码中添加代码
-~~~
-// 返回列表数据总长度
-static int getListItemCount_List1(const ZKListView *pListView) {
-    //LOGD(" getListItemCount_ List1  !!!\n");
-	return sizeof(sDataTestTab)/sizeof(S_TEST_DATA);
-    //return 0;
-}
-// 设置对应Index上的UI显示信息
-static void obtainListItemData_List1(ZKListView *pListView,ZKListView::ZKListItem *pListItem, int index) {
-	ZKListView::ZKListSubItem* psubText = pListItem->findSubItemByID(ID_TESLIST_ListSub1);
-	ZKListView::ZKListSubItem* psubButton = pListItem->findSubItemByID(ID_TESLIST_ListSub2);
-	psubText->setText(sDataTestTab[index].subText);
-	pListItem->setText(sDataTestTab[index].mainText);
-	psubButton->setSelected(sDataTestTab[index].bOn);
-    //LOGD(" obtainListItemData_ List1  !!!\n");
-}
-
-// 点击列表的时候修改切换开关的状态。
-static void onListItemClick_List1(ZKListView *pListView, int index, int id) {
-    //LOGD(" onListItemClick_ List1  !!!\n");
-	sDataTestTab[index].bOn = !sDataTestTab[index].bOn;
-}
-~~~
-
-# Sample代码下载
-代码跟滑动进度条做到了一起：不同的项目请切换一些启动页面。
-https://gitee.com/zkswe/testSlider

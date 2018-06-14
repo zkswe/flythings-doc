@@ -54,4 +54,8 @@ layout: default
   ```
      
    
-   
+## 样例代码  
+更多滑块控件的使用，参考[样例代码](https://github.com/zkswe/Z11SDemoCode/archive/master.zip)  
+样例预览效果图：  
+
+![效果图](assets/seekbar/preview.png)
