@@ -2,7 +2,7 @@
 layout: default
 ---
 操作接口 jni/include/utils/TimeHelper.h
-~~~
+```c++
 #include "utils/TimeHelper.h"
 
 // 获取当前日期
@@ -20,7 +20,7 @@ static void updateUI_time() {
 	sprintf(timeStr, "%d年%02d月%02d日", 1900 + t->tm_year, t->tm_mon + 1, t->tm_mday);
 	mTextDatePtr->setText(timeStr); // 注意修改控件名称
     
-    static const char *day[] = { "日", "一", "二", "三", "四", "五", "六" };
+	static const char *day[] = { "日", "一", "二", "三", "四", "五", "六" };
 	sprintf(timeStr, "星期%s", day[t->tm_wday]);
 	mTextWeekPtr->setText(timeStr); // 注意修改控件名称
 }
@@ -30,4 +30,4 @@ TimeHelper::setDateTime(ptm);
 
 // 或者设置日期字符串  date str format: 2017-09-13 16:00:00
 TimeHelper::setDateTime("2017-09-13 16:00:00");
-~~~
+```

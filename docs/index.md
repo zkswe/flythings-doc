@@ -27,29 +27,30 @@ layout: default
   - ## [音视频](avideo)
   - ## [文本数字输入框/中文输入法支持](edittext)
   - ## [窗口容器](window)
-* ## 界面交互  
+* # 界面交互
   - ## [第一个启动界面](first_app)
   - ## [打开、关闭应用界面](open_close_app)
   - ## [系统内置界面](internal_app)
   - ## [系统应用](system_app)
-* ## 串口通讯 
-  - ### [简介](serial_introdoction)  
-  - ### [通讯框架讲解](serial_framework)
-  - ### [串口配置](serial_configuration)
-* ## 网络控制  
-  - ### [wifi设置](wifi)
-  - ### [热点设置](wifi_ap)
-* ## 多媒体  
-  - ### [视频播放](video)
-  - ### [音乐播放](audio)
-* ## [数据存储](data)
-* ## 升级及调试  
-  - ### [开机LOGO升级](update_logo)
-  - ### [自动升级](autoupgrade)
-  - ### [ADB调试](adb_debug)
-* ## 附录  
-  - ### [亮度操作](brightness)
-  - ### [系统时间](system_time)
-  - ### [GPIO操作](gpio)
-  - ### [开发工具常用技巧](editor_tip)
-  - ### [制作SD启动卡刷机](sd_boot)
+* # 串口通讯
+  - ## [简介](serial_introdoction)
+  - ## [通讯框架讲解](serial_framework)
+  - ## [串口配置](serial_configuration)
+* # 网络控制
+  - ## [wifi设置](wifi)
+  - ## [热点设置](wifi_ap)
+* # 多媒体
+  - ## [视频播放](video)
+  - ## [音乐播放](audio)
+* # [数据存储](data)
+* # 升级及调试
+  - ## [开机LOGO升级](update_logo)
+  - ## [自动升级](autoupgrade)
+  - ## [ADB调试](adb_debug)
+* # 附录
+  - ## [亮度操作](brightness)
+  - ## [系统时间](system_time)
+  - ## [GPIO操作](gpio)
+  - ## [获取机器唯一ID码](machine_unique_id)
+  - ## [开发工具常用技巧](editor_tip)
+  - ## [制作SD启动卡刷机](sd_boot)

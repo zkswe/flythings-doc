@@ -3,7 +3,7 @@ layout: default
 ---
 # 音乐播放事例代码
 
-~~~
+```c++
 // 创建ZKMediaPlayer对象
 ZKMediaPlayer *sMediaPlayerPtr = new ZKMediaPlayer(ZKMediaPlayer::E_MEDIA_TYPE_AUDIO);
 
@@ -43,7 +43,6 @@ sMediaPlayerPtr->isPlaying();	// 是否播放中，返回bool型
 
 sMediaPlayerPtr->getDuration();	// 获取当前播放歌曲的总时间
 sMediaPlayerPtr->getCurrentPosition();	// 获取当前播放歌曲的当前播放时间点
-~~~
+```
 
-# 音乐播放完整Demo代码
-[https://github.com/zkswe/MusicDemo](https://github.com/zkswe/MusicDemo)
+[**音乐播放Demo代码**](https://github.com/zkswe/MusicDemo)

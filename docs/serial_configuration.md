@@ -11,16 +11,16 @@ layout: default
 
 ## 串口打开与关闭
 打开源码路径 jni/Main.cpp；我们可以看到在程序初始化和销毁时分别有对串口打开和关闭的操作；
-~~~
+```c++
 void onEasyUIInit(EasyUIContext *pContext) {
 	LOGD("onInit\n");
-    // 打开串口
+	// 打开串口
 	UARTCONTEXT->openUart(CONFIGMANAGER->getUartName().c_str(), CONFIGMANAGER->getUartBaudRate());
 }
 
 void onEasyUIDeinit(EasyUIContext *pContext) {
 	LOGD("onDestroy\n");
-    // 关闭串口
+	// 关闭串口
 	UARTCONTEXT->closeUart();
 }
-~~~
+```
