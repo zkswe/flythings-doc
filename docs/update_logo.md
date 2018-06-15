@@ -6,4 +6,4 @@ layout: default
 3.  将SD卡插入到机器中，然后设备会自动弹出升级提示。选择`boot_logo` 然后点击升级即可。
 4.  升级完成后系统会关机重启。此时拔出sdcard。防止系统再次升级
 
-![](images/1065724717.jpg)
+![](images/boot_logo_upgrade.jpg)
