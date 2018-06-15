@@ -28,7 +28,9 @@ layout: default
          
 **以上两个属性只有使用 `void addData(int index, float data)` 函数添加波形数据时才有效。** 
 
- ## 坐标轴及缩放
+
+## 坐标轴及缩放
+ 
  整个波形的图像缩放是自动完成的，我们不需要关心它，我们只需要在属性表中，确定 x轴范围，y轴范围，以及确定整个波形图像的矩形显示区域就可以了。
  注意：波形控件中的 **x轴缩放 、y轴缩放** 属性，它会将你添加的业务数值都乘以该比例后，再绘制到屏幕上，默认为1.0 ，表示不缩放。
  波形的坐标轴由 **x轴最小值、x轴最大值、y轴最小值、y轴最大值** 共同决定。  
@@ -36,13 +38,14 @@ layout: default
  
  ![](assets/diagram/location.png)  
  
- 一般情况下，**x轴最小值** 属性输入的值 小于 **x轴最大值** 属性 输入的值。但是如果将输入的最小值，最大值颠倒，那么同样的数据， 绘制的波形图像会左右颠倒，如果使用`void setData(int index, const MPPOINT *pPoints, int count)`函数添加波形数据，那么还会造成刷新方向颠倒。 同理，对于y轴而言，绘制波形图像会造成上下颠倒。   
+ 一般情况下，**x轴最小值** 属性输入的值 小于 **x轴最大值** 属性 输入的值。但是如果将输入的最小值，最大值颠倒，那么同样的数据， 绘制的波形图像会左右颠倒;  
+ 如果使用`void setData(int index, const MPPOINT *pPoints, int count)`函数添加波形数据，那么还会造成刷新方向颠倒。 同理，对于y轴而言，绘制波形图像会造成上下颠倒。   
  
 ## 代码操作  
   同样，UI文件只帮助我们快速修改波形的样式外观，具体的波形数据还是得通过代码添加。 
   在项目的`jni/include/control/ZKDiagram.h` 文件public 函数中，可以看到能支持的所有操作。  
-  **注意：与其他控件不同，我们添加的 **波形** 控件，虽然有ID属性，但是它并不生成独立的指针变量， 只有包含 **波形** 的 **波形图** 控件才会生成指针变量。所以对某个波形的操作，需要通过 **波形图** 指针，再借助 `index`值来表明对哪一个 **波形** 操作。
-`index`的值从 **0** 开始。  **
+  **注意：与其他控件不同，我们添加的 `波形` 控件，虽然有ID属性，但是它并不生成独立的指针变量， 只有包含`波形` 的 `波形图`控件才会生成指针变量。所以对某个波形的操作，需要通过 `波形图` 指针，再借助 `index`值来表明对哪一个 `波形` 操作。
+`index`的值从 0 开始。**
   * `void setPenWidth(int index, int width)`  
     设置波形线宽度，对应属性表上的 **线条宽度** 属性
   * `void setPenColor(int index, ARGB color)`  
@@ -85,5 +88,6 @@ static void movePoints(MPPOINT* p,int size){
 
 # 样例代码
 效果图  
-![](images/screenshot_1511521912812.png)  
-具体波形图控件的使用，参考[样例代码](https://github.com/zkswe/Z11SDemoCode/archive/master.zip)       
+具体波形图控件的使用，参考[样例代码](https://github.com/zkswe/Z11SDemoCode/archive/master.zip)   
+
+![](assets/diagram/preview.jpg)  

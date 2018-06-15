@@ -18,7 +18,8 @@ FlyThings 将UI与代码区分开来，方便管理。
 ## UI文件与Logic.cc文件的关系
 现在，你大概已经知道了UI文件里的控件是如何与这些指针联系起来的。  让我们再来看看`mainLogic.cc`文件里又为我们自动生成了哪些代码。  
 如果你的UI文件中没有添加任何控件，那你的`mainLogic.cc`文件将是这样的:   
-```c++
+
+```c++ 
 /**
  * 注册定时器
  * 在此数组中添加即可
@@ -78,21 +79,21 @@ typedef struct {
  实质是， `mainActivity.cpp`的`onCreate()`中，会默认调用`void registerProtocolDataUpdateListener(OnProtocolDataUpdateFun pListener)`进行接收串口数据的注册， 在`mainActivity.cpp`的析构中取消注册。当串口读到数据时，通过`ProtocolParser.cpp`中的`void notifyProtocolDataUpdate(const SProtocolData &data) `依次调用已注册的UI界面。  
 这是`ProtocolParser.cpp`中的串口解析函数，结合上面描述的过程，你应该就能理解串口数据是如何在各个界面分发的：
 
-```c++
-/**
- * 解析每一帧数据
- */
-static void procParse(const BYTE *pData, UINT len) {
-	switch (MAKEWORD(pData[3], pData[2])) {
-	case CMDID_POWER:
-		sProtocolData.power = pData[5];
-		break;
-	}
+    ```c++
+    /**
+     * 解析每一帧数据
+     */
+    static void procParse(const BYTE *pData, UINT len) {
+        switch (MAKEWORD(pData[3], pData[2])) {
+        case CMDID_POWER:
+            sProtocolData.power = pData[5];
+            break;
+        }
 
-	// 通知协议数据更新
-	notifyProtocolDataUpdate(sProtocolData);
-}
-```
+        // 通知协议数据更新
+        notifyProtocolDataUpdate(sProtocolData);
+    }
+    ```
 
 * **bool onUI_Timer(int id)**  
  定时器回调函数； 当某个定时器达到规定的时间间隔后，系统将调用该函数，当添加了多个定时器时，你可以通过 **id** 参数，区分定时器。这个 **id** 参数与 上面结构体数组中填写的 id 相同。  
@@ -109,7 +110,7 @@ static void procParse(const BYTE *pData, UINT len) {
  
 以上是默认的UI文件编译生成的Logic.cc。当我们在UI文件中添加控件后，再次编译时，工具会根据不同的控件生成不同的关联函数到对应的Logic.cc文件中。  
 例如：我在**main.ftu** 这个 UI文件中添加了两个按键控件，它们的ID分别是 `Button1` 、`Button2`，那么，经过编译之后，在 **mainLogic.cc**文件中会生成以下两个关联函数  
-```
+```c++
 static bool onButtonClick_Button1(ZKButton *pButton) {
     //LOGD(" ButtonClick Button1 !!!\n");
     return false;

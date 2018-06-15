@@ -7,7 +7,7 @@ layout: default
 
 ---
 * ### 按键控件  
-   ```
+   ```c++
    static bool onButtonClick_XXXX(ZKButton *pButton) {
       return false;
    }
@@ -19,7 +19,7 @@ layout: default
 ---
 
 * ### 编辑输入框控件
-  ```
+  ```c++
   static void onEditTextChanged_XXXX(const std::string &text) {
     
   }
@@ -30,7 +30,7 @@ layout: default
 ---
 
 * ### 滑块控件
-  ```
+  ```c++
   static void onProgressChanged_XXXX(ZKSeekBar *pSeekBar, int progress) {
   
   }
@@ -42,7 +42,7 @@ layout: default
 ---
 
 * ### <span id = "slidewindow"> 滑动窗口控件</span>
-  ```
+  ```c++
   static void onSlideItemClick_XXXX(ZKSlideWindow *pSlideWindow, int index) {
     
   }
