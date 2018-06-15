@@ -9,11 +9,13 @@ layout: default
 * # [FlyThings IDE工作区域使用介绍](flythings_ide_layouot_introduce)
 * # [如何新建FlyThings项目](new_flythings_project#new_flythings_project)
 * # [如何新建FlyThings UI文件](new_flythings_ui_file)
+* # [如何导入FlyThings项目](import_project)
 * # [如何编译](how_to_compile_flythings)
 * # [FlyThings 项目代码结构介绍](project_structure#project_structure)
 * # [具体编译过程以及UI文件与源代码的对应关系](ftu_and_source_relationships#ftu_and_source_relationships)
 * # [控件ID名与指针变量名的命名规则](named_rule)
 * # [各控件自动生成的关联函数讲解](relation_function#relation_function)
+
 * # <span id = "views">控件相关 </span>  
   - ## [文本](textview)  
   - ## [按键](button)
@@ -24,7 +26,7 @@ layout: default
   - ## [滑动窗口](slidewindow)
   - ## [圆形进度条](circlebar)
   - ## [二维码](qrcode)
-  - ## [音视频](avideo)
+  - ## [视频](video)
   - ## [文本数字输入框/中文输入法支持](edittext)
   - ## [窗口容器](window)
 * # 界面交互

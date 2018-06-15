@@ -2,52 +2,42 @@
 layout: default
 ---
 
-[TOC]
+# 滑动窗口
+滑动窗口控件与手机主界面九宫格左右滑动的界面效果类似。由一个滑动主窗口和多个图标组成。
+## 如何使用
+1. 首先在UI文件中创建一个 **滑动主窗口** 控件，然后再添加多个 **滑动窗口图标** 控件到 主窗口控件中。 
 
-# UI 简介
-滑动窗口的功能常用于主页ICON一页不能摆放完整的情况下使用。
-目前的GUI支持规则的局部滑动页面布局。无需任何代码干预即可完成。
-## 贴图控件
-* 滑动窗口 ： 窗口容器
-* 图标： 窗口内滑动的元素
-![](images/screenshot_1511527638510.png)
+   ![创建滑动窗口](assets/slidewindow/add_slidewindow.gif)
 
-# UI贴图方法
-1. 新建一个UI页面。
-2. 拖入一个滑动窗口，修改一下配置
-![](images/screenshot_1511528035185.png)
-3. 按照从左到右，从上到下的规则添加图标
-	* 生成顺序的按照贴图顺序完成
-	* 
-4. 当贴图完成一页的时候，需要选择第一页开始贴图
-![](images/screenshot_1511534288315.png)
-第二页图片
+2.  添加 **滑动窗口图标** 控件时，它会自动按顺序排列图标，如果添加满一页后，继续添加也会自动翻页。所有添加的图标控件都可以在 **大纲视图** 中找到。     
 
-![](images/screenshot_1511534325410.png)
-5. 生成代码
-# 代码编辑
-当我们不需要切换页面的时候需要编辑页面代码。
-1. 在Main.cpp 里面添加启动的界面。
-~~~
-const char* onStartupApp(EasyUIContext *pContext) {
-	return "mainActivity";
-}
-~~~
+    ![](assets/slidewindow/outline.png)  
+    
+    如果想调整 **滑动窗口图标** 排列的位置，你可以在大纲视图中选中节点,然后直接通过拖拽来调整。注意下面动画左下角大纲视图的操作。   
+    
+    ![](assets/slidewindow/outline2.gif)
 
-2. 添加相应的代码：
-~~~
-// index 就是点击页面的图标偏移值，从0开始
-static void onSlideItemClick_SlideWindow1(ZKSlideWindow *pSlideWindow, int index) {
-    //LOGD(" onSlideItemClick_ SlideWindow1 %d !!!\n", index);
-}
-~~~
+3. 在 **大纲视图** 中，选中 **滑动窗口图标** 控件，可以分别添加图片以及修改文字；选中整个 **滑动主窗口** 可以调整排列的 行数 和 列数， 还可以统一调整字体大小、图标大小。  
 
-3. 通过代码切换上下页
-~~~
+    ![添加icon](assets/slidewindow/add_icon.gif)  
+  
+  
+## 代码操作  
+如果你添加了滑动窗口控件，那么在编译后，会自动生成关联函数， 函数具体介绍参考[滑动窗口关联函数](relation_function#slidewindow)
+
+一般情况下，我们只需要通过触摸滑动来上下翻页。但是，我们也提供了相应的翻页函数。  
+
+```c++
 // 切换到下一页
-mSlideWindow1Ptr->turnToNextPage();
+void turnToNextPage(bool isAnimatable = false);
 // 切换到上一页
-mSlideWindow1Ptr->turnToPrevPage();
+void turnToPrevPage(bool isAnimatable = false);
+```
+参数 `bool isAnimatable` 表示是否开启翻页时的动画; 默认为`false`，表示关闭动画
 
-// 可通过UI工具设置“翻页动画”是否开启，默认关闭
-~~~
+# 样例代码
+效果图    
+
+ ![](assets/slidewindow/preview.png)  
+
+具体滑动窗口控件的使用，参考[样例代码](https://github.com/zkswe/Z11SDemoCode/archive/master.zip)  

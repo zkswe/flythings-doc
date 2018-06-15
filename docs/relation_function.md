@@ -5,6 +5,7 @@ layout: default
 有些控件会自动生成关联函数。这些控件生成的关联函数的具体讲解如下：  
 **函数中出现的`XXXX`代表控件ID，实际过程中，请自行替换**
 
+---
 * ### 按键控件  
    ```
    static bool onButtonClick_XXXX(ZKButton *pButton) {
@@ -14,7 +15,9 @@ layout: default
    当点击按键时，会调用该函数。
    
      * **参数`ZKButton *pButton`**是被点击按键的指针，通过该指针的成员函数可以对控件进行一系列操作。 该指针与全局变量`mXXXXPtr`所指向的对象为同一对象。
-___ 
+
+---
+
 * ### 编辑输入框控件
   ```
   static void onEditTextChanged_XXXX(const std::string &text) {
@@ -22,8 +25,10 @@ ___
   }
 ```
 当输入框中的文字发生改变时，系统会自动调用该函数。  
-  * **参数`std::string &text`**是当前输入框中的完整字符串。
-___
+  * **参数`std::string &text`**是当前输入框中的完整字符串。  
+  
+---
+
 * ### 滑块控件
   ```
   static void onProgressChanged_XXXX(ZKSeekBar *pSeekBar, int progress) {
@@ -33,8 +38,10 @@ ___
 当滑块当前进度值发生变化时，系统会自动调用该函数。  
   * **参数`ZKSeekBar *pSeekBar`** 是该滑块控件的指针，通过该指针的成员函数可以对控件进行一系列操作。  
   * **参数`int progress`**是当前滑块的的进度值
-___
-* ### 滑动窗口控件
+
+---
+
+* ### <span id = "slidewindow"> 滑动窗口控件</span>
   ```
   static void onSlideItemClick_XXXX(ZKSlideWindow *pSlideWindow, int index) {
     
@@ -43,7 +50,9 @@ ___
 当点击滑动窗口控件中的某一个图标时，系统会自动调用该函数。  
   * **参数`ZKSlideWindow *pSlideWindow`** 是该滑动窗口控件的指针，通过该指针的成员函数可以对控件进行一系列操作。  
   * **参数`int index`**是当前被点击图标的索引值。例如 该滑动窗口一共添加了10个图标，则索引值范围是[0, 9]
-___
+
+---
+
 * ### <span id = "list">列表控件</span>
 列表控件是最复杂的一个控件，它会创建三个关联函数。虽然函数较多，但是按照下面的步骤理解起来也十分容易。      
 
