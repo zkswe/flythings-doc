@@ -57,8 +57,8 @@ static bool onmainActivityTouchEvent(const MotionEvent &ev) {
 这些函数的具体作用如下：  
 * **REGISTER_ACTIVITY_TIMER_TAB[ ] 数组**  
  用于注册定时器； 数组成员类型为如下结构体  
- ```c++
- typedef struct {
+```c++
+typedef struct {
 	int id; // 定时器ID ， 不能重复
 	int time; // 定时器  时间间隔  单位 毫秒
 }S_ACTIVITY_TIMEER;
@@ -76,8 +76,9 @@ static bool onmainActivityTouchEvent(const MotionEvent &ev) {
 * **void onProtocolDataUpdate(const SProtocolData &data)**  
  用于接收串口数据。当解析到串口数据帧时，会调用该函数。  
  实质是， `mainActivity.cpp`的`onCreate()`中，会默认调用`void registerProtocolDataUpdateListener(OnProtocolDataUpdateFun pListener)`进行接收串口数据的注册， 在`mainActivity.cpp`的析构中取消注册。当串口读到数据时，通过`ProtocolParser.cpp`中的`void notifyProtocolDataUpdate(const SProtocolData &data) `依次调用已注册的UI界面。  
-这是`ProtocolParser.cpp`中的串口解析函数，结合上面描述的过程，你应该就能理解串口数据是如何在各个界面分发的：  
-```
+这是`ProtocolParser.cpp`中的串口解析函数，结合上面描述的过程，你应该就能理解串口数据是如何在各个界面分发的：
+
+```c++
 /**
  * 解析每一帧数据
  */
