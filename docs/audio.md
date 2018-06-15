@@ -43,6 +43,8 @@ sMediaPlayerPtr->isPlaying();	// 是否播放中，返回bool型
 
 sMediaPlayerPtr->getDuration();	// 获取当前播放歌曲的总时间
 sMediaPlayerPtr->getCurrentPosition();	// 获取当前播放歌曲的当前播放时间点
+
+sMediaPlayerPtr->setVolume(0.5, 0.5);	// 设置媒体音量，音量范围：0.0 ~ 1.0
 ```
 
 [**音乐播放Demo代码**](https://github.com/zkswe/MusicDemo)

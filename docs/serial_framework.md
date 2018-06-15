@@ -196,7 +196,8 @@ typedef struct {
 ```
 
 * UI更新
-UI界面在工具生成*Activity.cpp的时候就已经完成了registerProtocolDataUpdateListener ，也就是说当数据更新的时候logic里面页面程序就会收到数据。
+
+UI界面在工具生成Activity.cpp的时候就已经完成了registerProtocolDataUpdateListener ，也就是说当数据更新的时候logic里面页面程序就会收到数据。
 
 ```c++
 static void onProtocolDataUpdate(const SProtocolData &data) {
