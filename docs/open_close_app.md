@@ -27,8 +27,9 @@ void subActivity::onIntent(const Intent *intentPtr) {
 }
 ```
 注意：
-1、new出来的Intent不需要手动delete，由框架内部自动delete；
-2、putExtra只提供了string的键值对方式，如需传递int或其他类型的值，需转成string类型，在onIntent中收到后再做相应的转换
+
+	1. new出来的Intent不需要手动delete，由框架内部自动delete；
+	2. putExtra只提供了string的键值对方式，如需传递int或其他类型的值，需转成string类型，在onIntent中收到后再做相应的转换
 
 ## 关闭应用界面
 通过上面的openActivity方法，我们打开了subActivity界面，这个时候我们想回退到原来的界面，怎么办呢？
@@ -36,7 +37,7 @@ void subActivity::onIntent(const Intent *intentPtr) {
 ```c++
 EASYUICONTEXT->goBack();
 ```
-如果是通过按钮触发返回的，我们可以直接通过工具设置一下按钮的ID值为 sys_back，系统也会响应返回功能；
+如果是通过按钮触发返回的，我们可以直接通过工具设置一下按钮的ID值为`sys_back`，系统也会响应返回功能；
 ![](images/Screenshotfrom2018-06-06220522.png)
 
 如果我们进入了较多层级的界面，想要直接回退到我们的第一个启动界面，我们可以通过如下代码实现：
@@ -44,7 +45,7 @@ EASYUICONTEXT->goBack();
 EASYUICONTEXT->goHome();
 ```
 即回退到主界面。
-另外，如果也是通过按钮触发的，我们也可以通过工具设置一下按钮的ID值为 sys_home，系统也会响应回主界面的功能；
+另外，如果也是通过按钮触发的，我们也可以通过工具设置一下按钮的ID值为`sys_home`，系统也会响应回主界面的功能；
 最后，我们还可以通过EasyUIContext的closeActivity方法关闭应用界面，比如我们要关闭subActivity界面：
 ```c++
 EASYUICONTEXT->closeActivity("subActivity");
