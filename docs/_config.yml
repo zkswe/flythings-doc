@@ -6,6 +6,6 @@ google_analytics:
 theme: jekyll-theme-cayman
 markdown: kramdown
 
-github.repository_url: false
+repository_url: false
 zkswe_url: http://www.zkswe.com/
-github.is_project_page: false
+is_project_page: false
