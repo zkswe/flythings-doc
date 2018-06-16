@@ -5,3 +5,7 @@ show_downloads: false
 google_analytics:
 theme: jekyll-theme-cayman
 markdown: kramdown
+
+github.repository_url: false
+zkswe.url: www.zkswe.com
+github.is_project_page: true
