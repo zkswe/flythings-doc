@@ -31,22 +31,34 @@ layout: default
 5. 深度定制的系统具备了3秒快速启动和24小时*365天安全运行的能力。
 
 # 应用场景
-* 智能家居：
-![](images/screenshot_1511002868827.png)
-* 智能家电
-![](images/screenshot_1511002887090.png)
-![](images/screenshot_1511003057000.png)
-* 共享行业
-![](images/screenshot_1511003084598.png)
-* 电梯指示牌
-![](images/screenshot_1511003099335.png)
-* 广告机
-![](images/screenshot_1511003110508.png)
+* 智能家居：  
+
+  ![](images/screenshot_1511002868827.png)
+* 智能家电  
+  
+  ![](images/screenshot_1511002887090.png)![](images/screenshot_1511003057000.png)
+  
+* 共享行业  
+  
+  ![](images/screenshot_1511003084598.png)
+  
+* 电梯指示牌  
+  
+  ![](images/screenshot_1511003099335.png)
+  
+* 广告机  
+
+  ![](images/screenshot_1511003110508.png)
+
 * 充电桩
-![](images/screenshot_1511003125595.png)
-* 评价机
-![](images/screenshot_1511003138758.png)
-* 只要您有需要显示，可能我们就能帮助您
+  
+  ![](images/screenshot_1511003125595.png)
+
+* 评价机  
+
+  ![](images/screenshot_1511003138758.png)  
+  
+只要您有需要显示，可能我们就能帮助您
 
 
 
