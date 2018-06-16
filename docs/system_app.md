@@ -1,15 +1,18 @@
 ---
 layout: default
 ---
-前面介绍的应用界面我们归类为普通窗口界面，一般情况下已经够用了，通过工具新建UI界面时，默认的窗口类型就是普通窗口：
-![](images/5939b5202b235b3a3e0c9d773f749b26_597x852.png)
+# 系统界面类型
+前面介绍的应用界面我们归类为普通窗口界面，一般情况下已经够用了，通过工具新建UI界面时，默认的窗口类型就是普通窗口：  
+
+ ![](images/5939b5202b235b3a3e0c9d773f749b26_597x852.png)
 
 如果某些场景需要一个悬浮在UI界面之上的显示区，那么普通窗口就不能胜任这份工作了，需要用到我们其他的几种类型的窗口了；
 在 **窗口类型** 选项中，有三种特殊类型窗口选项，这三种特殊类型具有特殊的文件名，分别对应为
 * 状态栏 **statusbar.ftu**
 * 导航栏 **navibar.ftu**
-* 屏保 **screensaver.ftu**
-![](images/screenshot_1512460753534.png)
+* 屏保 **screensaver.ftu**  
+
+  ![](images/screenshot_1512460753534.png)
 
 点击确定后，工具会帮我们自动生成相应的代码；这三种类型的窗口，对于控件的操作与普通窗口一样；
 
@@ -25,7 +28,7 @@ EASYUICONTEXT->showStatusBar();
 ```c++
 EASYUICONTEXT->hideStatusBar();
 ```
-[**下载Demo代码**](https://github.com/zkswe/Z11SDemoCode/tree/master/StatusBarDemo)
+[**下载Demo代码**](https://github.com/zkswe/Z11SDemoCode/archive/master.zip)
 
 ## 导航栏
 解释：这个导航栏跟Android手机的导航栏概念一致，是一个悬浮在UI界面之上的一个通用操作或者显示区，一般在页面的底部。通常用于显示一些操作按键。导航栏实际上和状态栏没有什么差别。
@@ -59,4 +62,4 @@ void screensaverOff();
 // 是否进入了屏保
 bool isScreensaverOn() const;
 ```
-[**下载Demo代码**](https://github.com/zkswe/Z11SDemoCode/tree/master/ScreensaverDemo)
+[**下载Demo代码**](https://github.com/zkswe/Z11SDemoCode/archive/master.zip)

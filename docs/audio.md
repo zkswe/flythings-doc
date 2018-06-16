@@ -1,7 +1,8 @@
 ---
 layout: default
 ---
-# 音乐播放事例代码
+# 音频播放
+## 音乐播放示例代码
 
 ```c++
 // 创建ZKMediaPlayer对象
@@ -47,4 +48,4 @@ sMediaPlayerPtr->getCurrentPosition();	// 获取当前播放歌曲的当前播�
 sMediaPlayerPtr->setVolume(0.5, 0.5);	// 设置媒体音量，音量范围：0.0 ~ 1.0
 ```
 
-[**音乐播放Demo代码**](https://github.com/zkswe/MusicDemo)
+[**音乐播放Demo代码**](https://github.com/zkswe/MusicDemo/archive/master.zip)

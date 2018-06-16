@@ -26,6 +26,18 @@ FlyThings 可以通过 USB线 或者WIFI 快速下载程序到机器中。具体
 ![](assets/ide/launch_adb.gif)
 
 
+## 查看打印日志  
+如果在上面的步骤中，能够正常下载程序，那你还能够在工具中查看程序的打印日志。 具体操作步骤如下：  
+1. 在菜单栏上 选择 **调试配置** -> **切换日志窗口** ，工具会切换到另一个界面。  
+ 
+   ![](assets/ide/log_perspective.png) 
+ 
+2. 在新界面的左下角，选中 **LogCat** , 如果连接正常，在右侧红框区域，你将看到机器的打印日志。
 
+   ![](assets/ide/log_view.png)
+ 
+   如果你想回到代码编辑界面， 在工具的右上角，点击 **FlyThings**的图标即可。  
+     ![](assets/ide/perspective_fly.png)  
+ 
 # 注意事项  
 1. 如果电脑上连接有Android手机，可能会与机器造成冲突，导致下载失败。使用时，建议暂时断开Android手机连接。

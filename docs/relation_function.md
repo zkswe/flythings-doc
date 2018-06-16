@@ -90,8 +90,9 @@ layout: default
   当点击列表控件时，系统会根据触摸的坐标，判断触点落在哪一个列表项上，计算出该列表项的索引号后，系统会自动调用该函数。
     * **参数`ZKListView *pListView`**   是该列表控件的指针， 它与全局变量`mXXXXPtr`指向同一个对象。    
     * **参数`int index`**  是当前被点击的列表项在整个列表控件中的索引值
-    * **参数`int id`** 是当前被点击的控件的整形id。注意，这个id与属性表中的ID名称不同。 它的具体宏定义在相应的`Activity.h`文件中。 例如`mainActivity.h`中  
-    ![ID宏定义](assets/ID-Macro.png)  
+    * **参数`int id`** 是当前被点击的控件的整形id。注意，这个id与属性表中的ID名称不同。 它的具体宏定义在相应的`Activity.h`文件中。 例如`mainActivity.h`中 
+     
+      ![ID宏定义](assets/ID-Macro.png)  
     这个id参数的作用在于，当列表项中有多个子项时，可以用来区分当前被点击的是哪一个子项。  
    **例如:** 如下图，我在列表项中添加了两个列表子项,并添加了图片装饰，作为开关按钮，属性ID名分别为`SubItem1`、`SubItem2`，当我点击`SubItem1`时，通过判断参数`id`与`ID_MAIN_SubItem1`、`ID_MAIN_SubItem2`的相等关系，就能确定点击的是哪一个开关。   
    具体代码：
@@ -110,3 +111,12 @@ layout: default
    ```
      
        ![列表outline](assets/ListView-tree.png) ![列表子项示例](assets/ListView-subitem.png)  
+       
+## <span id = "jump_to_source"> 快捷跳转至关联函数</span>
+当我们在UI文件中添加了过多的控件时，**Logic.cc**文件中也会生成多个关联函数。如果想要查找某个控件的关联函数是相当费时的事。  
+好在工具提供了一个从UI控件 **快速跳转至相关代码** 的功能。  
+在预览图上，选中一个控件，右键，在弹出菜单中选择 **跳转到相关代码**，即可打开对应的Logic.cc文件，并且会将光标定位到该控件的关联函数的位置。  
+
+   ![](assets/ide/jump_to_source.png)
+
+**注意：该功能仅对会自动生成关联函数的控件类型有效，比如上文中提到的控件类型；如果你选择的是其他控件类型 ，那么该功能只会跳转到相对应的Logic.cc文件，将光标定位于文件顶部。**

@@ -1,14 +1,16 @@
 ---
 layout: default
 ---
-[TOC]
 
-# 视频讲解
-~~~[youku]
-XMzIzMzA5NTQ3Ng
-~~~
-
-# 框架讲解
+# 串口通讯协议
+## 视频讲解
+<iframe 
+    width="800" 
+    height="450" 
+    src="https://player.youku.com/embed/XMzIzMzA5NTQ3Ng?client_id=70425dd755d80061&password=undefined&autoplay=false"
+    frameborder="0" 
+    allowfullscreen>
+</iframe>
 ## 代码框架
 ![](images/screenshot_1510990787282.png)
 

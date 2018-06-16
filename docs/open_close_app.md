@@ -37,7 +37,8 @@ void subActivity::onIntent(const Intent *intentPtr) {
 ```c++
 EASYUICONTEXT->goBack();
 ```
-如果是通过按钮触发返回的，我们可以直接通过工具设置一下按钮的ID值为`sys_back`，系统也会响应返回功能；
+如果是通过按钮触发返回的，我们可以直接通过工具设置一下按钮的ID值为`sys_back`，系统也会响应返回功能；  
+
 ![](images/Screenshotfrom2018-06-06220522.png)
 
 如果我们进入了较多层级的界面，想要直接回退到我们的第一个启动界面，我们可以通过如下代码实现：

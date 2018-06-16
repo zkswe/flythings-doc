@@ -48,7 +48,7 @@ layout: default
 * # 升级及调试
   - ## [ADB调试](adb_debug)
   - ## [从SD卡启动程序](start_from_sdcard)
-  - ## [开机LOGO升级](update_logo)
+  - ## [升级开机LOGO](update_logo)
   - ## [制作升级镜像文件](make_image)
   - ## [自动升级](autoupgrade)
 * # 附录

@@ -1,3 +1,8 @@
+---
+layout: default
+---
+# 机器唯一ID码
+
 我们可以通过 jni/include/security/SecurityManager.h 里的接口获取到机器的唯一码，调用方法如下：
 ```c++
 // id值有8位
