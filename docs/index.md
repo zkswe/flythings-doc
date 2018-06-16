@@ -1,8 +1,6 @@
 ---
 layout: default
 ---
-<link rel="shortcut icon" type="image/png" href="/favicon.png?">
-
 * # [产品概要说明](product_introduction)
 * # [FlyThings 系统框架介绍](system_introdoction)
 * # [安装FlyThings IDE开发环境](download)
