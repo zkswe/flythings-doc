@@ -8,4 +8,4 @@ markdown: kramdown
 
 github.repository_url: false
 zkswe_url: http://www.zkswe.com/
-github.is_project_page: true
+github.is_project_page: false
