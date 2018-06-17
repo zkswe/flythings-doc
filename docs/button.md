@@ -9,7 +9,7 @@ layout: default
 3. 鼠标左键点击`按键`控件不放，然后将其拖拽到任意位置，松开左键，就能看到自动生成的按键控件。
 4. 再左键点击刚才生成的按键控件，在编辑器的右侧就能看到该控件的相关属性。在这个属性表格中，你可以像填写Excel表单一样，自由修改属性！
 
- ![创建Button](assets/Button-create.gif)
+   ![创建Button](assets/Button-create.gif)
 ## 如何修改按键/按钮的颜色？
 参考[如何修改文字的颜色](textview#change_color)
 ## <span id = "add_button_style">如何为按钮添加更多的动画效果？</span>
@@ -37,7 +37,9 @@ layout: default
 
 上图是属性表图片参数部分截图，其表示的含义为：    
   按键默认情况下显示on.png， 按键选中状态时显示off.png；  
-  图片位置的 左、上、宽、高四个参数决定了图片的显示区域（以像素为单位），以按键矩形区域的左上角为起点坐标（0，0），向右向下为正方向，终点坐标为（67，31）。 如果图片实际的宽高与指定的宽高参数不相等，则图片会根据指定的宽高进行缩放：![图片位置坐标示例](assets/Button-location.png)
+  图片位置的 左、上、宽、高四个参数决定了图片的显示区域（以像素为单位），以按键矩形区域的左上角为起点坐标（0，0），向右向下为正方向，终点坐标为（67，31）。 如果图片实际的宽高与指定的宽高参数不相等，则图片会根据指定的宽高进行缩放：  
+  
+  ![图片位置坐标示例](assets/Button-location.png)
 
 ### 理解按键控件的层级关系  
 对于一般按键控件，它会绘制四层内容，它们从上到下依次是：
@@ -54,11 +56,11 @@ layout: default
 要响应按键的点击时间非常的简单。以下是具体步骤：
 1. 首先创建一个`按键`控件，将属性ID命名为`Button1`。[如何创建按键控件](#add_button) 
 
-![ID属性示例](assets/Button-properties-id-button1.png)
+   ![ID属性示例](assets/Button-properties-id-button1.png)
 2. 在`项目资源管理器`中，选中当前项目，右键，在弹出菜单中选择`编译FlyThings`选项。这一步的作用是 **根据当前项目内所有的UI文件自动生成模板代码** 。 [了解更多关于代码生成的细节](ftu_and_source_relationships#ftu_and_source_relationships)
 3. 以UI文件为`main.ftu`为例，上一步完成后，将在当前项目文件夹下会生成 `jni/logic/mainLogic.cc`文件， 如下图：
 
-![](assets/Button-callback-generate.png) 
+   ![](assets/Button-callback-generate.png) 
 
   注意： `main.ftu`对应着`mainLogic.cc`，两者的前缀是相同的。[了解更多关于代码生成的细节](ftu_and_source_relationships#ftu_and_source_relationships)
 4. 双击打开`mainLogic.cc` ，在文件的末尾应该会看到如下函数，
@@ -75,6 +77,55 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
 所以多个按键控件会生成不同的关联函数。
 
 [了解更多控件的关联函数](relation_function#relation_function)
+
+## 如何处理按键长按事件  
+如果需要处理按键的长按事件，需要手动添加长按事件的监听。  具体步骤如下：  
+1. 在按键的 **属性表** 中， 设置 **长按事件触发时间** 、**长按事件循环触发间隔时间** 两个属性  ；下图中，我分别将其设置为 1000、1000， 单位是毫秒。
+  
+   ![](assets/button/property_longclick.jpg)
+
+2. 设置属性后, 编译, 打开对应的 Logic.cc 文件;  在文件顶部, 声明`class LongClickListener`, 并继承`ZKBase::ILongClickListener`类 ,实现 `virtual void onLongClick(ZKBase *pBase)` 方法。
+
+    ```	
+    //实现长按监听接口
+    class LongClickListener : public ZKBase::ILongClickListener {
+
+             virtual void onLongClick(ZKBase *pBase) {  
+                    LOGD("触发长按事件");
+                    static int count = 0;
+
+                    char buf[128] = {0};
+                    snprintf(buf, sizeof(buf), "长按事件触发次数 %d", ++count);
+                    //每次触发长按事件，修改按键的文字
+                    mLongButtonPtr->setText(buf);
+             }
+    };
+    ```
+3. 接着，实例化上一步定义的监听类，声明为静态类型  
+
+    ```
+    static LongClickListener longButtonClickListener;
+    ```
+
+4. 在 `static void onUI_init()` 函数中注册按键长按监听  
+
+    ```
+    static void onUI_init(){
+
+            //注册按键长按监听
+            mLongButtonPtr->setLongClickListener(&longButtonClickListener);
+    }
+    ```
+5. 在`static void onUI_quit()`函数中取消按键长按监听
+
+    ```
+    static void onUI_quit() {
+           //取消按键长按监听
+           mLongButtonPtr->setLongClickListener(NULL);
+    }
+    ```
+6. 添加完代码后，编译，将程序下载到机器中，长按测试；可以看到 按键的文字被修改，`onLongClick`函数成功响应。
+具体实现，可以参考[样例代码](https://github.com/zkswe/Z11SDemoCode/archive/master.zip)  
 
 ## 样例代码  
 更多按键控件的使用，参考[样例代码](https://github.com/zkswe/Z11SDemoCode/archive/master.zip)  
