@@ -7,5 +7,5 @@ theme: jekyll-theme-cayman
 markdown: kramdown
 
 repository_url: false
-is_project_page: false
+github.is_project_page: false
 zkswe_url: http://www.zkswe.com/
