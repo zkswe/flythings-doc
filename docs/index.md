@@ -57,3 +57,4 @@ layout: default
   - ## [获取机器唯一ID码](machine_unique_id)
   - ## [开发工具常用技巧](editor_tip)
   - ## [制作SD启动卡刷机](sd_boot)
+  - ## [常见问题](problems)
