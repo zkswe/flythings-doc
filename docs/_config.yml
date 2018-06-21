@@ -2,7 +2,7 @@ title: FlyThings
 description: 文档
 #baseurl: ""
 show_downloads: false
-google_analytics:
+google_analytics: UA-121188128-1
 theme: jekyll-theme-cayman
 markdown: kramdown
 
