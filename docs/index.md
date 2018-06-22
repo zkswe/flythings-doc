@@ -48,6 +48,7 @@ layout: default
 * # [数据存储](data)
 * # 升级及调试
   - ## [ADB调试](adb_debug)
+  - ## [查看打印日志](logcat)
   - ## [从SD卡启动程序](start_from_sdcard)
   - ## [升级开机LOGO](update_logo)
   - ## [制作升级镜像文件](make_image)
