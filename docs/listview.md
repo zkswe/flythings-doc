@@ -30,11 +30,11 @@ WiFi列表，设备列表，表格信息
  
  ![](assets/list/preview.png)  
  
- ## 代码操作 
+## 代码操作
  在UI文件中，我们只能调整列表的样式外观，列表中具体显示的内容还需要我们通过代码控制。
  这部分代码，都可以在编译后生成的关联函数中完成。
  具体列表的关联函数讲解可以参考[列表关联函数介绍](relation_function#list)
  
- ## 样例代码
+## 样例代码
 完整列表控件的使用，参考[样例代码](https://github.com/zkswe/Z11SDemoCode/archive/master.zip)    
 
