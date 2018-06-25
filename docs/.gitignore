@@ -2,17 +2,12 @@ _site
 .sass-cache
 Gemfile.lock
 *.gem
+.bundle
 
 
-_layouts
-_sass
-_script
 vendor
 .rubocop.yml
 .travis.yml
-Gem*
-jekyll-theme-cayman.gemspec
 mv_image.py
 script
 .github
-assets/css
