@@ -60,14 +60,13 @@ layout: default
 2. 在`项目资源管理器`中，选中当前项目，右键，在弹出菜单中选择`编译FlyThings`选项。这一步的作用是 **根据当前项目内所有的UI文件自动生成模板代码** 。 [了解更多关于代码生成的细节](ftu_and_source_relationships#ftu_and_source_relationships)
 3. 以UI文件为`main.ftu`为例，上一步完成后，将在当前项目文件夹下会生成 `jni/logic/mainLogic.cc`文件， 如下图：
 
-   ![](assets/Button-callback-generate.png) 
-
+   ![](assets/Button-callback-generate.png) <br/>
   注意： `main.ftu`对应着`mainLogic.cc`，两者的前缀是相同的。[了解更多关于代码生成的细节](ftu_and_source_relationships#ftu_and_source_relationships)
 4. 双击打开`mainLogic.cc` ，在文件的末尾应该会看到如下函数，
-```
+```C++
 static bool onButtonClick_Button1(ZKButton *pButton) {
-    //LOGD(" ButtonClick Button1 !!!\n");
-    return false;
+	//LOGD(" ButtonClick Button1 !!!\n");
+	return false;
 }
 ```
 当在串口屏上点击该`按键`控件后，系统会自动调用该关联函数。所以，如果你需要添加自己的处理代码，直接写在该关联函数里面即可。  
@@ -77,6 +76,13 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
 所以多个按键控件会生成不同的关联函数。
 
 [了解更多控件的关联函数](relation_function#relation_function)
+
+## 系统按键
+除了自己定义的ID值外，按键还保留了两个系统按键值：`sys_back` 和 `sys_home` ，从名字上我们大致可以知道它们的功能：**返回键** 和 **Home键** ；点击返回键，界面会回到上一界面，如果进入了多层级的界面，点击Home键可以直接回到主界面（启动界面）。我们只需在按键的属性框中把ID值设置为 `sys_back` 或 `sys_home` ，就可以实现相应的功能。
+
+![](images/Screenshotfrom2018-06-06220522.png)
+
+[了解更多界面交互](open_close_app#close_app)
 
 ## 如何处理按键长按事件  
 如果需要处理按键的长按事件，需要手动添加长按事件的监听。  具体步骤如下：  

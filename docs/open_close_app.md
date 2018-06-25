@@ -31,7 +31,7 @@ void subActivity::onIntent(const Intent *intentPtr) {
 	1. new出来的Intent不需要手动delete，由框架内部自动delete；
 	2. putExtra只提供了string的键值对方式，如需传递int或其他类型的值，需转成string类型，在onIntent中收到后再做相应的转换
 
-## 关闭应用界面
+## <span id = "close_app">关闭应用界面</span>
 通过上面的openActivity方法，我们打开了subActivity界面，这个时候我们想回退到原来的界面，怎么办呢？
 我们可以通过以下代码返回到上一级界面：
 ```c++
