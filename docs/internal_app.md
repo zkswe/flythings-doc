@@ -36,6 +36,12 @@ EASYUICONTEXT->openActivity("LanguageSettingActivity");
 ```
 ![](images/lang_setting.jpg)
 
+触摸校准界面：
+```c++
+EASYUICONTEXT->openActivity("TouchCalibrationActivity");
+```
+![](images/touchcalibration.png)
+
 开发者选项界面：
 ```c++
 EASYUICONTEXT->openActivity("DeveloperSettingActivity");
