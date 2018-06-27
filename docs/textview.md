@@ -83,7 +83,7 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
    ```
 
 ### 样例代码
-由于文本控件属性较多，更多属性效果参考[样例代码](https://github.com/zkswe/Z11SDemoCode/archive/master.zip)。   
+由于文本控件属性较多，更多属性效果参考[样例代码](demo_download#demo_download)。   
 预览效果图： 
 
 ![效果图](assets/textview/preview.png)

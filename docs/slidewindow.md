@@ -40,4 +40,4 @@ void turnToPrevPage(bool isAnimatable = false);
 
  ![](assets/slidewindow/preview.png)  
 
-具体滑动窗口控件的使用，参考[样例代码](https://github.com/zkswe/Z11SDemoCode/archive/master.zip)  
+具体滑动窗口控件的使用，参考[样例代码](demo_download#demo_download)  

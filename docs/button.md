@@ -131,10 +131,10 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
     }
     ```
 6. 添加完代码后，编译，将程序下载到机器中，长按测试；可以看到 按键的文字被修改，`onLongClick`函数成功响应。
-具体实现，可以参考[样例代码](https://github.com/zkswe/Z11SDemoCode/archive/master.zip)  
+具体实现，可以参考[样例代码](demo_download#demo_download)  
 
 ## 样例代码  
-更多按键控件的使用，参考[样例代码](https://github.com/zkswe/Z11SDemoCode/archive/master.zip)  
+更多按键控件的使用，参考[样例代码](demo_download#demo_download)  
 样例预览效果图：  
 
 ![效果图](assets/button/preview.png)

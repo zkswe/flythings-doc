@@ -36,5 +36,5 @@ WiFi列表，设备列表，表格信息
  具体列表的关联函数讲解可以参考[列表关联函数介绍](relation_function#list)
  
 ## 样例代码
-完整列表控件的使用，参考[样例代码](https://github.com/zkswe/Z11SDemoCode/archive/master.zip)    
+完整列表控件的使用，参考[样例代码](demo_download#demo_download)    
 
