@@ -30,7 +30,7 @@ layout: default
 
 | 协议头（2字节） | 命令（2字节） | 数据长度（1字节） | 数据（N） | 校验（1字节 可选) |
 | --- | --- | --- | --- | --- |
-| 0XFF55 | Cmd | len | data | checksum |
+| 0xFF55 | Cmd | len | data | checksum |
 
 CommDef.h 文件中定义了同步帧头信息及最小数据包大小信息：
 ```c++
@@ -300,3 +300,85 @@ BYTE mode[] = { 0x01, 0x02, 0x03, 0x04 };
 sendProtocol(0x01, mode, 4);
 ```
 
+# 演示样例讲解
+通过上面的讲解，可能看的也是云里雾里的，这里我们先总结一下，串口通讯主要有以下4点内容：
+1. 接收数据
+2. 解析数据
+3. 展示数据
+4. 发送数据
+
+其中 **解析数据** 部分较为复杂，需要根据具体的通讯协议做相应的改动，这里我们还是以上面的通讯协议为例，实现自己的一个简单的通讯程序；完整代码见 [样例代码](demo_download#demo_download) 里的 `UartDemo` 工程；<br/>
+我们最终要实现的效果是，通过串口发送指令来控制显示屏上的仪表指针旋转，UI效果图如下：
+
+   ![](images/uart_demo.png)
+
+重温一下上面介绍的协议格式：
+
+| 协议头（2字节） | 命令（2字节） | 数据长度（1字节） | 数据（N） | 校验（1字节 可选) |
+| --- | --- | --- | --- | --- |
+| 0xFF55 | 0x0001（见以下`CMDID_ANGLE`） | 1 | angle | checksum |
+
+协议数据结构体里我们新增1变量，见 `ProtocolData.h`:
+```c++
+/******************** CmdID ***********************/
+#define CMDID_POWER			0x0
+#define CMDID_ANGLE			0x1	// 新增ID
+/**************************************************/
+
+typedef struct {
+	BYTE power;
+	BYTE angle;	// 新增变量，用于保存指针角度值
+} SProtocolData;
+```
+由于我们使用的还是上面定义的协议格式，所以这里协议解析的部分我们不需要做任何改动，只需在`procParse`中处理对应的CmdID值即可：
+```C++
+/**
+ * 解析每一帧数据
+ */
+static void procParse(const BYTE *pData, UINT len) {
+	// CmdID
+	switch (MAKEWORD(pData[3], pData[2])) {
+	case CMDID_POWER:
+		sProtocolData.power = pData[5];
+		break;
+
+	case CMDID_ANGLE:	// 新增部分，保存角度值
+		sProtocolData.angle = pData[5];
+		break;
+	}
+
+	// 通知协议数据更新
+	notifyProtocolDataUpdate(sProtocolData);
+}
+```
+我们再来看界面接收到协议数据的回调接口，见 logic/mainLogic.cc：
+```C++
+static void onProtocolDataUpdate(const SProtocolData &data) {
+	// 串口数据回调接口
+
+	// 设置仪表指针旋转角度
+	mPointer1Ptr->setTargetAngle(data.angle);
+}
+```
+完成以上流程后，接下来我们只需要通过MCU向屏发送相应的指令就可以看到仪表指针的旋转了；为了简单起见，我们这个程序里不做checksum校验，协议数据如下：
+```C++
+   帧头       CmdID    数据长度    角度值
+0xFF 0x55   0x00 0x01   0x01     angle
+```
+我们可以在CommDef.h文件中打开`DEBUG_PRO_DATA`宏，打印接收到的协议数据：
+
+![](images/serial_data.png)
+
+到此，串口的 **接收数据** ---> **解析数据** ---> **展示数据** 就算完成了； <br/><br/>
+最后我们再来模拟一下串口**发送数据**；这里，我们给出的程序里，开启了一个定时器，2s模拟一次数据发送：
+```C++
+static bool onUI_Timer(int id) {
+	// 模拟发送串口数据
+	BYTE data = rand() % 200;
+	sendProtocol(CMDID_ANGLE, &data, 1);
+
+	return true;
+}
+```
+以上代码其实就是模拟设置角度值，我们可以通过短接屏上通讯串口的TX和RX，实现**自发自收**，也是可以看到仪表指针旋转的； <br/><br/>
+到此，我们的串口演示程序就介绍完了，开发人员可以先把演示程序编译烧录到机器里看一下效果，然后再在这基础之上增加一些协议，熟悉这整个通讯流程。
