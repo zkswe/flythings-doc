@@ -16,33 +16,48 @@ layout: default
 
 软件APP部分分为两层
 * uart协议解析和封装的串口HAL层
-	* UartContext :串口的实体控制层，提供串口的开关，发送，接受现成
-	* ProtocolData.h :定义通讯的数据结构体，用于保存通讯协议转化出来的实际变量。
-	* ProtocolSender：完成数据发送的封装，
-	* ProtocolParser:完成数据的协议解析部分，然后将解析好的数据放到ProtocolData的数据结构中。同时管理了应用监听串口数据变化的回掉接口。
+	* UartContext：串口的实体控制层，提供串口的开关，发送，接收接口
+	* ProtocolData.h：定义通讯的数据结构体，用于保存通讯协议转化出来的实际变量；
+	* ProtocolSender：完成数据发送的封装；
+	* ProtocolParser：完成数据的协议解析部分，然后将解析好的数据放到ProtocolData的数据结构中；同时管理了应用监听串口数据变化的回调接口；
 * APP应用接口层
-	*	通过ProtocolParser：提供的接口注册串口数据接收监听获取串口更新出来的ProtocolData。
-	*   通过ProtocolSender提供的接口往MCU发送指令信息
+	* 通过ProtocolParser提供的接口注册串口数据接收监听获取串口更新出来的ProtocolData。
+	* 通过ProtocolSender提供的接口往MCU发送指令信息
 
 ## 协议接收部分使用和修改方法
 ### 通讯协议格式修改
 这里我们举一个比较常见的通讯协议例子：
 
-| 协议头（2字节） | 命令（2字节） | 数据长度（1字节） | 数据（N） | 校验（1字节) |
+| 协议头（2字节） | 命令（2字节） | 数据长度（1字节） | 数据（N） | 校验（1字节 可选) |
 | --- | --- | --- | --- | --- |
-| 0XFFAA | Cmd | len | data | checksum |
+| 0xFF55 | Cmd | len | data | checksum |
+
+CommDef.h 文件中定义了同步帧头信息及最小数据包大小信息：
+```c++
+// 需要打印协议数据时，打开以下宏
+//#define DEBUG_PRO_DATA
+
+// 支持checksum校验，打开以下宏
+//#define PRO_SUPPORT_CHECK_SUM
+
+/* SynchFrame CmdID  DataLen Data CheckSum (可选) */
+/*     2Byte  2Byte   1Byte	N Byte  1Byte */
+// 有CheckSum情况下最小长度: 2 + 2 + 1 + 1 = 6
+// 无CheckSum情况下最小长度: 2 + 2 + 1 = 5
+
+#ifdef PRO_SUPPORT_CHECK_SUM
+#define DATA_PACKAGE_MIN_LEN		6
+#else
+#define DATA_PACKAGE_MIN_LEN		5
+#endif
+
+// 同步帧头
+#define CMD_HEAD1	0xFF
+#define CMD_HEAD2	0x55
+```
 
 ProtocolParser.cpp 文件，配置文件命令格式：
 ```c++
-/* SynchFrame CmdID  DataLen Data CheckSum */
-/*     2Byte  2Byte   1Byte	N Byte  1Byte */
-// 最小长度: 2 + 2 + 1 + 1= 6
-
-#define DATA_PACKAGE_MIN_LEN		6
-#define CMD_HEAD1	0xFF
-#define CMD_HEAD2	0x55
-
-.....
 /**
  * 功能：解析协议
  * 参数：pData 协议数据，len 数据长度
@@ -75,7 +90,7 @@ int parseProtocol(const BYTE *pData, UINT len) {
 			break;
 		}
 
-		// 打印一帧数据，需要时定义一下DEBUG_PRO_DATA宏
+		// 打印一帧数据，需要时在CommDef.h文件中打开DEBUG_PRO_DATA宏
 #ifdef DEBUG_PRO_DATA
 		for (int i = 0; i < frameLen; ++i) {
 			LOGD("%x ", pData[i]);
@@ -83,13 +98,19 @@ int parseProtocol(const BYTE *pData, UINT len) {
 		LOGD("\n");
 #endif
 
+		// 支持checksum校验，需要时在CommDef.h文件中打开PRO_SUPPORT_CHECK_SUM宏
+#ifdef PRO_SUPPORT_CHECK_SUM
 		// 检测校验码
 		if (getCheckSum(pData, frameLen - 1) == pData[frameLen - 1]) {
 			// 解析一帧数据
-			procParse(pData, dataLen);
+			procParse(pData, frameLen);
 		} else {
 			LOGE("CheckSum error!!!!!!\n");
 		}
+#else
+		// 解析一帧数据
+		procParse(pData, frameLen);
+#endif
 
 		pData += frameLen;
 		remainLen -= frameLen;
@@ -103,33 +124,34 @@ int parseProtocol(const BYTE *pData, UINT len) {
 * 协议头需要修改
 
 ```c++
-1.修改协议头部分的定义，如果协议头是一个长度，则要注意修改协议头判断部分语句。
-#define DATA_PACKAGE_MIN_LEN		6
+// 1.修改协议头部分的定义，如果协议头长度有变化，则要注意修改协议头判断部分语句。
 #define CMD_HEAD1	0xFF
-#define CMD_HEAD2	0xAA
+#define CMD_HEAD2	0x55
 
-2.协议头长度变化的时候需要修改这里。
+// 2.协议头长度变化的时候需要修改这里。
 while ((mDataBufLen >= 2) && ((pData[0] != CMD_HEAD1) || (pData[1] != CMD_HEAD2)))
-
 ```
 
 * 协议长度的位置或者长度计算方式发生变化的修改
 
 ```c++
-这里的pData[4] 代表的是第5个数据是长度的字节，如果变化了在这里修改一下。
+// 这里的pData[4] 代表的是第5个数据是长度的字节，如果变化了在这里修改一下。
 dataLen = pData[4];
-帧长度一般是数据长度加上头尾长度。如果协议中传的长度计算方式发生变化修改这个部分。
+// 帧长度一般是数据长度加上头尾长度。如果协议中传的长度计算方式发生变化修改这个部分。
 frameLen = dataLen + DATA_PACKAGE_MIN_LEN;
-
 ```
 
 * 校验发生变化的情况
 
 ```c++
-当校验不一样的时候需要修改校验方法，
-1.校验内容变化修改这个位置
-if (getCheckSum(pData, frameLen - 1) == pData[frameLen - 1])
-2.校验计算公式变化修改：
+/**
+ * 默认我们是关闭checksum校验的，如果需要支持checksum校验，在CommDef.h文件中打开PRO_SUPPORT_CHECK_SUM宏
+ * 当校验不一样的时候需要修改校验方法，
+ * 1.校验内容变化修改这个位置
+ *     if (getCheckSum(pData, frameLen - 1) == pData[frameLen - 1])
+ * 2.校验计算公式变化修改 getCheckSum函数里边的内容
+ */
+
 /**
  * 获取校验码
  */
@@ -141,20 +163,24 @@ BYTE getCheckSum(const BYTE *pData, int len) {
 
 	return (BYTE) (~sum + 1);
 }
-
 ```
 
 * 当完成一帧数据的接收后程序会调用procParse 解析
 
 ```c++
-// 检测校验码
-if (getCheckSum(pData, frameLen - 1) == pData[frameLen - 1]) {
+	// 支持checksum校验，需要时在CommDef.h文件中打开PRO_SUPPORT_CHECK_SUM宏
+#ifdef PRO_SUPPORT_CHECK_SUM
+	// 检测校验码
+	if (getCheckSum(pData, frameLen - 1) == pData[frameLen - 1]) {
+		// 解析一帧数据
+		procParse(pData, frameLen);
+	} else {
+		LOGE("CheckSum error!!!!!!\n");
+	}
+#else
 	// 解析一帧数据
 	procParse(pData, frameLen);
-} else {
-	LOGE("CheckSum error!!!!!!\n");
-}
-
+#endif
 ```
 
 ### 通讯协议数据怎么和UI控件对接
@@ -182,8 +208,8 @@ void procParse(const BYTE *pData, UINT len) {
 }
 
 ```
-以上 MAKEWORD(pData[2], pData[3]) 在我们的协议例子中表示Cmd值；
-当数据解析完成后通过notifyProtocolDataUpdate 通知到页面UI更新，这个部分请参照后面的UI更新部分
+以上 `MAKEWORD(pData[2], pData[3])` 在我们的协议例子中表示Cmd值；
+当数据解析完成后通过`notifyProtocolDataUpdate` 通知到页面UI更新，这个部分请参照后面的UI更新部分
 
 * 数据结构
 
@@ -240,32 +266,119 @@ static void onUI_init() {
 /**
  * 需要根据协议格式进行拼接，以下只是个模板
  */
-bool sendProtocol(const BYTE *pData, UINT16 len) {
+bool sendProtocol(const UINT16 cmdID, const BYTE *pData, BYTE len) {
 	BYTE dataBuf[256];
 
-	dataBuf[0] = 0xF0;
-	dataBuf[1] = 0x5A;	// 同步帧头
+	dataBuf[0] = CMD_HEAD1;
+	dataBuf[1] = CMD_HEAD2;			// 同步帧头
 
-	dataBuf[2] = HIBYTE(len);
-	dataBuf[3] = LOBYTE(len);		// 数据长度
+	dataBuf[2] = HIBYTE(cmdID);
+	dataBuf[3] = LOBYTE(cmdID);		// 命令字节
 
-	UINT frameLen = 4;
+	dataBuf[4] = len;
+
+	UINT frameLen = 5;
 
 	// 数据
 	for (int i = 0; i < len; ++i) {
-		dataBuf[frameLen++] = pData[i];
+		dataBuf[frameLen] = pData[i];
+		frameLen++;
 	}
 
+#ifdef PRO_SUPPORT_CHECK_SUM
 	// 校验码
 	dataBuf[frameLen] = getCheckSum(dataBuf, frameLen);
 	frameLen++;
+#endif
 
 	return UARTCONTEXT->send(dataBuf, frameLen);
 }
-
 ```
 当界面上有个按键按下的时候可以操作：
 ```c++
-BYTE mode[]= {0x01,0x02,0x03,0x04};
-sendProtocol(mode, 4);
+BYTE mode[] = { 0x01, 0x02, 0x03, 0x04 };
+sendProtocol(0x01, mode, 4);
 ```
+
+# 演示样例讲解
+通过上面的讲解，可能看的也是云里雾里的，这里我们先总结一下，串口通讯主要有以下4点内容：
+1. 接收数据
+2. 解析数据
+3. 展示数据
+4. 发送数据
+
+其中 **解析数据** 部分较为复杂，需要根据具体的通讯协议做相应的改动，这里我们还是以上面的通讯协议为例，实现自己的一个简单的通讯程序；完整代码见 [样例代码](demo_download#demo_download) 里的 `UartDemo` 工程；<br/>
+我们最终要实现的效果是，通过串口发送指令来控制显示屏上的仪表指针旋转，UI效果图如下：
+
+   ![](images/uart_demo.png)
+
+重温一下上面介绍的协议格式：
+
+| 协议头（2字节） | 命令（2字节） | 数据长度（1字节） | 数据（N） | 校验（1字节 可选) |
+| --- | --- | --- | --- | --- |
+| 0xFF55 | 0x0001（见以下`CMDID_ANGLE`） | 1 | angle | checksum |
+
+协议数据结构体里我们新增1变量，见 `ProtocolData.h`:
+```c++
+/******************** CmdID ***********************/
+#define CMDID_POWER			0x0
+#define CMDID_ANGLE			0x1	// 新增ID
+/**************************************************/
+
+typedef struct {
+	BYTE power;
+	BYTE angle;	// 新增变量，用于保存指针角度值
+} SProtocolData;
+```
+由于我们使用的还是上面定义的协议格式，所以这里协议解析的部分我们不需要做任何改动，只需在`procParse`中处理对应的CmdID值即可：
+```C++
+/**
+ * 解析每一帧数据
+ */
+static void procParse(const BYTE *pData, UINT len) {
+	// CmdID
+	switch (MAKEWORD(pData[3], pData[2])) {
+	case CMDID_POWER:
+		sProtocolData.power = pData[5];
+		break;
+
+	case CMDID_ANGLE:	// 新增部分，保存角度值
+		sProtocolData.angle = pData[5];
+		break;
+	}
+
+	// 通知协议数据更新
+	notifyProtocolDataUpdate(sProtocolData);
+}
+```
+我们再来看界面接收到协议数据的回调接口，见 logic/mainLogic.cc：
+```C++
+static void onProtocolDataUpdate(const SProtocolData &data) {
+	// 串口数据回调接口
+
+	// 设置仪表指针旋转角度
+	mPointer1Ptr->setTargetAngle(data.angle);
+}
+```
+完成以上流程后，接下来我们只需要通过MCU向屏发送相应的指令就可以看到仪表指针的旋转了；为了简单起见，我们这个程序里不做checksum校验，协议数据如下：
+```C++
+   帧头       CmdID    数据长度    角度值
+0xFF 0x55   0x00 0x01   0x01     angle
+```
+我们可以在CommDef.h文件中打开`DEBUG_PRO_DATA`宏，打印接收到的协议数据：
+
+![](images/serial_data.png)
+
+到此，串口的 **接收数据** ---> **解析数据** ---> **展示数据** 就算完成了； <br/><br/>
+最后我们再来模拟一下串口**发送数据**；这里，我们给出的程序里，开启了一个定时器，2s模拟一次数据发送：
+```C++
+static bool onUI_Timer(int id) {
+	// 模拟发送串口数据
+	BYTE data = rand() % 200;
+	sendProtocol(CMDID_ANGLE, &data, 1);
+
+	return true;
+}
+```
+以上代码其实就是模拟设置角度值，我们可以通过短接屏上通讯串口的TX和RX，实现**自发自收**，也是可以看到仪表指针旋转的； <br/><br/>
+到此，我们的串口演示程序就介绍完了，开发人员可以先把演示程序编译烧录到机器里看一下效果，然后再在这基础之上增加一些协议，熟悉这整个通讯流程。

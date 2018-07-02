@@ -54,6 +54,7 @@ layout: default
   - ## [升级开机LOGO](update_logo)
   - ## [制作升级镜像文件](make_image)
   - ## [自动升级](autoupgrade)
+* # 案例实战
 * # [代码样例](demo_download)
 * # 附录
   - ## [亮度操作](brightness)
