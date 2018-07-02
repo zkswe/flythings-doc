@@ -66,3 +66,4 @@ layout: default
   - ## [开发工具常用技巧](editor_tip)
   - ## [制作SD启动卡刷机](sd_boot)
   - ## [常见问题](problems)
+  - ## [串口模组屏硬件使用说明](hardware)
