@@ -57,7 +57,7 @@ static bool onmainActivityTouchEvent(const MotionEvent &ev) {
 ```
 这些函数的具体作用如下：  
 * **REGISTER_ACTIVITY_TIMER_TAB[ ] 数组**  
- 用于注册定时器； 数组成员类型为如下结构体  
+ 用于[注册定时器](timer#timer)； 数组成员类型为如下结构体  
 ```c++
 typedef struct {
 	int id; // 定时器ID ， 不能重复

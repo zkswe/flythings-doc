@@ -30,6 +30,7 @@ layout: default
   - ## [视频](video)
   - ## [文本数字输入框/中文输入法支持](edittext)
   - ## [窗口容器](window)
+* # [定时器](timer)
 * # 界面交互
   - ## [第一个启动界面](first_app)
   - ## [打开、关闭应用界面](open_close_app)

@@ -12,14 +12,14 @@ WiFi列表，设备列表，表格信息
 # 具体如何使用
 1. 打开UI文件，创建一个列表控件,再添加两个列表子项控件到列表中 然后你就能直观的看到列表的外观样式。 具体操作如下：  
 
-![](assets/list/add_list.gif)
+   ![](assets/list/add_list.gif)
 2. 选中列表，可以看到它有如下属性   
  ![](assets/list/properties.png)   
  
  每条属性你可以尝试修改，然后下载程序到机器中查看具体变化。  
 3. 现在转到大纲视图    
 
- ![](assets/list/list_outline.png)
+   ![](assets/list/list_outline.png)
  
  可以看到列表下默认生成了一个 **Item**节点，它表示列表的一行或者一列， 在**Item**里包含我们添加的两个 **ListSub** 节点。  
  你可以点击选中各个节点，查看它们各自的属性，以及在预览图上可以看到它们作用的范围。  
