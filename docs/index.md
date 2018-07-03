@@ -30,12 +30,12 @@ layout: default
   - ## [视频](video)
   - ## [文本数字输入框/中文输入法支持](edittext)
   - ## [窗口容器](window)
-* # [定时器](timer)
 * # 界面交互
   - ## [第一个启动界面](first_app)
   - ## [打开、关闭应用界面](open_close_app)
   - ## [系统内置界面](internal_app)
   - ## [系统应用](system_app)
+* # [定时器](timer)
 * # 串口通讯
   - ## [简介](serial_introdoction)
   - ## [通讯框架讲解](serial_framework)
@@ -63,7 +63,8 @@ layout: default
   - ## [获取机器唯一ID码](machine_unique_id)
   - ## [SD卡拔插监听](mount)
   - ## [触摸校准](touchcalibration)
+  - ## [字体库设置说明](font_setting)
   - ## [开发工具常用技巧](editor_tip)
   - ## [制作SD启动卡刷机](sd_boot)
-  - ## [常见问题](problems)
   - ## [串口模组屏硬件使用说明](hardware)
+  - ## [常见问题](problems)
