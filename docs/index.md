@@ -18,6 +18,7 @@ layout: default
   - ## [控件关联函数讲解](relation_function#relation_function)
 
 * # <span id = "views">控件介绍 </span>  
+  - ## [通用属性](ctrl_common)
   - ## [文本](textview)  
   - ## [按键](button)
   - ## [进度条/滑块](seekbar)
