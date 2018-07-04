@@ -69,3 +69,4 @@ layout: default
   - ## [制作SD启动卡刷机](sd_boot)
   - ## [串口模组屏硬件使用说明](hardware)
   - ## [常见问题](problems)
+  - ## [C++基础知识](cpp_base)
