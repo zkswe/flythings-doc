@@ -118,8 +118,10 @@ int parseProtocol(const BYTE *pData, UINT len) {
 
 	return len - remainLen;
 }
-
 ```
+上面的解析流程有点复杂，下面我们先给出一张图，再来分析可能会容易理解一些；一包数据可能包含0到多帧数据，下面这张图里，我们标出来有3帧数据，另外还有一帧数据不全，还少5个数据，不完整的那一帧数据将会拼接到下一包数据里
+
+![](images/serial_data_package.png)
 
 * 协议头需要修改
 
