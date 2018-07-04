@@ -8,7 +8,7 @@ layout: default
 2. 在右侧控件集合中找到`文本`控件
 3. 鼠标左键点击`文本`控件不放，然后将其拖拽到任意位置，松开左键，就能看到自动生成的文本控件。  
 
- ![创建文本](assets/textview/create_textview.gif)
+  ![创建文本](assets/textview/create_textview.gif)
 
 
 ## 如何通过代码动态更新文本内容？
@@ -82,7 +82,95 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
       mTextView1->setTextColor(0xFF0000);
    ```
 
-### 样例代码
+## 实现逐帧动画
+由于文本控件可以添加背景图，我们可以利用它简单的显示一张图片。  
+更近一步，如果我们在代码中动态切换文本控件的背景图，只要切换的时间间隔够短，那么就能实现动画的效果。
+
+1. 图片资源准备  
+  一段流畅的帧动画必然需要多张图片资源。这里我们已经准备好了，共60张  
+  ![](assets/textview/resources.png)   
+
+  可以看到每张图片表示一帧，并且根据序号统一命名，这主要是方便后续使用。    
+  **注意： 系统加载图片时将消耗较多资源， 为了界面运行流畅，强烈建议图片不宜过大。 比如例子中的单张图片大小仅为5KB左右**   
+
+  将这些图片都拷贝到项目的 **resources** 目录下。你可以在 **resources** 目录下自行创建子文件夹，方便各种图片资源的整理归类。
+
+  ![](assets/textview/resources_dir.png)
+
+2. 创建文本控件  
+  在UI文件中任意创建一个文本控件。并将文本控件的背景图设置为其中一张图片。这里我将第一张图片设置为背景图。这一步仅仅是为了将文本控件的宽高自动调整为图片的宽高，你也可以选择不设置。  
+  完整属性如图：  
+  
+    ![](assets/textview/textview_properties.png)  
+
+3. 编译项目，注册定时器  
+    编译项目后，在生成的Logic.cc文件中，注册一个定时器，时间间隔设置为 50 ms。 我们利用定时器每隔50ms切换一张图片。  
+    [如何编译项目？]()  
+    [如何注册定时器？]()
+4. 动态切换文本控件的背景  
+   添加如下切换背景图的函数， 并在定时器的触发函数 `bool onUI_Timer(int id)` 中调用它。   
+   ```c++
+   static void updateAnimation(){
+        static int animationIndex = 0;
+        char path[50] = {0};
+        snprintf(path, sizeof(path), "animation/loading_%d.png", animationIndex);
+        mTextviewAnimationPtr->setBackgroundPic(path);
+        animationIndex = ++animationIndex % 60;
+   }
+   ```
+   
+    **上面的函数中有两点我们需要注意：**  
+   * **切换文本控件的背景图是由 `setBackgroundPic(char* path)` 函数实现的。**
+   * **`setBackgroundPic(char* path)`函数的参数是图片的相对路径。  该路径是相对于 项目中的 `resources` 文件夹而言的。**  
+   
+      **例如，如下图，我们的图片是放在项目中 `resources/animation/` 文件夹下，那么 loading_0.png 这张图片的相对路径为  `animation/loading_0.png`** 
+     
+     ![](assets/textview/relative_path.png)  
+     
+     `setBackgroundPic(char* path)` 函数也可以接受绝对路径。例如：如果你将图片 `example.png` 放到SD的根目录下，那么它对应的绝对路径为 `/mnt/extsd/example.png`，  其中 `/mnt/extsd/`是SD卡的挂载目录。  
+     需要的图片资源都推荐放到项目的 `resoources` 文件夹下，或者其子文件夹下，其他路径的图片资源将不会被自动打包到系统中。  
+ 
+5. [下载运行](adb_debug)，查看效果    
+6. [完整样例](#example_download)
+
+## 特殊字符集的使用  
+我们知道，根据asc码的定义，`字符 char` 与 `整形 int` 存在着对应关系。比如字符 `0` 的asc码为`48`。 特殊字符集就是将asc码映射为图片的一种功能。设置该功能后，当我们显示一个字符串时，系统会尝试将字符串中的每一个字符映射为指定的图片，最终显示一串图片到屏幕上。  
+1. 设置方法   
+
+   ![](assets/textview/special_font.png)  
+   
+   找到文本控件中的 **特殊字符集设置**， 点击右侧的 **更多**选项，将弹出特殊字符集选择框。  
+   
+   ![](assets/textview/special_font_dialog.png)  
+   
+   选择右上角的 **导入** 按键添加图片到字符集中， 添加图片后，你可以自行修改对应的asc码或者字符作为该图片的映射字符。然后点击 **保存**
+2. 如果要验证特殊字集是否添加成功，你可以修改文字，预览图上会同步预览效果。   
+   **注意：如果你设置了特殊字符集，那么系统会尝试将每个字符映射为字符集中指定的图片；如果某个字符没有设置图片的映射，那么这个字符将不会显示到屏幕上。**
+
+### 具体使用
+1. 在上面的特殊字符集设置框中，我们已经将字符 0-9 以及 : 冒号 分别映射为图片。  
+   ![](assets/textview/num.png)
+   
+   然后代码中，通过`setText(char* str)`函数设置字符串。由于我们在 TextTime 文本控件中设置了特殊字符集，所以字符都转变为了相应的图片。效果图如下： 
+ 
+   ```
+   static void updateTime() {
+	   char timeStr[20];
+	   struct tm *t = TimeHelper::getDateTime()
+	   sprintf(timeStr, "%02d:%02", t->tm_hour, t->tm_min);
+	   mTextTimePtr->setText(timeStr);
+   }
+   ```
+   ![](assets/textview/0000.png)  
+   
+   如果你只需要显示单个字符，那么可以直接设置asc码或字符，不用转化为字符串。  
+   例如：
+   ```
+   mTextTimePtr->setText((char)48); //直接设置asc码，需要转为char
+   mTextTimePtr->setText('0'); //直接设置字符
+   ```
+
+## <span id = "example_download">样例代码</span>
 由于文本控件属性较多，更多属性效果参考[样例代码](demo_download#demo_download)。   
 预览效果图： 
 
