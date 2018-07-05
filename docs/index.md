@@ -34,6 +34,7 @@ layout: default
 * # 界面交互
   - ## [第一个启动界面](first_app)
   - ## [打开、关闭应用界面](open_close_app)
+  - ## [界面活动周期](activity_life_cycle)
   - ## [系统内置界面](internal_app)
   - ## [系统应用](system_app)
 * # [定时器](timer)

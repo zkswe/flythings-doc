@@ -15,9 +15,9 @@ pIntent->putExtra("cmd", "open");
 pIntent->putExtra("value", "ok");
 EASYUICONTEXT->openActivity("subActivity", pIntent);
 ```
-这样在subActivity的onIntent回调中就可以接收到了：
+这样在**subLogic.cc**的`onUI_intent`回调中就可以接收到了：
 ```c++
-void subActivity::onIntent(const Intent *intentPtr) {
+static void onUI_intent(const Intent *intentPtr) {
 	if (intentPtr) {
 		// 键值解析
 		std::string cmd = intentPtr->getExtra("cmd");		// "open"
