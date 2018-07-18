@@ -22,8 +22,8 @@ mTextView1Ptr->setText("Hello World");
 下面代码的作用是：当ID为Button1的按键被按下时，将ID为TextView1的文本设置为“Hello World”
 ```c++
 static bool onButtonClick_Button1(ZKButton *pButton) {
-    mTextView1Ptr->setText("Hello World");
-    return false;
+	mTextView1Ptr->setText("Hello World");
+	return false;
 }
 ```
 

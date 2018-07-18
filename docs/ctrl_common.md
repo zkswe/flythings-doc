@@ -44,7 +44,15 @@ pos = mButton1Ptr->getPosition();
 
 ![](images/ctrl_bgcolor.png)
 
-这个比较简单，修改一下颜色就可以看到效果了；
+这个比较简单，修改一下颜色就可以看到效果了；<br/>
+代码设置背景颜色：
+```C++
+/* color为-1时，背景设置为透明；其他颜色值为0x RGB，颜色值不支持alpha */
+void setBackgroundColor(int color);
+
+/* 操作样例 */
+mButton1Ptr->setBackgroundColor(0xFF0000);	// 设置背景颜色为红色
+```
 
 ## 背景图
 
