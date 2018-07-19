@@ -141,7 +141,7 @@ analytics:
 
   ## Google Analytics
   google:
-    tracking_id : # Google Analytics id for the site
+    tracking_id : 121188128
     anonymize_ip: false # Anonymize IP tracking for Analytics
 
 
