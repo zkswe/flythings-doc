@@ -21,7 +21,7 @@ layout: article
 ## 如何通过代码动态更新文本内容？
 在串口屏的使用中，常常会动态更新文本内容。那么在代码中，我们可以通过`文本`控件对应的指针来动态更新文本控件的内容。具体操作步骤如下：
 1. 首先需要知道文本控件在代码中对应的指针变量（[如果你不清楚指针变量名与UI文件中控件ID的对应规则，点击这里](named_rule)），这里以ID为`TextView1`的文本控件为例，它对应的指针变量为`mTextView1Ptr`，
-2. 如果我们想要将TextView1控件的文本内容修改为`"Hello World"`,可以通过调用文本控件的成员方法`void setText(const char *text)`实现，具体代码为:
+2. 如果我们想要将TextView1控件的文本内容修改为`"Hello World"`,可以通过调用文本控件的成员方法`void setText(const char *text)`实现，在相应的`Logic.cc`文件中，具体代码为:
 ```c++
 mTextView1Ptr->setText("Hello World");
 ```
@@ -91,14 +91,14 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
 
 ## 实现逐帧动画
 由于文本控件可以添加背景图，我们可以利用它简单的显示一张图片。  
-更近一步，如果我们在代码中动态切换文本控件的背景图，只要切换的时间间隔够短，那么就能实现动画的效果。
+更近一步，如果我们在代码中动态切换文本控件的背景图，只要切换的时间间隔足够短，那么就能实现动画的效果。
 
 1. 图片资源准备  
-  一段流畅的帧动画必然需要多张图片资源。这里我们已经准备好了，共60张  
+  一段流畅的帧动画必然需要多张图片资源。这里我们已经准备好了，共60张。  
   ![](assets/textview/resources.png)   
 
   可以看到每张图片表示一帧，并且根据序号统一命名，这主要是方便后续使用。    
-  **注意： 系统加载图片时将消耗较多资源， 为了界面运行流畅，强烈建议图片不宜过大。 比如例子中的单张图片大小仅为5KB左右**   
+  >**注意： 系统加载图片时将消耗较多资源， 为了界面运行流畅，强烈建议图片不宜过大。 比如例子中的单张图片大小仅为5KB左右**   
 
   将这些图片都拷贝到项目的 **resources** 目录下。你可以在 **resources** 目录下自行创建子文件夹，方便各种图片资源的整理归类。
 
@@ -111,11 +111,11 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
     ![](assets/textview/textview_properties.png)  
 
 3. 编译项目，注册定时器  
-    编译项目后，在生成的Logic.cc文件中，注册一个定时器，时间间隔设置为 50 ms。 我们利用定时器每隔50ms切换一张图片。  
+    添加了文本控件后，再次编译项目，在生成的`Logic.cc`文件中，注册一个定时器，时间间隔设置为 50 ms。 我们利用定时器每隔50ms切换一张图片。  
     [如何编译项目？]()  
     [如何注册定时器？]()
 4. 动态切换文本控件的背景  
-   添加如下切换背景图的函数， 并在定时器的触发函数 `bool onUI_Timer(int id)` 中调用它。   
+   在相应的`Logic.cc`文件中，添加如下切换背景图的函数， 并在定时器的触发函数 `bool onUI_Timer(int id)` 中调用它。   
    ```c++
    static void updateAnimation(){
         static int animationIndex = 0;
@@ -128,17 +128,17 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
    
     **上面的函数中有两点我们需要注意：**  
    * **切换文本控件的背景图是由 `setBackgroundPic(char* path)` 函数实现的。**
-   * **`setBackgroundPic(char* path)`函数的参数是图片的相对路径。  该路径是相对于 项目中的 `resources` 文件夹而言的。**  
+   * **`setBackgroundPic(char* path)`函数的参数是图片的相对路径。该路径是相对于项目中的 `resources` 文件夹而言。**  
    
-      **例如，如下图，我们的图片是放在项目中 `resources/animation/` 文件夹下，那么 loading_0.png 这张图片的相对路径为  `animation/loading_0.png`** 
+      **例如：如下图，我们的图片是放在项目中 `resources/animation/` 文件夹下，那么 loading_0.png 这张图片的相对路径为  `animation/loading_0.png`** 
      
      ![](assets/textview/relative_path.png)  
      
      `setBackgroundPic(char* path)` 函数也可以接受绝对路径。例如：如果你将图片 `example.png` 放到SD的根目录下，那么它对应的绝对路径为 `/mnt/extsd/example.png`，  其中 `/mnt/extsd/`是SD卡的挂载目录。  
-     需要的图片资源都推荐放到项目的 `resoources` 文件夹下，或者其子文件夹下，其他路径的图片资源将不会被自动打包到系统中。  
+     我们推荐所有图片资源放到项目的 `resoources` 文件夹下，或者其子文件夹下，因为其他路径的图片资源将不会被自动打包到软件中。  
  
 5. [下载运行](adb_debug)，查看效果    
-6. [完整样例](#example_download)
+6. [完整样例下载](#example_download)
 
 ## 特殊字符集的使用  
 我们知道，根据asc码的定义，`字符 char` 与 `整形 int` 存在着对应关系。比如字符 `0` 的asc码为`48`。 特殊字符集就是将asc码映射为图片的一种功能。设置该功能后，当我们显示一个字符串时，系统会尝试将字符串中的每一个字符映射为指定的图片，最终显示一串图片到屏幕上。  
