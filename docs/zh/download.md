@@ -12,4 +12,4 @@ layout: article
 ## 安装FlyThings集成开发工具及SDK
 
 * ### Windows   
-  [**下载 FlyThings IDE**](https://pan.baidu.com/s/1rKknZ5nnbi_56OfAFSw2UQ)（20180831-1218 ） 
+  [**下载 FlyThings IDE**](https://pan.baidu.com/s/14nY4LfsfSDl3KbMpzfqvKw)（20180901-0213 ） 
