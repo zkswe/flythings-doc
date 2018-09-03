@@ -27,7 +27,14 @@ layout: article
 
 * ## resources 文件夹  
   这个文件夹的内容就比较简单，主要用来存放项目的各种资源文件，包括 图片、字体、输入法配置文件等。如果你还有其他资源文件也可以添加到该文件夹，该文件夹会完全拷贝到机器中。
-但是，由于机器自身存储空间的限制，不建议将大文件存放到该目录，更推荐你将较大的资源文件存放到SD卡中。  
+但是，由于机器自身存储空间的限制，不建议将大文件存放到该目录，更推荐你将较大的资源文件存放到SD卡中。
+
+  我们可以在代码中获取resources目录下的某个文件的绝对路径。 
+例如： 如下代码可以获取resources/test.txt的绝对路径。
+ ```c++ 
+ #include "manager/ConfigManager.h"
+ std::string resPath = CONFIGMANAGER->getResFilePathEx("test.txt");
+ ```
 * ## jni 文件夹  
    该文件夹主要为存放代码文件，她还包含了多个部分的代码。我们将 **jni** 文件夹展开  
    ![](assets/project_jni_expand.png)  
