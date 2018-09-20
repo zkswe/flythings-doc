@@ -145,5 +145,17 @@ mButton1Ptr->setInvalid(FALSE);
 
 首先，我们新建一个Flythings项目,双击打开项目UI文件夹下的main.ftu文件，在控件栏中分别拖出按键控件和文本控件。
 ![](images/ctrl_new_widget.gif)
-然后编译项目(注意要)
+
+
+### 2.编译项目
+(如不清楚具体操作请看《编译项目》章节)
+
 ![](images/ctrl_compile_project.gif)
+
+### 3.调用控件属性函数
+编译完成后，打开项目中jni/logic/mainLogic.cc文件,可以看到文件最下方生成了onButtonClick_Button1函数。
+我们将在该函数中操作文本控件显示按键控件的ID值。
+![](images/ctrl_getButton1ID.jpg)
+
+### 4.下载调试
+右键项目点击下载调试即可看到Button1控件的ID值为20001.
