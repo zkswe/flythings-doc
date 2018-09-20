@@ -138,7 +138,7 @@ mButton1Ptr->setInvalid(FALSE);
 
 ## 样例说明
 
-我们通过对按键控件和文本控件的操作来了解控件的通用属性的应用。
+我们通过[样例代码](demo_download#demo_download)中的ctrlCommonDemo工程来了解控件的通用属性的应用。
 
 
 ### 1.创建控件
@@ -148,7 +148,7 @@ mButton1Ptr->setInvalid(FALSE);
 
 
 ### 2.编译项目
-(如不清楚具体操作请看《编译项目》章节)
+(如不清楚具体操作请看[《编译项目》](how_to_compile_flythings#how_to_compile_flythings)章节)
 
 ![](images/ctrl_compile_project.gif)
 
