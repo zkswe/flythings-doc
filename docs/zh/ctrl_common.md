@@ -11,7 +11,7 @@ layout: article
 # 通用属性
 在开始介绍各个控件之前，我们先来基本的了解一下控件的一些通用的属性及设置接口；
 
-## 控件ID值
+## <span id = "widgetID">控件ID值</span>
 ID值为控件的唯一标识，每一个ftu文件里的控件ID值是不允许重名的，不同的ftu文件里的控件ID值允许重名；设置ID值后，编译完会在**activity**目录下对应的头文件中生成相应的宏定义：
 
 ![](images/ctrl_id_def.png)
@@ -148,17 +148,17 @@ mButton1Ptr->setInvalid(FALSE);
 
 
 ### 2.编译项目
-(如不清楚具体操作请看[《编译项目》](how_to_compile_flythings#how_to_compile_flythings)章节)
+(如不清楚具体操作请看[《如何编译FlyThings项目》](how_to_compile_flythings#how_to_compile_flythings)章节)
 
 ![](images/ctrl_compile_project.gif)
 
 ### 3.调用控件属性函数
 编译完成后，打开项目中jni/logic/mainLogic.cc文件,可以看到文件最下方生成了onButtonClick_Button1函数。
-我们将在该函数中操作文本控件显示按键控件的ID值。
+我们将在该函数中操作文本控件显示按键控件Button1的ID值。
 ![](images/ctrl_getButton1ID.jpg)
 
 ### 4.下载调试
-右键项目点击下载调试即可看到Button1控件的ID值为20001.
+右键项目点击下载调试即可看到[按键控件Button1的ID值](#widgetID)为20001.
 
 ### 注意：
 **同样的我们也可以通过按键来获取文本控件的ID值以及改变文本控件的其他通用属性。**
