@@ -135,3 +135,15 @@ BOOL isInvalid() const;
 mButton1Ptr->setInvalid(TRUE);
 mButton1Ptr->setInvalid(FALSE);
 ```
+
+## 样例说明
+
+我们通过对按键控件和文本控件的操作来了解控件的通用属性的应用。
+
+
+### 1.创建控件
+
+首先，我们新建一个Flythings项目,双击打开项目UI文件夹下的main.ftu文件，在控件栏中分别拖出按键控件和文本控件。
+![](images/ctrl_new_widget.gif)
+然后编译项目(注意要)
+![](images/ctrl_compile_project.gif)
