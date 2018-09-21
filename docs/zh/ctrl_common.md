@@ -138,8 +138,10 @@ mButton1Ptr->setInvalid(FALSE);
 
 ## 样例说明
 
-我们通过[样例代码](demo_download#demo_download)中的ctrlCommonDemo工程来了解控件的通用属性的应用。
+我们通过以下的小例子来了解通用属性的相关接口函数简单用法。
 
+**由于通用属性较多，
+更多通用属性函数接口用法请参考[样例代码](demo_download#demo_download)中的CtrlCommonDemo工程**
 
 ### 1.创建控件
 
@@ -155,13 +157,15 @@ mButton1Ptr->setInvalid(FALSE);
 ### 3.调用控件属性函数
 编译完成后，打开项目中jni/logic/mainLogic.cc文件,可以看到文件最下方生成了onButtonClick_Button1函数。
 我们将在该函数中操作文本控件显示按键控件Button1的ID值。
+([如果你不清楚指针变量名与UI文件中控件ID的对应规则，点击这里](named_rule))
+
 ![](images/ctrl_getButton1ID.jpg)
 
 ### 4.下载调试
 右键项目点击下载调试即可看到[按键控件Button1的ID值](#widgetID)为20001.
 
 ### 注意：
-**同样的我们也可以通过按键来获取文本控件的ID值以及改变文本控件的其他通用属性。**
 
-<font color="#E6161E" size="4">想要了解更多控件通用属性的设置接口函数可以打开/jni/control/ZKBase.h文件，主要的属性设置接口函数都已注释。</font>
+
+<font color="#E6161E" size="4">想要了解更多控件通用属性的设置接口函数可以打开/jni/include/control/ZKBase.h文件，主要的属性设置接口函数都已注释。</font>
 ![](images/ctrl_ZKBase.jpg)
