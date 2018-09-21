@@ -161,3 +161,5 @@ mButton1Ptr->setInvalid(FALSE);
 右键项目点击下载调试即可看到Button1控件的ID值为20001.
 
 **同样的我们也可以通过按键来获取文本控件的ID值以及改变文本控件的其他通用属性。**
+
+<font color=#E6161E size=18>想要了解更多控件通用属性的函数设置接口可以打开/jni/control/ZKBase.h文件，主要的属性设置接口都已注释</font>
