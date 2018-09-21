@@ -162,4 +162,4 @@ mButton1Ptr->setInvalid(FALSE);
 
 **同样的我们也可以通过按键来获取文本控件的ID值以及改变文本控件的其他通用属性。**
 
-<font color=#E6161E size=4>想要了解更多控件通用属性的函数设置接口可以打开/jni/control/ZKBase.h文件，主要的属性设置接口都已注释</font>
+<font color=#E6161E size=4>想要了解更多控件通用属性的函数设置接口可以打开/jni/control/ZKBase.h文件，主要的属性设置接口函数都已注释.</font>
