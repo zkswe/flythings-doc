@@ -11,11 +11,11 @@ layout: article
 
 # 串口通讯协议
 ## 视频讲解
-<iframe 
-    width="800" 
-    height="450" 
+<iframe
+    width="800"
+    height="450"
     src="https://player.youku.com/embed/XMzIzMzA5NTQ3Ng?client_id=70425dd755d80061&password=undefined&autoplay=false"
-    frameborder="0" 
+    frameborder="0"
     allowfullscreen>
 </iframe>
 ## 代码框架
@@ -24,7 +24,7 @@ layout: article
 软件APP部分分为两层
 * uart协议解析和封装的串口HAL层
 	* UartContext：串口的实体控制层，提供串口的开关，发送，接收接口
-	* ProtocolData.h：定义通讯的数据结构体，用于保存通讯协议转化出来的实际变量；
+	* ProtocolData：定义通讯的数据结构体，用于保存通讯协议转化出来的实际变量；
 	* ProtocolSender：完成数据发送的封装；
 	* ProtocolParser：完成数据的协议解析部分，然后将解析好的数据放到ProtocolData的数据结构中；同时管理了应用监听串口数据变化的回调接口；
 * APP应用接口层
@@ -194,8 +194,8 @@ BYTE getCheckSum(const BYTE *pData, int len) {
 
 ### 通讯协议数据怎么和UI控件对接
 继续前面的协议框架我们进入到procParse的解析部分。
-这里重点的代码是：ProtocolParser.cpp 
-打开文件然后找到void procParse(const BYTE *pData, UINT len) 
+这里重点的代码是：ProtocolParser.cpp
+打开文件然后找到void procParse(const BYTE *pData, UINT len)
 ```c++
 /*
  * 协议解析
@@ -242,7 +242,7 @@ static void onProtocolDataUpdate(const SProtocolData &data) {
 	if (mProtocolData.power != data.power) {
 		mProtocolData.power = data.power;
 	}
-    
+
 	if (mProtocolData.eRunMode != data.eRunMode) {
 		mProtocolData.eRunMode = data.eRunMode;
 		mbtn_autoPtr->setSelected(mProtocolData.eRunMode == E_RUN_MODE_MANUAL);
@@ -321,13 +321,14 @@ sendProtocol(0x01, mode, 4);
 
    ![](images/uart_demo.png)
 
-重温一下上面介绍的协议格式：
+1. 重温一下上面介绍的协议格式，这里我们新增自己的协议指令**CMDID_ANGLE**对应的值为**0x0001**：
 
 | 协议头（2字节） | 命令（2字节） | 数据长度（1字节） | 数据（N） | 校验（1字节 可选) |
 | --- | --- | --- | --- | --- |
 | 0xFF55 | 0x0001（见以下`CMDID_ANGLE`） | 1 | angle | checksum |
 
 协议数据结构体里我们新增1变量，见 `ProtocolData.h`:
+
 ```c++
 /******************** CmdID ***********************/
 #define CMDID_POWER			0x0
@@ -339,7 +340,9 @@ typedef struct {
 	BYTE angle;	// 新增变量，用于保存指针角度值
 } SProtocolData;
 ```
-由于我们使用的还是上面定义的协议格式，所以这里协议解析的部分我们不需要做任何改动，只需在`procParse`中处理对应的CmdID值即可：
+
+2. 由于我们使用的还是上面定义的协议格式，所以这里协议解析的部分我们不需要做任何改动，只需在`procParse`中处理对应的CmdID值即可：
+
 ```c++
 /**
  * 解析每一帧数据
@@ -360,7 +363,9 @@ static void procParse(const BYTE *pData, UINT len) {
 	notifyProtocolDataUpdate(sProtocolData);
 }
 ```
-我们再来看界面接收到协议数据的回调接口，见 logic/mainLogic.cc：
+
+3. 我们再来看界面接收到协议数据的回调接口，见 logic/mainLogic.cc：
+
 ```c++
 static void onProtocolDataUpdate(const SProtocolData &data) {
 	// 串口数据回调接口
@@ -379,7 +384,8 @@ static void onProtocolDataUpdate(const SProtocolData &data) {
 ![](images/serial_data.png)
 
 到此，串口的 **接收数据** ---> **解析数据** ---> **展示数据** 就算完成了； <br/><br/>
-最后我们再来模拟一下串口**发送数据**；这里，我们给出的程序里，开启了一个定时器，2s模拟一次数据发送：
+4. 最后我们再来模拟一下串口**发送数据**；这里，我们给出的程序里，开启了一个定时器，2s模拟一次数据发送：
+
 ```c++
 static bool onUI_Timer(int id) {
 	// 模拟发送串口数据

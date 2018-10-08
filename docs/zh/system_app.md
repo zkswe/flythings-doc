@@ -24,9 +24,11 @@ layout: article
 点击确定后，工具会帮我们自动生成相应的代码；这三种类型的窗口，对于控件的操作与普通窗口一样；
 
 ## 状态栏
-解释：这个状态栏跟Android，iOS手机的状态栏概念一致，是一个悬浮在UI界面之上的一个通用显示区。通常用于显示一些常见信息，或者放置返回键或Home键等等。
+解释：这个状态栏跟Android，iOS手机的状态栏概念一致，是一个悬浮在UI界面之上的一个通用显示区。通常用于显示一些常见信息，或者放置返回键或Home键等等。如下效果：
+![](assets/statusbar.png)
 
 系统提供了两个接口可以用于操作状态栏：
+
 显示状态栏：
 ```c++
 EASYUICONTEXT->showStatusBar();
@@ -35,10 +37,11 @@ EASYUICONTEXT->showStatusBar();
 ```c++
 EASYUICONTEXT->hideStatusBar();
 ```
-[**下载Demo代码**](demo_download#demo_download)
+完整源码见[**样例代码包**](demo_download#demo_download)中的**StatusBarDemo**工程
 
 ## 导航栏
 解释：这个导航栏跟Android手机的导航栏概念一致，是一个悬浮在UI界面之上的一个通用操作或者显示区，一般在页面的底部。通常用于显示一些操作按键。导航栏实际上和状态栏没有什么差别。
+
 显示导航栏：
 ```c++
 EASYUICONTEXT->showNaviBar();
@@ -69,4 +72,4 @@ void screensaverOff();
 // 是否进入了屏保
 bool isScreensaverOn() const;
 ```
-[**下载Demo代码**](demo_download#demo_download)
+完整源码见[**样例代码包**](demo_download#demo_download)中的**ScreensaverDemo**工程

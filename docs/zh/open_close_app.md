@@ -15,6 +15,14 @@ layout: article
 ```c++
 EASYUICONTEXT->openActivity("subActivity");
 ```
+假如我们想通过一个按钮点击跳转到**sub.ftu**界面，我们可以在按钮点击事件的回调接口中调用以上语句：
+```c++
+static bool onButtonClick_Button1(ZKButton *pButton) {
+    // 跳转到sub.ftu界面
+    EASYUICONTEXT->openActivity("subActivity");
+    return false;
+}
+```
 一般情况下，以上的调用代码就足够了，如果涉及到界面与界面间需要传递一些信息，如支付页面，我们就需要用到openActivity的第二个参数进行传参了：
 ```c++
 Intent *pIntent = new Intent();
