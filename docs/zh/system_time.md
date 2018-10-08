@@ -14,10 +14,11 @@ layout: article
 ```c++
 #include "utils/TimeHelper.h"
 ```
-  > tm 结构体各字段解释  
-  > ```
- struct tm {
-	int tm_sec; /* 秒–取值区间为[0,59] */
+  > tm 结构体各字段解释
+
+```c++
+struct tm {
+    int tm_sec; /* 秒–取值区间为[0,59] */
 	int tm_min; /* 分 - 取值区间为[0,59] */
 	int tm_hour; /* 时 - 取值区间为[0,23] */
 	int tm_mday; /* 一个月中的日期 - 取值区间为[1,31] */
@@ -25,7 +26,7 @@ layout: article
 	int tm_year; /* 年份，其值从1900开始 */
     ...
 }
-    ```  
+```
 
 * 获取当前日期
 
