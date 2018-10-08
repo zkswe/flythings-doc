@@ -321,7 +321,7 @@ sendProtocol(0x01, mode, 4);
 
    ![](images/uart_demo.png)
 
-1. 重温一下上面介绍的协议格式，这里我们新增自己的协议指令**CMDID_ANGLE**对应的值为**0x0001**：
+1). 重温一下上面介绍的协议格式，这里我们新增自己的协议指令**CMDID_ANGLE**对应的值为**0x0001**：
 
 | 协议头（2字节） | 命令（2字节） | 数据长度（1字节） | 数据（N） | 校验（1字节 可选) |
 | --- | --- | --- | --- | --- |
@@ -340,8 +340,7 @@ typedef struct {
 	BYTE angle;	// 新增变量，用于保存指针角度值
 } SProtocolData;
 ```
-
-2. 由于我们使用的还是上面定义的协议格式，所以这里协议解析的部分我们不需要做任何改动，只需在`procParse`中处理对应的CmdID值即可：
+2). 由于我们使用的还是上面定义的协议格式，所以这里协议解析的部分我们不需要做任何改动，只需在`procParse`中处理对应的CmdID值即可：
 
 ```c++
 /**
@@ -363,8 +362,7 @@ static void procParse(const BYTE *pData, UINT len) {
 	notifyProtocolDataUpdate(sProtocolData);
 }
 ```
-
-3. 我们再来看界面接收到协议数据的回调接口，见 logic/mainLogic.cc：
+3). 我们再来看界面接收到协议数据的回调接口，见 logic/mainLogic.cc：
 
 ```c++
 static void onProtocolDataUpdate(const SProtocolData &data) {
@@ -384,7 +382,7 @@ static void onProtocolDataUpdate(const SProtocolData &data) {
 ![](images/serial_data.png)
 
 到此，串口的 **接收数据** ---> **解析数据** ---> **展示数据** 就算完成了； <br/><br/>
-4. 最后我们再来模拟一下串口**发送数据**；这里，我们给出的程序里，开启了一个定时器，2s模拟一次数据发送：
+4). 最后我们再来模拟一下串口**发送数据**；这里，我们给出的程序里，开启了一个定时器，2s模拟一次数据发送：
 
 ```c++
 static bool onUI_Timer(int id) {
