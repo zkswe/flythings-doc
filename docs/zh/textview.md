@@ -29,14 +29,24 @@ mTextView1Ptr->setText("Hello World");
 下面代码的作用是：当ID为Button1的按键被按下时，将ID为TextView1的文本设置为“Hello World”
 ```c++
 static bool onButtonClick_Button1(ZKButton *pButton) {
-  mTextView1Ptr->setText("Hello World");
-  return false;
+    mTextView1Ptr->setText("Hello World");
+    return false;
 }
+```
+3. 文本控件除了可以设置字符串外，它还支持设置**数字**和**字符**：
+```c++
+/* 接口定义见头文件: include/control/ZKTextView.h */
+void setText(int text);  // 设置数字
+void setText(char text); // 设置字符
+
+/* 操作样例 */
+mTextView1Ptr->setText(123); // TextView1控件将显示"123"字符串
+mTextView1Ptr->setText('c'); // TextView1控件将显示'c'字符
 ```
 
 
 ## <span id = "change_color">如何修改文字的颜色？</span>
-默认的文本显示为白色，通常无法满足需求，那么可以通过以下两种方式来修改文本颜色。 
+默认的文本显示为白色，通常无法满足需求，那么可以通过以下两种方式来修改文本颜色。
 
 ### 在属性栏中直接修改控件的颜色
 
@@ -44,15 +54,15 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
  在预览界面上，找到你要修改的控件，左键点击它，在编辑器的右侧就能看到该控件相应的属性表，这时候你就可以根据需要，填写自定义的属性值，就跟操作Excel一样, 找到你需要修改的属性，然后单击修改。
 
  在文本控件中，可以看到有3个表项与颜色属性有关，分别是
- * 颜色设置 
+ * 颜色设置
     - 该属性可以分别设置控件各个状态下文字的颜色值
- * 背景色 
+ * 背景色
      - 设置控件整个矩形区域的背景颜色（不会根据控件状态的变化而变化）
  * 背景颜色设置  
     - 对背景色属性的扩展，可以分别设置控件各个状态下的背景颜色
 
  具体示例：  
- 
+
    ![TextView-color-example](assets/TextView-color-example.png "属性示例")
 
  效果图：
@@ -65,7 +75,7 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
 
    在属性表中设置颜色具有直观、方便的特点，但是缺少灵活性，于是在代码中，通过控件指针，调用相应成员方法可以对颜色进行动态控制。
 
-  以ID为`TextView1`的文本控件为例，以下方法都可以达到修改颜色的目的。 
+  以ID为`TextView1`的文本控件为例，以下方法都可以达到修改颜色的目的。
 
  * `void setInvalid(BOOL isInvalid)`  
     ```c++
@@ -107,7 +117,7 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
 2. 创建文本控件  
   在UI文件中任意创建一个文本控件。并将文本控件的背景图设置为其中一张图片。这里我将第一张图片设置为背景图。这一步仅仅是为了将文本控件的宽高自动调整为图片的宽高，你也可以选择不设置。  
   完整属性如图：  
-  
+
     ![](assets/textview/textview_properties.png)  
 
 3. 编译项目，注册定时器  
@@ -125,18 +135,18 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
         animationIndex = ++animationIndex % 60;
    }
    ```
-   
+
     **上面的函数中有两点我们需要注意：**  
    * **切换文本控件的背景图是由 `setBackgroundPic(char* path)` 函数实现的。**
    * **`setBackgroundPic(char* path)`函数的参数是图片的相对路径。该路径是相对于项目中的 `resources` 文件夹而言。**  
-   
-      **例如：如下图，我们的图片是放在项目中 `resources/animation/` 文件夹下，那么 loading_0.png 这张图片的相对路径为  `animation/loading_0.png`** 
-     
+
+      **例如：如下图，我们的图片是放在项目中 `resources/animation/` 文件夹下，那么 loading_0.png 这张图片的相对路径为  `animation/loading_0.png`**
+
      ![](assets/textview/relative_path.png)  
-     
+
      `setBackgroundPic(char* path)` 函数也可以接受绝对路径。例如：如果你将图片 `example.png` 放到SD的根目录下，那么它对应的绝对路径为 `/mnt/extsd/example.png`，  其中 `/mnt/extsd/`是SD卡的挂载目录。  
      我们推荐所有图片资源放到项目的 `resoources` 文件夹下，或者其子文件夹下，因为其他路径的图片资源将不会被自动打包到软件中。  
- 
+
 5. [下载运行](adb_debug)，查看效果    
 6. [完整样例下载](#example_download)
 
@@ -145,11 +155,11 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
 1. 设置方法   
 
    ![](assets/textview/special_font.png)  
-   
+
    找到文本控件中的 **特殊字符集设置**， 点击右侧的 **更多**选项，将弹出特殊字符集选择框。  
-   
+
    ![](assets/textview/special_font_dialog.png)  
-   
+
    选择右上角的 **导入** 按键添加图片到字符集中， 添加图片后，你可以自行修改对应的asc码或者字符作为该图片的映射字符。然后点击 **保存**
 2. 如果要验证特殊字集是否添加成功，你可以修改文字，预览图上会同步预览效果。   
    **注意：如果你设置了特殊字符集，那么系统会尝试将每个字符映射为字符集中指定的图片；如果某个字符没有设置图片的映射，那么这个字符将不会显示到屏幕上。**
@@ -157,9 +167,9 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
 ### 具体使用
 1. 在上面的特殊字符集设置框中，我们已经将字符 0-9 以及 : 冒号 分别映射为图片。  
    ![](assets/textview/num.png)
-   
-   然后代码中，通过`setText(char* str)`函数设置字符串。由于我们在 TextTime 文本控件中设置了特殊字符集，所以字符都转变为了相应的图片。效果图如下： 
- 
+
+   然后代码中，通过`setText(char* str)`函数设置字符串。由于我们在 TextTime 文本控件中设置了特殊字符集，所以字符都转变为了相应的图片。效果图如下：
+
    ```
    static void updateTime() {
      char timeStr[20];
@@ -169,7 +179,7 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
    }
    ```
    ![](assets/textview/0000.png)  
-   
+
    如果你只需要显示单个字符，那么可以直接设置asc码或字符，不用转化为字符串。  
    例如：
    ```
@@ -179,6 +189,6 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
 
 ## <span id = "example_download">样例代码</span>
 由于文本控件属性较多，更多属性效果参考[样例代码](demo_download#demo_download)。   
-预览效果图： 
+预览效果图：
 
 ![效果图](assets/textview/preview.png)

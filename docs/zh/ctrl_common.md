@@ -18,10 +18,21 @@ ID值为控件的唯一标识，每一个ftu文件里的控件ID值是不允许�
 
 获取控件的ID值:
 ```c++
+/**
+ * 该接口定义于控件基类ZKBase中
+ * 头文件位置： include/control/ZKBase.h
+ *
+ * 注意： 以下接口如未特殊说明，都表示定义在ZKBase类中
+ * 所有控件直接或间接的继承了ZKBase类，所以，所有的控件都可以调用ZKBase类中public接口
+ */
 int getID() const;
 
-/* 操作样例 */
-mButton1Ptr->getID();
+/* 操作样例： 点击按钮控件，打印该控件ID值 */
+static bool onButtonClick_Button1(ZKButton *pButton) {
+    int id = pButton->getID();
+    LOGD("onButtonClick_Button1 id %d\n", id);
+    return false;
+}
 ```
 
 ## 控件位置
@@ -40,11 +51,20 @@ const LayoutPosition& getPosition();
 
 
 /* 操作样例 */
-LayoutPosition pos(0, 0, 100, 200); // 左：0，上：0，宽：100，高：200
-mButton1Ptr->setPosition(pos);
+// 点击按钮控件，设置该按钮位置
+static bool onButtonClick_Button1(ZKButton *pButton) {
+    // 左：0，上：0，宽：100，高：200
+    LayoutPosition pos(0, 0, 100, 200);
+    pButton->setPosition(pos);
+    return false;
+}
 
-// pos的mLeft、mTop、mWidth、mHeight变量分别对应的就是坐标值
-pos = mButton1Ptr->getPosition();
+// 点击按钮控件，获取该按钮位置
+static bool onButtonClick_Button2(ZKButton *pButton) {
+    // pos的mLeft、mTop、mWidth、mHeight变量分别对应的就是坐标值
+    LayoutPosition pos = pButton->getPosition();
+    return false;
+}
 ```
 
 ## 背景色
@@ -57,8 +77,12 @@ pos = mButton1Ptr->getPosition();
 /* color为-1时，背景设置为透明；其他颜色值为0x RGB，颜色值不支持alpha */
 void setBackgroundColor(int color);
 
-/* 操作样例 */
-mButton1Ptr->setBackgroundColor(0xFF0000);  // 设置背景颜色为红色
+
+/* 操作样例： 点击按钮控件，设置背景颜色为红色 */
+static bool onButtonClick_Button1(ZKButton *pButton) {
+    pButton->setBackgroundColor(0xFF0000);
+    return false;
+}
 ```
 
 ## 背景图
@@ -98,9 +122,17 @@ mButton1Ptr->setVisible(TRUE);  // 显示按钮控件
 mButton1Ptr->setVisible(FALSE); // 隐藏按钮控件
 
 
-// 窗口控件还可以使用下面的接口，功能一样
-mWindow1Ptr->showWnd(); // 显示窗口
-mWindow1Ptr->hideWnd(); // 隐藏窗口
+/**
+ * 窗口控件还可以使用下面的接口，功能一样
+ * 头文件位置： include/window/ZKWindow.h
+ */
+void showWnd();  // 显示窗口
+void hideWnd();  // 隐藏窗口
+bool isWndShow() const;  // 窗口是否显示
+
+/* 操作样例 */
+mWindow1Ptr->showWnd();
+mWindow1Ptr->hideWnd();
 ```
 
 ## 控件状态
