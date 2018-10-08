@@ -34,6 +34,7 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
 }
 ```
 3. 文本控件除了可以设置字符串外，它还支持设置**数字**和**字符**：
+
 ```c++
 /* 接口定义见头文件: include/control/ZKTextView.h */
 void setText(int text);  // 设置数字
