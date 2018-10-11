@@ -29,37 +29,90 @@ FlyThings 将UI与代码区分开来，方便管理。
 ```c++ 
 /**
  * 注册定时器
- * 在此数组中添加即可
+ * 填充数组用于注册定时器
+ * 注意：id不能重复
  */
 static S_ACTIVITY_TIMEER REGISTER_ACTIVITY_TIMER_TAB[] = {
 	//{0,  6000}, //定时器id=0, 时间间隔6秒
 	//{1,  1000},
 };
 
+/**
+ * 当界面构造时触发
+ */
 static void onUI_init(){
     //Tips :添加 UI初始化的显示代码到这里,如:mText1Ptr->setText("123");
 
 }
 
+/**
+ * 当切换到该界面时触发
+ */
+static void onUI_intent(const Intent *intentPtr) {
+    if (intentPtr != NULL) {
+        //TODO
+    }
+}
+
+/*
+ * 当界面显示时触发
+ */
+static void onUI_show() {
+
+}
+
+/*
+ * 当界面隐藏时触发
+ */
+static void onUI_hide() {
+
+}
+
+/*
+ * 当界面完全退出时触发
+ */
 static void onUI_quit() {
-   //Tips :添加UI退出的代码到这里
+
 }
 
-
+/**
+ * 串口数据回调接口
+ */
 static void onProtocolDataUpdate(const SProtocolData &data) {
-    // 串口数据回调接口
+
 }
 
+/**
+ * 定时器触发函数
+ * 不建议在此函数中写耗时操作，否则将影响UI刷新
+ * 参数： id
+ *         当前所触发定时器的id，与注册时的id相同
+ * 返回值: true
+ *             继续运行当前定时器
+ *         false
+ *             停止运行当前定时器
+ */
 static bool onUI_Timer(int id){
-    //Tips:添加定时器响应的代码到这里,但是需要在本文件的 REGISTER_ACTIVITY_TIMER_TAB 数组中 注册
-    //id 是定时器设置时候的标签,这里不要写耗时的操作，否则影响UI刷新,ruturn:[true] 继续运行定时器;[false] 停止运行当前定时器
+	switch (id) {
+
+		default:
+			break;
+	}
     return true;
 }
 
-
+/**
+ * 有新的触摸事件时触发
+ * 参数：ev
+ *         新的触摸事件
+ * 返回值：true
+ *            表示该触摸事件在此被拦截，系统不再将此触摸事件传递到控件上
+ *         false
+ *            触摸事件将继续传递到控件上
+ */
 static bool onmainActivityTouchEvent(const MotionEvent &ev) {
-    // 返回false触摸事件将继续传递到控件上，返回true表示该触摸事件在此被拦截了，不再传递到控件上
-    return false;
+
+	return false;
 }
 ```
 这些函数的具体作用如下：  

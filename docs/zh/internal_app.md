@@ -15,6 +15,13 @@ layout: article
 ```c++
 EASYUICONTEXT->openActivity("ZKSettingActivity");
 ```
+我们可以通过一个按钮点击跳转到该界面看一下效果（其他的几个内置界面都可以通过如下方式查看效果）：
+```c++
+static bool onButtonClick_Button1(ZKButton *pButton) {
+    EASYUICONTEXT->openActivity("ZKSettingActivity");
+    return false;
+}
+```
 ![](images/setup_setting.jpg)
 
 其中每一项点击进去后又是新的内置界面，打开网络设置：

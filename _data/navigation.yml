@@ -78,6 +78,8 @@ docs-zh:
         url:    /docs/zh/named_rule        
       - title:  控件关联函数讲解
         url:    /docs/zh/relation_function          
+      - title:  开发工具常用技巧
+        url:    /docs/zh/editor_tip
   - title:      控件介绍
     children:
       - title:  通用属性
@@ -124,6 +126,8 @@ docs-zh:
     children:
       - title:  定时器
         url:   /docs/zh/timer
+      - title:  手动注册/停止定时器
+        url:   /docs/zh/how_to_register_timer
 
   - title:      串口通讯
     children:
