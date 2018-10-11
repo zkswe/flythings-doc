@@ -172,9 +172,6 @@ mButton1Ptr->setInvalid(FALSE);
 
 我们通过以下的小例子来了解通用属性的相关接口函数简单用法。
 
-**由于通用属性较多，
-更多通用属性函数接口用法请参考[样例代码](demo_download#demo_download)中的CtrlCommonDemo工程**
-
 ### 1.创建控件
 
 首先，我们新建一个Flythings项目,双击打开项目UI文件夹下的main.ftu文件，在控件栏中分别拖出按键控件和文本控件。
