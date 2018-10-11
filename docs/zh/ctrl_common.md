@@ -162,7 +162,7 @@ mButton1Ptr->setInvalid(FALSE);
 ![](images/ctrl_getButton1ID.jpg)
 
 ### 4.下载调试
-右键项目点击下载调试即可看到[按键控件Button1的ID值](#widgetID)为20001.
+右键项目点击下载调试后按下按键即可看到[按键控件Button1的ID值](#widgetID)为20001.
 
 ### 注意：
 
