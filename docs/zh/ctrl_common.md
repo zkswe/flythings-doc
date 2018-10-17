@@ -87,7 +87,7 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
 
 ## 背景图
 
-![](images/ctrl_bg.png)
+![](images/ctrl_background.png)
 
 选择好图片后就可以看到效果了，这里我们重点的来说明如何通过代码来设置背景图：
 ```c++
