@@ -156,7 +156,10 @@ docs-zh:
     children:
       - title:  数据存储
         url:    /docs/zh/data
-
+  - title:      国际化
+    children:
+      - title: 多语言翻译
+        url:    /docs/zh/i18n
   - title:      升级及调试
     children:
       - title:  ADB调试
