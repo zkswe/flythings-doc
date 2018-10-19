@@ -81,11 +81,11 @@ mTextView1Ptr->setText('c'); // TextView1控件将显示'c'字符
 
    在属性表中设置颜色具有直观、方便的特点，但是缺少灵活性，于是在代码中，通过控件指针，调用相应成员方法可以对颜色进行动态控制。
 
-<<<<<<< HEAD
+
   以ID为`TextView1`的文本控件为例，以下方法都可以达到修改颜色的目的。（[如果你不清楚指针变量名与UI文件中控件ID的对应规则，点击这里](named_rule)）
-=======
+
   以ID为`TextView1`的文本控件为例，以下方法都可以达到修改颜色的目的。
->>>>>>> 96e3379792f501424782a2246c36bbae73a68023
+
 
  * `void setInvalid(BOOL isInvalid)`  
     ```c++
@@ -198,11 +198,11 @@ mTextView1Ptr->setText('c'); // TextView1控件将显示'c'字符
    ```
 
 ## <span id = "example_download">样例代码</span>
-<<<<<<< HEAD
+
 由于文本控件属性较多，更多属性效果请参考[样例代码](demo_download#demo_download)中的TextViewDemo工程。   
-=======
+
 由于文本控件属性较多，更多属性效果参考[样例代码](demo_download#demo_download)。   
->>>>>>> 96e3379792f501424782a2246c36bbae73a68023
+
 预览效果图：
 
 ![效果图](assets/textview/preview.png)

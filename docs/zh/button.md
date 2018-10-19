@@ -141,9 +141,9 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
 具体实现，可以参考[样例代码](demo_download#demo_download)  
 
 ## 样例代码  
-<<<<<<< HEAD
+
 由于按键控件属性较多，更多属性效果请参考[样例代码](demo_download#demo_download)中的ButtonDemo工程。   
-=======
+
 由于按键控件属性较多，更多属性效果参考[样例代码](demo_download#demo_download)。
 样例预览效果图：  
 

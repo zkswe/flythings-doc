@@ -188,7 +188,7 @@ mButton1Ptr->setInvalid(FALSE);
 
 ### 3.调用控件属性函数
 编译完成后，打开项目中jni/logic/mainLogic.cc文件,可以看到文件最下方生成了onButtonClick_Button1函数。
-我们将在该函数中操作文本控件显示按键控件Button1的ID值。
+**我们将在该函数中调用getID()函数获取按键控件Button1的ID值，调用setText()函数在文本控件Textview1显示。**
 ([如果你不清楚指针变量名与UI文件中控件ID的对应规则，点击这里](named_rule))
 
 ![](images/ctrl_getButton1ID.jpg)
