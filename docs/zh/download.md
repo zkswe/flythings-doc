@@ -12,7 +12,7 @@ layout: article
 ## 安装FlyThings集成开发工具及SDK
 
 * ### Windows   
-  [**FlyThings IDE**](http://download.zkswe.com/ide/flythings-ide-win32-win32-x86-setup.exe)（20181017-0617 ） 
+  [**FlyThings IDE**](http://download.zkswe.com/ide/flythings-ide-win32-win32-x86-setup.exe)（20181023-1014 ） 
   
   
   
