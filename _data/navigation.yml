@@ -201,6 +201,8 @@ docs-zh:
         url:    /docs/zh/touchcalibration
       - title:  字体库设置说明
         url:    /docs/zh/font_setting
+      - title:  裁剪字体
+        url:    /docs/zh/font_cut_tool
       - title:  开发工具常用技巧
         url:    /docs/zh/editor_tip
       - title:  制作SD启动卡刷机
