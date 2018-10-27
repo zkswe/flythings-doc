@@ -43,20 +43,23 @@ WiFi列表，设备列表，表格信息
  具体列表的关联函数讲解可以参考[列表关联函数介绍](relation_function#list)
 
 ## 样例代码
-完整列表控件的使用，参考[样例代码](demo_download#demo_download)中的ListViewDemo工程。    
-### 1.创建控件
+   完整列表控件的使用，参考[样例代码](demo_download#demo_download)中的ListViewDemo工程。    
+### 1.创建列表控件
+我们依次创建两个列表控件，尝试设置不同的属性及外观。
 **CycleList控件：** 开启循环列表选项
-![](assets/list/listview_new_widget.gif)
+
+  ![](assets/list/listview_new_widget.gif)
 
 ### 2.编译项目
-(如不清楚具体操作请看[《如何编译FlyThings项目》](how_to_compile_flythings#how_to_compile_flythings)章节)
+这一步会自动生成列表相关的代码到相应 **Logic.cc** 文件中。  
+具体操作参考[《如何编译FlyThings项目》](how_to_compile_flythings#how_to_compile_flythings)
 
 ### 3.创建List1列表调用的数据结构体
 ![](assets/list/list1_struct.jpg)
-### 4.调用List1控件属性函数
-**getListItemCount_List1：** 获取列表的项数(即长度)
-**obtainListItemData_List1：** 设置列表每一项的显示内容
-**onListItemClick_List1：** 设置列表控件的点击事件
+### 4.补充List1列表相关的函数
+**getListItemCount_List1：** 获取列表的项数(即长度)  
+**obtainListItemData_List1：** 设置列表每一项的显示内容  
+**onListItemClick_List1：** 设置列表控件的点击事件  
 ![](assets/list/list1_func.png)
-### 5.调用CycleList控件属性函数
+### 5.补充CycleList列表相关的函数
 ![](assets/list/CycleList_func.png)
