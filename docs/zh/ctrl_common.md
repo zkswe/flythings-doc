@@ -178,6 +178,7 @@ mButton1Ptr->setInvalid(FALSE);
 ### 1.创建控件
 
 首先，我们新建一个Flythings项目,双击打开项目UI文件夹下的main.ftu文件，在控件栏中分别拖出按键控件和文本控件。
+
 ![](images/ctrl_new_widget.gif)
 
 
@@ -187,14 +188,14 @@ mButton1Ptr->setInvalid(FALSE);
 ![](images/ctrl_compile_project.gif)
 
 ### 3.调用控件属性函数
-编译完成后，打开项目中jni/logic/mainLogic.cc文件,可以看到文件最下方生成了onButtonClick_Button1函数。
+编译完成后，打开项目中jni/logic/mainLogic.cc文件,可以看到文件最下方生成了`onButtonClick_Button1` 函数。
 **我们将在该函数中调用getID()函数获取按键控件Button1的ID值，调用setText()函数在文本控件Textview1显示。**
 ([如果你不清楚指针变量名与UI文件中控件ID的对应规则，点击这里](named_rule))
 
 ![](images/ctrl_getButton1ID.jpg)
 
 ### 4.下载调试
-右键项目点击下载调试后按下按键即可看到[按键控件Button1的ID值](#widgetID)为20001.
+在项目管理器中，选择项目名，右键点击后，在弹出菜单中选择**下载调试**即可将程序暂时下载到屏上运行。 运行后，点击按键即可看到[按键控件Button1的ID值](#widgetID)为20001.
 
 ### 注意：
 
