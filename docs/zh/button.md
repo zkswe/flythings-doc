@@ -32,7 +32,7 @@ layout: article
   * 图片位置
      - 图片默认是居中且缩放至铺满整个按键矩形区域，你可以任意调整图片的位置及放大、缩小。
   * 背景图
-     - 将图片设置为按键的背景，该图片将覆盖按键的整个矩形区域，并且自动缩放。 
+     - 将图片设置为按键的背景，该图片将覆盖按键的整个矩形区域，并且自动缩放。
 
 具体示例：   
 
@@ -45,7 +45,7 @@ layout: article
 上图是属性表图片参数部分截图，其表示的含义为：    
   按键默认情况下显示on.png， 按键选中状态时显示off.png；  
   图片位置的 左、上、宽、高四个参数决定了图片的显示区域（以像素为单位），以按键矩形区域的左上角为起点坐标（0，0），向右向下为正方向，终点坐标为（67，31）。 如果图片实际的宽高与指定的宽高参数不相等，则图片会根据指定的宽高进行缩放：  
-  
+
   ![图片位置坐标示例](assets/Button-location.png)
 
 ### 理解按键控件的层级关系  
@@ -61,7 +61,7 @@ layout: article
 ## 当按下这个按键/按钮时，在哪儿或如何添加自己的操作代码？
 在实际开发中，`按键`是使用频率非常高的一种控件。常常会在按键的点击事件发生后，做一些处理，比如写串口或者刷新UI内容等操作。
 要响应按键的点击时间非常的简单。以下是具体步骤：
-1. 首先创建一个`按键`控件，将属性ID命名为`Button1`。[如何创建按键控件](#add_button) 
+1. 首先创建一个`按键`控件，将属性ID命名为`Button1`。[如何创建按键控件](#add_button)
 
    ![ID属性示例](assets/Button-properties-id-button1.png)
 2. 在`项目资源管理器`中，选中当前项目，右键，在弹出菜单中选择`编译FlyThings`选项。这一步的作用是 **根据当前项目内所有的UI文件自动生成模板代码** 。 [了解更多关于代码生成的细节](ftu_and_source_relationships#ftu_and_source_relationships)
@@ -94,12 +94,12 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
 ## 如何处理按键长按事件  
 如果需要处理按键的长按事件，需要手动添加长按事件的监听。  具体步骤如下：  
 1. 在按键的 **属性表** 中， 设置 **长按事件触发时间** 、**长按事件循环触发间隔时间** 两个属性  ；下图中，我分别将其设置为 1000、1000， 单位是毫秒。
-  
+
    ![](assets/button/property_longclick.jpg)
 
 2. 设置属性后, 编译, 打开对应的 Logic.cc 文件;  在文件顶部, 声明`class LongClickListener`, 并继承`ZKBase::ILongClickListener`类 ,实现 `virtual void onLongClick(ZKBase *pBase)` 方法。
 
-    ```	
+    ```
     //实现长按监听接口
     class LongClickListener : public ZKBase::ILongClickListener {
 
@@ -141,7 +141,10 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
 具体实现，可以参考[样例代码](demo_download#demo_download)  
 
 ## 样例代码  
-更多按键控件的使用，参考[样例代码](demo_download#demo_download)  
+
+由于按键控件属性较多，更多属性效果请参考[样例代码](demo_download#demo_download)中的ButtonDemo工程。   
+
+由于按键控件属性较多，更多属性效果参考[样例代码](demo_download#demo_download)。
 样例预览效果图：  
 
 ![效果图](assets/button/preview.png)

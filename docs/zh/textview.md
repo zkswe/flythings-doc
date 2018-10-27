@@ -9,6 +9,11 @@ aside:
 layout: article
 ---
 # 文本类 TextView
+
+## 注意
+
+如果不清楚如何修改文本的通用属性请参考[《通用属性》](ctrl_common#ctrl_common)
+
 ## <span id="add_textview">我需要显示一段文字/标签，怎么办？</span>
 如果需要显示文字，利用现有的`Textview`件就可以快速实现。具体操作步骤如下：
 1. 双击打开main.ftu文件
@@ -76,7 +81,11 @@ mTextView1Ptr->setText('c'); // TextView1控件将显示'c'字符
 
    在属性表中设置颜色具有直观、方便的特点，但是缺少灵活性，于是在代码中，通过控件指针，调用相应成员方法可以对颜色进行动态控制。
 
+
+  以ID为`TextView1`的文本控件为例，以下方法都可以达到修改颜色的目的。（[如果你不清楚指针变量名与UI文件中控件ID的对应规则，点击这里](named_rule)）
+
   以ID为`TextView1`的文本控件为例，以下方法都可以达到修改颜色的目的。
+
 
  * `void setInvalid(BOOL isInvalid)`  
     ```c++
@@ -87,17 +96,17 @@ mTextView1Ptr->setText('c'); // TextView1控件将显示'c'字符
  * `void setSelected(BOOL isSelected)`     
    ```c++
       //将控件TextView1 设置为选中状态；如果属性表中`选中时颜色`属性不为空，则将其设置为指定的颜色，否则无变化。
-       mTextView1->setSelected(true);
+       mTextView1Ptr->setSelected(true);
    ```
  * `void setPressed(BOOL isPressed)`
    ```c++
       //将控件TextView1 设置为按下状态；如果属性表中`按下时颜色`属性不为空，则将其设置为指定的颜色，否则无变化。
-       mTextView1->setPressed(true);
+       mTextView1Ptr->setPressed(true);
    ```
  * `void setTextColor(int color) //参数color以16进制表示RGB颜色`
    ```c++
       //将控件TextView1 设置为红色。
-      mTextView1->setTextColor(0xFF0000);
+      mTextView1Ptr->setTextColor(0xFF0000);
    ```
 
 ## 实现逐帧动画
@@ -189,7 +198,11 @@ mTextView1Ptr->setText('c'); // TextView1控件将显示'c'字符
    ```
 
 ## <span id = "example_download">样例代码</span>
+
+由于文本控件属性较多，更多属性效果请参考[样例代码](demo_download#demo_download)中的TextViewDemo工程。   
+
 由于文本控件属性较多，更多属性效果参考[样例代码](demo_download#demo_download)。   
+
 预览效果图：
 
 ![效果图](assets/textview/preview.png)

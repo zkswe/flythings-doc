@@ -11,7 +11,7 @@ layout: article
 # 通用属性
 在开始介绍各个控件之前，我们先来基本的了解一下控件的一些通用的属性及设置接口；
 
-## 控件ID值
+## <span id = "widgetID">控件ID值</span>
 ID值为控件的唯一标识，每一个ftu文件里的控件ID值是不允许重名的，不同的ftu文件里的控件ID值允许重名；设置ID值后，编译完会在**activity**目录下对应的头文件中生成相应的宏定义：
 
 ![](images/ctrl_id_def.png)
@@ -89,7 +89,10 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
 
 ![](images/ctrl_bg.png)
 
-选择好图片后就可以看到效果了，这里我们重点的来说明如何通过代码来设置背景图：
+选择好图片后就可以看到效果了
+![](images/ctrl_background.png)
+
+这里我们重点的来说明如何通过代码来设置背景图：
 ```c++
 /**
  * pPicPath参数可以有以下两种方式：
@@ -167,3 +170,34 @@ BOOL isInvalid() const;
 mButton1Ptr->setInvalid(TRUE);
 mButton1Ptr->setInvalid(FALSE);
 ```
+
+## 样例说明
+
+我们通过以下的小例子来了解通用属性的相关接口函数简单用法。
+
+### 1.创建控件
+
+首先，我们新建一个Flythings项目,双击打开项目UI文件夹下的main.ftu文件，在控件栏中分别拖出按键控件和文本控件。
+![](images/ctrl_new_widget.gif)
+
+
+### 2.编译项目
+(如不清楚具体操作请看[《如何编译FlyThings项目》](how_to_compile_flythings#how_to_compile_flythings)章节)
+
+![](images/ctrl_compile_project.gif)
+
+### 3.调用控件属性函数
+编译完成后，打开项目中jni/logic/mainLogic.cc文件,可以看到文件最下方生成了onButtonClick_Button1函数。
+**我们将在该函数中调用getID()函数获取按键控件Button1的ID值，调用setText()函数在文本控件Textview1显示。**
+([如果你不清楚指针变量名与UI文件中控件ID的对应规则，点击这里](named_rule))
+
+![](images/ctrl_getButton1ID.jpg)
+
+### 4.下载调试
+右键项目点击下载调试后按下按键即可看到[按键控件Button1的ID值](#widgetID)为20001.
+
+### 注意：
+
+
+<font color="#E6161E" size="4">想要了解更多控件通用属性的设置接口函数可以打开/jni/include/control/ZKBase.h文件，主要的属性设置接口函数都已注释。</font>
+![](images/ctrl_ZKBase.jpg)
