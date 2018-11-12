@@ -14,3 +14,5 @@ layout: article
    * [480x272 代码样例](https://github.com/zkswe/Z6sDemoCode/archive/master.zip)
 * Z11S平台  
    * [800x480 代码样例](https://github.com/zkswe/Z11SDemoCode/archive/master.zip)
+* 出厂样例代码
+   * [代码样例](https://github.com/zkswe/zkswe_sampleUI/archive/master.zip)
