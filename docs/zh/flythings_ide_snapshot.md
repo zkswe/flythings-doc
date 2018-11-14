@@ -21,7 +21,7 @@ layout: article
 如果你第一次打开该软件，或者选择了一个新的工作空间，那么，你会看到下图这样的欢迎界面。
 它提供了两个快捷功能： **新建项目** 和 **导入项目**      
   * **新建项目**  
-    它会逐步引导你 [如何新建FlyThings项目](new_flythings_project)
+    它会逐步引导你 [如何新建FlyThings项目](new_flythings_project.html)
   * **导入项目**  
     通过它，你可以将现有的项目导入到目前的工作空间，继续之前的开发。[如何导入项目](import_project)
     

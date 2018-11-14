@@ -137,6 +137,8 @@ docs-zh:
         url:    /docs/zh/serial_framework
       - title:  串口配置
         url:    /docs/zh/serial_configuration
+      - title:  多串口配置 
+        url:    /docs/zh/multiuart.html
 
   - title:      网络控制
     children:
