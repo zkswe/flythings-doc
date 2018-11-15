@@ -135,6 +135,8 @@ docs-zh:
         url:    /docs/zh/serial_introdoction
       - title:  通讯框架讲解
         url:    /docs/zh/serial_framework
+      - title:  通讯案例实战
+        url:    /docs/zh/serial_example
       - title:  串口配置
         url:    /docs/zh/serial_configuration
       - title:  多串口配置 
