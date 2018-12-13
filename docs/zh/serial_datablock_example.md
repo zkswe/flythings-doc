@@ -19,7 +19,7 @@ layout: article
 
 ## 案例
 
-以前面的通讯协议为例，实现一个简单的通讯程序。
+以前面的通讯协议为例，实现一个简单的通讯程序。完整代码见 [样例代码](demo_download#demo_download) 里的`UartDatablockDemo` 工程；<br/>
 
 效果：按下按键发送指令，串口接收指令控制显示屏的仪表指针旋转，UI效果图如下：
 
