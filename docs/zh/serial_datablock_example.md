@@ -29,7 +29,10 @@ layout: article
 
 #### 1.定义数据块
 在jni/uart/ProtocolData.h中定义数据块：
-1. 设置数据块最大长度
+1. 设置数据块最大长度(字节数)————当数据块内容长度超过最大长度，发送函数会返回错误信息。(如下图所示)
+
+![](assets/serial/serial_datawrong.png)
+
 2. 定义数据块内容
 
 ```c++
