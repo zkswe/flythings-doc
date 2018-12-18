@@ -13,7 +13,7 @@ full_width: true
 {%- include snippets/get-nav-url.html -%}
 {%- assign _url = __return -%}
 {%- if page.data.theme == 'light' -%}
-  <section class="section section--light overlay" style="background-image: url({{ _url }});">
+  <section class="section section--light overlay">
 {%- elsif page.data.theme == 'dark' -%}
   <section class="section section--dark overlay" style="background-image: url({{ _url }});">
 {%- else -%}

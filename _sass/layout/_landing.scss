@@ -68,7 +68,6 @@
   .overlay {
     min-height: 40rem;
     padding: map-get($spacers, 5) 0;
-    background-image: url(/docs/assets/images/cover1.jpeg);
     background-size: cover;
     @include media-breakpoint-down(md) {
       min-height: 28rem;
