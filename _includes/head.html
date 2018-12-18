@@ -7,9 +7,9 @@
 
 <meta name="description" content="{%- if page.excerpt -%}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{%- else -%}{{ site.description }}{%- endif -%}">
 
-<meta itemprop="name" content="{{ site.title }}{%- else -%}{{ site.title }}{%- endif -%}" />
+<meta itemprop="name" content="{{ site.title }}" />
 <meta itemprop="image" content="/assets/favicon-32x32.png" /> 
-<meta name="description" itemprop="description" content="{%- if __return -%}{{ __return }}" />
+<meta name="description" itemprop="description" content="{%- if __return -%}{{ __return }} - {{ site.title }}{%- else -%}{{ site.title }}{%- endif -%}" />
 
 <link rel="canonical" href="{%- include snippets/page-url.html -%}">
 
