@@ -6,6 +6,11 @@
 <title>{%- if __return -%}{{ __return }} - {{ site.title }}{%- else -%}{{ site.title }}{%- endif -%}</title>
 
 <meta name="description" content="{%- if page.excerpt -%}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{%- else -%}{{ site.description }}{%- endif -%}">
+
+<meta itemprop="name" content="{{ site.title }}{%- else -%}{{ site.title }}{%- endif -%}" />
+<meta itemprop="image" content="/assets/favicon-32x32.png" /> 
+<meta name="description" itemprop="description" content="{%- if __return -%}{{ __return }}" />
+
 <link rel="canonical" href="{%- include snippets/page-url.html -%}">
 
 {%- assign __path = site.paths.rss | default: site.data.variables.default.paths.rss -%}
