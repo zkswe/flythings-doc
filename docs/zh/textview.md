@@ -25,16 +25,16 @@ layout: article
 
 ## 如何通过代码动态更新文本内容？
 在串口屏的使用中，常常会动态更新文本内容。那么在代码中，我们可以通过`文本`控件对应的指针来动态更新文本控件的内容。具体操作步骤如下：
-1. 首先需要知道文本控件在代码中对应的指针变量（[如果你不清楚指针变量名与UI文件中控件ID的对应规则，点击这里](named_rule)），这里以ID为`TextView1`的文本控件为例，它对应的指针变量为`mTextView1Ptr`，
-2. 如果我们想要将TextView1控件的文本内容修改为`"Hello World"`,可以通过调用文本控件的成员方法`void setText(const char *text)`实现，在相应的`Logic.cc`文件中，具体代码为:
+1. 首先需要知道文本控件在代码中对应的指针变量（[如果你不清楚指针变量名与UI文件中控件ID的对应规则，点击这里](named_rule)），这里以ID为`Textview1`的文本控件为例，它对应的指针变量为`mTextview1Ptr`，
+2. 如果我们想要将Textview1控件的文本内容修改为`"Hello World"`,可以通过调用文本控件的成员方法`void setText(const char *text)`实现，在相应的`Logic.cc`文件中，具体代码为:
 ```c++
-mTextView1Ptr->setText("Hello World");
+mTextview1Ptr->setText("Hello World");
 ```
 结合实际的使用情况举例。
-下面代码的作用是：当ID为Button1的按键被按下时，将ID为TextView1的文本设置为“Hello World”
+下面代码的作用是：当ID为Button1的按键被按下时，将ID为Textview1的文本设置为“Hello World”
 ```c++
 static bool onButtonClick_Button1(ZKButton *pButton) {
-    mTextView1Ptr->setText("Hello World");
+    mTextview1Ptr->setText("Hello World");
     return false;
 }
 ```
@@ -46,8 +46,8 @@ void setText(int text);  // 设置数字
 void setText(char text); // 设置字符
 
 /* 操作样例 */
-mTextView1Ptr->setText(123); // TextView1控件将显示"123"字符串
-mTextView1Ptr->setText('c'); // TextView1控件将显示'c'字符
+mTextview1Ptr->setText(123); // Textview1控件将显示"123"字符串
+mTextview1Ptr->setText('c'); // Textview1控件将显示'c'字符
 ```
 
 
@@ -82,31 +82,31 @@ mTextView1Ptr->setText('c'); // TextView1控件将显示'c'字符
    在属性表中设置颜色具有直观、方便的特点，但是缺少灵活性，于是在代码中，通过控件指针，调用相应成员方法可以对颜色进行动态控制。
 
 
-  以ID为`TextView1`的文本控件为例，以下方法都可以达到修改颜色的目的。（[如果你不清楚指针变量名与UI文件中控件ID的对应规则，点击这里](named_rule)）
+  以ID为`Textview1`的文本控件为例，以下方法都可以达到修改颜色的目的。（[如果你不清楚指针变量名与UI文件中控件ID的对应规则，点击这里](named_rule)）
 
-  以ID为`TextView1`的文本控件为例，以下方法都可以达到修改颜色的目的。
+  以ID为`Textview1`的文本控件为例，以下方法都可以达到修改颜色的目的。
 
 
  * `void setInvalid(BOOL isInvalid)`  
     ```c++
-      //将控件TextView1 设置为无效状态；如果属性表中`无效时颜色`属性不为空，则将其设置为指定的颜色，否则无变化。
-      mTextView1Ptr->setInvalid(true);
+      //将控件Textview1 设置为无效状态；如果属性表中`无效时颜色`属性不为空，则将其设置为指定的颜色，否则无变化。
+      mTextview1Ptr->setInvalid(true);
     ```
 
  * `void setSelected(BOOL isSelected)`     
    ```c++
-      //将控件TextView1 设置为选中状态；如果属性表中`选中时颜色`属性不为空，则将其设置为指定的颜色，否则无变化。
-       mTextView1Ptr->setSelected(true);
+      //将控件Textview1 设置为选中状态；如果属性表中`选中时颜色`属性不为空，则将其设置为指定的颜色，否则无变化。
+       mTextview1Ptr->setSelected(true);
    ```
  * `void setPressed(BOOL isPressed)`
    ```c++
-      //将控件TextView1 设置为按下状态；如果属性表中`按下时颜色`属性不为空，则将其设置为指定的颜色，否则无变化。
-       mTextView1Ptr->setPressed(true);
+      //将控件Textview1 设置为按下状态；如果属性表中`按下时颜色`属性不为空，则将其设置为指定的颜色，否则无变化。
+       mTextview1Ptr->setPressed(true);
    ```
  * `void setTextColor(int color) //参数color以16进制表示RGB颜色`
    ```c++
-      //将控件TextView1 设置为红色。
-      mTextView1Ptr->setTextColor(0xFF0000);
+      //将控件Textview1 设置为红色。
+      mTextview1Ptr->setTextColor(0xFF0000);
    ```
 
 ## 实现逐帧动画

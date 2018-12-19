@@ -59,7 +59,9 @@ void resetUserTimer(int id, int time);
     }
 
     ```
-    
+
+> #### 注意：  以上提到的 `registerUserTimer`、`unregisterUserTimer`、`resetUserTimer` 三个方法不能在 `onUI_Timer`中调用，会造成死锁。
+ 
 ## <span id = "example_download">样例代码</span>
 参考[样例代码](demo_download#demo_download) 中TimerDemo项目。   
 预览效果图： 
