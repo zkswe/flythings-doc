@@ -137,12 +137,12 @@ pageview:
 ## => Analytics
 ##############################
 analytics:
-  provider: google
+  # provider: google
 
-  ## Google Analytics
-  google:
-    tracking_id : UA-121188128-1
-    anonymize_ip: false # Anonymize IP tracking for Analytics
+  # ## Google Analytics
+  # google:
+  #   tracking_id : UA-121188128-1
+  #   anonymize_ip: false # Anonymize IP tracking for Analytics
 
 
 ## => Build
