@@ -11,8 +11,8 @@ header:
     #    url:        /about.html
     #  - title:      GitHub
     #    url:        https://github.com/kitian616/jekyll-TeXt-theme
-  - title:     关于我们 
-    url:       http://www.zkswe.com
+  #- title:     关于我们 
+  #  url:       http://www.zkswe.com
 
 
 
