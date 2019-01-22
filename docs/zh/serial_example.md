@@ -24,7 +24,7 @@ layout: article
 这里我们还是以前面的通讯协议为例，实现自己的一个简单的通讯程序；完整代码见 [样例代码](demo_download#demo_download) 里的 `UartDemo` 工程；<br/>
 我们最终要实现的效果是，通过串口发送指令来控制显示屏上的仪表指针旋转，UI效果图如下：
 
-   ![](images/uart_demo.png)
+   ![](https://ww1.sinaimg.cn/large/007i4MEmgy1fzf8eh0zp9j30m50d9tdm.jpg)
 
 我们只需要修改 **3处** 地方就可以实现控制仪表指针旋转；
 
@@ -86,7 +86,7 @@ static void onProtocolDataUpdate(const SProtocolData &data) {
 ```
 我们可以在CommDef.h文件中打开`DEBUG_PRO_DATA`宏，打印接收到的协议数据：
 
-![](images/serial_data.png)
+![](https://ww1.sinaimg.cn/large/007i4MEmgy1fzf8fotd93j30a80a4mys.jpg)
 
 到此，串口的 **接收数据** ---> **解析数据** ---> **展示数据** 就算完成了； <br/><br/>
 最后我们再来模拟一下串口**发送数据**；这里，我们给出的程序里，开启了一个定时器，2s模拟一次数据发送：

@@ -41,30 +41,30 @@ layout: article
 # 应用场景
 * 智能家居：  
 
-  ![](images/screenshot_1511002868827.png)
+  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1fzf85h4jcnj307y07t0w0.jpg)
 * 智能家电  
   
-  ![](images/screenshot_1511002887090.png)![](images/screenshot_1511003057000.png)
+  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1fzf8920vojj30bj0aqwi7.jpg)![](https://ww1.sinaimg.cn/large/007i4MEmgy1fzf89sq10ij30az0a5wk4.jpg)
   
 * 共享行业  
   
-  ![](images/screenshot_1511003084598.png)
+  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1fzf8afsimij30e5089dkl.jpg)
   
 * 电梯指示牌  
   
-  ![](images/screenshot_1511003099335.png)
+  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1fzf8ax8udyj30ak07s0vw.jpg)
   
 * 广告机  
 
-  ![](images/screenshot_1511003110508.png)
+  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1fzf8bd5o8mj30bo085wjw.jpg)
 
 * 充电桩
   
-  ![](images/screenshot_1511003125595.png)
+  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1fzf8bszo5bj30920c4gnf.jpg)
 
 * 评价机  
 
-  ![](images/screenshot_1511003138758.png)  
+  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1fzf8c3rvbuj30b608yn23.jpg)  
   
 只要您有需要显示，可能我们就能帮助您
 

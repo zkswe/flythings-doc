@@ -11,7 +11,7 @@ layout: article
 # <span id="ide_introduce"> FlyThings IDE 工作区域使用介绍</span>  
 当你新建项目完成后，你将看到如下界面    
  
-  ![新建项目完成后的界面](assets/ide/default_layout.png)  
+  ![新建项目完成后的界面](https://ww1.sinaimg.cn/large/007i4MEmgy1fzf8hehyi0j313y0mrmzt.jpg)  
   
 编辑器大致分为六个区域。分别的作用如下：  
   1. **① 区域 - 项目资源管理器** 它将项目文件夹内的资源文件、代码文件等以树形图的形式显示。你可以自由展开/收起，双击文件可以直接打开编辑。具体演示如下：  

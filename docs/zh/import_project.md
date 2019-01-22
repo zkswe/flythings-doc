@@ -18,4 +18,4 @@ layout: article
 
 具体导入动画  
 
-![](assets/ide/import_project.gif)
+![](https://ww1.sinaimg.cn/large/007i4MEmgy1fzf8k6z943g313i0p8kjl.jpg)
