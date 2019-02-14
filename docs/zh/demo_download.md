@@ -9,8 +9,9 @@ aside:
 layout: article
 ---
 ## <span id = "demo_download">样例下载</span>
+ > **请下载与屏对应平台的代码，否则无法运行**
 
-* Z6S平台
+* Z6S或z6平台
    * [480x272 代码样例](https://github.com/zkswe/Z6sDemoCode/archive/master.zip)
 * Z11S平台  
    * [800x480 代码样例](https://github.com/zkswe/Z11SDemoCode/archive/master.zip)
