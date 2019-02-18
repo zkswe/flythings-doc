@@ -48,8 +48,22 @@ layout: article
 打开工程目录下的`jni/logic/****Logic.cc`文件(\*\*\*\*表示UI文件名 )，找到自动生成的函数  
 ```c++
 static void onEditTextChanged_XXXX(const std::string &text) {
-	       //LOGD("当前输入的内容为 %s \n", text.c_str());
+	  //LOGD("当前输入的内容为 %s \n", text.c_str());
 }
 ```
 当模拟键盘输入内容的时候，系统会自动调用该函数，参数`text`就是当前模拟键盘上的完整字符串。（`XXXX`表示控件ID名）  
 [了解更多控件的关联函数](relation_function)
+
+## 如何自定义输入法？
+除了使用默认的输入法外，我们还可以自定义输入法，[**样例代码包**](demo_download#demo_download)中提供了演示例子**ImeDemo**工程。
+
+输入法界面与普通界面的实现有些区别：
+1. 普通界面是继承`Activity`实现的，输入法需要继承`IMEBaseApp`；
+2. 另外注册的方式也不一样，普通界面注册方式：`REGISTER_ACTIVITY(****Activity);`，输入法界面注册方式：`REGISTER_SYSAPP(APP_TYPE_SYS_IME, ****Activity);`(\*\*\*\*表示UI文件名 )
+
+这些区别**ImeDemo**工程中已经做好了修改，只需移植到自己工程即可：
+1. 将ui目录下`UserIme.ftu`文件拷贝到自己工程ui目录下；
+2. 将activity目录下`UserImeActivity.h`和`UserImeActivity.cpp`文件拷贝到自己工程activity目录下；
+3. 将logic目录下`UserImeLogic.cc`文件拷贝到自己工程logic目录下；
+
+之后的操作与普通界面编程一致，在`UserImeLogic.cc`中编写逻辑；
