@@ -9,6 +9,8 @@ aside:
 layout: article
 ---
 ## SD启动卡制作步骤
+> **注意： SD卡的容量最大支持16G，过大屏无法识别SD卡，无法升级。**
+
 1. 选择电脑上的SD卡盘符  
 
    ![](images/screenshot_1522837510660.png)
