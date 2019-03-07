@@ -108,6 +108,8 @@ docs-zh:
         url:    /docs/zh/window
       - title:  滑动窗口
         url:    /docs/zh/slidewindow
+      - title:  画布
+        url:    /docs/zh/painter
 
   - title:      界面交互
     children:
