@@ -11,7 +11,7 @@ layout: article
 
 # <span id = "first_run">初次使用FlyThings 集成开发工具</span>
 如果你已经成功安装了[FlyThings IDE](download),那么在你的桌面上，找到 ![ZKSW-Editor快捷方式](assets/ide/quick_link.png) 快捷方式，双击运行。  
-如果你删除了快捷方式，你还可以在安装目录中的`bin`文件夹下，找到 ![ZKSW-Editor](assets/ide/ZKSW_Editor.png) 直接运行。
+如果你删除了快捷方式，你还可以在安装目录中的`bin`文件夹下，找到 ![ide](assets/ide/ide.png) 直接运行。
 ## 选择工作空间
 当你运行工具之后会弹出如下界面。  
 * **工作空间** 用于存储相关设置及历史纪录，你可以将它理解为一个容器，它可以同时管理多个项目，这样不用同时运行多个开发工具。
