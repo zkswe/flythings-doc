@@ -48,18 +48,16 @@ docs-en:
   - title:      Dev
 
 docs-zh:
-  - title:      文档概要
-    children:
-      - title:  入门须知
-        url:    /docs/zh/docs_brief
-  - title:      产品概要
+  - title:      FlyThings 
     children:
       - title:  关于我们
         url:    /docs/zh/product_introduction
-      - title:  FlyThings系统框架介绍
+      - title:  FlyThings系统介绍
         url:    /docs/zh/system_introdoction
-  - title:      IDE开发工具介绍
+  - title:      开发流程
     children:
+      - title:  入门须知
+        url:    /docs/zh/docs_brief
       - title:  环境安装
         url:    /docs/zh/download
       - title:  初次使用工具
