@@ -19,7 +19,7 @@ FlyThings 将UI与代码区分开来，方便管理。
 
 ![](assets/global_control_pointer.png)  
 
-**图中可以看到， 所有指针为静态全局变量，它们都具有相同的命名规则，具体命名规则请参考[控件ID名与指针变量名的命名规则](named_rule)；并且，你还应该注意到截图中 `#include "logic/mainLogic.cc"` 这条语句，它将 `mainLogic.cc`文件include到`mainActivity.cpp`当中，而我们的业务代码就是写在`mainLogic.cc`文件里，所以，我们可以在`mainLogic.cc`中完全使用这些控件指针。**  
+**图中可以看到， 所有指针为静态全局变量，它们都具有相同的命名规则，具体命名规则请参考[控件ID名与指针变量名的命名规则](named_rule#id_name_rule)；并且，你还应该注意到截图中 `#include "logic/mainLogic.cc"` 这条语句，它将 `mainLogic.cc`文件include到`mainActivity.cpp`当中，而我们的业务代码就是写在`mainLogic.cc`文件里，所以，我们可以在`mainLogic.cc`中完全使用这些控件指针。**  
 如果你对这些指针的初始化感兴趣，可以在`mainActivity`的`onCreate`方法中找到。
 
 ## UI文件与Logic.cc文件的关系
@@ -189,4 +189,9 @@ static bool onButtonClick_Button2(ZKButton *pButton) {
  * 对于修改控件的情况，关联函数的生成只与控件ID名有关，如果你在UI文件中，修改控件除了ID名的其他属性，将不会对关联函数造成影响；如果你修改了控件ID名属性，那么编译时，将按照增加控件的情况来处理，旧关联函数保留。
 
 
-**上面我们只以按键控件为例，讲述了UI文件中的控件与Logic.cc内生成的关联函数的关系，FlyThings还提供生成其他控件的关联函数，比如 滑动条、列表、滑动窗口等控件，了解其他控件的关联函数，请参考[控件自动生成的关联函数讲解](relation_function#relation_function)**
+**上面我们只以按键控件为例，讲述了UI文件中的控件与Logic.cc内生成的关联函数的关系，FlyThings还提供生成其他控件的关联函数，比如 滑动条、列表、滑动窗口等控件，了解其他控件的关联函数，请参考[控件自动生成的关联函数讲解](named_rule#relation_function)**
+
+<br/>
+
+**最后用一张图来总结ftu文件与代码的对应关系：**
+![](assets/relationships.png)
