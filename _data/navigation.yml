@@ -48,7 +48,11 @@ docs-en:
   - title:      Dev
 
 docs-zh:
-  - title:      产品概要说明
+  - title:      文档概要
+    children:
+      - title:  入门须知
+        url:    /docs/zh/docs_brief
+  - title:      产品概要
     children:
       - title:  关于我们
         url:    /docs/zh/product_introduction
@@ -73,11 +77,9 @@ docs-zh:
       - title:  项目结构介绍
         url:    /docs/zh/project_structure        
       - title:  UI文件与生成代码讲解
-        url:    /docs/zh/ftu_and_source_relationships       
-      - title:  控件ID名与指针变量名的命名规则
-        url:    /docs/zh/named_rule        
-      - title:  控件关联函数讲解
-        url:    /docs/zh/relation_function          
+        url:    /docs/zh/ftu_and_source_relationships
+      - title:  控件的命名规则
+        url:    /docs/zh/named_rule
       - title:  开发工具常用技巧
         url:    /docs/zh/editor_tip
   - title:      控件介绍
@@ -158,13 +160,25 @@ docs-zh:
       - title:  音乐播放
         url:    /docs/zh/audio
 
-  - title:      数据存储
+  - title:      系统操作
     children:
       - title:  数据存储
         url:    /docs/zh/data
+      - title:  亮度操作
+        url:    /docs/zh/brightness
+      - title:  系统时间
+        url:    /docs/zh/system_time
+      - title:  GPIO操作
+        url:    /docs/zh/gpio
+      - title:  获取机器唯一ID码
+        url:    /docs/zh/machine_unique_id
+      - title:  SD卡拔插监听
+        url:    /docs/zh/mount
+      - title:  线程封装
+        url:    /docs/zh/thread
   - title:      国际化
     children:
-      - title: 多语言翻译
+      - title:  多语言翻译
         url:    /docs/zh/i18n
   - title:      升级及调试
     children:
@@ -180,6 +194,8 @@ docs-zh:
         url:    /docs/zh/make_image
       - title:  自动升级
         url:    /docs/zh/autoupgrade
+      - title:  制作刷机卡
+        url:    /docs/zh/sd_boot
 
   - title:      案例实战
     children:
@@ -191,29 +207,13 @@ docs-zh:
 
   - title:      附录
     children:
-      - title:  亮度操作
-        url:    /docs/zh/brightness
-      - title:  系统时间
-        url:    /docs/zh/system_time
-      - title:  GPIO操作
-        url:    /docs/zh/gpio
-      - title:  获取机器唯一ID码
-        url:    /docs/zh/machine_unique_id
-      - title:  SD卡拔插监听
-        url:    /docs/zh/mount
-      - title:  线程封装
-        url:    /docs/zh/thread
       - title:  触摸校准
         url:    /docs/zh/touchcalibration
       - title:  字体库设置说明
         url:    /docs/zh/font_setting
       - title:  裁剪字体
-        url:    /docs/zh/font_cut_tool
-      - title:  开发工具常用技巧
-        url:    /docs/zh/editor_tip
-      - title:  制作SD启动卡刷机
-        url:    /docs/zh/sd_boot
-      - title:  串口模组屏硬件使用说明
+        url:    /docs/zh/font_cut_tool      
+      - title:  硬件使用说明
         url:    /docs/zh/hardware
       - title:  常见问题
         url:    /docs/zh/problems
