@@ -8,6 +8,8 @@ aside:
   toc: true
 layout: article
 ---
+## [PC端工具下载](http://download.zkswe.com/tool/Flasher.zip)
+      
 ## 制作刷机卡
 > **注意： SD卡的容量最大支持16G，过大机器无法识别SD卡，无法升级。**
 
