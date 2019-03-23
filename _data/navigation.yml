@@ -69,11 +69,13 @@ docs-zh:
       - title:  导入项目
         url:    /docs/zh/import_project
       - title:  新建UI文件
-        url:    /docs/zh/new_flythings_ui_file        
+        url:    /docs/zh/new_flythings_ui_file
       - title:  编译项目
-        url:    /docs/zh/how_to_compile_flythings        
+        url:    /docs/zh/how_to_compile_flythings
+      - title:  运行项目
+        url:    /docs/zh/run_project
       - title:  项目结构介绍
-        url:    /docs/zh/project_structure        
+        url:    /docs/zh/project_structure
       - title:  UI文件与生成代码讲解
         url:    /docs/zh/ftu_and_source_relationships
       - title:  控件的命名规则
@@ -168,7 +170,7 @@ docs-zh:
         url:    /docs/zh/system_time
       - title:  GPIO操作
         url:    /docs/zh/gpio
-      - title:  获取机器唯一ID码
+      - title:  获取设备唯一ID
         url:    /docs/zh/machine_unique_id
       - title:  SD卡拔插监听
         url:    /docs/zh/mount
@@ -217,3 +219,5 @@ docs-zh:
         url:    /docs/zh/problems
       - title:  C++基础知识
         url:    /docs/zh/cpp_base
+      - title:  产品规格型号说明
+        url:    /docs/zh/board_tag_explain

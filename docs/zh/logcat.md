@@ -9,16 +9,20 @@ aside:
 layout: article
 ---
 
-# 查看打印日志
-## 添加打印
-FlyThings 的打印统一调用 `LOGD` 或 `LOGE` 宏输出，使用方法与C语言的`printf`一样，它们的定义见: `jni/include/utils/Log.h` ; 我们的工具生成的代码里就有调用的例子（默认被注释掉，需要时打开）：
+# 查看日志
+## 添加日志
+* 所需头文件  
+  ```c++
+  #include "utils/Log.h"
+  ```
+  FlyThings 的打印统一调用 `LOGD` 或 `LOGE` 宏输出，使用方法与C语言的`printf`相同 ; 默认生成的代码里就有调用的例子（默认被注释掉，需要时打开）：
 
-```c++
-static bool onButtonClick_Button1(ZKButton *pButton) {
-	LOGD("onButtonClick_Button1\n");
-	return true;
-}
-```
+    ```c++
+    static bool onButtonClick_Button1(ZKButton *pButton) {
+        LOGD("onButtonClick_Button1\n");
+        return true;
+    }
+    ```
 
 ## 查看打印
 我们有2种方式可以查看打印日志： **串口工具** 和 **ADB**；

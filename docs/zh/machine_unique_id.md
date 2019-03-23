@@ -8,12 +8,17 @@ aside:
   toc: true
 layout: article
 ---
-# 机器唯一ID码
+# 设备唯一ID码
 
-我们可以通过 jni/include/security/SecurityManager.h 里的接口获取到机器的唯一码，调用方法如下：
-```c++
-// id值有8位
-unsigned char devID[8];
-// 成功返回 true，失败返回 false
-bool ret = SECURITYMANAGER->getDevID(devID);
-```
+## 如何读取
+* 所需头文件
+ ```c++
+ #include "security/SecurityManager.h"
+ ```
+* 读取设备ID
+    ```c++
+    // 设备 id 共8个字节
+    unsigned char devID[8];
+    // 成功返回 true，失败返回 false
+    bool ret = SECURITYMANAGER->getDevID(devID);
+    ```

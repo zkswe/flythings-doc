@@ -16,9 +16,9 @@ layout: article
 
 ## 模组功能接口示意图  
 * ### z11s
-  ![](assets/hardware/z11s.png)
+  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1g1clr2awpnj30yt0et4j3.jpg)
 * ### z6s  
-  ![](assets/hardware/z6s.png) 
+  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1g1clqfwkcjj30yz0hpnlk.jpg) 
   
 ## 电源接口说明  
 * ### PH2.0-8PIN座子接口定义
@@ -32,6 +32,7 @@ layout: article
 *  ### 10PIN1.0FPC座子接口定义  
 
     | 1/2/3PIN | 4PIN | 5PIN | 6PIN | 7PIN | 8/9/10PIN | 
+    | --- | --- | --- | --- |--- | --- |
     | DC5V | RTS | RXIN/A | TXOUT/B | CTS | GND |
     |直流电源输入4.5-5.5V | 流控RTS | 串口RX或者RS485-A（接外部设备TX/RS485A）| 串口TX或者RS485-B。（接外部设备RX/RS485B） | 流控CTS |  电源地 |  
     
@@ -41,15 +42,15 @@ layout: article
 如图说明  
 0R电阻是TTL，0R不要是RS232。  
 
- ![](assets/hardware/ttl.png) 
+ ![](https://ae01.alicdn.com/kf/HTB15NSoNzTpK1RjSZKP7613UpXat.png) 
  
 ## 模组屏对应外部设备接口示意图
 
- ![](assets/hardware/shiyitu.png) 
+ ![](https://ww1.sinaimg.cn/large/007i4MEmgy1g1clpguw89j30pp0hfww1.jpg) 
 
 ## 样品配送电源线说明
  
  电源线为单端PH2.0-8PIN 10CM带扣的白蓝或者白红线。如图    
  
-  ![](assets/hardware/1.png)   
-  ![](assets/hardware/2.png) 
+  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1g1clo50x8qj30vo08nduv.jpg)   
+  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1g1clok917jj30dl03fjua.jpg) 
