@@ -164,7 +164,7 @@ docs-zh:
     children:
       - title:  数据存储
         url:    /docs/zh/data
-      - title:  亮度操作
+      - title:  屏幕背光操作
         url:    /docs/zh/brightness
       - title:  系统时间
         url:    /docs/zh/system_time
