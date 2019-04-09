@@ -10,5 +10,13 @@
     $sidebarHide.on('click', function() {
       $pageRoot.removeClass('show-sidebar');
     });
+
+    //标题居中
+    var tocContainer = $('.page__sidebar'),
+    tocActive = tocContainer.find('.toc-h2.active');
+    tocContainer.animate({
+    scrollTop: tocActive.offset().top - tocContainer.offset().top + tocContainer.scrollTop() - document.body.clientHeight/2
+    }, "fast");
+
   });
 })();
