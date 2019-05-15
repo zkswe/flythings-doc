@@ -16,9 +16,9 @@ layout: article
 
 ## 模组功能接口示意图  
 * ### z11s
-  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1g1clr2awpnj30yt0et4j3.jpg)
+  ![](https://ae01.alicdn.com/kf/HTB1osCxNxjaK1RjSZFA762dLFXa1.png)
 * ### z6s  
-  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1g1clqfwkcjj30yz0hpnlk.jpg) 
+  ![](https://ae01.alicdn.com/kf/HTB1nWaJNyLaK1RjSZFx761mPFXaM.png) 
   
 ## 电源接口说明  
 * ### PH2.0-8PIN座子接口定义
@@ -46,11 +46,11 @@ layout: article
  
 ## 模组屏对应外部设备接口示意图
 
- ![](https://ww1.sinaimg.cn/large/007i4MEmgy1g1clpguw89j30pp0hfww1.jpg) 
+ ![](https://ae01.alicdn.com/kf/HTB1KimmNxTpK1RjSZFK7612wXXaZ.png) 
 
 ## 样品配送电源线说明
  
  电源线为单端PH2.0-8PIN 10CM带扣的白蓝或者白红线。如图    
  
-  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1g1clo50x8qj30vo08nduv.jpg)   
-  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1g1clok917jj30dl03fjua.jpg) 
+  ![](https://ae01.alicdn.com/kf/HTB1.xrlau3tHKVjSZSg7604QFXaV.png)   
+  ![](https://ae01.alicdn.com/kf/HTB13RdNNCzqK1RjSZPc762TepXav.png) 

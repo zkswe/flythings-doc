@@ -13,4 +13,4 @@ layout: article
 
 如 `SW80480070A_CWM`是7寸800*480的电容WIFI多媒体版本
 
-![](https://ww1.sinaimg.cn/large/007i4MEmgy1g1cm2r6n8dj30og0c2wfm.jpg)
+![](https://ae01.alicdn.com/kf/HTB1V0ynNCzqK1RjSZFjq6zlCFXaA.jpg)

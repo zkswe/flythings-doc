@@ -18,4 +18,4 @@ layout: article
 
 具体导入动画  
 
-![](https://ww1.sinaimg.cn/large/007i4MEmgy1fzf8k6z943g313i0p8kjl.jpg)
+![](https://ae01.alicdn.com/kf/HTB1ZGL5aOzxK1Rjy1zk5jaHrVXar.gif)
