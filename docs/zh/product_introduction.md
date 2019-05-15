@@ -41,30 +41,30 @@ layout: article
 # 应用场景
 * 智能家居：  
 
-  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1fzf85h4jcnj307y07t0w0.jpg)
+  ![](https://ae01.alicdn.com/kf/HTB1sFD2aU_rK1Rjy0Fc762EvVXa0.png)
 * 智能家电  
   
-  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1fzf8920vojj30bj0aqwi7.jpg)![](https://ww1.sinaimg.cn/large/007i4MEmgy1fzf89sq10ij30az0a5wk4.jpg)
+  ![](https://ae01.alicdn.com/kf/HTB1YNz.aJfvK1RjSspf762zXFXaV.png)![](https://ae01.alicdn.com/kf/HTB18jY5aLvsK1RjSspd763ZepXaN.png)
   
 * 共享行业  
   
-  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1fzf8afsimij30e5089dkl.jpg)
+  ![](https://ae01.alicdn.com/kf/HTB1Q6L7aI_vK1Rjy0Fo760IxVXaa.png)
   
 * 电梯指示牌  
   
-  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1fzf8ax8udyj30ak07s0vw.jpg)
+  ![](https://ae01.alicdn.com/kf/HTB172D8aOzxK1RjSspj763S.pXa0.png)
   
 * 广告机  
 
-  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1fzf8bd5o8mj30bo085wjw.jpg)
+  ![](https://ae01.alicdn.com/kf/HTB1O9z4aIfrK1RjSszc760GGFXah.png)
 
 * 充电桩
   
-  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1fzf8bszo5bj30920c4gnf.jpg)
+  ![](https://ae01.alicdn.com/kf/HTB1GUj8aPDuK1RjSszd760GLpXaW.png)
 
 * 评价机  
 
-  ![](https://ww1.sinaimg.cn/large/007i4MEmgy1fzf8c3rvbuj30b608yn23.jpg)  
+  ![](https://ae01.alicdn.com/kf/HTB15Pb6aITxK1Rjy0Fg761ovpXaw.png)  
   
 只要您有需要显示，可能我们就能帮助您
 
