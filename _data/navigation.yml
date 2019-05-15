@@ -167,15 +167,21 @@ docs-zh:
       - title:  屏幕背光操作
         url:    /docs/zh/brightness
       - title:  系统时间
-        url:    /docs/zh/system_time
-      - title:  GPIO操作
-        url:    /docs/zh/gpio
+        url:    /docs/zh/system_time      
       - title:  获取设备唯一ID
         url:    /docs/zh/machine_unique_id
       - title:  SD卡拔插监听
         url:    /docs/zh/mount
       - title:  线程封装
         url:    /docs/zh/thread
+      - title:  GPIO操作
+        url:    /docs/zh/gpio
+      - title:  SPI操作
+        url:    /docs/zh/spi
+      - title:  I2C操作
+        url:    /docs/zh/i2c
+      - title:  ADC操作
+        url:    /docs/zh/adc
   - title:      国际化
     children:
       - title:  多语言翻译
