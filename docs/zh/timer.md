@@ -37,13 +37,15 @@ typedef struct {
    ```c++
    static bool onUI_Timer(int id){
        //Tips:添加定时器响应的代码到这里,但是需要在本文件的      REGISTER_ACTIVITY_TIMER_TAB 数组中 注册
-       //id 是定时器设置时候的标签,这里不要写耗时的操作，否则影响UI刷新,ruturn:[true] 继续运行定时器;[false] 停止运行当前定时器
+       //id 是定时器设置时候的标签,这里不要写耗时的操作，否则影响UI刷新,return:[true] 继续运行定时器;[false] 停止运行当前定时器
        return true;
    }
    ```
    该函数同样是随 **Logic.cc** 文件默认生成。  
    注意函数的参数 **id** ，它与结构体数组中定义的 **id** 值相同，我们可以根据 **id** 值判断当前触发的是哪一个定时器，从而做一些针对性的操作。
-   
+
+> **注意：每个界面的定时器都是独立的，不同界面定时器的id可以定义一样；<br/>注册的定时器，只要界面不销毁（见[界面活动周期](activity_life_cycle)），都会一直在跑；<br/>注册了无需手动停止，界面销毁了就会自动停止了。**
+
 ##  具体样例  
 接下来我们以一个具体的例子讲述定时器的使用。  
 假设我们需要实现一个这样的功能： 有一个整形变量，每隔一秒钟，将变量累加1，并且将最新结果显示到屏幕上。    
@@ -66,5 +68,4 @@ typedef struct {
     ![](assets/timer/example_preview.png)  
 
 ## 样例代码  
- [样例代码下载](demo_download#demo_download)  
- 
+ 见 [样例代码](demo_download#demo_download) 里的 `TimerDemo` 工程

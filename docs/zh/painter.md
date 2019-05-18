@@ -92,5 +92,4 @@ static void onUI_init() {
 
 ![](assets/painter/preview.png) 
 
-画布控件的具体使用方法，参考[样例代码](demo_download#demo_download)  
-
+画布控件的具体使用方法，参见[样例代码](demo_download#demo_download) 里的 `PainterDemo` 工程 
