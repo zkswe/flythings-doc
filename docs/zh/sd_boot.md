@@ -11,7 +11,8 @@ layout: article
 
       
 ## 制作刷机卡
-> **注意： SD卡的容量最大支持16G，过大机器无法识别SD卡，无法升级。**
+> **注意： SD卡的容量最大支持16G，过大机器无法识别SD卡，无法升级。<br/>最新软件刷机包，请到 QQ群：[371608200](//shang.qq.com/wpa/qunwpa?idkey=da6e12d1773a7e55295a0accd2a46ad51aece61657fe55a2f8277f4cd91dc56a) 群共享下载，注意找自己机器对应版本软件，见机器背面[标签](board_tag_explain)，否则升级可能会有异常！**
+
 
 1. 下载[电脑端刷机工具](http://download.zkswe.com/tool/Flasher.zip)
 2. 选择电脑上的SD卡盘符  

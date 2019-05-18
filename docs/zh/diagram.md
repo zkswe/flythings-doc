@@ -76,6 +76,7 @@ layout: article
   * `void addData(int index, float data)`
   将单个数据增加到波形上， `data`为 y值， 你可能会好奇为什么没有 x 值，因为这个函数数是 **局部波形图形刷新**，当你每次调用该函数设置 y 值时，系统会自动偏移一定 x 值，而这个偏移的大小 与设置的 [**步进**](#step_property) 属性相同。  
     对比 `void setData(int index, const MPPOINT *pPoints, int count)`和`void addData(int index, float data)` 两种刷新波形的方式，可以得出，如果在大数据量下，采用第二种方式会有更高的刷新效率。
+  > setData(index, NULL, 0) 即可清除波形图数据
 
 
 ## 添加波形移动的方法
