@@ -227,3 +227,5 @@ docs-zh:
         url:    /docs/zh/cpp_base
       - title:  产品规格型号说明
         url:    /docs/zh/board_tag_explain
+      - title:  核心模组使用教程 
+        url:    /docs/zh/core_module
