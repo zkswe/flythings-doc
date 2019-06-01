@@ -30,9 +30,9 @@ layout: article
   
   
 ## 代码操作  
-如果你添加了滑动窗口控件，那么在编译后，会自动生成关联函数， 函数具体介绍参考[滑动窗口关联函数](relation_function#slidewindow)
+1.如果你添加了滑动窗口控件，那么在编译后，会自动生成关联函数， 函数具体介绍参考[滑动窗口关联函数](relation_function#slidewindow)
 
-一般情况下，我们只需要通过触摸滑动来上下翻页。但是，我们也提供了相应的翻页函数。  
+2.一般情况下，我们只需要通过触摸滑动来上下翻页。但是，我们也提供了相应的翻页函数。  
 
 ```c++
 // 切换到下一页
@@ -41,6 +41,30 @@ void turnToNextPage(bool isAnimatable = false);
 void turnToPrevPage(bool isAnimatable = false);
 ```
 参数 `bool isAnimatable` 表示是否开启翻页时的动画; 默认为`false`，表示关闭动画
+
+3.我们还可以通过代码监听到滑动窗口翻到了第几页：
+
+```c++
+namespace { // 加个匿名作用域，防止多个源文件定义相同类名，运行时冲突
+
+// 实现自己的监听接口
+class MySlidePageChangeListener : public ZKSlideWindow::ISlidePageChangeListener {
+public:
+    virtual void onSlidePageChange(ZKSlideWindow *pSlideWindow, int page) {
+        LOGD("page: %d\n", page);
+    }
+};
+
+}
+
+// 定义监听对象
+static MySlidePageChangeListener sMySlidePageChangeListener;
+
+static void onUI_init() {
+    mSlidewindow1Ptr->setSlidePageChangeListener(&sMySlidePageChangeListener);
+}
+```
+获取当前页接口`getCurrentPage()`。
 
 # 样例代码
 效果图    
