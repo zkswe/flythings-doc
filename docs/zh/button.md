@@ -100,6 +100,8 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
 2. 设置属性后, 编译, 打开对应的 Logic.cc 文件;  在文件顶部, 声明`class LongClickListener`, 并继承`ZKBase::ILongClickListener`类 ,实现 `virtual void onLongClick(ZKBase *pBase)` 方法。
 
     ```c++
+    namespace { // 加个匿名作用域，防止多个源文件定义相同类名，运行时冲突
+
     //实现长按监听接口
     class LongClickListener : public ZKBase::ILongClickListener {
 
@@ -113,6 +115,8 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
                     mLongButtonPtr->setText(buf);
              }
     };
+
+    }
     ```
 3. 接着，实例化上一步定义的监听类，声明为静态类型  
 
