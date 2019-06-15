@@ -40,6 +40,9 @@ layout: article
 ## 调试篇
 目前只能通过[添加日志](logcat)的方式调试程序；
 
+## 模组篇
+参见[核心模组使用说明](core_module)
+
 ## 硬件篇
 参见[硬件使用说明](hardware)
 
