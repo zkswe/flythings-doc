@@ -55,21 +55,39 @@ EASYUICONTEXT->hideNaviBar();
 解释：屏保应用是指当用户不再做系统交互的时候，时间超过某个指定时间长度。系统自动打开一个页面。
 右键工程, 选择 Properties 选项, 在弹出的属性框里，我们可以对屏保超时时间进行设置，单位为秒，-1表示不进屏保；
 我们也可以通过代码进行一些设置，见 jni/include/entry/EasyUIContext.h：
+
+* 所需头文件
+ ```c++
+ #include "entry/EasyUIContext.h"
+ ```
+ 
+* 设置屏保超时时间
 ```c++
-// 设置屏保超时时间，单位为秒
-void setScreensaverTimeOut(int timeOut);
-
-// 设置是否允许启用屏保
-// 应用场景：如升级界面不能进入屏保模式，可以在升级应用里setScreensaverEnable(false)关闭屏保检测，退出setScreensaverEnable(true)恢复屏保功能
-void setScreensaverEnable(bool isEnable);
-
-// 进入屏保
-void screensaverOn();
-
-// 退出屏保
-void screensaverOff();
-
-// 是否进入了屏保
-bool isScreensaverOn() const;
+//设置屏保超时时间为5秒
+EASYUICONTEXT->setScreensaverTimeOut(5); 
 ```
+
+* 设置是否允许启用屏保
+
+  ```c++
+  EASYUICONTEXT->setScreensaverEnable(false); //关闭屏保检测
+  EASYUICONTEXT->setScreensaverEnable(true); //恢复屏保检测
+  ```
+  > 应用场景：如升级界面不能进入屏保模式，可以在升级应用里EASYUICONTEXT->setScreensaverEnable(false)关闭屏保检测。
+  
+* 立即进入屏保 
+```c++
+EASYUICONTEXT->screensaverOn();
+```
+
+* 立即退出屏保
+```c++
+EASYUICONTEXT->screensaverOff();
+```
+
+* 判断是否进入了屏保
+```c++
+EASYUICONTEXT->isScreensaverOn();
+```
+
 完整源码见[**样例代码包**](demo_download#demo_download)中的**ScreensaverDemo**工程
