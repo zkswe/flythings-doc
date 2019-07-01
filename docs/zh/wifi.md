@@ -8,12 +8,12 @@ aside:
   toc: true
 layout: article
 ---
-# 启动wifi设置界面
+## 启动wifi设置界面
 ```c++
 EASYUICONTEXT->openActivity("WifiSettingActivity");
 ```
 
-# wifi操作接口说明
+## wifi操作接口说明
 获取WifiManager对象
 ```c++
 #include "net/NetManager.h"
@@ -59,3 +59,5 @@ WIFIMANAGER->getConnectionInfo();
 void addWifiListener(IWifiListener *pListener);
 void removeWifiListener(IWifiListener *pListener);
 ```
+## 样例代码  
+见 [样例代码](demo_download#demo_download) 里的 `NetDemo` 工程
