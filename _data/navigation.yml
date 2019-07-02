@@ -192,7 +192,7 @@ docs-zh:
         url:    /docs/zh/adb_debug
       - title:  查看打印日志
         url:    /docs/zh/logcat
-      - title:  从SD卡启动程序
+      - title:  从TF卡启动程序
         url:    /docs/zh/start_from_sdcard
       - title:  升级开机LOGO
         url:    /docs/zh/update_logo
