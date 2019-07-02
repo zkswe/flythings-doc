@@ -40,6 +40,6 @@ layout: article
 3. 配置完成后，再选择[下载调试](adb_debug#下载调试)菜单项，它会[暂时](make_image)将项目代码同步到连接的设备中运行。
 
 
-## 借助SD卡，从SD卡启动
-如果由于其他原因，USB和WIFI都不能正常使用、或者被占用，此可借助SD卡，从SD卡启动程序。
-具体步骤参考[教程-从SD卡启动程序](start_from_sdcard)
+## 借助TF卡，从TF卡启动
+如果由于其他原因，USB和WIFI都不能正常使用、或者被占用，此可借助TF卡，从TF卡启动程序。
+具体步骤参考[教程-从TF卡启动程序](start_from_sdcard)
