@@ -170,7 +170,7 @@ docs-zh:
         url:    /docs/zh/system_time      
       - title:  获取设备唯一ID
         url:    /docs/zh/machine_unique_id
-      - title:  SD卡拔插监听
+      - title:  TF卡拔插监听
         url:    /docs/zh/mount
       - title:  线程封装
         url:    /docs/zh/thread
