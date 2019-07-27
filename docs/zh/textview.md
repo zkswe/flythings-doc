@@ -154,7 +154,7 @@ mTextview1Ptr->setText('c'); // Textview1控件将显示'c'字符
 
      ![](assets/textview/relative_path.png)  
 
-     `setBackgroundPic(char* path)` 函数也可以接受绝对路径。例如：如果你将图片 `example.png` 放到SD的根目录下，那么它对应的绝对路径为 `/mnt/extsd/example.png`，  其中 `/mnt/extsd/`是SD卡的挂载目录。  
+     `setBackgroundPic(char* path)` 函数也可以接受绝对路径。例如：如果你将图片 `example.png` 放到TF的根目录下，那么它对应的绝对路径为 `/mnt/extsd/example.png`，  其中 `/mnt/extsd/`是TF卡的挂载目录。  
      我们推荐所有图片资源放到项目的 `resoources` 文件夹下，或者其子文件夹下，因为其他路径的图片资源将不会被自动打包到软件中。  
 
 5. [下载运行](adb_debug)，查看效果    

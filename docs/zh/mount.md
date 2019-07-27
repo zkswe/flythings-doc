@@ -8,8 +8,8 @@ aside:
   toc: true
 layout: article
 ---
-# SD卡拔插监听
-通过注册监听接口，我们可以知道SD卡的拔插状态；这里我们首先需要实现自己的监听类：
+# TF卡拔插监听
+通过注册监听接口，我们可以知道TF卡的拔插状态；这里我们首先需要实现自己的监听类：
 
 ```c++
 #include "os/MountMonitor.h"
@@ -21,13 +21,13 @@ public:
 		case MountMonitor::E_MOUNT_STATUS_MOUNTED:	// 插入
 			// msg 为挂载路径
 			LOGD("mount path: %s\n", msg);
-			mMountTextviewPtr->setText("SD卡已插入");
+			mMountTextviewPtr->setText("TF卡已插入");
 			break;
 
 		case MountMonitor::E_MOUNT_STATUS_REMOVE:	// 移除
 			// msg 为卸载路径
 			LOGD("remove path: %s\n", msg);
-			mMountTextviewPtr->setText("SD卡已移除");
+			mMountTextviewPtr->setText("TF卡已移除");
 			break;
 		}
 	}
