@@ -18,3 +18,5 @@ layout: article
 4.  升级完成后系统会关机重启。此时拔出TF卡。防止系统再次升级。 
 
     ![](images/boot_logo_upgrade.jpg)
+
+> 备注： 升级一张全黑的图片可以去掉开机LOGO。
