@@ -203,9 +203,6 @@ docs-zh:
       - title:  制作刷机卡
         url:    /docs/zh/sd_boot
 
-  - title:      案例实战
-    children:
-      
   - title:      代码样例
     children:
       - title:  样例
