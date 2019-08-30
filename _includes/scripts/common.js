@@ -15,6 +15,15 @@
       } catch (e) { 
       }
     }
+
+    link_ide = $("#ide-download");
+    if (link_ide != null) {
+      if ("developer.flythings.cn" == document.domain) {
+        link_ide.attr("href", "http://download.zkswe.com/ide/flythings-ide-win32-win32-x86-zkswe-setup.exe");
+      } else if ("docs.flythings.cn" == document.domain) {
+        link_ide.attr("href", "http://download.zkswe.com/ide/flythings-ide-win32-win32-x86-community-setup.exe");
+      }      
+    }
   });
 
 })();
