@@ -9,7 +9,7 @@ aside:
 layout: article
 ---
 # 按键类 Button
-## <span id = "add_button">我需要一个按键/按钮， 如何添加，如何修改属性？</span>
+## <span id = "add_button">我需要一个按键/按钮， 如何添加修改属性？</span>
 如果需要一个按键/按钮，利用现有的`Button`控件就可以快速实现。具体操作步骤如下：
 1. 双击打开UI文件
 2. 在右侧控件集合中找到`按键`控件
@@ -142,13 +142,61 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
     }
     ```
 6. 添加完代码后，编译，将程序下载到机器中，长按测试；可以看到 按键的文字被修改，`onLongClick`函数成功响应。
+具体实现，可以参考[样例代码](demo_download#demo_download)
+
+## 如何处理按键触摸事件  
+如果需要在按键**按下**或**抬起**的时候做出响应，那么可以通过注册触摸的监听接口来实现。  具体步骤如下：  
+1. 实现自己的触摸监听接口：
+    ```c++
+    namespace {	// 加个匿名作用域，防止多个源文件定义相同类名，运行时冲突
+
+    // 实现触摸监听接口
+    class TouchListener : public ZKBase::ITouchListener {
+    public:
+        virtual void onTouchEvent(ZKBase *pBase, const MotionEvent &ev) {
+            switch (ev.mActionStatus) {
+            case MotionEvent::E_ACTION_DOWN:
+                mTouchButtonPtr->setText("按下");
+                break;
+            case MotionEvent::E_ACTION_UP:
+                mTouchButtonPtr->setText("抬起");
+                break;
+            default:
+                break;
+            }
+        }
+    };
+
+    }
+    ```
+2. 接着，实例化上一步定义的监听类，声明为静态类型  
+
+    ```c++
+    static TouchListener sTouchListener;
+    ```
+
+4. 在 `static void onUI_init()` 函数中注册按键触摸监听  
+
+    ```c++
+    static void onUI_init() {
+        //注册按键触摸监听
+        mTouchButtonPtr->setTouchListener(&sTouchListener);
+    }
+    ```
+5. 在`static void onUI_quit()`函数中取消按键触摸监听
+
+    ```c++
+    static void onUI_quit() {
+        //取消按键触摸监听
+        mTouchButtonPtr->setTouchListener(NULL);
+    }
+    ```
+6. 添加完代码后，编译，将程序下载到机器中，点击触摸测试；可以看到 按键的文字被修改。
 具体实现，可以参考[样例代码](demo_download#demo_download)  
 
 ## 样例代码  
 
 由于按键控件属性较多，更多属性效果请参考[样例代码](demo_download#demo_download)中的ButtonDemo工程。   
-
-由于按键控件属性较多，更多属性效果参考[样例代码](demo_download#demo_download)。
 样例预览效果图：  
 
 ![效果图](assets/button/preview.png)
