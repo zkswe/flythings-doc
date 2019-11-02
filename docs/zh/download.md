@@ -12,7 +12,7 @@ layout: article
 ## 安装FlyThings集成开发工具及SDK
 
 * ### Windows   
-  <a id="ide-download" href=""> <strong>FlyThings IDE</strong></a>（20190826-1243） 
+  <a id="ide-download" href=""> <strong>FlyThings IDE</strong></a>（20191102-0209） 
   
   
   
@@ -20,4 +20,4 @@ layout: article
   
   * ###### SDK更新  
 
-   > 对于新用户，FlyThings IDE安装包中已包含此SDK部分，无需重复下载。 如果想独立更新SDK部分，可以手动下载解压，替换原sdk文件夹即可。 [**SDK更新包**](http://download.zkswe.com/ide/sdk.zip)(1.4.3)
+   > 对于新用户，FlyThings IDE安装包中已包含此SDK部分，无需重复下载。 如果想独立更新SDK部分，可以手动下载解压，替换原sdk文件夹即可。 [**SDK更新包**](http://download.zkswe.com/ide/sdk.zip)(1.4.5)
