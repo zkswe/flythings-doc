@@ -86,8 +86,7 @@
     * [自动升级](autoupgrade.md)
     * [制作刷机卡 ](sd_boot.md)
 
-## 代码样例
-* [样例 ](demo_download.md)
+* [代码样例](demo_download.md)
 
 * [附录]()
     * [触摸校准 ](touchcalibration.md)
@@ -95,6 +94,7 @@
     * [裁剪字体 ](font_cut_tool.md)
     * [硬件使用说明 ](hardware.md)
     * [常见问题 ](problems.md)
+    * [转换项目平台](convert_platform.md)
     * [C++基础知识 ](cpp_base.md)
     * [产品规格型号说明 ](board_tag_explain.md)
     * [核心模组使用教程 ](core_module.md)

@@ -1,6 +1,6 @@
 ## <span id = "demo_download">样例下载</span>
  > [!Note]
- > **请下载与屏对应平台的代码，否则无法运行**
+ > **请优先下载与屏对应平台的样例代码，如果确实没有,可任意下载一份,再参考[转换项目平台](convert_platform.md)自行转换**
 
 * Z6S或z6平台
    * [480x272 控件样例](http://download.zkswe.com/archive/basedemo_z6s_480_272.zip)
