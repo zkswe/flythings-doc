@@ -19,21 +19,21 @@
     * [开发工具常用技巧](editor_tip.md)
 
 ## 控件介绍
-* [通用属性](ctrl_common.md)
-* [文本](textview.md)
-* [按键](button.md)
-* [进度条/滑块](seekbar.md)
-* [指针/仪表](pointer.md)
-* [列表](listview.md)
-* [波形图](diagram.md)
-* [圆形进度条](editor_tip.md)
-* [二维码](qrcode.md)
-* [视频](video.md)
-* [编辑框](edittext.md)
-* [窗口容器](window.md)
-* [滑动窗口](slidewindow.md)
-* [画布](painter.md)
-
+   * [通用属性](ctrl_common.md)
+   * [文本](textview.md)
+   * [按键](button.md)
+   * [进度条/滑块](seekbar.md)
+   * [指针/仪表](pointer.md)
+   * [列表](listview.md)
+   * [波形图](diagram.md)
+   * [圆形进度条](circlebar.md)
+   * [二维码](qrcode.md)
+   * [视频](video.md)
+   * [编辑框](edittext.md)
+   * [窗口容器](window.md)
+   * [滑动窗口](slidewindow.md)
+   * [画布](painter.md)
+   * [关联函数介绍](relation_function.md)
 
 ## 界面交互
 * [第一个启动界面](first_app.md)
@@ -42,9 +42,9 @@
 * [系统内置界面](internal_app.md)
 * [系统应用](system_app.md)
 
-## 定时器
-* [定时器 ](timer.md)
-* [手动注册/停止定时器 ](how_to_register_timer.md)
+* [定时器]
+  * [定时器 ](timer.md)
+  * [手动注册/停止定时器 ](how_to_register_timer.md)
 
 * [串口通讯]()
     * [简介](serial_introdoction.md)
@@ -53,14 +53,14 @@
     * [串口配置](serial_configuration.md)
     * [多串口配置](multiuart.md)
 
-## 网络控制
-* [wifi设置 ](first_app.md)
-* [热点设置 ](wifi.md)
-* [打开关闭应用界面 ](wifi_ap.md)
+* [网络控制]()
+  * [wifi设置 ](first_app.md)
+  * [热点设置 ](wifi.md)
+  * [打开关闭应用界面 ](wifi_ap.md)
 
-## 多媒体
-* [视频播放 ](video.md)
-* [音频播放 ](audio.md)
+* [多媒体]()
+  * [视频播放 ](video.md)
+  * [音频播放 ](audio.md)
 
 ## 系统操作
 * [数据存储 ](data.md)
@@ -75,7 +75,7 @@
 * [ADC操作 ](adc.md)
 
 ## 国际化
-* [多语言翻译 ](i18n.md)
+* [多语言翻译](i18n.md)
 
 * [升级与调试]()
     * [ADB调试 ](adb_debug.md)
@@ -94,7 +94,9 @@
     * [裁剪字体 ](font_cut_tool.md)
     * [硬件使用说明 ](hardware.md)
     * [常见问题 ](problems.md)
+    * [安装ADB驱动](install_adb_driver.md)
     * [转换项目平台](convert_platform.md)
     * [C++基础知识 ](cpp_base.md)
     * [产品规格型号说明 ](board_tag_explain.md)
     * [核心模组使用教程 ](core_module.md)
+

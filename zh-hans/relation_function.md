@@ -1,5 +1,7 @@
 ## <span id = "relation_function">控件自动生成的关联函数讲解</span>
 有些控件会自动生成关联函数。这些控件生成的关联函数的具体讲解如下：  
+
+> [!Note]
 > **函数中出现的`XXXX`代表控件ID，实际过程中，请自行替换**
 
 ---
@@ -43,7 +45,7 @@
   static void onSlideItemClick_XXXX(ZKSlideWindow *pSlideWindow, int index) {
     
   }
-```
+  ```
 当点击滑动窗口控件中的某一个图标时，系统会自动调用该函数。  
   * **参数`ZKSlideWindow *pSlideWindow`** 是该滑动窗口控件的指针，通过该指针的成员函数可以对控件进行一系列操作。  
   * **参数`int index`**是当前被点击图标的索引值。例如该滑动窗口一共添加了10个图标，则索引值范围是[0, 9]
@@ -52,31 +54,29 @@
 
 * ### <span id = "list">列表控件</span>
 列表控件是最复杂的一个控件，它会创建三个关联函数。虽然函数较多，但是按照下面的步骤理解起来也十分容易。      
-
   1. 首先，系统想要绘制一个列表控件，需要知道它一共有多少项。于是有了下面这个关联函数
-   ```c++
-   static int getListItemCount_XXXX(const ZKListView *pListView) {
-    
-         return 0;
-   }
-   ```  
-   
+
+    ```c++
+      static int getListItemCount_XXXX(const ZKListView *pListView) {
+            return 0;
+      }
+    ```  
+
      * **参数`const ZKListView *pListView`** 是该列表控件的指针， 它与全局变量`mXXXXPtr`指向同一个对象。  
-     * **返回值**是整形， 表示该列表一共有多少项，可以根据你的需求来定义。  
-     
-        
-    2. 系统知道了需要绘制的数目后，还不够，还需要知道你每一项都分别显示哪些内容。于是有了下面这个函数，它会多次调用，让你设置每一项的显示内容，直到每一项都处理完毕。
-   ```c++
-     static void obtainListItemData_XXXX(ZKListView *pListView,ZKListView::ZKListItem *pListItem, int index) {
+     * **返回值**是整形， 表示该列表一共有多少项，可以根据你的需求来定义。
+
+  2. 系统知道了需要绘制的数目后，还不够，还需要知道你每一项都分别显示哪些内容。于是有了下面这个函数，它会被多次调用，让你设置每一项的显示内容，直到每一项都处理完毕。
+     ```c++
+     void obtainListItemData_XXXX(ZKListView *pListView, ZKListView::ZKListItem *pListItem, int index) {
       //pListItem->setText(index)
-   }
-   ```
+     }
+     ```
     * **参数`ZKListView *pListView`** 是该列表控件的指针， 它与全局变量`mXXXXPtr`指向同一个对象。    
     * **参数`ZKListView::ZKListItem *pListItem`** 是列表项的指针，与UI文件中的`Item`对应  
     * **参数`int index`**是`pListItem`在整个列表中的索引值。它具有一定范围，**例如：**`getListItemCount_XXXX`函数返回值为10，则表示列表共有10项，那么`index`的范围是[0, 9]， 结合`pListItem`和`index`,你就能知道现在设置的这个列表项处于整个列表的什么位置。    
     
         在这个函数里，你可以根据`index`分别设置每一项的显示内容。  
-    **例如：** 函数中注释的语句就表示：每一个列表项都显示它对应的索引号。
+    **例如：** 函数中注释的语句就表示：每一个列表项将它对应的索引号作为文字显示。
         
   3. 与按键控件类似，列表控件同样有点击事件，只不过它是根据索引值来判断当前点击的是哪一个列表项。
   ```c++
@@ -111,5 +111,6 @@
        
 ---
 
+>[!Note]
 > ### 技巧之：[快速跳转至关联函数](editor_tip#jump_to_source.md)
 
