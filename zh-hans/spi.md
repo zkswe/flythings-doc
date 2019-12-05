@@ -1,11 +1,23 @@
-# SPI操作
+## SPI操作
 
-目前仅**SV50PB模组**支持该功能，操作接口 jni/include/utils/SpiHelper.h ，使用说明：
-```c++
-// 所需头文件
-#include "utils/SpiHelper.h"
+> [!Note]
+> 1. 目前仅**SV50PB模组**支持该功能。
+> 2. 使用前，需要在[模组配置](https://superv.flythings.cn)中使能 **SPI** 功能，用生成的新系统包升级，才能正常使用。
+> 3. 更多有关模组的[使用教程](core_module.md)。
 
-static void testSpi() {
+### 引入头文件
+
+  ```c++
+  #include "utils/SpiHelper.h"
+  ```
+
+### 具体操作
+
+  ```c++
+  // 所需头文件
+  #include "utils/SpiHelper.h"
+
+  static void testSpi() {
 	uint8_t tx[512], rx[512];
 
 	/**
@@ -63,7 +75,7 @@ static void testSpi() {
 	for (int i = 0; i < 8; i++) {
 		LOGD("spi[%d]=0x%x\n", i, rx[i]);
 	}
-}
-```
+  }
+  ```
 
 其他接口操作请参见头文件注释说明。

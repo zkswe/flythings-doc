@@ -1,12 +1,16 @@
-# GPIO操作
+## GPIO操作
 
-## 引入头文件
+> [!Note]
+> 1. 如果是购买的**SV50PB模组**或者**SV50PC模组**，使用前，需要在[模组配置](https://superv.flythings.cn)中使能 **GPIO** 功能，再重新升级系统,才能正常使用。
+> 3. 更多有关模组的[使用教程](core_module.md)。
+
+### 引入头文件
 ```c++
 #include "utils/GpioHelper.h"
 ```
 
 
-## 操作函数
+### 操作函数
 ```c++
 class GpioHelper {
 public:
@@ -31,9 +35,9 @@ public:
 ```
 
 
-## 各个平台可操作脚位名称定义
+### 各个平台可操作脚位名称定义
 
-* Z11S平台
+  * Z11S平台
 
   目前该平台只保留了3组io口可以操作。
   
@@ -52,33 +56,33 @@ public:
     GpioHelper::output(GPIO_PIN_B_02, 1);
   ```
 
-* SV50PB模组
+  * SV50PB模组
 
-  有以下12组io口可以操作：
+    有以下12组io口可以操作：
 
-  ```c++
-	// SV50PB
-	#define SV50PB_PIN7         "PIN7"
-	#define SV50PB_PIN8         "PIN8"
-	#define SV50PB_PIN9         "PIN9"
-	#define SV50PB_PIN10        "PIN10"
-	#define SV50PB_PIN11        "PIN11"
-	#define SV50PB_PIN12        "PIN12"
-	#define SV50PB_PIN13        "PIN13"
-	#define SV50PB_PIN14        "PIN14"
-	#define SV50PB_PIN23        "PIN23"
-	#define SV50PB_PIN24        "PIN24"
-	#define SV50PB_PIN26        "PIN26"
-	#define SV50PB_PIN27        "PIN27"
+    ```c++
+    // SV50PB
+    #define SV50PB_PIN7         "PIN7"
+    #define SV50PB_PIN8         "PIN8"
+    #define SV50PB_PIN9         "PIN9"
+    #define SV50PB_PIN10        "PIN10"
+    #define SV50PB_PIN11        "PIN11"
+    #define SV50PB_PIN12        "PIN12"
+    #define SV50PB_PIN13        "PIN13"
+    #define SV50PB_PIN14        "PIN14"
+    #define SV50PB_PIN23        "PIN23"
+    #define SV50PB_PIN24        "PIN24"
+    #define SV50PB_PIN26        "PIN26"
+    #define SV50PB_PIN27        "PIN27"
 
-	#include "utils/GpioHelper.h"
+    #include "utils/GpioHelper.h"
 
-	// 读PIN7 io口状态
-	GpioHelper::input(SV50PB_PIN7);
+    // 读PIN7 io口状态
+    GpioHelper::input(SV50PB_PIN7);
 
-	// PIN7 io口输出高电平
-	GpioHelper::output(SV50PB_PIN7, 1);
-  ```
+    // PIN7 io口输出高电平
+    GpioHelper::output(SV50PB_PIN7, 1);
+    ```
 
 * SV50PC模组
 
@@ -121,5 +125,5 @@ public:
     GpioHelper::output(SV50PC_PIN7, 1);
  ```
 
-## 样例  
+### 样例  
 完整源码见[**样例代码包**](demo_download.md#demo_download)中的**GpioDemo**项目

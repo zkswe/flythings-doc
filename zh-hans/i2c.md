@@ -1,16 +1,27 @@
-# I2C操作
+## I2C操作
 
-目前仅**SV50PB模组**支持该功能，操作接口 jni/include/utils/I2CHelper.h ，使用说明：
-```c++
-// 所需头文件
-#include "utils/I2CHelper.h"
+> [!Note]
+> 1. 目前仅**SV50PB模组**支持该功能。
+> 2. 使用前，需要在[模组配置](https://superv.flythings.cn)中使能 **TWI** 功能，用生成的新系统包升级，才能正常使用。
+> 3. 更多有关模组的[使用教程](core_module.md)。
 
-#define CFG_L		0x47
-#define CFG_H		0x80
-#define VER_L		0x41
-#define VER_H		0x81
+### 引入头文件
 
-static void testI2C() {
+  ```c++
+  #include "utils/I2CHelper.h"
+  ```
+
+### 具体操作
+
+  ```c++
+  #include "utils/I2CHelper.h"
+
+  #define CFG_L		0x47
+  #define CFG_H		0x80
+  #define VER_L		0x41
+  #define VER_H		0x81
+
+  static void testI2C() {
 	uint8_t tx[512], rx[512];
 	memset(tx, 0, 512);
 	memset(rx, 0, 512);
@@ -82,7 +93,7 @@ static void testI2C() {
 	}
 
 	LOGD("i2c reg[0x%x%x]=%x\n", VER_H, VER_L, rx[0]);
-}
-```
+  }
+  ```
 
 其他接口操作请参见头文件注释说明。
