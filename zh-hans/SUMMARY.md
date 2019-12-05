@@ -42,9 +42,8 @@
 * [系统内置界面](internal_app.md)
 * [系统应用](system_app.md)
 
-
-* [定时器 ](timer.md)
-  * [手动注册/停止定时器 ](how_to_register_timer.md)
+* [定时器](timer.md)
+   * [手动注册/停止定时器 ](how_to_register_timer.md)
 
 * [串口通讯]()
     * [简介](serial_introdoction.md)
@@ -75,7 +74,7 @@
 * [ADC操作 ](adc.md)
 
 ## 国际化
-* [多语言翻译](i18n.md)
+* [多国语言翻译](i18n.md)
 
 * [升级与调试]()
     * [ADB调试 ](adb_debug.md)
