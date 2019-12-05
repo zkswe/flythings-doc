@@ -42,8 +42,8 @@
 * [系统内置界面](internal_app.md)
 * [系统应用](system_app.md)
 
-* [定时器]
-  * [定时器 ](timer.md)
+
+* [定时器 ](timer.md)
   * [手动注册/停止定时器 ](how_to_register_timer.md)
 
 * [串口通讯]()
