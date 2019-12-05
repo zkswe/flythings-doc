@@ -388,7 +388,7 @@
       <p>
         <a id="install" href="">安装</a>
         <a id="doc" href="">开发文档</a>
-        <a id="demo" href="">参考样例</a>
+        <a id="demo" style="display: none;" href="">参考样例</a>
       </p>
     </div>
   </section>
@@ -400,7 +400,10 @@ function docSetupUrl() {
     mainUrl = window.location.href.slice(0,window.location.href.length - window.location.pathname.length);
     document.getElementById("install").setAttribute("href", mainUrl + "/zh-hans/download.html");
     document.getElementById("doc").setAttribute("href", mainUrl + "/zh-hans");
-    document.getElementById("demo").setAttribute("href", mainUrl + "/zh-hans/demo_download.html");
+    if ("developer.flythings.cn" == document.domain) {
+      document.getElementById("demo").setAttribute("href", mainUrl + "/zh-hans/demo_download.html");
+      document.getElementById("demo").removeAttribute("style");
+    }
 }
 docSetupUrl();
 </script>

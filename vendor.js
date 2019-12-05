@@ -7,6 +7,7 @@ require(["gitbook"], function(gitbook) {
       docSetupIdeDownloadUrl();
       docSetupCopyright();
       docSetupIndexPage();
+      docSetupDemoLink();
     });
 });
 
@@ -36,4 +37,15 @@ function docSetupIndexPage() {
     if (customLink != null) {
       customLink.attr("href", window.location.href.slice(0,window.location.href.length - window.location.pathname.length));
     }
+}
+function docSetupDemoLink() {
+  if ("docs.flythings.cn" == document.domain) {
+    $("li[data-path='demo_download.html']").first().remove();
+    $("a[href^='demo_download.html']").each(
+      function(){
+        txt=$(this).text();
+        $(this).replaceWith(txt);
+      }
+    );
+  }
 }
