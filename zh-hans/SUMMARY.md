@@ -65,7 +65,7 @@
 * [数据存储 ](data.md)
 * [屏幕背光操作 ](brightness.md)
 * [系统时间 ](system_time.md)
-* [获取设备唯一ID ](machine_unique_id.md)
+* [设备唯一ID ](machine_unique_id.md)
 * [TF卡拔插监听 ](mount.md)
 * [线程封装 ](thread.md)
 * [GPIO操作 ](gpio.md)
