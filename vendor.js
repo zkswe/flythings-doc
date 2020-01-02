@@ -26,7 +26,7 @@ function docSetupCopyright() {
     spancopyright = $("span.copyright").first();
     if (spancopyright != null) {
       if ("developer.flythings.cn" == document.domain) {
-        spancopyright.html('Copyright &copy 2019 <a target="_blank" href="http://www.zkswe.com" > <b>深圳市中科世为科技有限公司</b></a>');
+        spancopyright.html('Copyright &copy 2020 <a target="_blank" href="http://www.zkswe.com" > <b>深圳市中科世为科技有限公司</b></a>');
       } else if ("docs.flythings.cn" == document.domain) {
       } else {
       }     
