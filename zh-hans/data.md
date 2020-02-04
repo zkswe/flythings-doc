@@ -1,7 +1,7 @@
 
 ## 数据存储
 
-在某些应用场景中需要永久存储一些信息，如存储用户名称、密码或其他配置的一些信息，像这种数据内容比较少的情况，使用数据库去存储，操作起来会很繁琐，这里我们提供了一套简单的数据存储接口，以键-值对的方式存储，接口见storage/StoragePreferences.h：
+在某些应用场景中需要永久存储一些信息，如存储用户名称、密码或其他配置的一些信息，像这种数据内容比较少的情况，使用数据库去存储，操作起来会很繁琐，这里我们提供了一套简单的数据存储接口，以**键-值对**的方式存储，接口见storage/StoragePreferences.h：
 
 * 所需头文件 
   ```c++
@@ -34,27 +34,55 @@
 >  2. 该分区大小有限制，屏的型号不同，分区大小也不同。尽量将数据大小控制在**512KB**以内。
 
 ### 使用示例  
- 
+ * 保存
   ```c++
-    // 点击Button1存储用户名，"username":"zkswe"
-    static bool onButtonClick_Button1(ZKButton *pButton) {
-        // 存储用户名
-        StoragePreferences::putString("username", "zkswe");
-        return false;
-    }
-
-    // 点击Button2获取用户名
-    static bool onButtonClick_Button2(ZKButton *pButton) {
-        // 获取用户名
-        std::string username = StoragePreferences::getString("username", "null");
-        LOGD("username %s\n", username.c_str());
-        return false;
-    }
-
-    // 点击Button3删除用户名
-    static bool onButtonClick_Button3(ZKButton *pButton) {
-        // 删除用户名
-        StoragePreferences::remove("username");
-        return false;
-    }
+  //保存字符串
+  const char* name = "zhang san";
+  StoragePreferences::putString("username", name);
   ```
+  
+  ```
+  //保存布尔变量
+  StoragePreferences::putBool("power", true);
+  ```
+  ```
+  //保存浮点数
+  StoragePreferences::putFloat("temperature", 30.12);
+  ```
+  ```
+  //保存整型
+  StoragePreferences::putInt("age", 20);
+  ```
+  
+ * 读取
+   ```c++
+   //读取“username”这个键的值，如果没有值，返回空字符串
+   std::string name = StoragePreferences::getString("username", "");
+   //日志打印读取到的字符串
+   LOGD("username %s\n", username.c_str());
+   ```
+   ```
+  //读取布尔变量
+  bool power = StoragePreferences::getBool("power", false);
+  ```
+  ```
+  //读取浮点数
+  float temperature = StoragePreferences::getFloat("temperature", 0);
+  ```
+  ```
+  //读取整型
+  int age = StoragePreferences::getInt("age", 0);
+  ```
+   
+* 删除
+  ```
+  //单独清空某一个值
+  StoragePreferences::remove("username");
+  StoragePreferences::remove("power");
+  StoragePreferences::remove("temperature");
+  StoragePreferences::remove("age");
+  //清空所有值
+  StoragePreferences::clear();
+  ```  
+* 修改  
+  如果需要修改某个值，只需要按键值重复保存即可，将自动覆盖旧的值
