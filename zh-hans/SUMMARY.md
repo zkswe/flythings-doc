@@ -46,6 +46,7 @@
    * [手动注册/停止定时器 ](how_to_register_timer.md)
 
 * [串口通讯]()
+    * [Linux串口编程](linux_serial_programming.md)
     * [简介](serial_introdoction.md)
     * [通讯框加讲解](serial_framework.md)
     * [通讯案例实战](serial_example.md)
