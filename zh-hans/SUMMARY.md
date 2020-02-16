@@ -33,6 +33,7 @@
    * [窗口容器](window.md)
    * [滑动窗口](slidewindow.md)
    * [画布](painter.md)
+   * [摄像头](camera.md)
    * [关联函数介绍](relation_function.md)
 
 ## 界面交互
