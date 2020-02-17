@@ -72,7 +72,6 @@
 * [系统时间 ](system_time.md)
 * [设备唯一ID ](machine_unique_id.md)
 * [TF卡拔插监听 ](mount.md)
-* [线程封装 ](thread.md)
 * [GPIO操作 ](gpio.md)
 * [SPI操作 ](spi.md)
 * [I2C操作 ](i2c.md)
