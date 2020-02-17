@@ -50,7 +50,7 @@
     };
   ```
   
-2. 实例话线程对象  
+2. 实例化线程对象  
   ```c++
   static MyThread my_thread;
   ```
@@ -90,9 +90,10 @@
    > 注意，以上函数只是添加一个请求退出线程的标记而已，并不是强制终止线程。    
    > 如果你在 `threadLoop`函数中一直执行某些操作，让 `threadLoop`函数一直无法结束，那么该线程是不会停止的。  
    > 正确的做法是，在`threadLoop`中检查退出线程请求，或者检查某个终止条件，然后返回 `false`。
-
-  > [!Warning]
-  > 禁止在`threadLoop`函数中调用 `requestExitAndWait`和`requestExit`函数，可能造成死锁。  
+   
+   ---
+   > [!Warning]
+   > 禁止在`threadLoop`函数中调用 `requestExitAndWait`和`requestExit`函数，可能造成死锁。  
 
 5. 判断线程是否还在运行  
   ```c++
@@ -103,7 +104,7 @@
   }
   ```
 
-## `Thread`流程图
+## Thread流程图
 在经过上面各个步骤的讲解后，再结合流程图，应该会有更深的理解。     
 ![](images/threadloop.png)
 
