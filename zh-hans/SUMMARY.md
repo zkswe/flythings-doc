@@ -63,6 +63,9 @@
   * [视频播放 ](video.md)
   * [音频播放 ](audio.md)
 
+* [线程](thread.md)
+  * [互斥量](mutex.md)
+
 ## 系统操作
 * [数据存储 ](data.md)
 * [屏幕背光操作 ](brightness.md)
