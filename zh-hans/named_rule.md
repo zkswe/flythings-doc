@@ -1,10 +1,10 @@
 # 控件的命名规则
-
-## <span id="id_name_rule">控件ID名与指针变量名的命名规则</span>
+我们在UI文件中添加的大部分控件，经过编译后，都会自动生成一个对应的指针变量以及一个宏定义整型值。
+## <span id="id_name_rule">控件ID名称与指针变量名的命名规则</span>
 
 指针变量名由三部分构成。
 分别为固定的小写 **m** 作为前缀 + **ID**名 + **Ptr** 作为结尾  
-以ID为 **Textview1** 的控件为例  
+以ID属性为 **Textview1** 的控件为例  
 
 ![Textview1](assets/textview/Textview1.png) 
  
@@ -32,9 +32,24 @@
 |  ![](assets/slidewindow/icon.png) | ZKSlideWindow |
 |  ![](assets/diagram/icon.png) | ZKDiagram |
 
+## <span id="id_macro_rule">控件ID名称与宏定义整型值的命名规则</span>
+该宏定义表示 UI文件中控件的映射关系。
+该宏定义由三部分构成。分别为固定的大写 `ID` 、大写的UI文件名、控件ID属性名称构成。  
+以ID属性为 **Textview1** 的控件为例  
+
+![Textview1](assets/textview/Textview1.png) 
+ 
+编译后，生成的对应的宏语句为  ** `#define ID_MAIN_TextView1    50001` **  
+
+![](assets/id_macro.png)
+
+> [!Warning]
+> 请勿随意更改宏定义的整型值，否则会造成程序异常。
+
 ## <span id = "relation_function">控件自动生成的关联函数讲解</span>
 有些控件会自动生成关联函数。这些控件生成的关联函数的具体讲解如下：  
-> **函数中出现的`XXXX`代表控件ID，实际过程中，请自行替换**
+> [!Note]
+>  **函数中出现的`XXXX`代表控件ID名称，实际过程中，请自行替换**
 
 * ### 按键控件  
    ```c++
@@ -76,8 +91,7 @@
   * **参数`int index`**是当前被点击图标的索引值。例如该滑动窗口一共添加了10个图标，则索引值范围是[0, 9]
 
 * ### <span id = "list">列表控件</span>
-列表控件是最复杂的一个控件，它会创建三个关联函数。虽然函数较多，但是按照下面的步骤理解起来也十分容易。      
-
+列表控件是最复杂的一个控件，它会创建三个关联函数。虽然函数较多，但是按照下面的步骤理解起来也十分容易。  
   1. 首先，系统想要绘制一个列表控件，需要知道它一共有多少项。于是有了下面这个关联函数
    ```c++
    static int getListItemCount_XXXX(const ZKListView *pListView) {
@@ -88,9 +102,9 @@
    
      * **参数`const ZKListView *pListView`** 是该列表控件的指针， 它与全局变量`mXXXXPtr`指向同一个对象。  
      * **返回值**是整形， 表示该列表一共有多少项，可以根据你的需求来定义。  
-     
-        
-    2. 系统知道了需要绘制的数目后，还不够，还需要知道你每一项都分别显示哪些内容。于是有了下面这个函数，它会多次调用，让你设置每一项的显示内容，直到每一项都处理完毕。
+
+  2. 系统知道了需要绘制的数目后，还不够，还需要知道你每一项都分别显示哪些内容。  
+     于是有了下面这个函数，它会多次调用，让你设置每一项的显示内容，直到每一项都处理完毕。
    ```c++
      static void obtainListItemData_XXXX(ZKListView *pListView,ZKListView::ZKListItem *pListItem, int index) {
       //pListItem->setText(index)
@@ -98,7 +112,9 @@
    ```
     * **参数`ZKListView *pListView`** 是该列表控件的指针， 它与全局变量`mXXXXPtr`指向同一个对象。    
     * **参数`ZKListView::ZKListItem *pListItem`** 是列表项的指针，与UI文件中的`Item`对应  
-    * **参数`int index`**是`pListItem`在整个列表中的索引值。它具有一定范围，**例如：**`getListItemCount_XXXX`函数返回值为10，则表示列表共有10项，那么`index`的范围是[0, 9]， 结合`pListItem`和`index`,你就能知道现在设置的这个列表项处于整个列表的什么位置。    
+    * **参数`int index`**是`pListItem`在整个列表中的索引值。它具有一定范围，  
+      **例如：**`getListItemCount_XXXX`函数返回值为10，则表示列表共有10项，那么`index`的范围是[0, 9]，  
+      结合`pListItem`和`index`,你就能知道现在设置的这个列表项处于整个列表的什么位置。    
     
         在这个函数里，你可以根据`index`分别设置每一项的显示内容。  
     **例如：** 函数中注释的语句就表示：每一个列表项都显示它对应的索引号。
@@ -112,11 +128,14 @@
   当点击列表控件时，系统会根据触摸的坐标，判断触点落在哪一个列表项上，计算出该列表项的索引号后，系统会自动调用该函数。
     * **参数`ZKListView *pListView`**   是该列表控件的指针， 它与全局变量`mXXXXPtr`指向同一个对象。    
     * **参数`int index`**  是当前被点击的列表项在整个列表控件中的索引值
-    * **参数`int id`** 是当前被点击的控件的整形id。注意，这个id与属性表中的ID名称不同。 它的具体宏定义在相应的`Activity.h`文件中。 例如`mainActivity.h`中   
+    * **参数`int id`** 是当前被点击的控件的整形id。注意，这个id与属性表中的ID名称不同。  
+      它的具体宏定义在相应的`Activity.h`文件中。 例如`mainActivity.h`中   
      
       ![ID宏定义](assets/ID-Macro.png)  
     这个id参数的作用在于，当列表项中有多个子项时，可以用来区分当前被点击的是哪一个子项。  
-   **例如:** 如下图，我在列表项中添加了两个列表子项,并添加了图片装饰，作为开关按钮，属性ID名分别为`SubItem1`、`SubItem2`，当我点击`SubItem1`时，通过判断参数`id`与`ID_MAIN_SubItem1`、`ID_MAIN_SubItem2`的相等关系，就能确定点击的是哪一个开关。   
+   **例如:** 如下图，我在列表项中添加了两个列表子项,并添加了图片装饰，来作为开关按钮，  
+   属性ID名分别为`SubItem1`、`SubItem2`，当我点击`SubItem1`时，通过判断参数`id`与`ID_MAIN_SubItem1`、`ID_MAIN_SubItem2`的相等关系，  
+   就能确定点击的是哪一个开关。   
    具体代码：
    ```c++
      static void onListItemClick_XXXX(ZKListView *pListView, int index, int id) {
@@ -142,4 +161,4 @@
 
 其他控件以此类推
 
-> ### 技巧之：[快速跳转至关联函数](editor_tip#jump_to_source)
+> [!Note] ### 技巧之：[快速跳转至关联函数](editor_tip#jump_to_source)

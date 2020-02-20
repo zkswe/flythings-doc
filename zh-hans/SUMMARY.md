@@ -22,6 +22,8 @@
    * [通用属性](ctrl_common.md)
    * [文本](textview.md)
    * [按键](button.md)
+   * [复选框](checkbox.md)
+   * [单选组](radiogroup.md)
    * [进度条/滑块](seekbar.md)
    * [指针/仪表](pointer.md)
    * [列表](listview.md)
