@@ -29,9 +29,45 @@ void hideWnd();
 判断窗口是否显示
 bool isWndShow();
 ```
+
+## 动态设置背景
+如果我们将窗口布满整个屏幕，然后设置这个窗口的背景，即可实现修改屏幕背景的效果。
+
+* 相关的接口
+  ```c++
+	/**
+	 * @brief 设置背景图
+	 * @param pPicPath 图片路径
+	 */
+	void setBackgroundPic(const char *pPicPath);
+
+	/**
+	 * @brief 设置背景颜色
+	 * @param color -1时，背景设置为透明；其他颜色值为0x RGB，颜色值不支持alpha
+	 */
+	void setBackgroundColor(int color);
+  ```
+
+* 使用示例
+  ```c++
+	//把/mnt/extsd/bg.png 这个路径的图片设置为这个窗口控件的背景图
+	mWindow1Ptr->setBackgroundPic("/mnt/extsd/bg.png");
+	
+	//将ID为window1的窗口背景色设置为红色
+	mWindow1Ptr->setBackgroundColor(0xff0000);
+    
+    //将ID为window1的窗口背景色设置为绿色
+	mWindow1Ptr->setBackgroundColor(0x00ff00);
+        
+    //将ID为window1的窗口背景色设置为蓝色
+	mWindow1Ptr->setBackgroundColor(0x0000ff);
+  ```
+
+  有许多控件都拥有设置背景色、设置背景图的接口，使用方法相同。
+
 # 样例代码
 演示了 模态/非模态窗口控件的使用  
 
 ![](assets/window/preview.png) 
 
-具体窗口控件的使用，参考[样例代码](demo_download.md#demo_download)  
+具体窗口控件的使用，参考[样例代码](demo_download.md#demo_download)中的WindowDemo项目  

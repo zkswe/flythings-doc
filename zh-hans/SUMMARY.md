@@ -36,6 +36,7 @@
    * [滑动窗口](slidewindow.md)
    * [画布](painter.md)
    * [摄像头](camera.md)
+   * [数字时钟](digital_clock.md)
    * [关联函数介绍](relation_function.md)
 
 ## 界面交互
@@ -70,6 +71,7 @@
 
 ## 系统操作
 * [数据存储 ](data.md)
+  * [模拟EEPROM](vireeprom.md)
 * [屏幕背光操作 ](brightness.md)
 * [系统时间 ](system_time.md)
 * [设备唯一ID ](machine_unique_id.md)
@@ -78,6 +80,7 @@
 * [SPI操作 ](spi.md)
 * [I2C操作 ](i2c.md)
 * [ADC操作 ](adc.md)
+* [重启系统](reboot.md)
 
 ## 国际化
 * [多国语言翻译](i18n.md)

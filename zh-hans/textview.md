@@ -98,6 +98,25 @@ mTextview1Ptr->setText('c'); // Textview1控件将显示'c'字符
       //将控件Textview1 设置为红色。
       mTextview1Ptr->setTextColor(0xFF0000);
    ```
+   
+## 如何显示小数
+文本控件提供了设置string的接口。
+```c++
+	/**
+	 * @brief 设置字符串文本
+	 */
+	void setText(const char *text);
+```
+如果你想显示任何数字，都可以先用 `snprintf` 这个函数，将数字格式化为字符串，然后设置字符串，从而达到随意显示内容的目的。    
+例如：  
+```c++
+  float n = 3.1415;
+  char buf[64] = {0};
+  snprintf(buf, sizeof(buf), "%.3f", n); //固定显示3位小数，多余的小数位会忽略，不足则补0
+  mTextView1Ptr->setText(buf);
+```
+`snprintf` 是一个C语言标准函数，你可以网上搜索相关资料了解，也可以查看这里的[简要介绍及使用例子](cpp_base.md#snprintf)。
+
 
 ## 实现逐帧动画
 由于文本控件可以添加背景图，我们可以利用它简单的显示一张图片。  

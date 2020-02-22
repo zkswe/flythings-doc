@@ -22,7 +22,7 @@ FlyThings OS内部预留了 **/data** 分区，用于用户数据，为了方便
     #include <string.h>
     #include <unistd.h>
     /**
-     * 模拟EEPROM的存储大小  字节
+     * 模拟EEPROM的存储大小，字节为单位,建议不宜过大
      */
     #define EEPROM_SIZE 1024
     /**
@@ -34,12 +34,18 @@ FlyThings OS内部预留了 **/data** 分区，用于用户数据，为了方便
 
     public:
       VirEEPROM() {
-        memset(buff_, sizeof(buff_), 0);
+        memset(buff_, 0, sizeof(buff_));
         file_ = fopen(EEPROM_FILE, "rb+");
         if (file_) {
           fread(buff_, 1, EEPROM_SIZE, file_);
+          fseek(file_, 0, SEEK_END);
+          int f_size = ftell(file_);
           //调整文件到合适大小
-          ftruncate(fileno(file_), sizeof(buff_));
+          if (f_size != sizeof(buff_)) {
+            ftruncate(fileno(file_), sizeof(buff_));
+            fseek(file_, 0, SEEK_SET);
+            fwrite(buff_, 1, sizeof(buff_), file_);
+          }
         } else {
           file_ = fopen(EEPROM_FILE, "wb+");
           //调整文件到合适大小
@@ -124,6 +130,7 @@ FlyThings OS内部预留了 **/data** 分区，用于用户数据，为了方便
     #define VIREEPROM  VirEEPROM::getInstance()
 
     #endif /* JNI_VIREEPROM_H_ */
+
     ```
 
 3. 至此准备工作已经完成，我们再写一些例子测试是否正常。  
