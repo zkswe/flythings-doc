@@ -76,6 +76,6 @@ mCameraView1Ptr->stopPreview();
 
 ## 样例代码
 在该样例中， 实现了摄像头的预览及拍照功能、相册功能。   
-具体实现，参考[样例代码](demo_download.md#demo_download)  
+具体实现，参考[样例代码](demo_download.md#demo_download) CameraDemo项目
 
 ![](assets/camera/preview.png) 

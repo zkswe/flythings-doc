@@ -210,8 +210,6 @@ mTextview1Ptr->setText('c'); // Textview1控件将显示'c'字符
 
 由于文本控件属性较多，更多属性效果请参考[样例代码](demo_download.md#demo_download)中的TextViewDemo工程。   
 
-由于文本控件属性较多，更多属性效果参考[样例代码](demo_download.md#demo_download)。   
-
 预览效果图：
 
 ![效果图](assets/textview/preview.png)

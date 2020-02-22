@@ -62,7 +62,8 @@ static void onEditTextChanged_Edittext1(const std::string &text) {
 再举一个获取文本控件内容的例子：
 
 ```c++
-// std为命名空间，std::string表示使用std下的string类，不用过多的理会，碰到string类，我们参考下面定义就可以了
+// std为命名空间，std::string表示使用std下的string类，不用过多的理会  
+// 碰到string类，我们参考下面定义就可以了
 std::string text = mTextview1Ptr->getText();
 
 // 之后的操作就都一样啦
@@ -163,7 +164,8 @@ const char *pStr = text.c_str();
   * 控制输出浮点数格式
   ```c++
   char buf[64] = {0};
-  snprintf(buf, sizeof(buf), "%06.3f", 3.14);//输出小数，共6个字符宽度（含小数点在内）， 3个小数位，两个整数位，整数不足两位的则补0
+  //输出小数，共6个字符宽度（含小数点在内）， 3个小数位，两个整数位，整数不足两位的则补0
+  snprintf(buf, sizeof(buf), "%06.3f", 3.14);
   LOGD("%s", buf);//日志输出buf字符串
   ```  
   日志输出为  

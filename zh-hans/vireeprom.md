@@ -12,7 +12,7 @@ FlyThings OS内部预留了 **/data** 分区，用于用户数据，为了方便
    ![](assets/create_head_file.png)  
    ![](assets/create_head_file2.png)  
 
-2. 将以下代码完整拷贝到刚才添加的头文件中. (刚才创建头文件时，可能会自动添加一些内容，将这些内容删除就可以)  
+2. 将以下代码完整拷贝到刚才添加的头文件中. (刚才创建头文件时，可能会自动添加一些内容，将这些内容删除)  
    这些代码实现了EEPROM的模拟功能。  
     ```c++
     #ifndef JNI_VIREEPROM_H_

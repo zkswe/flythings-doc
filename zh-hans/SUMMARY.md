@@ -97,6 +97,7 @@
 * [代码样例](demo_download.md)
 
 * [附录]()
+    * [C++基础 ](cpp_base.md)
     * [触摸校准 ](touchcalibration.md)
     * [字体库设置说明 ](font_setting.md)
     * [裁剪字体 ](font_cut_tool.md)
@@ -104,7 +105,6 @@
     * [常见问题 ](problems.md)
     * [安装ADB驱动](install_adb_driver.md)
     * [转换项目平台](convert_platform.md)
-    * [C++基础知识 ](cpp_base.md)
     * [产品规格型号说明 ](board_tag_explain.md)
     * [核心模组使用教程 ](core_module.md)
 

@@ -86,6 +86,6 @@ static void movePoints(MPPOINT* p,int size){
 
 # 样例代码
 效果图  
-具体波形图控件的使用，参考[样例代码](demo_download.md#demo_download)   
+具体波形图控件的使用，参考[样例代码](demo_download.md#demo_download)中的DiagramDemo项目。   
 
 ![](assets/diagram/preview.jpg)  

@@ -77,7 +77,7 @@ static void onEditTextChanged_EditText1(const std::string &text) {
 ```
 
 ## 如何自定义输入法？
-除了使用默认的输入法外，我们还可以自定义输入法，[**样例代码包**](demo_download.md#demo_download)中提供了演示例子**ImeDemo**工程。 
+除了使用默认的输入法外，我们还可以自定义输入法，[**样例代码包**](demo_download.md#demo_download)中提供了演示例子**ImeDemo**工程。   
 目前仅支持数字和字母输入的定制，带有中文输入法的界面无法自定义。
 
 输入法界面与普通界面的实现有些区别：

@@ -30,6 +30,6 @@ XXXX 表示对应的UI文件前缀名。例如：  我在 **main.ftu** 中添加
 
 ## 样例代码
 在该样例中， 实现了视频的循环播放，以及调整视频音量。   
-具体实现，参考[样例代码](demo_download.md#demo_download)  
+具体实现，参考[样例代码](demo_download.md#demo_download)中的VideDemo项目。
 
 ![](assets/video/preview.png) 

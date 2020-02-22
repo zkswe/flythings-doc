@@ -46,4 +46,4 @@ mPointer1Ptr->setTargetAngle(90.0);
 
 
 # 样例代码
-具体仪表控件的使用，参考[样例代码](demo_download.md#demo_download) 
+具体仪表控件的使用，参考[样例代码](demo_download.md#demo_download)中的PointerDemo项目。

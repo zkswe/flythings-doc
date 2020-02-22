@@ -61,4 +61,4 @@ static void onUI_init() {
 
  ![](assets/slidewindow/preview.png)  
 
-具体滑动窗口控件的使用，参考[样例代码](demo_download.md#demo_download)  
+具体滑动窗口控件的使用，参考[样例代码](demo_download.md#demo_download)中的SlideWindowDemo项目。
