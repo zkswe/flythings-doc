@@ -58,9 +58,8 @@
     * [多串口配置](multiuart.md)
 
 * [网络控制]()
-  * [wifi设置 ](first_app.md)
-  * [热点设置 ](wifi.md)
-  * [打开关闭应用界面 ](wifi_ap.md)
+  * [wifi设置 ](wifi.md)
+  * [热点设置 ](wifi_ap.md)
 
 * [多媒体]()
   * [视频播放 ](video.md)
