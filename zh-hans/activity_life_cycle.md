@@ -14,9 +14,9 @@
 我们先来看一下**subLogic.cc**中的`onUI_init`函数，只有界面栈中不存在该界面情况下，第一次打开时，会走这个函数，走到这里意味着所有控件指针也就初始化完成了，在这个函数里我们就可以开始对它们进行一些操作，如下：
 ```c++
 static void onUI_init() {
-	//Tips :添加 UI初始化的显示代码到这里,如:mTextview1Ptr->setText("123");
+	//Tips :添加 UI初始化的显示代码到这里,如:mTextView1Ptr->setText("123");
 	LOGD("sub onUI_init\n");
-	mTextview1Ptr->setText("123");
+	mTextView1Ptr->setText("123");
 }
 ```
 

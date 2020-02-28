@@ -41,8 +41,8 @@ pos.left = 0;
 另外，**类**里可以直接定义函数，C语言中的结构体是定义函数指针，这一点有点不一样，**类**定义完函数后，就可以跟操作变量一样使用了，这里举一个在我们框架中常用的例子：
 
 ```c++
-// 设置文本内容，其中 mTextview1Ptr为ZKTextView类型的指针变量
-mTextview1Ptr->setText("Hello");
+// 设置文本内容，其中 mTextView1Ptr为ZKTextView类型的指针变量
+mTextView1Ptr->setText("Hello");
 ```
 
 ## 常用类
@@ -64,7 +64,7 @@ static void onEditTextChanged_Edittext1(const std::string &text) {
 ```c++
 // std为命名空间，std::string表示使用std下的string类，不用过多的理会  
 // 碰到string类，我们参考下面定义就可以了
-std::string text = mTextview1Ptr->getText();
+std::string text = mTextView1Ptr->getText();
 
 // 之后的操作就都一样啦
 const char *pStr = text.c_str();
