@@ -74,7 +74,7 @@
 
 ## 系统操作
 * [数据存储 ](data.md)
-  * [模拟EEPROM](vireeprom.md)
+* [模拟EEPROM](vireeprom.md)
 * [屏幕背光操作 ](brightness.md)
 * [系统时间 ](system_time.md)
 * [设备唯一ID ](machine_unique_id.md)
