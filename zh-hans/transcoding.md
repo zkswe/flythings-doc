@@ -78,5 +78,5 @@
    const char gbk_str[] = {0xd5, 0xe2, 0xca, 0xc7, 0x67, 0x62, 0x6b, 0xb1, 0xe0, 0xc2, 0xeb,0};
    string utf8 = gbk_to_utf8(gbk_str);
    LOGD("转换后，共%d字节", utf8.size());
-   LOGD("内存是：%s", utf8.c_str());
+   LOGD("内容是：%s", utf8.c_str());
 ```
