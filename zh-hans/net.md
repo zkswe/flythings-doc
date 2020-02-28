@@ -7,140 +7,45 @@
 1. 在项目的jni文件夹下新建一个文件夹，命名为 `net`  
     
   ![](assets/create_net_folder.png)
-2. 下载 [net.h](assets/source/net.h) 、[ioutil.cpp](assets/source/ioutil.cpp) 两个文件，保存到`io`文件夹下。  
+2. 下载 [net.h](https://docs.flythings.cn/src/net/net.h) 、[net.cpp](https://docs.flythings.cn/src/net/net.cpp) 两个文件，保存到`net`文件夹下。  
 
   ![](assets/net_class.png)  
 
 ## 如何使用 
 * 引入头文件 
   ```c++
-  #include "io/ioutil.h"
+  #include "net/net.h"
   ```
-* 写文件  
+* 建立TCP客户端  
   ```c++
-  //将“0123456789”这个字符串写入到123.txt这个文件中
-  const char* filename = "/mnt/extsd/123.txt"; //文件保存的路径
-  const char* str = "0123456789";
-  ioutil::WriteFile(filename, str, strlen(str));
-  ```
-
-* 追加文件
-  ```c++
-  //将内容追加到文件的末尾，如果指定的文件不存在，则新建文件。
-  const char* append_str = "abcdefgh";
-  ioutil::AppendFile(filename, append_str, strlen(append_str));
-  ```
-  
-* 读文件
-  ```c++
-  const char* filename = "/mnt/extsd/123.txt";
-  //读取文件的所有内容，保存在content中
-  string content = ioutil::ReadFile(filename);
-  //将读到的每一个字节以16进制输出到日志
-  for (size_t i = 0 ; i < content.size(); ++i) {
-    LOGD("第%02d字节=0x%02X", i, content.data()[i]);
-  }
-  ```
-  > [!Warning]
-  > `ioutil::ReadFile`函数是将文件的所有内容读取到内存里，如果指定的文件过大，会导致内存不够，可能会造成异常。
-
-
-* 连续写文件 ，适用于写大文件的情况
-  ```c++
-  const char* filename = "/mnt/extsd/123.txt";
-  const char* append_str = "abcdefgh";
-  ioutil::Writer w;
-  if (w.Open(filename, false)) {
-    for (int i = 0; i < 5; ++i) {
-      w.Write(append_str, strlen(append_str));
-      w.Write("\n", 1);
-    }
-    w.Close();
-  }
-  ```
-
-* 连续读，适用于处理大文件的情况
-  ```c++
-  const char* filename = "/mnt/extsd/123.txt";
-  ioutil::Reader r;
-  if (r.Open(filename)) {
-    char buf[1024] = {0};
+  //以tcp协议连接 www.baidu.com这个域名的80端口，域名改为IP也行
+  net::Conn* conn = net::Dial("tcp", "www.baidu.com:80");
+  //net::Conn* conn = net::Dial("tcp", "14.215.177.38:80");
+  if (conn) {
+    byte buf[2048] = {0};
+    const char* req = "GET / HTTP/1.1\r\nConnection: close\r\n\r\n";
+    conn->Write((byte*)req, strlen(req));
     while (true) {
-      int n = r.Read(buf, sizeof(buf));
+      //读取，超时1000毫秒
+      int n = conn->Read(buf, sizeof(buf) - 1, 1000);
       if (n > 0) {
-        //有读到内容,输出每一个字节
-        for (int i = 0; i < n; ++i) {
-          LOGD("%02x", buf[i]);
-        }
+        buf[n] = 0;
+        LOGD("读取 %d字节： %s", n, buf);
       } else if (n == 0) {
-        //读取文件结束
+        LOGD("连接正常断开");
         break;
+      } else if (n == net::E_TIMEOUT) {
+        LOGD("读取超时");
       } else {
-        //出错
+        LOGD("出错");
         break;
       }
     }
-    r.Close();
+    //关闭连接
+    conn->Close();
+    //释放内存
+    delete conn;
+    conn = NULL;
   }
   ```
 
-
-
-## 测试代码  
-```c++
-/**
- * 当界面构造时触发
- */
-static void onUI_init() {
-  //写文件
-  const char* filename = "/mnt/extsd/123.txt";
-  const char* str = "0123456789";
-  ioutil::WriteFile(filename, str, strlen(str));
-  string content = ioutil::ReadFile(filename);
-  LOGD("读取字节数%d, 内容:%s", content.size(), content.c_str());
-  //追加文件
-  const char* append_str = "abcdefgh";
-  ioutil::AppendFile(filename, append_str, strlen(append_str));
-  content = ioutil::ReadFile(filename);
-  LOGD("读取字节数%d, 内容:%s", content.size(), content.c_str());
-
-  ioutil::Writer w;
-  if (w.Open(filename, false)) {
-    for (int i = 0; i < 5; ++i) {
-      w.Write(append_str, strlen(append_str));
-      w.Write("\n", 1);
-    }
-  }
-  w.Close();
-
-  ioutil::Reader r;
-  if (r.Open(filename)) {
-    char buf[1024] = { 0 };
-    while (true) {
-      int n = r.Read(buf, sizeof(buf));
-      if (n > 0) {
-        //有读到内容,输出每一个字节
-        for (int i = 0; i < n; ++i) {
-          LOGD("%02x", buf[i]);
-        }
-      } else if (n == 0) {
-        //读取文件结束
-        break;
-      } else {
-        //出错
-        break;
-      }
-    }
-    r.Close();
-  }
-
-  content = ioutil::ReadFile(filename);
-  LOGD("读取字节数%d, 内容:%s", content.size(), content.c_str());
-
-  //如果是读取的二进制文件，不是文本，则应该这样获取二进制
-  //将每一个字节以16进制输出
-  for (size_t i = 0; i < content.size(); ++i) {
-    LOGD("第%02d字节=0x%02X", i, content.data()[i]);
-  }
-}
-```

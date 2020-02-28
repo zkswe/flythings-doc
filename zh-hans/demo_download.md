@@ -2,6 +2,7 @@
  > [!Note]
  > **请优先下载与屏对应平台的样例代码，如果确实没有,可任意下载一份,再参考[转换项目平台](convert_platform.md)自行转换**
 
+## 各种控件的样例
 * Z6S或z6平台
    * [480x272 控件样例](http://download.flythings.cn/archive/basedemo_z6s_480_272.zip)
    * [480x854 控件样例](http://download.flythings.cn/archive/basedemo_z6s_480_854.zip)
