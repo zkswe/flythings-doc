@@ -24,6 +24,7 @@
   if (conn) {
     byte buf[2048] = {0};
     const char* req = "GET / HTTP/1.1\r\nConnection: close\r\n\r\n";
+    //发送
     conn->Write((byte*)req, strlen(req));
     while (true) {
       //读取，超时1000毫秒
@@ -46,6 +47,5 @@
     //释放内存
     delete conn;
     conn = NULL;
-  }
   ```
 
