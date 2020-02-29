@@ -247,8 +247,130 @@ private:
   struct addrinfo *host_info_list_;
 };
 
+class UdpConn : public Conn {
+public:
+  bool Initialize(std::string host, std::string port) {
+    if ((sock_ = socket(AF_INET, SOCK_DGRAM, 0)) == -1) {
+        LOGD("socket fail\n");
+        return false;
+    }
+
+#if 0
+    //设置为广播类型，
+    const int opt = 1;
+    int nb = 0;
+    nb = setsockopt(sock_, SOL_SOCKET, SO_BROADCAST, (char *)&opt, sizeof(opt));
+    if(nb == -1) {
+      LOGD("set socket error...");
+      return false;
+    }
+#endif
+
+
+#if 0
+    /*设置套接字为非阻塞*/
+    int flags = fcntl(sock_, F_GETFL, 0);
+    if (flags < 0) {
+        LOGD("Get flags error:%s", strerror(errno));
+        return -1;
+    }
+    flags |= O_NONBLOCK;
+    if (fcntl(sock_, F_SETFL, flags) < 0) {
+        LOGD("Set flags error:%s", strerror(errno));
+        return -1;
+    }
+#endif
+
+    memset(&remote_addr_, 0, sizeof(remote_addr_));
+    remote_addr_.sin_family = AF_INET;
+    remote_addr_.sin_port = htons(atoi(port.c_str()));
+    remote_addr_.sin_addr.s_addr = inet_addr(host.c_str());
+    return true;
+  }
+
+  virtual int Write(byte* bytes, int bytes_len) {
+    if (sock_ < 0) {
+      return -1;
+    }
+    return sendto(sock_, bytes, bytes_len, 0, (sockaddr*)&remote_addr_, sizeof(remote_addr_));
+  }
+  /**
+   * timeout: 超时时间  毫秒
+   * return >0  读到数据
+   *        =0  已关闭
+   *        -10000 读取超时
+   *        其他   出错
+   */
+  virtual int Read(byte* buffer, int buffer_len, int timeout) {
+    if (sock_ < 0) {
+      //没有连接
+      return -1;
+    }
+    struct pollfd fd;
+    fd.fd = sock_;
+    fd.events = POLLIN;
+    int ret = poll(&fd, 1, timeout); // 1 second for timeout
+    switch (ret) {
+    case -1:
+      //LOGD("poll error"); // Error
+      Close();
+      return -1;
+      break;
+    case 0:
+      // Timeout
+      //LOGD("select read timeouot");
+      return net::E_TIMEOUT;
+      break;
+    default: {
+      socklen_t  addr_len = sizeof(remote_addr_);
+      int recv_bytes = recvfrom(sock_, buffer, buffer_len, 0, (sockaddr*)&remote_addr_, &addr_len);
+      if (recv_bytes == 0) {
+        //连接已关闭
+        LOGD("recv 0, close it");
+        Close();
+        return 0;
+      } else if (recv_bytes < 0) {
+        //添加错误处理
+        if ((errno == EINTR) || (errno == EWOULDBLOCK) || (errno == EAGAIN)) {
+          //继续recv
+          LOGD("eagain");
+        } else {
+          LOGD("disconnect %d", errno);
+          Close();
+          return -1;
+        }
+      } else if (recv_bytes > 0) {
+        return recv_bytes;
+      }
+    }
+      break;
+    }
+    return -1;
+  }
+  virtual void Close() {
+    if (sock_ >= 0) {
+      LOGD("UdpClient close socket");
+      close(sock_);
+      sock_ = -1;
+    }
+  }
+  virtual Addr LocalAddr() {
+    return Addr();
+  }
+  virtual Addr RemoteAddr() {
+    return Addr();
+  }
+
+  virtual ~UdpConn() {
+    Close();
+  }
+private:
+  struct sockaddr_in remote_addr_;
+  int sock_;
+};
+
 /**
- * tcp, wwww.baidu.com:80
+ * tcp, 192.168.1.1:80
  */
 Conn* Dial(std::string network, std::string address) {
   int colon = address.find(':');
@@ -256,6 +378,10 @@ Conn* Dial(std::string network, std::string address) {
     TcpClientConn* tcp = new TcpClientConn();
     tcp->Connect(address.substr(0, colon), address.substr(colon + 1));
     return tcp;
+  } else if (network.compare("udp") == 0) {
+    UdpConn* udp = new UdpConn();
+    udp->Initialize(address.substr(0, colon), address.substr(colon + 1));
+    return udp;
   } else {
     return NULL;
   }

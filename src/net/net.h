@@ -24,7 +24,7 @@ public:
    * timeout: 超时时间  毫秒
    * return >0  读到数据
    *        =0  已关闭
-   *        -502 读取超时
+   *        -10000 读取超时
    *        其他   出错
    */
   virtual int Read(byte* buffer, int buffer_len, int timeout) = 0;
