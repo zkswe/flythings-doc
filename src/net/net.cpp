@@ -8,6 +8,7 @@
 #include <sys/select.h>
 #include <errno.h>
 #include <time.h>
+#include <signal.h>
 
 namespace net {
 
@@ -373,6 +374,7 @@ private:
  * tcp, 192.168.1.1:80
  */
 Conn* Dial(std::string network, std::string address) {
+  signal(SIGPIPE,SIG_IGN);
   int colon = address.find(':');
   if (network.compare("tcp") == 0) {
     TcpClientConn* tcp = new TcpClientConn();
