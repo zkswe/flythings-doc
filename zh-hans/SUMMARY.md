@@ -93,6 +93,7 @@
     * [制作升级镜像文件 ](make_image.md)
     * [自动升级](autoupgrade.md)
     * [制作刷机卡 ](sd_boot.md)
+    * [远程升级](remote_update.md)
 
 * [代码样例](demo_download.md)
 
