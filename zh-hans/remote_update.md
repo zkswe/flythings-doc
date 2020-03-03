@@ -1,5 +1,6 @@
 # 远程升级
-目前系统没有直接进行远程升级的接口。 但是我们可以了解TF卡检测升级的机制后，再添加上一些自己的代码，即可达到远程升级的目的。  
+目前系统没有直接进行远程升级的接口。   
+但是我们可以了解TF卡检测升级的机制后，再添加上一些自己的代码，即可达到远程升级的目的。  
 我们先介绍一般插TF卡升级的流程。
 ## TF卡检测升级流程
 当系统启动或者插入TF卡的时候，如果[TF卡正常挂载](tf.md)，系统会检测**TF卡根目录**下是否存在 **update.img** 文件 (系统内，TF卡根目录映射为 `/mnt/extsd`)。  
@@ -14,11 +15,11 @@
   > 如果机器内没有插TF卡，这个目录仍然可以写入，因为它是保存在内存中的。 受限于内存大小，如果镜像文件过大，会造成设备运行异常、或者升级失败。  
   如果有插入TF卡，可以忽略内存大小的问题。
 2. 调用升级检测函数   
-   [下载 UpgradeMonitor.h 源文件](https://docs.flythings.cn/src/UpgradeMonitor.h)，保存到项目的 `jni/include/os` 目录下。  
+   先下载 [UpgradeMonitor.h ](https://docs.flythings.cn/src/UpgradeMonitor.h) 源文件，保存到项目的 `jni/include/os` 目录下。  
    
    ![](assets/upgrade_monitor_header.png)
    
-   然后调用函数检测升级
+   然后调用接口检测升级。
    ```c++
    #include "os/UpgradeMonitor.h"
    ```
@@ -39,8 +40,8 @@
 这时，系统会执行常规的升级检测流程，由于镜像文件的存在，升级提示界面再一次弹出，导致了重复升级。
 
 ### 解决方法
-下载镜像文件时，将它保存到非 `/mnt/extsd/` 目录， 例如 `/mnt/extsd/temp/`  
-并且，调用检测函数的参数也同步修改  
+下载镜像文件时，将它保存到非 `/mnt/extsd/` 目录， 例如： `/mnt/extsd/temp/`  ，
+并且，也同步修改调用检测函数的参数。  
 ```c++
 UpgradeMonitor::getInstance()->checkUpgradeFile("/mnt/extsd/temp");
 ```
