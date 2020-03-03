@@ -85,4 +85,4 @@ UpgradeMonitor::getInstance()->checkUpgradeFile("/mnt/extsd/temp");
   http://192.168.1.1/update.img    
   (请注意将IP地址修改为电脑当前IP)  
 
-服务端开启后，再运行样例代码，即可远程升级。
+服务端开启后，再运行样例代码，即可测试远程升级。
