@@ -11,7 +11,8 @@
 
 ## 案例一 
 
-这里我们还是以前面的通讯协议为例，实现自己的一个简单的通讯程序；完整代码见 [样例代码](demo_download.md#demo_download) 里的 `UartDemo` 工程；<br/>
+这里我们还是以前面的通讯协议为例，实现自己的一个简单的通讯程序；  
+完整代码见 [样例代码](demo_download.md#demo_download) 里控件样例的 `UartDemo` 工程；  
 我们最终要实现的效果是，通过串口发送指令来控制显示屏上的仪表指针旋转，UI效果图如下：
 
    ![](https://ae01.alicdn.com/kf/HTB1JhMbaULrK1Rjy0Fj762YXFXa5.png)

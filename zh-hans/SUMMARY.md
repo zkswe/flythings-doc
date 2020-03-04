@@ -67,6 +67,7 @@
 
 * [线程](thread.md)
   * [互斥量](mutex.md)
+* [截屏](screenshot.md)
 
 ## 系统操作
 * [数据存储 ](data.md)
@@ -81,6 +82,7 @@
 * [I2C操作 ](i2c.md)
 * [ADC操作 ](adc.md)
 * [重启系统](reboot.md)
+
 
 ## 国际化
 * [多国语言翻译](i18n.md)
