@@ -48,4 +48,7 @@ sPlayer.getCurrentPosition();	// 获取当前播放歌曲的当前播放时间�
 sPlayer.setVolume(0.5, 0.5);	// 设置媒体音量，音量范围：0.0 ~ 1.0
 ```
 
-完整代码见[样例代码](demo_download#demo_download.md) 里的 `MusicDemo` 工程
+> [!Note]
+> 播放的音频文件不能过短，时间过短可能导致无法正常播放。
+
+完整代码见[样例代码](demo_download#demo_download.md) 控件样例里的 `MusicDemo` 工程
