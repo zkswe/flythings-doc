@@ -109,7 +109,7 @@
 ![](images/threadloop.png)
 
 ## 样例代码  
-见 [样例代码](demo_download.md#demo_download) 里的 `ThreadDemo` 工程  
+见 [样例代码](demo_download.md#demo_download) 控件样例里的 `ThreadDemo` 工程  
     
 ![](assets/thread/example.png)
 
