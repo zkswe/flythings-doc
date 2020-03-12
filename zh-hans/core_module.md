@@ -28,7 +28,7 @@
 6. 以上都设置完毕后，点击提交， 将根据配置下载新的系统镜像。 
 
   ![](assets/superv/submit.png)
-7. 新的镜像下载完毕后，再参照[制作刷机卡教程](https://docs.flythings.cn/docs/zh/sd_boot)，对设备进行刷机。
+7. 新的镜像下载完毕后，再参照[制作刷机卡教程](https://docs.flythings.cn/zh-hans/sd_boot)，对设备进行刷机。
 
 8. 刷机成功后，可查看[FlyThings开发文档](https://docs.flythings.cn/)进行应用开发。
 
