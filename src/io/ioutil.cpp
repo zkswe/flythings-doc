@@ -1,4 +1,5 @@
 #include "ioutil.h"
+#include <unistd.h>
 
 namespace ioutil {
 
@@ -81,6 +82,7 @@ void Writer::Close() {
   if (file_ != NULL) {
     fflush(file_);
     fclose(file_);
+    sync();
     file_ = NULL;
   }
 }
