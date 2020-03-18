@@ -45,6 +45,8 @@ FlyThings OS内部预留了 **/data** 分区，用于用户数据，为了方便
             ftruncate(fileno(file_), sizeof(buff_));
             fseek(file_, 0, SEEK_SET);
             fwrite(buff_, 1, sizeof(buff_), file_);
+            fflush(file_);
+            sync();
           }
         } else {
           file_ = fopen(EEPROM_FILE, "wb+");
@@ -56,6 +58,7 @@ FlyThings OS内部预留了 **/data** 分区，用于用户数据，为了方便
         if (file_) {
           fflush(file_);
           fclose(file_);
+          sync();
         }
       }
       /**
@@ -79,6 +82,7 @@ FlyThings OS内部预留了 **/data** 分区，用于用户数据，为了方便
         }
         int n = fwrite((char*)value, 1, size, file_);
         fflush(file_);
+        sync();
         return n;
       }
       /**
@@ -115,6 +119,8 @@ FlyThings OS内部预留了 **/data** 分区，用于用户数据，为了方便
         if (sizeof(buff_) != fwrite(buff_, 1, sizeof(buff_), file_)) {
           return -3;
         }
+        fflush(file_);
+        sync();
         return 0;
       }
 
