@@ -51,6 +51,7 @@ typedef struct tagRGBQUAD {
 
 
 #define FRAME_BUFFER_PATH                "/dev/fb0"
+#define FRAME_BUFFER_PATH2                "/dev/graphics/fb0"
 
 
 class Screenshot {
@@ -88,6 +89,9 @@ private:
     BITMAPINFOHEADER info_head;
     /*open files*/
     fb_fd = open(FRAME_BUFFER_PATH, O_RDWR);
+    if (fb_fd < 0) {
+      fb_fd = open(FRAME_BUFFER_PATH2, O_RDWR);
+    }
     if (fb_fd < 0) {
       LOGE("open framebuff %s", strerror(errno));
       return false;
@@ -150,6 +154,7 @@ private:
 
     close(fb_fd);
     close(img_fd);
+    sync();
     if (img_buf != NULL) {
       free(img_buf);
     }
