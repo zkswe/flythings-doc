@@ -125,7 +125,7 @@ public:
     GpioHelper::output(SV50PC_PIN7, 1);
  ```
  
-   * 86盒子
+  * 86盒子
 
     有以下4组io口可以操作：
 
