@@ -39,7 +39,7 @@ public:
 
   * Z11S平台
 
-  目前该平台只保留了3组io口可以操作。
+    目前该平台只保留了3组io口可以操作。
   
   ```c++
     // 3组io口定义
@@ -60,7 +60,7 @@ public:
 
     有以下12组io口可以操作：
 
-    ```c++
+  ```c++
     // SV50PB
     #define SV50PB_PIN7         "PIN7"
     #define SV50PB_PIN8         "PIN8"
@@ -82,11 +82,11 @@ public:
 
     // PIN7 io口输出高电平
     GpioHelper::output(SV50PB_PIN7, 1);
-    ```
+  ```
 
-* SV50PC模组
+  * SV50PC模组
 
- 以下25组io口可以操作。
+    有以下25组io口可以操作：
 
  ```c++
     // SV50PC
@@ -123,6 +123,26 @@ public:
 
     // PIN7 io口输出高电平
     GpioHelper::output(SV50PC_PIN7, 1);
+ ```
+ 
+   * 86盒子
+
+    有以下4组io口可以操作：
+
+ ```c++
+    // 86 Box
+    #define Z6X86BOX_PIN7         "PIN7"	// 对应硬件上IO1
+    #define Z6X86BOX_PIN8         "PIN8"	// IO2
+    #define Z6X86BOX_PIN9         "PIN9"	// IO3
+    #define Z6X86BOX_PIN10        "PIN10"	// IO4
+
+    #include "utils/GpioHelper.h"
+
+    // 读PIN7 io口状态
+    GpioHelper::input(Z6X86BOX_PIN7);
+
+    // PIN7 io口输出高电平
+    GpioHelper::output(Z6X86BOX_PIN7, 1);
  ```
 
 ### 样例  
