@@ -1,49 +1,49 @@
-# 指针仪表控件
-## 功能介绍
-如果我们想要实现一个仪表，或者时钟转动类似的效果，用这个控件就可以轻松实现。这个控件就是专为处理图形旋转设计的。
+# Pointer instrument control
+## Features
+If we want to achieve an instrument or clock rotation similar effect, this control can be easily achieved. This control is specially designed to handle graphics rotation.
 
-## 思考
-如果要实现一个仪表， 我们可以将它拆解为两个部分，分别为静止的背景图当作表盘和重叠在背景图上旋转的指针图片。  
-所以，在选择好背景图和指针图片后，我们只需要确定指针旋转的圆心坐标即可。
+## Thinking
+If we want to realize an instrument, we can disassemble it into two parts, the static background image as the dial and the pointer image that rotates on the background image.  
+Therefore, after selecting the background image and the pointer image, we only need to determine the center coordinates of the pointer rotation.
 
-## 具体如何使用  
-1. 我们先创建一个 **仪表** 控件， 可以看到它具有如下的属性：   
+## How to use  
+1. We first create an **instrument** control, you can see that it has the following properties:   
 
  ![](assets/pointer/properties.png)  
- 如果你还不知道如何创建一个控件，可以参考[如何创建按键控件](button.md#add_button)   
- 属性图中，可以看到我已经添加了 **指针图片** 和 **背景图** 
- 添加过程如动画所示：   
+ If you still don’t know how to create a control, you can refer to [How to create a button control](button.md#add_button)   
+ In the attribute map, you can see that I have added **pointer image** and **background image**
+ The adding process is shown in the animation:   
  
   ![](assets\pointer/add_pointer.gif)
  
-2. 从上面最后的预览图来看，并没有发现什么问题，背景图和指针的位置看起来都很正常。但是，程序真正运行起来后，是错误的。为了快速方便调整，我们可以将 **起始角度** 属性设置为其他度数（默认为0），这里我们调整为120，可以发现，指针旋转120°后，指针旋转的结果并不是我们期望的那样。   
+2. Judging from the final preview image above, no problems were found, and the background image and pointer position looked normal. However, after the program actually runs, it is wrong. For quick and easy adjustment, we can set the **starting angle** property to other degrees (default is 0), here we adjust it to 120, we can find that after the pointer is rotated by 120°, the result of the pointer rotation is not what we expect Like that.   
  ![](assets/pointer/start_angle_120.png)  
- 造成这种情况的原因是 **指针旋转的圆心坐标不正确**。  
- 有两个属性共同决定指针旋转圆心坐标， 它们就是 **旋转点坐标** 和 **指针固定点坐标**  
- * 旋转点坐标  
-  该坐标是参照整个控件矩形区域而言的，控件矩形区域左上角为[0,0],以像素为单位，对于这样的一个仪表而言，显然我们想要的旋转点坐标是在表盘的中央，那么对应图片的具体坐标是 （250，250），如下图：  
+ The reason for this is that the coordinates of the center of the circle where the pointer rotates are incorrect.  
+  There are two properties that determine the coordinates of the pointer rotation center, they are **rotation point coordinates** and **pointer fixed point coordinates**  
+ * Rotation point coordinates   
+  The coordinates are in reference to the entire control rectangular area. The upper left corner of the control rectangular area is [0,0], in pixels. For such an instrument, obviously the coordinates of the rotation point we want are in the center of the dial , Then the specific coordinates of the corresponding picture are （250，250），As shown below:  
    ![](https://box.kancloud.cn/940c7a9a077fdf8442ff4969a8e523c1_260x204.png)  
-* 指针固定点坐标  
- 该坐标是参照指针图片而言的，图片左上角为[0,0], 以像素为单位。  对于这样的指针图片而言，我们想要的指针固定点坐标是（30，210）  
+* Pointer fixed point coordinates  
+ The coordinates refer to the pointer picture, the upper left corner of the picture is [0,0], and the unit is pixel. For such a pointer picture, the fixed point coordinates of the pointer we want is (30, 210)  
  ![](https://box.kancloud.cn/05171e54018b720825d8e84c785f9aa5_80x146.png)  
 
-将两个坐标分别填入属性表后，可以看到指针旋转到正确的位置   
+After filling the two coordinates into the attribute table, you can see that the pointer rotates to the correct position   
 
 ![](assets/pointer/preview2.png)
 
-**起始角度** 支持负数，在上面的例子中，如果 **将起始角度** 修改为-120，则指针刚好指向表盘0的位置。
+**The starting angle** supports negative numbers. In the above example, if **change the starting angle** to -120, the pointer just points to the dial 0 position.
 
-## 关于指针固定点的技巧  
- 在上面的例子中，指针固定点坐标位于指针图片内，其实，这个坐标还可以超出图片范围，达到游标的那种效果。 如下图，红色方框内的白色实际为一张指针图片，比较小，但是在右边的属性中，我将指针固定点坐标远远超出了图片的真实大小，再调整旋转坐标，就达到了圆环游标的效果。
+## Tips on pointer fixed points  
+ In the above example, the coordinate of the fixed point of the pointer is located in the pointer picture. In fact, this coordinate can also exceed the range of the picture to achieve the effect of the cursor. As shown in the figure below, the white in the red box is actually a pointer picture, which is relatively small, but in the properties on the right, I set the pointer fixed point coordinates far beyond the real size of the picture, and then adjust the rotation coordinates to achieve a circle The effect of the ring cursor.
  ![](assets/pointer/preview3.png)
 
-## 操作方法  
-这类控件最常用的方法就是通过代码调整指针的旋转角度。  
+## Operation method  
+The most common method for this type of control is to adjust the rotation angle of the pointer through code.  
 ```c++
-//将指针调整到90度
+//Adjust the pointer to 90 degrees
 mPointer1Ptr->setTargetAngle(90.0);
 ```
 
 
-# 样例代码
-具体仪表控件的使用，参考[样例代码](demo_download.md#demo_download)中的PointerDemo项目。
+# Sample code
+For the use of specific instrument controls, refer to the PointerDemo project in [Sample Code](demo_download.md#demo_download)

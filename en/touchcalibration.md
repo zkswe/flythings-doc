@@ -1,16 +1,16 @@
-# 触摸校准
-电阻屏的机器刷机后系统第一次开机起来会进行一次触摸校准，校准界面如下：
+# Touch calibration
+After the resistance screen machine is flashed, the system will perform a touch calibration the first time it is powered on. The calibration interface is as follows:
 
 ![](images/touchcalibration.png)
 
-点击 “十字图标” 进行校准；之后想再重新进行校准，我们有以下3种方式：
-1. 通过工具修改工程属性，将**开机启动触摸校准程序**选项勾选上，这样每次开机起来后就会先进入触摸校准界面：
+Click the "cross icon" to calibrate; we want to calibrate again later, we have the following 3 methods:
+1. Modify the project properties through the tool, and check the **Start touch calibration program** option, so that each time the power is turned on, the touch calibration interface will be entered first:
 
    ![](images/touch_property.png)  <br/>
-2. 在TF卡根目录下创建一个文件**zktouchcalib** （注意：该文件是没有后缀名的），插卡后就会进入触摸校准界面
+2. Create a file **zktouchcalib** (note: the file does not have a suffix) in the root directory of the TF card , after inserting the card, it will enter the touch calibration interface
 
    ![](images/zktouchcalib.png)  <br/>
-3. 通过代码启动触摸校准界面
+3. Start the touch calibration interface by code
 ```c++
 EASYUICONTEXT->openActivity("TouchCalibrationActivity");
 ```

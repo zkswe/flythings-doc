@@ -1,155 +1,157 @@
-# 按键类 Button
-## <span id = "add_button">我需要一个按键/按钮， 如何添加修改属性？</span>
-如果需要一个按键/按钮，利用现有的`Button`控件就可以快速实现。具体操作步骤如下：
-1. 双击打开UI文件
-2. 在右侧控件集合中找到`按键`控件
-3. 鼠标左键点击`按键`控件不放，然后将其拖拽到任意位置，松开左键，就能看到自动生成的按键控件。
-4. 再左键点击刚才生成的按键控件，在编辑器的右侧就能看到该控件的相关属性。在这个属性表格中，你可以像填写Excel表单一样，自由修改属性！
+# Button class
+## <span id = "add_button">I need a button/button, how to add and modify attributes?</span>
+If you need a button/button, you can quickly implement it using the existing `Button` control. The specific steps are as follows:
+1. Double-click to open the UI file.
+2. Find the `Button` control in the control set on the right.
+3. Left-click the `Button` control and hold it, then drag it to any position, release the left button, and you can see the automatically generated button control.
+4. Left-click the button control you just created, and you can see the related properties of the control on the right side of the editor. In this attribute form, you can freely modify the attributes like filling in an Excel sheet!
 
-   ![创建Button](assets/Button-create.gif)
-## 如何修改按键/按钮的颜色？
-参考[如何修改文字的颜色](textview.md#change_color)
-## <span id = "add_button_style">如何为按钮添加更多的动画效果？</span>
-参考[如何用图片来丰富按钮/按键的样式](#add_multi_state_photo_for_button)
-## <span id = "add_multi_state_photo_for_button">如何用图片来丰富按钮/按键的样式</span>
-默认的按钮控件是纯颜色的，看起来有些枯燥。但是可以添加图片对按钮进行美化。
-下面是具体操作步骤：
- 1. 首先向UI文件中添加一个按键控件。[如何添加按键控件](#add_button)
- 2. 左键选中刚才添加的按键控件，在编辑器的右侧属性栏中可以看到按键的属性表。  
-观察发现所有属性当中与图片相关的属性有：
-  * 图片设置  
-      - 该属性可以分别设置按键各个状态下的图片，便于按键根据状态的变化，自动切换相应图片
-  * 图片位置
-     - 图片默认是居中且缩放至铺满整个按键矩形区域，你可以任意调整图片的位置及放大、缩小。
-  * 背景图
-     - 将图片设置为按键的背景，该图片将覆盖按键的整个矩形区域，并且自动缩放。
+   ![Create Button](assets/Button-create.gif)
+## How to modify the button/button color?
+Reference [How to modify the color of text](textview.md#change_color)
+## <span id = "add_button_style">How to add more animation effects to the button?</span>
+Reference [How to use pictures to enrich the style of buttons/keys](#add_multi_state_photo_for_button)
+## <span id = "add_multi_state_photo_for_button">
+How to use pictures to enrich the style of buttons/keys</span>
+The default button control is pure color, which looks a bit boring. But you can add pictures to beautify the buttons.
+Here are the specific steps:
+ 1. First add a button control to the UI file.[How to add button controls](#add_button)
+ 2.  Left-click to select the button control you just added, and you can see the button's attribute table in the attribute column on the right side of the editor.  
+It is observed that among all the attributes, the attributes related to the picture are:
+  * Picture settings  
+      - This attribute can set the pictures in each state of the button, so that the button can automatically switch the corresponding picture according to the change of the state
+  * Picture location
+     - By default, the picture is centered and zoomed to fill the entire button rectangle. You can adjust the position of the picture and zoom in or out.
+  * Background image
+     - Set the picture as the background of the button. The picture will cover the entire rectangular area of the button and automatically zoom.
 
-具体示例：   
+Specific examples:   
 
 ![Button-pic-example](assets/Button-pic-example.png "按键属性示例")
 
-  效果图：  
+  Effect picture:  
 
 ![Button-pic-example](assets/Button-pic-preview.png "按键属性示例")
 
-上图是属性表图片参数部分截图，其表示的含义为：    
-  按键默认情况下显示on.png， 按键选中状态时显示off.png；  
-  图片位置的 左、上、宽、高四个参数决定了图片的显示区域（以像素为单位），以按键矩形区域的左上角为起点坐标（0，0），向右向下为正方向，终点坐标为（67，31）。 如果图片实际的宽高与指定的宽高参数不相等，则图片会根据指定的宽高进行缩放：  
+The above figure is a screenshot of the parameter part of the attribute table image, and its meaning is:    
+  The button displays on.png by default, and it displays off.png when the button is selected;  
+   The four parameters of the left, top, width, and height of the picture determine the display area of the picture (in pixels), the upper left corner of the button rectangle area is the starting point coordinates (0, 0), right and downward is the positive direction, The end point coordinates are (67, 31). If the actual width and height of the picture are not equal to the specified width and height parameters, the picture will be scaled according to the specified width and height: 
 
   ![图片位置坐标示例](assets/Button-location.png)
 
-### 理解按键控件的层级关系  
-对于一般按键控件，它会绘制四层内容，它们从上到下依次是：
-* 按键的文字
-* 按键图片
-* 按键背景图片
-* 按键背景色
+### Understand the hierarchical relationship of button controls  
+For general button controls, it will draw four levels of content, which are from top to bottom:
+* The text of the button
+* Button picture
+* Button background image
+* Button background color
 
-## 如何添加图片按键/按钮？
-参考[如何为按钮添加更多的动画效果](#add_multi_state_photo_for_button)
+## How to add picture buttons/buttons?
+Reference [How to add more animation effects to buttons](#add_multi_state_photo_for_button)
 
-## 当按下这个按键/按钮时，在哪儿或如何添加自己的操作代码？
-在实际开发中，`按键`是使用频率非常高的一种控件。常常会在按键的点击事件发生后，做一些处理，比如写串口或者刷新UI内容等操作。
-要响应按键的点击时间非常的简单。以下是具体步骤：
-1. 首先创建一个`按键`控件，将属性ID命名为`Button1`。[如何创建按键控件](#add_button)
+## When this key/button is pressed, where or how can I add my own operation code?
+In actual development, `Button` is a kind of control that is used very frequently. Often after the button click event occurs, some processing is done, such as writing to the serial port or refreshing the UI content.
+To respond to the click time of the button is very simple. The following are the specific steps:
+1. First create a `Button` control, and name the property ID as `Button1`. [How to create a button control](#add_button)
 
    ![ID属性示例](assets/Button-properties-id-button1.png)
-2. 在`项目资源管理器`中，选中当前项目，右键，在弹出菜单中选择`编译FlyThings`选项。这一步的作用是 **根据当前项目内所有的UI文件自动生成模板代码** 。 [了解更多关于代码生成的细节](ftu_and_source_relationships.md#ftu_and_source_relationships)
-3. 以UI文件为`main.ftu`为例，上一步完成后，将在当前项目文件夹下会生成 `jni/logic/mainLogic.cc`文件， 如下图：
+2. In the `Project Explorer`, select the current project, right-click, and select the `Compile FlyThings`  option in the pop-up menu。The function of this step is to **automatically generate template code** 。 [Learn more about code generation details](ftu_and_source_relationships.md#ftu_and_source_relationships)
+3. Take the UI file `main.ftu` as an example,After the previous step is completed, the file `jni/logic/mainLogic.cc` will be generated under the current project folder, as shown below:
 
    ![](assets/Button-callback-generate.png) <br/>
-  注意： `main.ftu`对应着`mainLogic.cc`，两者的前缀是相同的。[了解更多关于代码生成的细节](ftu_and_source_relationships.md#ftu_and_source_relationships)
-4. 双击打开`mainLogic.cc` ，在文件的末尾应该会看到如下函数，
+  Note： `main.ftu` corresponds to `mainLogic.cc`,the prefixes of both are the same. [Learn more about code generation details](ftu_and_source_relationships.md#ftu_and_source_relationships)
+4. Double-click to open `mainLogic.cc` , you should see the following function at the end of the file,
 ```c++
 static bool onButtonClick_Button1(ZKButton *pButton) {
 	//LOGD(" ButtonClick Button1 !!!\n");
 	return false;
 }
 ```
-当在串口屏上点击该`按键`控件后，系统会自动调用该关联函数。所以，如果你需要添加自己的处理代码，直接写在该关联函数里面即可。  
+When the `Button` control is clicked on the serial port screen, the system will automatically call the associated function. So, if you need to add your own processing code, just write it directly in the associated function.
 
- *  可以看到，函数名称是按一定规则生成。以`按键`控件为例，它函数名称生成规则为
-`onButtonClick_XXXX(ZKButton *pButton)`,其中**XXXX**会被替换为控件ID，
-所以多个按键控件会生成不同的关联函数。
+ *  It can be seen that the function name is generated according to certain rules. Take the `Button` control as an example, its function name generation rule is
+`onButtonClick_XXXX(ZKButton *pButton)`,where **XXXX**will be replaced with the control ID,
+So multiple button controls will generate different associated functions.
 
-[了解更多控件的关联函数](relation_function.md#relation_function)
+[Learn more about related functions of controls](relation_function.md#relation_function)
 
-## 系统按键
-除了自己定义的ID值外，按键还保留了两个系统按键值：`sys_back` 和 `sys_home` ，从名字上我们大致可以知道它们的功能：**返回键** 和 **Home键** ；点击返回键，界面会回到上一界面，如果进入了多层级的界面，点击Home键可以直接回到主界面（启动界面）。我们只需在按键的属性框中把ID值设置为 `sys_back` 或 `sys_home` ，就可以实现相应的功能。
+## System Button
+In addition to the ID value defined by the button, the button also retains two system button values:`sys_back` and `sys_home`,From the name, we can roughly know their functions: **Back Button** 和 **Home button**  ; Click the back button, the interface will return to the previous interface, if you enter a multi-level interface, click the Home button to directly return to the main interface (start interface). We only need to set the ID value to `sys_back` or `sys_home` in the attribute box of the button to achieve the corresponding function.
 
 ![](images/Screenshotfrom2018-06-06220522.png)
 
-[了解更多界面交互](open_close_app#close_app.md)
+[Learn more about interface interaction](open_close_app#close_app.md)
 
-## 如何处理按键长按事件  
-如果需要处理按键的长按事件，需要手动添加长按事件的监听。  具体步骤如下：  
-1. 在按键的 **属性表** 中， 设置 **长按事件触发时间** 、**长按事件循环触发间隔时间** 两个属性  ；下图中，我分别将其设置为 1000、1000， 单位是毫秒。
+## How to deal with long key press events
+If you need to handle the long press event of the button, you need to manually add the long press event listener. Specific steps are as follows:  
+1. In the **attribute table** of the button,set the **long press event trigger time** and **long press event cycle trigger interval** two attributes; in the figure below, I set them to 1000 respectively , 1000, the unit is milliseconds.
 
    ![](assets/button/property_longclick.jpg)
 
-2. 设置属性后, 编译, 打开对应的 Logic.cc 文件;  在文件顶部, 声明`class LongClickListener`, 并继承`ZKBase::ILongClickListener`类 ,实现 `virtual void onLongClick(ZKBase *pBase)` 方法。
+2. After setting the properties, compile and open the corresponding Logic.cc file; at the top of the file, declare `class LongClickListener`,and inherit the `ZKBase::ILongClickListener`class to implement the `virtual void onLongClick(ZKBase *pBases)` method.
 
     ```c++
-    namespace { // 加个匿名作用域，防止多个源文件定义相同类名，运行时冲突
+    namespace { //Add an anonymous scope to prevent multiple source files from defining the same class name and conflict at runtime
 
-    //实现长按监听接口
+    //Implement the long press monitoring interface
     class LongClickListener : public ZKBase::ILongClickListener {
 
              virtual void onLongClick(ZKBase *pBase) {  
-                    LOGD("触发长按事件");
+                    LOGD("Trigger long press event");
                     static int count = 0;
 
                     char buf[128] = {0};
-                    snprintf(buf, sizeof(buf), "长按事件触发次数 %d", ++count);
-                    //每次触发长按事件，修改按键的文字
+                    snprintf(buf, sizeof(buf), "long press event trigger times %d", ++count);
+                    //Each time a long press event is triggered, modify the text of the button
                     mLongButtonPtr->setText(buf);
              }
     };
 
     }
     ```
-3. 接着，实例化上一步定义的监听类，声明为静态类型  
+3. Next, instantiate the monitor class defined in the previous step and declare it as a static type
 
     ```c++
     static LongClickListener longButtonClickListener;
     ```
 
-4. 在 `static void onUI_init()` 函数中注册按键长按监听  
+4. Register button long press monitoring in `static void onUI_init()` function  
 
     ```c++
     static void onUI_init(){
 
-            //注册按键长按监听
+            //Long press the registration button to monitor
             mLongButtonPtr->setLongClickListener(&longButtonClickListener);
     }
     ```
-5. 在`static void onUI_quit()`函数中取消按键长按监听
+5. Cancel the button long press monitoring in the `static void onUI_quit()` function
 
     ```c++
     static void onUI_quit() {
-           //取消按键长按监听
+           //Cancel button long press to monitor
            mLongButtonPtr->setLongClickListener(NULL);
     }
     ```
-6. 添加完代码后，编译，将程序下载到机器中，长按测试；可以看到 按键的文字被修改，`onLongClick`函数成功响应。
-具体实现，可以参考[样例代码](demo_download.md#demo_download)
+6. After adding the code, compile, download the program to the machine, and long press to test; you can see that the text of the button has been modified and the `onLongClick` function successfully responded.
+For specific implementation, please refer to [Sample Code](demo_download.md#demo_download)
 
-## 如何处理按键触摸事件  
-如果需要在按键**按下**或**抬起**的时候做出响应，那么可以通过注册触摸的监听接口来实现。  具体步骤如下：  
-1. 实现自己的触摸监听接口：
+## How to handle key touch events  
+If you need to respond when the button **press**
+or **lift** , you can register the touch monitoring interface to do so. Specific steps are as follows:  
+1. Implement your own touch monitoring interface:
     ```c++
-    namespace {	// 加个匿名作用域，防止多个源文件定义相同类名，运行时冲突
+    namespace {	// Add an anonymous scope to prevent multiple source files from defining the same class name and conflict at runtime
 
-    // 实现触摸监听接口
+    // Implement touch monitoring interface
     class TouchListener : public ZKBase::ITouchListener {
     public:
         virtual void onTouchEvent(ZKBase *pBase, const MotionEvent &ev) {
             switch (ev.mActionStatus) {
             case MotionEvent::E_ACTION_DOWN:
-                mTouchButtonPtr->setText("按下");
+                mTouchButtonPtr->setText("press");
                 break;
             case MotionEvent::E_ACTION_UP:
-                mTouchButtonPtr->setText("抬起");
+                mTouchButtonPtr->setText("lift up");
                 break;
             default:
                 break;
@@ -159,34 +161,33 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
 
     }
     ```
-2. 接着，实例化上一步定义的监听类，声明为静态类型  
+2.Next, instantiate the monitor class defined in the previous step and declare it as a static type  
 
     ```c++
     static TouchListener sTouchListener;
     ```
-
-4. 在 `static void onUI_init()` 函数中注册按键触摸监听  
+3.Register the button touch monitor in the `static void onUI_init()` function  
 
     ```c++
     static void onUI_init() {
-        //注册按键触摸监听
+        //Register button touch monitor
         mTouchButtonPtr->setTouchListener(&sTouchListener);
     }
     ```
-5. 在`static void onUI_quit()`函数中取消按键触摸监听
+4.Cancel button touch monitoring in  `static void onUI_quit()` function
 
     ```c++
     static void onUI_quit() {
-        //取消按键触摸监听
+        //Cancel button touch monitoring
         mTouchButtonPtr->setTouchListener(NULL);
     }
     ```
-6. 添加完代码后，编译，将程序下载到机器中，点击触摸测试；可以看到 按键的文字被修改。
-具体实现，可以参考[样例代码](demo_download.md#demo_download)  
+5.After adding the code, compile, download the program to the machine, click touch test; you can see that the text of the button has been modified.
+For specific implementation, please refer to [Sample Code](demo_download.md#demo_download)  
 
-## 样例代码  
+## Sample code  
 
-由于按键控件属性较多，更多属性效果请参考[样例代码](demo_download.md#demo_download)中的ButtonDemo工程。   
-样例预览效果图：  
+Since there are many button control attributes, please refer to the ButtonDemo project in [Sample Code](demo_download.md#demo_download) for more attribute effects.
+Sample preview effect diagram:    
 
 ![效果图](assets/button/preview.png)

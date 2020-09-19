@@ -1,73 +1,73 @@
 
-# 窗口
-## 功能描述
-窗口实际是一个容器部件。可以包含所有的控件，也可以再次包含一个新的窗口。可以用于以下场景
-* 显示隐藏一个控件组合
-* 当需要完成tab页面的时候可以通过多个窗口实现不同的窗口切换
-* 弹出的对话框
-* 弹出悬浮框
+# Window
+## Function description
+The window is actually a container part. It can contain all the controls, or it can contain a new window again. Can be used in the following scenarios
+* Show and hide a control combination
+* When you need to complete the tab page, you can switch between different windows through multiple windows
+* Pop-up dialog 
+* Pop up floating box
 
-## 如何使用  
-1. 创建一个 **窗口** 控件，默认的窗口是透明的。根据需求，可以自行添加背景图或者修改背景色；  你也可以将其他控件添加到窗口中。  
+## How to use  
+1. Create a **window** Control，The default window is transparent. You can add a background image or modify the background color according to your needs; you can also add other controls to the window.  
 
    ![](assets/window/properties.png)
-2. 在上面的属性表中 有两个属性需要解释下:  
-  * **是否是模态窗口**  
-    如果是模态，当这个窗口控件显示时，点击该窗口以外的区域，该窗口会自动隐藏。  
-    如果是非模态， 该窗口控件的显示/隐藏 都必须自行控制。
-  * 超时自动隐藏窗口  
-    如果是模态窗口， 那么该窗口从刚开始显示开始计时，在指定时间后自动隐藏。单位为秒；如果该值为 -1，那么表示不会自动隐藏。  
-    如果是非模态，那么该参数无任何作用。
+2. In the attribute table above, there are two attributes that need to be explained:  
+  * **Whether it is a modal window**  
+    If it is modal, when this window control is displayed, click outside the window, the window will be automatically hidden.
+     If it is non-modal, the display/hide of the window control must be controlled by itself.
+  * Automatically hide window after timeout  
+    If it is a modal window, the window will start counting from the beginning of the display and will be automatically hidden after the specified time. The unit is seconds; if the value is -1, it means that it will not be hidden automatically.
+     If it is non-modal, then this parameter has no effect.
 
-## 代码操作  
-对于窗口控件，我们一般会涉及到如下几个函数  
+## Code manipulation  
+For window controls, we generally involve the following functions  
 ```
-//显示窗口
+//Display window
 void showWnd();
-//隐藏窗口
+//Hide window
 void hideWnd();
-判断窗口是否显示
+Determine whether the window is displayed
 bool isWndShow();
 ```
 
-## 动态设置背景
-如果我们将窗口布满整个屏幕，然后设置这个窗口的背景，即可实现修改屏幕背景的效果。
+## Dynamically set background
+If we spread the window all over the screen and then set the background of this window, we can achieve the effect of modifying the screen background.
 
-* 相关的接口
+* Related interface
   ```c++
 	/**
-	 * @brief 设置背景图
-	 * @param pPicPath 图片路径
+	 * @brief set background image
+	 * @param pPicPath picture path
 	 */
 	void setBackgroundPic(const char *pPicPath);
 
 	/**
-	 * @brief 设置背景颜色
-	 * @param color -1时，背景设置为透明；其他颜色值为0x RGB，颜色值不支持alpha
+	 * @brief Set background color
+	 * @param color -1, the background is set to transparent; other color values are 0x RGB, and the color value does not support alpha
 	 */
 	void setBackgroundColor(int color);
   ```
 
-* 使用示例
+* Usage example
   ```c++
-	//把/mnt/extsd/bg.png 这个路径的图片设置为这个窗口控件的背景图
+	//Set the image of the path /mnt/extsd/bg.png as the background image of this window control
 	mWindow1Ptr->setBackgroundPic("/mnt/extsd/bg.png");
 	
-	//将ID为window1的窗口背景色设置为红色
+	//Set the background color of the window with ID window1 to red
 	mWindow1Ptr->setBackgroundColor(0xff0000);
     
-    //将ID为window1的窗口背景色设置为绿色
+    //Set the background color of the window with ID window1 to green
 	mWindow1Ptr->setBackgroundColor(0x00ff00);
         
-    //将ID为window1的窗口背景色设置为蓝色
+    //Set the background color of the window with ID window1 to blue
 	mWindow1Ptr->setBackgroundColor(0x0000ff);
   ```
 
-  有许多控件都拥有设置背景色、设置背景图的接口，使用方法相同。
+  Many controls have interfaces for setting background color and background image, and the methods are the same.
 
-# 样例代码
-演示了 模态/非模态窗口控件的使用  
+# Sample code
+Demonstrates the use of modal/non-modal window controls  
 
 ![](assets/window/preview.png) 
 
-具体窗口控件的使用，参考[样例代码](demo_download.md#demo_download)中的WindowDemo项目  
+For the use of specific window controls,  refer to the WindowDemo project in the [Sample code](demo_download.md#demo_download)  

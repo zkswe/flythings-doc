@@ -1,14 +1,14 @@
-# 设备唯一ID码
+# Device unique ID code
 
-## 如何读取
-* 所需头文件
+## How to read
+* Required header files
  ```c++
  #include "security/SecurityManager.h"
  ```
-* 读取设备ID
+* Read device ID
     ```c++
-    // 设备 id 共8个字节
+    // device id is 8 bytes
     unsigned char devID[8];
-    // 成功返回 true，失败返回 false
+    // Returns true on success, false on failure
     bool ret = SECURITYMANAGER->getDevID(devID);
     ```

@@ -1,23 +1,23 @@
-# UTF-8编码
-目前系统内仅支持UTF-8编码，例如文本框等控件，也只能正常显示UTF-8编码的字符串。如果要正常显示其他的编码，需要自行转码。
+# UTF-8 encoding
+Currently, the system only supports UTF-8 encoding, such as text boxes and other controls, and can only display UTF-8 encoded strings normally. If you want to display other codes normally, you need to transcode by yourself.
 
 ## sconv
-  sconv是一个转码的开源库，我们借助它来进行utf-8和gbk之间编码的转换。
+  Sconv is an open source library for transcoding. We use it to convert between utf-8 and gbk.
 
-## 准备
-[下载sconv源文件](https://docs.flythings.cn/src/utf8cover.rar)，并将它解压到我们项目 `jni`文件夹下。   
+## Ready
+[Download sconv source files](https://docs.flythings.cn/src/utf8cover.rar)，And unzip it to our project `jni` folder.
 
   ![](assets/transcoding.png)
   
 
-## UTF-8 转 GBK
-1. 引用头文件  
+## UTF-8 to GBK
+1. Reference header file 
   ```c++
   #include <string>
   #include "utf8cover/sconv.h"
   ```
 
-2. 添加函数  
+2. Add function  
   ```c++
   string utf8_to_gbk(const char* utf8_str) {
     int size = sconv_utf8_to_unicode(utf8_str, -1, NULL, 0);
@@ -36,25 +36,25 @@
     return gbk;
   }
   ```
-3. 使用刚才的函数进行编码转换，例子如下：
+3. Use the function just now to perform encoding conversion, an example is as follows:
  ```c++
-   const char* utf8_str = "这是utf8编码";
+   const char* utf8_str = "This is utf8 encoding";
    string gbk = utf8_to_gbk(utf8_str);
-   LOGD("转换后，共%d字节", gbk.size());
+   LOGD("After conversion, a total of %d bytes", gbk.size());
    for (size_t i = 0; i < gbk.size(); ++i) {
-     LOGD("第%d字节 = %02X", i, gbk.data()[i]);
+     LOGD("%d byte = %02X", i, gbk.data()[i]);
    }
  ```
 
 
-## GBK 转 UTF-8
-1. 引用头文件  
+## GBK to UTF-8
+1. Reference header file  
   ```c++
   #include <string>
   #include "utf8cover/sconv.h"
   ```
 
-2. 添加函数  
+2. Add function  
   ```c++
   string gbk_to_utf8(const char* gbk_str) {
     int size = sconv_gbk_to_unicode(gbk_str, -1, NULL, 0);
@@ -72,11 +72,11 @@
     return utf8;
   }
   ```
-3. 使用刚才的函数进行编码转换，例子如下：
+3. Use the function just now to perform encoding conversion, an example is as follows:
 ```c++
-   //方便测试，这里构造一个gbk编码数组， 其内容为“这是gbk编码”
+   //To facilitate testing, here is a gbk encoding array whose content is "This is gbk encoding"
    const char gbk_str[] = {0xd5, 0xe2, 0xca, 0xc7, 0x67, 0x62, 0x6b, 0xb1, 0xe0, 0xc2, 0xeb,0};
    string utf8 = gbk_to_utf8(gbk_str);
-   LOGD("转换后，共%d字节", utf8.size());
-   LOGD("内容是：%s", utf8.c_str());
+   LOGD("After conversion, a total of %d bytes", utf8.size());
+   LOGD("The content is: %s", utf8.c_str());
 ```

@@ -1,11 +1,11 @@
-除了开发人员自己定制的界面外，我们系统也内置了几个常用的界面，如插卡升级时出现的界面就属于内置界面之一；
+In addition to the interface customized by the developer, our system also has several commonly used interfaces built in, such as the interface that appears when the card is upgraded, which is one of the built-in interfaces;
 ![](images/boot_logo_upgrade.jpg)
 
-另外，还有系统设置界面，打开方式：
+In addition, there is a system setting interface, open method:
 ```c++
 EASYUICONTEXT->openActivity("ZKSettingActivity");
 ```
-我们可以通过一个按钮点击跳转到该界面看一下效果（其他的几个内置界面都可以通过如下方式查看效果）：
+We can click on a button to jump to this interface to see the effect （the effects of several other built-in interfaces can be viewed in the following ways）：
 ```c++
 static bool onButtonClick_Button1(ZKButton *pButton) {
     EASYUICONTEXT->openActivity("ZKSettingActivity");
@@ -14,42 +14,42 @@ static bool onButtonClick_Button1(ZKButton *pButton) {
 ```
 ![](images/setup_setting.jpg)
 
-其中每一项点击进去后又是新的内置界面，打开网络设置：
+After each item is clicked in, there is a new built-in interface, open the network settings:
 ```c++
 EASYUICONTEXT->openActivity("NetSettingActivity");
 ```
 ![](images/net_setting.jpg)
 
-打开WIFI设置：
+Open WIFI settings:
 ```c++
 EASYUICONTEXT->openActivity("WifiSettingActivity");
 ```
 ![](images/wifi_setup.jpg)
 
-如果目标机器支持wifi，打开右上角开关，界面上会显示搜索到的wifi信息；
+If the target machine supports wifi, turn on the switch in the upper right corner, the searched wifi information will be displayed on the interface;
 
-打开热点设置界面：
+Open the hotspot setting interface:
 ```c++
 EASYUICONTEXT->openActivity("SoftApSettingActivity");
 ```
 ![](images/soft_ap_setup.jpg)
 
-回到刚刚的系统设置界面，我们再点击打开语言设置界面：
+Back to the system setting interface just now, we click to open the language setting interface:
 ```c++
 EASYUICONTEXT->openActivity("LanguageSettingActivity");
 ```
 ![](images/lang_setting.jpg)
 
-触摸校准界面：
+Touch calibration interface:
 ```c++
 EASYUICONTEXT->openActivity("TouchCalibrationActivity");
 ```
 ![](images/touchcalibration.png)
 
-开发者选项界面：
+Developer options interface:
 ```c++
 EASYUICONTEXT->openActivity("DeveloperSettingActivity");
 ```
 ![](images/developer_setting.jpg)
 
-目前只有ADB的调试开关选项。
+Currently there are only ADB debugging switch options.

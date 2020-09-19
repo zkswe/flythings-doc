@@ -1,7 +1,7 @@
-当我们新建一个工程时，生成的模板代码里面有一个Main.cpp文件，路径： jni/Main.cpp；模板代码如下：
+When we create a new project, there is a Main.cpp file in the generated template code, path: jni/Main.cpp; the template code is as follows:
 
 ![](images/Screenshotfrom2018-06-06182629.png)
 
-其中红框内为启动界面代码，启动的是**mainActivity**界面，对应的UI资源文件为**main.ftu**，具体我们可以看一下 jni/activity/mainActivity.cpp 里面的代码，就清楚对应的是哪个UI资源了：
+The code in the red box is the startup interface code, and the interface is **mainActivity** . The corresponding UI resource file is **main.ftu**. Specifically, we can look at the code in jni/activity/mainActivity.cpp. It is clear which UI resource is corresponding:
 
 ![](images/Screenshotfrom2018-06-06183808.png)

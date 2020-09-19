@@ -1,26 +1,26 @@
-# 制作升级镜像文件
-在之前的教程中，我们通过[下载调试](adb_debug.md#下载调试)菜单运行程序，但是**它并不能将程序固化到设备中，如果您拔掉TF卡或者断电重启，程序将自动恢复**。 如果您希望**固化程序**到设备中，我们可以将程序打包制作成升级文件，设备升级后，就可以将程序固化在设备内部，一上电，默认就会启动该程序。
+# Make upgrade image file
+In the previous tutorial, we used the [Download and Debug](adb_debug.md#下载调试) menu to run the program, but **it does not solidify the program into the device. If you unplug the TF card or power off and restart, the program will Automatic recovery**. If you want to **firm the program** into the device, we can package the program into an upgrade file. After the device is upgraded, the program can be solidified inside the device. Once the power is turned on, the program will be started by default.
 
-## 操作具体步骤  
-首先我们要配置镜像的输出目录。
-1. 找到工具栏上的这个按钮  
+## Operation specific steps
+First we need to configure the output directory of the mirror.
+1. Find this button on the toolbar
 
    ![](assets/ide/toolbar_image.png)   
 
-2. 点击旁边的黑色下拉箭头，在弹出的菜单中选择 **路径配置**    
+2. Click the black drop-down arrow next to it, and select **Path Configuration** in the pop-up menu     
 
    ![](assets/ide/toolbar_image23.png)
 
-3. 在弹出框中，选择镜像文件的输出目录，点击确定 。
+3. In the pop-up box, select the output directory of the image file, and click OK.
 
-4. 在上面的步骤中，我们配置好了输出目录，现在点击下图中的按钮开始编译，它会将编译结果  打包，并生成 **update.img** 文件输出到配置的目录下。  
+4. In the above steps, we have configured the output directory. Now click the button in the figure below to start compiling. It will package the compilation result and generate the **update.img**  file and output it to the configured directory. 
 
      ![](assets/ide/toolbar_image3.png)
 
-6. **update.img** 文件成功生成后，将其拷贝到TF卡里(**注意：使用前，请将TF卡格式化为FAT32格式**)，将TF卡插入机器中，机器重新上电，这时候，系统检测到TF卡里的文件，就会启动升级程序，在下图的界面中，勾选升级的项目，点击升级。升级完成后及时拔掉升级卡，防止重复升级。    
+6. fter the **update.img** file is successfully generated, copy it to the TF card (**Note: Before use, please format the TF card in FAT32 format**), and insert the TF card into the machine. Power on again. At this time, when the system detects the files in the TF card, it will start the upgrade program. In the interface shown in the figure below, check the upgrade items and click Upgrade. After the upgrade is completed, remove the upgrade card in time to prevent repeated upgrades.
   > [!NOTE]
-  > **注意：TF卡仅支持FAT32格式**
+  > **Note: TF card only supports FAT32 format**
 
    ![](images/screenshot_1513263522327.png)
 
-**如果屏幕损坏或触摸不准情况下，导致不能通过点击按钮进行升级，那么这种情况下，我们可以通过**[**自动升级**](autoupgrade.md)**这种方式来升级我们的系统。**
+**If the screen is damaged or the touch is inaccurate, which makes it impossible to upgrade by clicking the button, then in this case, we can use**[**Auto Upgrade**](autoupgrade.md)**this way Upgrade our system.**

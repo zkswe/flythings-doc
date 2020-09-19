@@ -1,17 +1,17 @@
-## I2C操作
+## I2C operation
 
 > [!Note]
-> 1. 目前仅**SV50P系列模组**支持该功能。
-> 2. 使用前，需要在[模组配置](https://superv.flythings.cn)中使能 **TWI** 功能，用生成的新系统包升级，才能正常使用。
-> 3. 更多有关模组的[使用教程](core_module.md)。
+> 1. Currently only **SV50P series modules**support this function.
+> 2.  Before use, you need to enable the **TWI** function in [Module Configuration](https://superv.flythings.cn), and upgrade with the new system package generated before it can be used normally.
+> 3. More[Usage Tutorial](core_module.md)about modules.
 
-### 引入头文件
+### Introducing header files
 
   ```c++
   #include "utils/I2CHelper.h"
   ```
 
-### 具体操作
+### Specific operations
 
   ```c++
   #include "utils/I2CHelper.h"
@@ -27,12 +27,12 @@
 	memset(rx, 0, 512);
 
 	/**
-	 * 定义变量
-	 *
-	 * 参数1： i2c总线号
-	 * 参数2： 从机地址, 一定要注意是 7bit地址
-	 * 参数3： 超时时间，单位: ms
-	 * 参数4： 重试次数
+	 * Define variables
+	 * 
+	 * Parameter 1: i2c bus number
+	 * Parameter 2: Slave address, be sure to pay 	   attention to the 7bit address
+	 * Parameter 3: Timeout time, unit: ms
+	 * Parameter 4: Number of retries: ms
 	 */
 	I2CHelper i2c(0, 0x5e, 1000, 5);
 
@@ -40,20 +40,20 @@
 	tx[1] = CFG_L;
 
 	/**
-	 * 单工写
+	 * Simplex writing
 	 *
-	 * 参数1： 写数据地址
-	 * 参数2： 数据长度
+	 * Parameter 1: Write data address
+ 	 * Parameter 2: Data length
 	 */
 	if (!i2c.write(tx, 2)) {
 		LOGD("i2c tx cfg error!\n");
 	}
 
 	/**
-	 * 单工读
-	 *
-	 * 参数1： 读数据地址
-	 * 参数2： 数据长度
+	 * Single work
+     *
+	 * Parameter 1: Read data address
+	 * Parameter 2: Data length
 	 */
 	if (!i2c.read(rx, 1)) {
 		LOGD("i2c rx cfg error!\n");
@@ -63,12 +63,12 @@
 	memset(rx, 0, 512);
 
 	/**
-	 * 半双工传输，即共用读写，中间无stop信号
-	 *
-	 * 参数1： 写数据地址
-	 * 参数2： 写数据长度
-	 * 参数3： 读数据地址
-	 * 参数4： 读数据长度
+	* Half-duplex transmission, that is, shared 	read and write, no stop signal in the middle
+	*
+	* Parameter 1: Write data address
+	* Parameter 2: Write data length
+	* Parameter 3: Read data address
+	* Parameter 4: Read data length
 	 */
 	if (!i2c.transfer(tx, 2, rx, 1)) {
 		LOGD("i2c i2c_transfer cfg error!\n");
@@ -96,4 +96,4 @@
   }
   ```
 
-其他接口操作请参见头文件注释说明。
+For other interface operations, please refer to the header file notes.

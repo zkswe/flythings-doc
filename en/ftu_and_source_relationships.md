@@ -1,42 +1,42 @@
 
-# <span id = "ftu_and_source_relationships">FlyThings编译过程以及UI文件与源代码的对应关系</span>
-## UI文件中的控件是如何与指针变量关联的
-FlyThings 将UI与代码区分开来，方便管理。 
-下文中，UI文件是指项目 **ui** 文件夹下的 所有 **ftu** 文件。
-为了减少开发中编写重复代码，我们改进了编译过程。在真正的源码编译之前，工具会根据 UI文件生成相同前缀名的`Logic.cc` 文件，例如`main.ftu`会生成配对的`mainLogic.cc`文件，这里需要注意的是：  
-`Logic.cc`文件的生成，并不是直接覆盖，而是增量修改。  
-编译时，工具会遍历每个UI文件，读取UI文件中包含的控件。并且为这个控件声明指针变量，在代码中，通过这个指针，就可以操作对应的控件。 指针变量定义在同前缀名的 `Activity.cpp` 文件中。以**main.ftu**为例，就像这样：  
+# <span id = "ftu_and_source_relationships">FlyThings compilation process and the correspondence between UI files and source code</span>
+## How the controls in the UI file are associated with pointer variables
+FlyThings separates the UI from the code for easy management.
+In the following, UI files refer to all **ftu**  files in the **ui**  folder of the project.
+In order to reduce the repetitive code written during development, we improved the compilation process. Before the real source code is compiled, the tool will generate a`Logic.cc`  file with the same prefix name according to the UI file. For example, `main.ftu`will generate a paired `mainLogic.cc`file. Here you need to pay attention to:  
+The generation of the `Logic.cc`file is not a direct overwrite, but an incremental modification.  
+When compiling, the tool will traverse each UI file and read the controls contained in the UI file. And declare a pointer variable for this control, in the code, through this pointer, you can operate the corresponding control. Pointer variables are defined in the `Activity.cpp`  file with the same prefix name. Take **main.ftu** as an example, like this:  
 
 ![](assets/global_control_pointer.png)  
 
-**图中可以看到， 所有指针为静态全局变量，它们都具有相同的命名规则，具体命名规则请参考[控件ID名与指针变量名的命名规则](named_rule#id_name_rule.md)；并且，你还应该注意到截图中 `#include "logic/mainLogic.cc"` 这条语句，它将 `mainLogic.cc`文件include到`mainActivity.cpp`当中，而我们的业务代码就是写在`mainLogic.cc`文件里，所以，我们可以在`mainLogic.cc`中完全使用这些控件指针。**  
-如果你对这些指针的初始化感兴趣，可以在`mainActivity`的`onCreate`方法中找到。
+**As you can see in the figure, all pointers are static global variables, and they all have the same naming rules. For specific naming rules, please refer to [Naming Rules for Control ID Names and Pointer Variable Names](named_rule#id_name_rule.md); and, You should also notice the statement `#include "logic/mainLogic.cc"` in the screenshot, which includes the `mainLogic.cc`file into `mainActivity.cpp` , and our business code is written in `mainLogic.cc`  file, so we can fully use these control pointers in `mainLogic.cc`.**  
+If you are interested in the initialization of these pointers, you can find it in the `onCreate` method of `mainActivity`.
 
-## UI文件与Logic.cc文件的关系
-现在，你大概已经知道了UI文件里的控件是如何与这些指针联系起来的。  让我们再来看看`mainLogic.cc`文件里又为我们自动生成了哪些代码。  
-如果你的UI文件中没有添加任何控件，那你的`mainLogic.cc`文件将是这样的:   
+## The relationship between UI files and Logic.cc files
+Now, you probably already know how the controls in the UI file are connected to these pointers. Let's take a look at what code is automatically generated for us in the `mainLogic.cc` file.  
+If you don't add any controls to your UI file, your `mainLogic.cc` file will look like this:  
 
 ```c++ 
 /**
- * 注册定时器
- * 填充数组用于注册定时器
- * 注意：id不能重复
+ * Register timer
+ * Fill the array to register the timer
+ * Note: id cannot be repeated
  */
 static S_ACTIVITY_TIMEER REGISTER_ACTIVITY_TIMER_TAB[] = {
-	//{0,  6000}, //定时器id=0, 时间间隔6秒
+	//{0,  6000}, //Timer id=0, interval of 6 seconds
 	//{1,  1000},
 };
 
 /**
- * 当界面构造时触发
+ * Triggered when the interface is constructed
  */
 static void onUI_init(){
-    //Tips :添加 UI初始化的显示代码到这里,如:mText1Ptr->setText("123");
+    //Tips : Add the display code for UI initialization here, such as: mText1Ptr->setText("123");
 
 }
 
 /**
- * 当切换到该界面时触发
+ * Triggered when switching to this interface
  */
 static void onUI_intent(const Intent *intentPtr) {
     if (intentPtr != NULL) {
@@ -45,42 +45,42 @@ static void onUI_intent(const Intent *intentPtr) {
 }
 
 /*
- * 当界面显示时触发
+ * Triggered when the interface is displayed
  */
 static void onUI_show() {
 
 }
 
 /*
- * 当界面隐藏时触发
+ * Triggered when the interface is hidden
  */
 static void onUI_hide() {
 
 }
 
 /*
- * 当界面完全退出时触发
+ * Triggered when the interface completely exits
  */
 static void onUI_quit() {
 
 }
 
 /**
- * 串口数据回调接口
+ * Serial data callback interface
  */
 static void onProtocolDataUpdate(const SProtocolData &data) {
 
 }
 
 /**
- * 定时器触发函数
- * 不建议在此函数中写耗时操作，否则将影响UI刷新
- * 参数： id
- *         当前所触发定时器的id，与注册时的id相同
- * 返回值: true
- *             继续运行当前定时器
- *         false
- *             停止运行当前定时器
+ * Timer trigger function
+ * It is not recommended to write time-consuming operations in this function, otherwise it will affect UI refresh
+ * Parameters: id
+ * The id of the currently triggered timer is the same as the id at registration
+ * Return value: true
+ * Continue to run the current timer
+ * false
+ * Stop running the current timer
  */
 static bool onUI_Timer(int id){
 	switch (id) {
@@ -92,46 +92,46 @@ static bool onUI_Timer(int id){
 }
 
 /**
- * 有新的触摸事件时触发
- * 参数：ev
- *         新的触摸事件
- * 返回值：true
- *            表示该触摸事件在此被拦截，系统不再将此触摸事件传递到控件上
- *         false
- *            触摸事件将继续传递到控件上
+ * Triggered when there is a new touch event
+ * Parameters: ev
+ * New touch event
+ * Return value: true
+ * Indicates that the touch event is intercepted here, and the system will no longer pass this touch event to the control
+ * false
+ * Touch events will continue to be passed to the control
  */
 static bool onmainActivityTouchEvent(const MotionEvent &ev) {
 
 	return false;
 }
 ```
-这些函数的具体作用如下：  
-* **REGISTER_ACTIVITY_TIMER_TAB[ ] 数组**  
- 用于[注册定时器](timer.md#timer)； 数组成员类型为如下结构体  
+The specific functions of these functions are as follows:
+* **REGISTER_ACTIVITY_TIMER_TAB[ ] array**  
+ Used for [register timer](timer.md#timer); the array member type is the following structure
 ```c++
 typedef struct {
-	int id; // 定时器ID ， 不能重复
-	int time; // 定时器  时间间隔  单位 毫秒
+	int id; // Timer ID, cannot be repeated
+	int time; // Timer time interval in milliseconds
 }S_ACTIVITY_TIMEER;
 ```
-**实质上，这个数组将在 `mainActivity.cpp`的`rigesterActivityTimer()`函数中引用，通过调用 `void registerTimer(int id, int time)`方法依次注册到系统中。**
+**In essence, this array will be referenced in the `rigesterActivityTimer()` function of  `mainActivity.cpp`and registered to the system in turn by calling the `void registerTimer(int id, int time)`method.**
 
 * **void onUI_init()**  
- 用于界面初始化，如果在打开这个UI界面的时候，你需要初始化一些内容，那么你可以将代码添加到这函数里。  
- 实质上，这个方法将在`mainActivity.cpp`的`onCreate()`方法中调用。你可以理解为`mainActivity`的构造。
+ Used for interface initialization, if you need to initialize some content when opening this UI interface, then you can add code to this function.  
+ In essence, this method will be called in the `onCreate()` method of `mainActivity.cpp` . You can understand it as the structure of `mainActivity`.
 
 * **void onUI_quit()**  
- 用于界面的退出，如果你需要当UI界面退出的时候做一些操作，那么你可以将代码添加到这函数里。
-实质上，这个方法将在`mainActivity.cpp`的析构函数中调用
+ Used to exit the interface, if you need to do some operations when the UI interface exits, then you can add the code to this function.
+In essence, this method will be called in the destructor of `mainActivity.cpp`
 
 * **void onProtocolDataUpdate(const SProtocolData &data)**  
- 用于接收串口数据。当解析到串口数据帧时，会调用该函数。  
- 实质是， `mainActivity.cpp`的`onCreate()`中，会默认调用`void registerProtocolDataUpdateListener(OnProtocolDataUpdateFun pListener)`进行接收串口数据的注册， 在`mainActivity.cpp`的析构中取消注册。当串口读到数据时，通过`ProtocolParser.cpp`中的`void notifyProtocolDataUpdate(const SProtocolData &data) `依次调用已注册的UI界面。  
-这是`ProtocolParser.cpp`中的串口解析函数，结合上面描述的过程，你应该就能理解串口数据是如何在各个界面分发的：
+  Used to receive serial port data. When the serial data frame is parsed, this function will be called.
+ The essence is that in `onCreate()` of `mainActivity.cpp`, `void registerProtocolDataUpdateListener(OnProtocolDataUpdateFun pListener)`  is called by default to register to receive serial port data, and the registration is cancelled in the destruction of `mainActivity.cpp`. When the serial port reads the data, the registered UI interface is called in turn through the `void notifyProtocolDataUpdate(const SProtocolData &data) ` in `ProtocolParser.cpp`.
+This is the serial port analysis function in `ProtocolParser.cpp`, combined with the process described above, you should be able to understand how the serial port data is distributed on each interface:
 
     ```c++
     /**
-     * 解析每一帧数据
+     * Analyze each frame of data
      */
     static void procParse(const BYTE *pData, UINT len) {
         switch (MAKEWORD(pData[3], pData[2])) {
@@ -140,26 +140,26 @@ typedef struct {
             break;
         }
 
-        // 通知协议数据更新
+        // Notify protocol data update
         notifyProtocolDataUpdate(sProtocolData);
     }
     ```
 
 * **bool onUI_Timer(int id)**  
- 定时器回调函数； 当某个定时器达到规定的时间间隔后，系统将调用该函数，当添加了多个定时器时，你可以通过 **id** 参数，区分定时器。这个 **id** 参数与 上面结构体数组中填写的 id 相同。  
-返回 `true` 则继续运行当前定时器;  
-返回 `false` 则停止运行当前定时器;  
-如果你通过返回 `false`停止了定时器，那么如何再次开启它呢？可以参考 [如何任意开启停止定时器](how_to_register_timer.md)
+Timer callback function; when a timer reaches the specified time interval, the system will call this function. When multiple timers are added, you can use the **id** parameter to distinguish the timers. The **id** parameter is the same as the id filled in the structure array above.  
+Return `true`  to continue running the current timer;  
+Return `false` to stop running the current timer;  
+If you stopped the timer by returning `false` , how do you start it again? You can refer to  [How to start and stop the timer arbitrarily](how_to_register_timer.md)
 * **bool onmainActivityTouchEvent(const MotionEvent &ev)**  
- 触摸事件回调函数。能够得到所有的触摸消息。  
- 同样，该函数也是在`mainActivity.cpp`中通过`registerGlobalTouchListener`方法默认注册；只有注册之后才能得到触摸消息。  
- 返回 `true` 则表示该触摸事件在此被拦截了，不再传递到控件上  
- 返回 `false` 则表示触摸事件将继续传递到控件上  
- [了解更多触摸事件的处理](motion_event.md)
+  Touch event callback function. Able to get all touch messages.
+ Similarly, this function is also registered by default in `mainActivity.cpp` through the `registerGlobalTouchListener`method; touch messages can only be obtained after registration.
+ Returning `true` means that the touch event is intercepted here and is no longer passed to the control
+ Returning `false` means that touch events will continue to be passed to the control  
+ [Learn more about the handling of touch events](motion_event.md)
  
  
-以上是默认的UI文件编译生成的Logic.cc。当我们在UI文件中添加控件后，再次编译时，工具会根据不同的控件生成不同的关联函数到对应的Logic.cc文件中。  
-例如：我在**main.ftu** 这个 UI文件中添加了两个按键控件，它们的ID分别是 `Button1` 、`Button2`，那么，经过编译之后，在 **mainLogic.cc**文件中会生成以下两个关联函数  
+The above is Logic.cc generated by compiling the default UI file. When we add controls to the UI file and compile again, the tool will generate different associated functions according to different controls to the corresponding Logic.cc file.
+For example: I added two button controls to the UI file of **main.ftu** , their IDs are `Button1` and `Button2`, then, after compilation, in the **mainLogic.cc** file The following two correlation functions are generated in  
 ```c++
 static bool onButtonClick_Button1(ZKButton *pButton) {
     //LOGD(" ButtonClick Button1 !!!\n");
@@ -171,17 +171,17 @@ static bool onButtonClick_Button2(ZKButton *pButton) {
     return false;
 }
 ```
-注意函数的命名，函数名称中包含了控件的ID名，所以我们要求控件的ID命名需要符合C语言命名标准。  
-如果你不断的添加控件，那么编译后会生成更多的关联函数到 **mainLogic.cc** 文件中。  
-通常，在开发中，我们会在UI文件中多次增加、删除、修改控件，针对这些情况，目前的解决方案如下：  
- * 对于增加控件的情况，编译时工具会根据控件ID名生成关联函数，如果已经存在相同的关联函数，那么将略过。不会对**Logic.cc**文件造成任何影响。  
- * 对于删除控件的情况，如果在UI文件中，将已有的控件删除，工具并不会将它的关联函数也删除。如果将关联函数也删除，那么很可能会造成客户代码的丢失，所以，我们选择保留它。
- * 对于修改控件的情况，关联函数的生成只与控件ID名有关，如果你在UI文件中，修改控件除了ID名的其他属性，将不会对关联函数造成影响；如果你修改了控件ID名属性，那么编译时，将按照增加控件的情况来处理，旧关联函数保留。
+Pay attention to the naming of the function. The function name contains the ID name of the control, so we require the ID naming of the control to conform to the C language naming standard.
+If you keep adding controls, more related functions will be generated into the **mainLogic.cc** file after compilation.  
+Usually, during development, we will add, delete, and modify controls many times in the UI file. For these situations, the current solutions are as follows:  
+ * For the case of adding a control, the tool will generate a correlation function based on the control ID name when compiling. If the same correlation function already exists, it will be skipped. Will not have any impact on the **Logic.cc** file.
+ * For deleting controls, if you delete an existing control in the UI file, the tool will not delete its associated function. If the associated function is also deleted, it is likely to cause the loss of customer code, so we choose to keep it.
+ * For the modification of the control, the generation of the associated function is only related to the control ID name. If you modify the properties of the control in addition to the ID name in the UI file, it will not affect the associated function; if you modify the control ID name Attribute, when compiling, it will be processed according to the situation of adding controls, and the old associated functions are retained.
 
 
-**上面我们只以按键控件为例，讲述了UI文件中的控件与Logic.cc内生成的关联函数的关系，FlyThings还提供生成其他控件的关联函数，比如 滑动条、列表、滑动窗口等控件，了解其他控件的关联函数，请参考[控件自动生成的关联函数讲解](named_rule.md#relation_function)**
+**We only took button controls as an example to describe the relationship between the controls in the UI file and the associated functions generated in Logic.cc. FlyThings also provides associated functions for generating other controls, such as sliders, lists, and sliding windows. , To understand the correlation function of other controls, please refer to [Explanation of the correlation function automatically generated by the control](named_rule.md#relation_function)**
 
 <br/>
 
-**最后用一张图来总结ftu文件与代码的对应关系：**
+**Finally, use a picture to summarize the correspondence between the ftu file and the code:**
 ![](assets/relationships.png)

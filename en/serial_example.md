@@ -1,48 +1,48 @@
 
-# 通讯案例实战
+# Communication case actual combat
 
-通过前面章节[通讯框架讲解](serial_framework.md)，可能看的也是云里雾里的，这里我们先总结一下，串口通讯主要有以下4点内容：
-1. 接收数据
-2. 解析数据
-3. 展示数据
-4. 发送数据
+Through the previous chapter [Communication Framework Explanation](serial_framework.md), what may be seen is also in the cloud. Here we first summarize, serial communication mainly has the following 4 points:
+1. Receive data
+2. Analytical data
+3. Display data
+4. send data
 
-其中 **解析数据** 部分较为复杂，需要根据具体的通讯协议做相应的改动；这一章节我们就不讲理论的东西了，举一些实战案例，大伙多玩几遍就可以玩溜了。
+The **analysis data** part is more complicated and needs to be changed according to the specific communication protocol; in this chapter, we will not talk about the theoretical things, and give some practical cases. You can play it a few times. 
 
-## 案例一 
+## Case number one 
 
-这里我们还是以前面的通讯协议为例，实现自己的一个简单的通讯程序；  
-完整代码见 [样例代码](demo_download.md#demo_download) 里控件样例的 `UartDemo` 工程；  
-我们最终要实现的效果是，通过串口发送指令来控制显示屏上的仪表指针旋转，UI效果图如下：
+Here we still take the previous communication protocol as an example to implement a simple communication program of our own;  
+For the complete code, please refer to the `UartDemo` project of the control sample in [Sample Code](demo_download.md#demo_download)  
+The final effect we want to achieve is to send instructions through the serial port to control the rotation of the meter pointer on the display. The UI rendering is as follows:
 
    ![](https://ae01.alicdn.com/kf/HTB1JhMbaULrK1Rjy0Fj762YXFXa5.png)
 
-我们只需要修改 **3处** 地方就可以实现控制仪表指针旋转；
+We only need to modify **3 places** to control the rotation of the instrument pointer;
 
-**1).** 重温一下前面介绍的协议格式，这里我们新增自己的协议指令**CMDID_ANGLE**对应的值为**0x0001**：
+**1).** Revisit the protocol format introduced earlier, here we add our own protocol command **CMDID_ANGLE** corresponding to the value **0x0001**:
 
-| 协议头（2字节） | 命令（2字节） | 数据长度（1字节） | 数据（N） | 校验（1字节 可选) |
+| Protocol header (2 bytes) | Command (2 bytes) | Data length (1 byte) | Data (N) | Check (1 byte optional) |
 | --- | --- | --- | --- | --- |
-| 0xFF55 | 0x0001（见以下`CMDID_ANGLE`） | 1 | angle | checksum |
+| 0xFF55 | 0x0001（See below `CMDID_ANGLE`） | 1 | angle | checksum |
 
-协议数据结构体里我们新增1变量，见 `ProtocolData.h`:
+We add 1 variable to the protocol data structure, see `ProtocolData.h`:
 
 ```c++
 /******************** CmdID ***********************/
 #define CMDID_POWER			0x0
-#define CMDID_ANGLE			0x1	// 新增ID
+#define CMDID_ANGLE			0x1	// Add ID
 /**************************************************/
 
 typedef struct {
 	BYTE power;
-	BYTE angle;	// 新增变量，用于保存指针角度值
+	BYTE angle;	// Added variable to save pointer angle value
 } SProtocolData;
 ```
-**2).** 由于我们使用的还是前面定义的协议格式，所以这里协议解析的部分我们不需要做任何改动，只需在`procParse`中处理对应的CmdID值即可：
+**2).** Since we are still using the previously defined protocol format, we do not need to make any changes to the protocol parsing part here, just process the corresponding CmdID value in `procParse`:
 
 ```c++
 /**
- * 解析每一帧数据
+ * Analyze each frame of data
  */
 static void procParse(const BYTE *pData, UINT len) {
 	// CmdID
@@ -51,45 +51,45 @@ static void procParse(const BYTE *pData, UINT len) {
 		sProtocolData.power = pData[5];
 		break;
 
-	case CMDID_ANGLE:	// 新增部分，保存角度值
+	case CMDID_ANGLE:	// New part, save angle value
 		sProtocolData.angle = pData[5];
 		break;
 	}
 
-	// 通知协议数据更新
+	// Notify protocol data update
 	notifyProtocolDataUpdate(sProtocolData);
 }
 ```
-**3).** 我们再来看界面接收到协议数据的回调接口，见 logic/mainLogic.cc：
+**3).** Let's look at the callback interface of the interface receiving protocol data, see logic/mainLogic.cc:
 
 ```c++
 static void onProtocolDataUpdate(const SProtocolData &data) {
-	// 串口数据回调接口
+	// Serial data callback interface
 
-	// 设置仪表指针旋转角度
+	// Set the rotation angle of the meter pointer
 	mPointer1Ptr->setTargetAngle(data.angle);
 }
 ```
-完成以上流程后，接下来我们只需要通过MCU向屏发送相应的指令就可以看到仪表指针的旋转了；为了简单起见，我们这个程序里不做checksum校验，协议数据如下：
+After completing the above process, we only need to send the corresponding instructions to the screen through the MCU to see the rotation of the indicator pointer; for simplicity, we do not do checksum verification in this program, and the protocol data is as follows:
 ```c++
-   帧头       CmdID    数据长度    角度值
-0xFF 0x55   0x00 0x01   0x01     angle
+   Frame header     CmdID     Data length    Angle value
+    0xFF 0x55     0x00 0x01      0x01           angle
 ```
-我们可以在CommDef.h文件中打开`DEBUG_PRO_DATA`宏，打印接收到的协议数据：
+We can open the `DEBUG_PRO_DATA` macro in the CommDef.h file to print the received protocol data:
 
 ![](https://ae01.alicdn.com/kf/HTB1ZL2ZaK6sK1RjSsrb760bDXXaP.png)
 
-到此，串口的 **接收数据** ---> **解析数据** ---> **展示数据** 就算完成了； <br/><br/>
-最后我们再来模拟一下串口**发送数据**；这里，我们给出的程序里，开启了一个定时器，2s模拟一次数据发送：
+At this point, **receive data** ---> **parse data** ---> **display data** of the serial port, even if it is finished; <br/><br/>
+Finally, let's simulate the serial port **sending data**; here, in the program we give, a timer is turned on and a data transmission is simulated every 2s:
 
 ```c++
 static bool onUI_Timer(int id) {
-	// 模拟发送串口数据
+	// Simulate sending serial data
 	BYTE data = rand() % 200;
 	sendProtocol(CMDID_ANGLE, &data, 1);
 
 	return true;
 }
 ```
-以上代码其实就是模拟设置角度值，我们可以通过短接屏上通讯串口的TX和RX，实现**自发自收**，也是可以看到仪表指针旋转的； <br/><br/>
-到此，我们的串口演示程序就介绍完了，开发人员可以先把演示程序编译烧录到机器里看一下效果，然后再在这基础之上增加一些协议，熟悉这整个通讯流程。
+The above code is actually an analog setting of the angle value. We can realize **spontaneous sending and receiving** by shorting the TX and RX of the communication serial port on the screen, and we can also see that the indicator pointer rotates; <br/><br/>
+At this point, our serial port demo program is introduced. Developers can first compile and burn the demo program to the machine to see the effect, and then add some protocols on this basis to become familiar with the entire communication process.

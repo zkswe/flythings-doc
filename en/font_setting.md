@@ -1,20 +1,20 @@
 
-# 字体库设置
-FlyThings系统默认打包的字体库是**思源黑体字体**，我们可以查看项目属性：
+# Font library settings
+The default font library packaged by FlyThings system is **Siyuan HeiTi font**, we can view the project properties:
 
 ![](images/font_setting.png)
 
-字体选项默认勾上，编译生成的升级文件就会打包工具安装目录下相应平台**font**目录下的**fzcircle.ttf**字体库
+The font option is checked by default, and the compiled upgrade file will be packaged in the **fzcircle.ttf** font librery in the **font** directory of the corresponding platform in the tool installation directory
 
 ![](images/font_path.png)
 
-该字体库即为**思源黑体字体库**，我们做了些裁剪，改名为**fzcircle.ttf** ；<br/>
-如果我们想使用其他字体库，只需去除默认选项，导入新的字体库即可（**注意，这里字体库仅支持ttf格式**）：
+This font library is the **Siyuan HeiTi font library**, we made some cuts and renamed it **fzcircle.ttf**;<br/>
+If we want to use other font libraries, just remove the default options and import a new font library  （**note that this font library only supports ttf format**）：
 
 ![](images/load_ttf.gif)
 
-**Z6S及以后平台**我们系统直接内置了**fzcircle.ttf**字体库，目的是为了加快开机速度，如果有字体缺失，我们需要自己定制一个扩展字体库，同为**思源黑体字体**，字体库名称也是**fzcircle.ttf**，导入方式同上，这样系统加载字体时优先加载系统内置的字体，加载失败则加载扩展字体库里对应的字体；如果是想使用其他字体库，导入的字体库名称不叫**~~fzcircle.ttf~~**即可，这样加载的字体就都是外部的字体。<br/>
+**Z6S and later platforms**  Our system has built-in **fzcircle.ttf** font library directly, the purpose is to speed up the boot speed, if any fonts are missing, we need to customize an extended font library by ourselves, the same as **Siyuan Heibody Font**, the name of the font library is also  **fzcircle.ttf**, the import method is the same as above, so that when the system loads fonts, the built-in fonts in the system will be loaded first, and the corresponding fonts in the extended font library will be loaded if the loading fails; if you want to use other fonts Library, the name of the imported font library is not **~~fzcircle.ttf~~** , so the loaded fonts are all external fonts.<br/>
 
-总结一下：<br/>
-**Z11S平台** ：因为该平台系统没有内置字体库，所以系统直接使用的就是工具打包出来的字体库，没有什么扩展字体库之分，记住，默认打包的就是**思源黑体字体 fzcircle.ttf**； <br/>
-**Z6S及以后平台** ：系统内置了**fzcircle.ttf**字体库，支持扩展字体库，同为**思源黑体字体**，字体库名称必须是**fzcircle.ttf**；使用其他字体库情况，导入的字体库名称不能是**~~fzcircle.ttf~~**；
+To summarize:<br/>
+**Z11S platform** : Because the platform system does not have a built-in font library, the system directly uses the font library packaged by the tool, and there is no extension of the font library. Remember, the default package is **Siyuan bold font fzcircle .ttf fzcircle.ttf**； <br/>
+**Z6S and later platforms** : The system has a built-in **fzcircle.ttf** font library, supports extended font library, the same as **Siyuan HeiTi font** , the name of the font library must be **fzcircle.ttf**; When using other font libraries, the imported font library name cannot be **~~fzcircle.ttf~~**;

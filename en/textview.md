@@ -1,150 +1,157 @@
-# 文本类 TextView
+# Text class TextView
 
-## 注意
+## Note
 
-如果不清楚如何修改文本的通用属性请参考[《通用属性》](ctrl_common#ctrl_common.md)
+If you are not sure how to modify the general properties of the text, please refer to[《General attributes》](ctrl_common#ctrl_common.md)
 
-## <span id="add_textview">我需要显示一段文字/标签，怎么办？</span>
-如果需要显示文字，利用现有的`Textview`件就可以快速实现。具体操作步骤如下：
-1. 双击打开main.ftu文件
-2. 在右侧控件集合中找到`文本`控件
-3. 鼠标左键点击`文本`控件不放，然后将其拖拽到任意位置，松开左键，就能看到自动生成的文本控件。  
+## <span id="add_textview">I need to display a text/label, what should I do?</span>
+If you need to display text, you can quickly implement it with the existing `Textview`. The specific steps are as follows:
+1. Double click to open the main.ftu file
+2. Find the `text` control in the right control collection
+3. Left-click on the `text` control and hold it, then drag it to any position, release the left button, and you can see the automatically generated text control.  
 
   ![创建文本](assets/textview/create_textview.gif)
 
 
-## 如何通过代码动态更新文本内容？
-在串口屏的使用中，常常会动态更新文本内容。那么在代码中，我们可以通过`文本`控件对应的指针来动态更新文本控件的内容。具体操作步骤如下：
-1. 首先需要知道文本控件在代码中对应的指针变量（[如果你不清楚指针变量名与UI文件中控件ID的对应规则，点击这里](named_rule.md)），这里以ID为`Textview1`的文本控件为例，它对应的指针变量为`mTextview1Ptr`，
-2. 如果我们想要将Textview1控件的文本内容修改为`"Hello World"`,可以通过调用文本控件的成员方法`void setText(const char *text)`实现，在相应的`Logic.cc`文件中，具体代码为:
+## How to dynamically update text content through code?
+In the use of the serial port screen, the text content is often updated dynamically. Then in the code, we can dynamically update the content of the text control through the pointer corresponding to the `text` control. The specific steps are as follows:
+1. First, you need to know the pointer variable corresponding to the text control in the code（[If you are not clear about the corresponding rules of the pointer variable name and the control ID in the UI file, click here](named_rule.md)）, Here takes the text control with ID `Textview1` as an example, its corresponding pointer variable is `mTextview1Ptr`,
+2. If we want to modify the text content of the Textview1 control to `"Hello World"`, it can be achieved by calling the member method of the text control `void setText(const char *text)`, in the corresponding `Logic.cc` file, The specific code is:
 ```c++
 mTextview1Ptr->setText("Hello World");
 ```
-结合实际的使用情况举例。
-下面代码的作用是：当ID为Button1的按键被按下时，将ID为Textview1的文本设置为“Hello World”
+Take an example based on actual usage.
+The function of the following code is: when the button with ID Button1 is pressed, the text with ID Textview1 is set to "Hello World"
 ```c++
 static bool onButtonClick_Button1(ZKButton *pButton) {
     mTextview1Ptr->setText("Hello World");
     return false;
 }
 ```
-3. 文本控件除了可以设置字符串外，它还支持设置**数字**和**字符**：
+3. In addition to setting strings, the text control also supports setting **number** and **character**:
 
 ```c++
-/* 接口定义见头文件: include/control/ZKTextView.h */
-void setText(int text);  // 设置数字
-void setText(char text); // 设置字符
+/* For interface definition, see the header file: include/control/ZKTextView.h */
+void setText(int text);  // Set number
+void setText(char text); // Set character
 
-/* 操作样例 */
-mTextview1Ptr->setText(123); // Textview1控件将显示"123"字符串
-mTextview1Ptr->setText('c'); // Textview1控件将显示'c'字符
+/* Operation example */
+mTextview1Ptr->setText(123); // Textview1 control will display the string "123"
+mTextview1Ptr->setText('c'); // The Textview1 control will display the'c' character
 ```
 
 
-## <span id = "change_color">如何修改文字的颜色？</span>
-默认的文本显示为白色，通常无法满足需求，那么可以通过以下两种方式来修改文本颜色。
+## <span id = "change_color">How to modify the color of text?</span>
+The default text is displayed in white, which usually cannot meet the requirements. You can modify the text color in the following two ways.
 
-### 在属性栏中直接修改控件的颜色
+### Modify the color of the control directly in the property bar
 
- 在项目资源管理器中，选择一个UI文件，双击打开；
- 在预览界面上，找到你要修改的控件，左键点击它，在编辑器的右侧就能看到该控件相应的属性表，这时候你就可以根据需要，填写自定义的属性值，就跟操作Excel一样, 找到你需要修改的属性，然后单击修改。
+ In the project explorer, select a UI file and double-click to open it;
+  On the preview interface, find the control you want to modify, left-click on it, and you can see the corresponding attribute table of the control on the right side of the editor. At this time, you can fill in the custom attribute values as needed. As with Excel, find the attribute you need to modify, and then click Modify.
 
- 在文本控件中，可以看到有3个表项与颜色属性有关，分别是
- * 颜色设置
-    - 该属性可以分别设置控件各个状态下文字的颜色值
- * 背景色
-     - 设置控件整个矩形区域的背景颜色（不会根据控件状态的变化而变化）
- * 背景颜色设置  
-    - 对背景色属性的扩展，可以分别设置控件各个状态下的背景颜色
+ In the text control, you can see that there are 3 table items related to the color attribute, namely
+ * Color setting
+    - This property can set the color value of the text in each state of the control separately
+ * Background color
+     - Set the background color of the entire rectangular area of the control (will not change according to the state of the control)
+ * Background color setting  
+    - To extend the background color property, you can set the background color in each state of the control separately
 
- 具体示例：  
+ Specific examples:  
 
    ![TextView-color-example](assets/TextView-color-example.png "属性示例")
 
- 效果图：
+ Effect picture:
 
    ![TextVIew-color-preview](assets/TextView-color-preview.png "效果图")
 
-  上图是属性表颜色部分截图，其表示的含义为：背景颜色设置为黑色， 文字的颜色设置为白色，当控件设置为选中状态时，文字颜色变为红色。
+  The above figure is a screenshot of the color part of the attribute table. The meaning is: the background color is set to black, and the text color is set to white. When the control is set to the selected state, the text color changes to red.
 
-### 通过代码控制颜色变化
+### Control color change through code
 
-   在属性表中设置颜色具有直观、方便的特点，但是缺少灵活性，于是在代码中，通过控件指针，调用相应成员方法可以对颜色进行动态控制。
+   Setting the color in the attribute table is intuitive and convenient, but it lacks flexibility. Therefore, in the code, the color can be dynamically controlled by calling the corresponding member method through the control pointer.
 
 
-  以ID为`Textview1`的文本控件为例，以下方法都可以达到修改颜色的目的。（[如果你不清楚指针变量名与UI文件中控件ID的对应规则，点击这里](named_rule.md)）
+  Take the text control with ID `Textview1` as an example, the following methods can achieve the purpose of modifying the color.（[If you are not clear about the corresponding rules of the pointer variable name and the control ID in the UI file, click here](named_rule.md)）
 
-  以ID为`Textview1`的文本控件为例，以下方法都可以达到修改颜色的目的。
+  Take the text control with ID `Textview1` as an example, the following methods can achieve the purpose of modifying the color.
 
 
  * `void setInvalid(BOOL isInvalid)`  
     ```c++
-      //将控件Textview1 设置为无效状态；如果属性表中`无效时颜色`属性不为空，则将其设置为指定的颜色，否则无变化。
+      /*Set the control Textview1 to the invalid state; if the `color when invalid` property in the property sheet is not empty,
+      set it to the specified color, otherwise there is no change.
+      */
       mTextview1Ptr->setInvalid(true);
     ```
 
  * `void setSelected(BOOL isSelected)`     
    ```c++
-      //将控件Textview1 设置为选中状态；如果属性表中`选中时颜色`属性不为空，则将其设置为指定的颜色，否则无变化。
+      /*Set the control Textview1 to the selected state; if the `color when selected` property in the property sheet is not empty,
+      set it to the specified color, otherwise there is no change.
+      */
        mTextview1Ptr->setSelected(true);
    ```
  * `void setPressed(BOOL isPressed)`
    ```c++
-      //将控件Textview1 设置为按下状态；如果属性表中`按下时颜色`属性不为空，则将其设置为指定的颜色，否则无变化。
+      /*Set the control Textview1 to the pressed state; if the `color when pressed` property in the property sheet is not empty,
+      set it to the specified color, otherwise there is no change.
+      */
        mTextview1Ptr->setPressed(true);
    ```
- * `void setTextColor(int color) //参数color以16进制表示RGB颜色`
+ * `void setTextColor(int color) //The parameter color represents the RGB color in hexadecimal`
    ```c++
-      //将控件Textview1 设置为红色。
+      //Set the control Textview1 to red.。
       mTextview1Ptr->setTextColor(0xFF0000);
    ```
    
-## 如何显示小数
-文本控件提供了设置string的接口。
+## How to display decimals
+The text control provides an interface for setting string.
 ```c++
 	/**
-	 * @brief 设置字符串文本
+	 * @brief Set string text
 	 */
 	void setText(const char *text);
 ```
-如果你想显示任何数字，都可以先用 `snprintf` 这个函数，将数字格式化为字符串，然后设置字符串，从而达到随意显示内容的目的。    
-例如：  
+If you want to display any number, you can first use the `snprintf` function to format the number into a string, and then set the string to achieve the purpose of displaying content at will.  
+E.g:  
 ```c++
   float n = 3.1415;
   char buf[64] = {0};
-  snprintf(buf, sizeof(buf), "%.3f", n); //固定显示3位小数，多余的小数位会忽略，不足则补0
+  snprintf(buf, sizeof(buf), "%.3f", n); /*Fixed display 3 decimal places, extra decimal places will be ignored, if not enough, 0 
+  will be added*/
   mTextView1Ptr->setText(buf);
 ```
-`snprintf` 是一个C语言标准函数，你可以网上搜索相关资料了解，也可以查看这里的[简要介绍及使用例子](cpp_base.md#snprintf)。
+`snprintf` It is a C language standard function, you can search for relevant information on the Internet, or check the[brief introduction and usage examples here](cpp_base.md#snprintf)。
 
 
-## 实现逐帧动画
-由于文本控件可以添加背景图，我们可以利用它简单的显示一张图片。  
-更近一步，如果我们在代码中动态切换文本控件的背景图，只要切换的时间间隔足够短，那么就能实现动画的效果。
+## Realize frame-by-frame animation
+Since the text control can add a background image, we can use it to simply display a picture.  
+One step closer, if we dynamically switch the background image of the text control in the code, as long as the switching time interval is short enough, the animation effect can be achieved.
 
-1. 图片资源准备  
-  一段流畅的帧动画必然需要多张图片资源。这里我们已经准备好了，共60张。  
+1. Picture resource preparation  
+  A smooth frame animation necessarily requires multiple image resources. Here we have prepared a total of 60 photos.  
   ![](assets/textview/resources.png)   
 
-  可以看到每张图片表示一帧，并且根据序号统一命名，这主要是方便后续使用。    
-  >**注意： 系统加载图片时将消耗较多资源， 为了界面运行流畅，强烈建议图片不宜过大。 比如例子中的单张图片大小仅为5KB左右**   
+  You can see that each picture represents a frame and is named uniformly according to the serial number, which is mainly to facilitate subsequent use.    
+  >**Note: The system will consume more resources when loading pictures. In order to run the interface smoothly, it is strongly recommended that the pictures should not be too large. For example, the size of a single image in the example is only about 5KB**   
 
-  将这些图片都拷贝到项目的 **resources** 目录下。你可以在 **resources** 目录下自行创建子文件夹，方便各种图片资源的整理归类。
+  Copy these pictures to the **resources** directory of the project. You can create subfolders under the **resources** directory to facilitate the sorting of various image resources.
 
   ![](assets/textview/resources_dir.png)
 
-2. 创建文本控件  
-  在UI文件中任意创建一个文本控件。并将文本控件的背景图设置为其中一张图片。这里我将第一张图片设置为背景图。这一步仅仅是为了将文本控件的宽高自动调整为图片的宽高，你也可以选择不设置。  
-  完整属性如图：  
+2. Create a text control  
+  Create a text control arbitrarily in the UI file. And set the background image of the text control to one of the images. Here I set the first picture as the background picture. This step is just to automatically adjust the width and height of the text control to the width and height of the picture, you can also choose not to set it.  
+  The complete attributes are shown in the figure:  
 
     ![](assets/textview/textview_properties.png)  
 
-3. 编译项目，注册定时器  
-    添加了文本控件后，再次编译项目，在生成的`Logic.cc`文件中，注册一个定时器，时间间隔设置为 50 ms。 我们利用定时器每隔50ms切换一张图片。  
-    [如何编译项目？](how_to_compile_flythings.md)  
-    [如何注册定时器？](timer.md)
-4. 动态切换文本控件的背景  
-   在相应的`Logic.cc`文件中，添加如下切换背景图的函数， 并在定时器的触发函数 `bool onUI_Timer(int id)` 中调用它。   
+3. Compile the project, register the timer  
+    After adding the text control, compile the project again, register a timer in the generated `Logic.cc` file, and set the time interval to 50 ms. We use the timer to switch a picture every 50ms.  
+    [How to compile the project?](how_to_compile_flythings.md)  
+    [How to register the timer?](timer.md)
+4. Dynamically switch the background of the text control  
+   In the corresponding `Logic.cc` file, add the following function to switch the background image, and call it in the timer trigger function `bool onUI_Timer(int id)`.   
    ```c++
    static void updateAnimation(){
         static int animationIndex = 0;
@@ -155,39 +162,39 @@ mTextview1Ptr->setText('c'); // Textview1控件将显示'c'字符
    }
    ```
 
-    **上面的函数中有两点我们需要注意：**  
-   * **切换文本控件的背景图是由 `setBackgroundPic(char* path)` 函数实现的。**
-   * **`setBackgroundPic(char* path)`函数的参数是图片的相对路径。该路径是相对于项目中的 `resources` 文件夹而言。**  
+    **We need to pay attention to two points in the above function:**  
+   * **Switching the background image of the text control is implemented by the `setBackgroundPic(char* path)` function.**
+   * **The parameter of `setBackgroundPic(char* path)` function is the relative path of the picture. The path is relative to the `resources` folder in the project.**  
 
-      **例如：如下图，我们的图片是放在项目中 `resources/animation/` 文件夹下，那么 loading_0.png 这张图片的相对路径为  `animation/loading_0.png`**
+      **For example: as shown in the figure below, our picture is placed under the folder `resources/animation/` in the project, then the relative path of loading_0.png is `animation/loading_0.png`**
 
      ![](assets/textview/relative_path.png)  
 
-     `setBackgroundPic(char* path)` 函数也可以接受绝对路径。例如：如果你将图片 `example.png` 放到TF的根目录下，那么它对应的绝对路径为 `/mnt/extsd/example.png`，  其中 `/mnt/extsd/`是TF卡的挂载目录。  
-     我们推荐所有图片资源放到项目的 `resoources` 文件夹下，或者其子文件夹下，因为其他路径的图片资源将不会被自动打包到软件中。  
+     `The setBackgroundPic(char* path)` function can also accept absolute paths. For example: if you put the image `example.png` in the root directory of TF, its corresponding absolute path is `/mnt/extsd/example.png`, where `/mnt/extsd/` is the link of the TF card Load catalog.  
+     We recommend that all image resources be placed in the project's `resoources` folder or its subfolders, because image resources in other paths will not be automatically packaged into the software.  
 
-5. [下载运行](adb_debug.md)，查看效果    
-6. [完整样例下载](#example_download)
+5. [Download and run](adb_debug.md)，View effect    
+6. [Complete sample download](#example_download)
 
-## 特殊字符集的使用  
-我们知道，根据asc码的定义，`字符 char` 与 `整形 int` 存在着对应关系。比如字符 `0` 的asc码为`48`。 特殊字符集就是将asc码映射为图片的一种功能。设置该功能后，当我们显示一个字符串时，系统会尝试将字符串中的每一个字符映射为指定的图片，最终显示一串图片到屏幕上。  
-1. 设置方法   
+## Use of special character sets  
+We know that, according to the definition of asc code, there is a correspondence between `character char` and `integer int`. For example, the asc code of the character `0` is `48`. The special character set is a function of mapping the asc code to the picture. After setting this function, when we display a string, the system will try to map each character in the string to a specified picture, and finally display a string of pictures on the screen.  
+1. Setting method   
 
    ![](assets/textview/special_font.png)  
 
-   找到文本控件中的 **特殊字符集设置**， 点击右侧的 **更多**选项，将弹出特殊字符集选择框。  
+   Find the **Special Character Set Setting** in the text control, click on the **More** option on the right, a special character set selection box will pop up.  
 
    ![](assets/textview/special_font_dialog.png)  
 
-   选择右上角的 **导入** 按键添加图片到字符集中， 添加图片后，你可以自行修改对应的asc码或者字符作为该图片的映射字符。然后点击 **保存**
-2. 如果要验证特殊字集是否添加成功，你可以修改文字，预览图上会同步预览效果。   
-   **注意：如果你设置了特殊字符集，那么系统会尝试将每个字符映射为字符集中指定的图片；如果某个字符没有设置图片的映射，那么这个字符将不会显示到屏幕上。**
+   Select the **import** button in the upper right corner to add the picture to the character set. After adding the picture, you can modify the corresponding asc code or character as the mapping character of the picture. Then click **Save**
+2. If you want to verify whether the special character set is added successfully, you can modify the text, and the preview effect will be synchronized on the preview.   
+   **Note: If you set a special character set, the system will try to map each character to a picture specified in the character set; if a character is not set to a picture, then this character will not be displayed on the screen.**
 
-### 具体使用
-1. 在上面的特殊字符集设置框中，我们已经将字符 0-9 以及 : 冒号 分别映射为图片。  
+### Specific use
+1. In the above special character set setting box, we have mapped the characters 0-9 and: colon to pictures respectively.  
    ![](assets/textview/num.png)
 
-   然后代码中，通过`setText(char* str)`函数设置字符串。由于我们在 TextTime 文本控件中设置了特殊字符集，所以字符都转变为了相应的图片。效果图如下：
+   Then in the code, set the string through the `setText(char* str)` function. Since we set a special character set in the TextTime text control, the characters are converted to corresponding pictures. The renderings are as follows:
 
    ```
    static void updateTime() {
@@ -199,17 +206,17 @@ mTextview1Ptr->setText('c'); // Textview1控件将显示'c'字符
    ```
    ![](assets/textview/0000.png)  
 
-   如果你只需要显示单个字符，那么可以直接设置asc码或字符，不用转化为字符串。  
-   例如：
+   If you only need to display a single character, you can directly set the asc code or character without converting it into a string.  
+   E.g:
    ```
-   mTextTimePtr->setText((char)48); //直接设置asc码，需要转为char
-   mTextTimePtr->setText('0'); //直接设置字符
+   mTextTimePtr->setText((char)48); //Set the asc code directly, it needs to be converted to char
+   mTextTimePtr->setText('0'); //Set characters directly
    ```
 
-## <span id = "example_download">样例代码</span>
+## <span id = "example_download">Sample code</span>
 
-由于文本控件属性较多，更多属性效果请参考[样例代码](demo_download.md#demo_download)中的TextViewDemo工程。   
+As there are many properties of text controls, please refer to the TextViewDemo project in  [Sample code](demo_download.md#demo_download)for more property effects.
 
-预览效果图：
+Preview effect picture:
 
-![效果图](assets/textview/preview.png)
+![Effect picture](assets/textview/preview.png)

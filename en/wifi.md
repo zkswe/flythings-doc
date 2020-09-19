@@ -1,53 +1,53 @@
-## 启动wifi设置界面
+## Start the wifi setting interface
 ```c++
 EASYUICONTEXT->openActivity("WifiSettingActivity");
 ```
 
-## wifi操作接口说明
-获取WifiManager对象
+## Description of wifi operation interface
+Get WifiManager object
 ```c++
 #include "net/NetManager.h"
 WifiManager *pWM = NETMANAGER->getWifiManager();
 
-//	可以定义个宏,方便以下接口调用
+// You can define a macro to facilitate the following interface calls
 #define  WIFIMANAGER    NETMANAGER->getWifiManager()
 ```
-检测机器是否支持wifi
+Check whether the machine supports wifi
 ```c++
 WIFIMANAGER->isSupported();
 ```
-检测wifi是否打开
+Check if wifi is on
 ```c++
 WIFIMANAGER->isWifiEnable();
 ```
-开关wifi
+Switch wifi
 ```c++
 WIFIMANAGER->enableWifi(true);
 ```
-扫描wifi
+Scan wifi
 ```c++
 WIFIMANAGER->startScan();
 ```
-连接wifi
+Connect to wifi
 ```c++
 WIFIMANAGER->connect(ssid, pw);
 ```
-断开wifi连接
+Disconnect wifi connection
 ```c++
 WIFIMANAGER->disconnect();
 ```
-检测wifi是否已连接
+Check if wifi is connected
 ```c++
 WIFIMANAGER->isConnected();
 ```
-获取已连接wifi的信息
+Get connected wifi information
 ```c++
 WIFIMANAGER->getConnectionInfo();
 ```
-注册、反注册wifi信息监听
+Registration and anti-registration wifi information monitoring
 ```c++
 void addWifiListener(IWifiListener *pListener);
 void removeWifiListener(IWifiListener *pListener);
 ```
-## 样例代码  
-见 [样例代码](demo_download.md#demo_download) 里的 `NetDemo` 工程
+## Sample code  
+See the `NetDemo` project in the [sample code](demo_download.md#demo_download) 

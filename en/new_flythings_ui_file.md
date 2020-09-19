@@ -1,22 +1,23 @@
-# <span id="new_flythings_project">如何新建FlyThings UI 文件</span>  
-新建UI文件与 [新建FlyThings 项目](new_flythings_project.md#new_flythings_project)类似。
-1. 在项目资源管理器中，展开需要创建UI文件的项目，选中项目下的 **ui** 文件夹，然后点击右键，在弹出菜单中，依次选择菜单  **新建** -> **FlyThings UI 文件**。
+# <span id="new_flythings_project">How to create a new FlyThings UI file</span>  
+New UI file and [New FlyThings project](new_flythings_project.md#new_flythings_project) are similar.
+1. In the Project Explorer, expand the project that needs to create the UI file, select the **ui** folder under the project, right-click, and in the pop-up menu, select the menu **New** -> **FlyThings UI file**.
 
    ![](assets/ide/new_ftu.gif)  
-2. 以上操作后，会弹出一个 **新建FlyThings UI 文件向导** 框，如下所示：   
+2. After the above operations, a **New FlyThings UI File Wizard** box will pop up, as shown below:   
 
-   ![新建UI文件向导](assets/ide/wizard_new_ftu.png)  
+   ![New UI File Wizard](assets/ide/wizard_new_ftu.png)  
  (
-   有三个参数你要你指定：  
-   * **文件名**   
-  你需要指定UI文件的文件名，文件名以字母、数字命名，以 **ftu** (FlyThings UI File) 为后缀名。
-   * **分辨率**  
-   你可以通过调整分辨率来控制UI界面的宽高，以像素为单位；  
-   * **窗口类型**   
-    目前有四种窗口类型，分别为 **普通**、**状态栏**、**导航栏**、**屏保**。   
-     一般情况下我们保持 **普通** 选项就可以。其他三种类型的具体讲解，可以参考[系统应用介绍](system_app.md)    
-     
-   确定参数后，选择 **完成** ，创建过程结束。你可以在项目资源管理器中，项目的ui文件夹下看到新创建的UI文件。
+   There are three parameters you want you to specify:  
+   * **File name**   
+  You need to specify the file name of the UI file. The file name is named with letters and numbers, with **ftu** (FlyThings UI File) as the suffix.
+   * **Resolution**  
+   You can control the width and height of the UI interface by adjusting the resolution, in pixels;  
+   * **Window type**   
+    There are currently four window types: **Normal**, **Status Bar**, **Navigation Bar**, and **Screensaver**.  
+    In general, we can keep the **normal** option. For specific explanations of the other three types, 
+    please refer to [System Application Introduction](system_app.md) 
+    
+ after confirming the parameters, select **Finish** to end the creation process. You can see the newly created UI file in the project's ui folder in the project explorer.
 
  
  

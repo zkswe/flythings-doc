@@ -1,83 +1,82 @@
-# 系统界面类型
-前面介绍的应用界面我们归类为普通窗口界面，一般情况下已经够用了，通过工具新建UI界面时，默认的窗口类型就是普通窗口：  
+# System interface type
+The application interface introduced above is classified as a normal window interface, which is usually enough. When creating a new UI interface through the tool, the default window type is a normal window:  
 
  ![](images/5939b5202b235b3a3e0c9d773f749b26_597x852.png)
 
-如果某些场景需要一个悬浮在UI界面之上的显示区，那么普通窗口就不能胜任这份工作了，需要用到我们其他的几种类型的窗口了；
-在 **窗口类型** 选项中，有三种特殊类型窗口选项，这三种特殊类型具有特殊的文件名，分别对应为
-* 状态栏 **statusbar.ftu**
-* 导航栏 **navibar.ftu**
-* 屏保 **screensaver.ftu**  
+If some scenes require a display area floating above the UI interface, then ordinary windows will not be able to do the job, and we need to use several other types of windows;
+In the **Window Type** option, there are three special types of window options, these three special types have special file names, respectively corresponding to
+* Statusbar **statusbar.ftu**
+* Navibar **navibar.ftu**
+* Screensaver **screensaver.ftu**  
 
   ![](images/screenshot_1512460753534.png)
 
-点击确定后，工具会帮我们自动生成相应的代码；这三种类型的窗口，对于控件的操作与普通窗口一样；
+After clicking OK, the tool will automatically generate the corresponding code for us; the operations of these three types of windows are the same as those of ordinary windows;
 
-## 状态栏
-解释：这个状态栏跟Android，iOS手机的状态栏概念一致，是一个悬浮在UI界面之上的一个通用显示区。通常用于显示一些常见信息，或者放置返回键或Home键等等。如下效果：
+## Status Bar
+Explanation: This status bar is consistent with the concept of the status bar of Android and iOS phones. It is a general display area floating above the UI interface. Usually used to display some common information, or to place the return button or home button, etc. The following effects:  
 ![](assets/statusbar.png)
 
-系统提供了两个接口可以用于操作状态栏：
+The system provides two interfaces that can be used to operate the status bar:
 
-显示状态栏：
+Show status bar:
 ```c++
 EASYUICONTEXT->showStatusBar();
 ```
-隐藏状态栏：
+Hide the status bar:
 ```c++
 EASYUICONTEXT->hideStatusBar();
 ```
-完整源码见[**样例代码包**](demo_download.md#demo_download)中的**StatusBarDemo**工程
+For the complete source code, see the **StatusBarDemo** project in the [**sample code package**](demo_download.md#demo_download)
 
-## 导航栏
-解释：这个导航栏跟Android手机的导航栏概念一致，是一个悬浮在UI界面之上的一个通用操作或者显示区，一般在页面的底部。通常用于显示一些操作按键。导航栏实际上和状态栏没有什么差别。
+## Navigation Bar
+Explanation: This navigation bar has the same concept as the navigation bar of Android phones. It is a general operation or display area floating above the UI interface, generally at the bottom of the page. Usually used to display some operation keys. The navigation bar is actually no different from the status bar.
 
-显示导航栏：
+Show navigation bar:
 ```c++
 EASYUICONTEXT->showNaviBar();
 ```
-隐藏导航栏：
+Hide the navigation bar:
 ```c++
 EASYUICONTEXT->hideNaviBar();
 ```
 
-## 屏保应用
-解释：屏保应用是指当用户不再做系统交互的时候，时间超过某个指定时间长度。系统自动打开一个页面。
-右键工程, 选择 Properties 选项, 在弹出的属性框里，我们可以对屏保超时时间进行设置，单位为秒，-1表示不进屏保；
-我们也可以通过代码进行一些设置，见 jni/include/entry/EasyUIContext.h：
+## Screensaver application
+Explanation: The screen saver application means that when the user no longer interacts with the system, the time exceeds a specified length of time. The system automatically opens a page.
+Right-click the project, select the Properties option, in the pop-up properties box, we can set the screen saver timeout time, the unit is seconds, -1 means not enter the screen saver;
+We can also make some settings through code, see jni/include/entry/EasyUIContext.h:
 
-* 所需头文件
+* Required header files
  ```c++
  #include "entry/EasyUIContext.h"
  ```
  
-* 设置屏保超时时间
+* Set the screen saver timeout period
 ```c++
-//设置屏保超时时间为5秒
+//Set the screen saver timeout time to 5 seconds
 EASYUICONTEXT->setScreensaverTimeOut(5); 
 ```
 
-* 设置是否允许启用屏保
+* Set whether to allow screen saver
 
   ```c++
-  EASYUICONTEXT->setScreensaverEnable(false); //关闭屏保检测
-  EASYUICONTEXT->setScreensaverEnable(true); //恢复屏保检测
+  EASYUICONTEXT->setScreensaverEnable(false); //Turn off screensaver detection
+  EASYUICONTEXT->setScreensaverEnable(true); //Restore screensaver detection
   ```
-  > 应用场景：如升级界面不能进入屏保模式，可以在升级应用里EASYUICONTEXT->setScreensaverEnable(false)关闭屏保检测。
+  > Application scenario: If the upgrade interface cannot enter the screen saver mode, you can turn off the screen saver detection in the upgrade application EASYUICONTEXT->setScreensaverEnable(false).
   
-* 立即进入屏保 
+* Enter the screensaver now 
 ```c++
 EASYUICONTEXT->screensaverOn();
 ```
 
-* 立即退出屏保
+* Exit the screensaver immediately
 ```c++
 EASYUICONTEXT->screensaverOff();
 ```
 
-* 判断是否进入了屏保
+* Determine whether to enter the screen saver
 ```c++
 EASYUICONTEXT->isScreensaverOn();
 ```
-
-完整源码见[**样例代码包**](demo_download.md#demo_download)中的**ScreensaverDemo**工程
+For the complete source code, see the **ScreensaverDemo** project in the [**sample code package**](demo_download.md#demo_download)

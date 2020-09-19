@@ -1,26 +1,26 @@
-# 截屏
-产品开发完毕后，编写使用说明书时，可能需要运行界面的截图，可参考如下代码截屏。  
-## 准备
-1. 下载[screenshot.h](https://docs.flythings.cn/src/screenshot.h) 源文件，保存到项目 `jni`目录下。  
+# Screenshot
+After the product is developed, when writing the manual, you may need a screenshot of the running interface. You can refer to the following code screenshot.  
+## Ready
+1. Download[screenshot.h](https://docs.flythings.cn/src/screenshot.h) source files, save them in the project `jni` directory.  
   ![](assets/screenshot1.png)
   
-## 使用
+## Use
 
-* 引用头文件
+* Reference header file
   ```c++
   #include "screenshot.h"
   ```
-* 调用接口进行截屏  
+* Call the interface to take a screenshot 
   ```c++
   static bool onButtonClick_Button1(ZKButton *pButton) {
-    //截取当前屏幕，保存为bmp图片，保存到TF卡目录下
-    //每调用一次该函数，保存的图片名递增
-    //例如  screenshot01.bmp、screenshot02.bmp、screenshot03.bmp
+    //Capture the current screen, save it as a bmp picture, and save it to the TF card directory
+    //Each time this function is called, the name of the saved picture is incremented
+    //E.g screenshot01.bmp、screenshot02.bmp、screenshot03.bmp
     Screenshot::AutoSave();
     return false;
   }
   ```
-  默认图片保存到TF卡，所以尽量插上TF卡再截屏。  
-  如果需要保存到其他位置，可以自行修改源码。   
+  The default picture is saved to the TF card, so try to plug in the TF card and take a screenshot.  
+   If you need to save it to another location, you can modify the source code yourself.   
   
  

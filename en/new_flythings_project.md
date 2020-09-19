@@ -1,46 +1,46 @@
-# <span id="new_flythings_project">如何新建FlyThings项目</span>
-新建一个FlyThings项目十分简单。具体步骤如下：  
-1. 在编辑器顶部的菜单栏中，依次选择 **文件 -> 新建 -> FlyThings项目**   
+# <span id="new_flythings_project">How to create a new FlyThings project</span>
+Creating a new FlyThings project is very simple. Specific steps are as follows:  
+1. In the menu bar at the top of the editor, select **File -> New -> FlyThings Project**  
 
    ![新建项目](assets/ide/new_flythings_project.gif)  
 
-2. 上一步选择完成后，将弹出 **FlyThings创建向导** 提示框。  
+2. After the selection in the previous step is completed, the **FlyThings Creation Wizard** prompt box will pop up. 
   
    ![创建向导第一步](assets/ide/wizard_new_project_page1.png)  
-   按要求填写新建项目相关的参数。  这些参数分别是：  
+   Fill in the parameters related to the new project as required. These parameters are:  
 
-   * **项目名**  
-  项目的名称；可以是字母、数字的组合，不能出现中文及空格。  
-   * **位置**  
-  项目的存储路径；同样不推荐路径中出现中文，防止编译异常。  
-   * **平台类型**  
-  根据购买的串口屏选择相应的平台，目前有  
+   * **Item name**  
+  The name of the project; it can be a combination of letters and numbers. Chinese characters and spaces cannot appear.  
+   * **Position**  
+  The storage path of the project; Chinese characters in the path are also not recommended to prevent compilation exceptions. 
+   * **Platform type**  
+  Choose the corresponding platform according to the serial screen you purchased, currently there are
      - **Z11S**  
      - **Z6S**  
     
-   规范填写如上必须参数后，你可以直接选择 **完成** ，来快速完成创建。但是现在，我们选择 **下一步** 来自定义更多的参数。
-3. 点击下一步之后，我们将看到更多的参数定义  
+   After filling in the required parameters as above, you can directly select **Complete** to quickly complete the creation. But for now, we choose **Next** to customize more parameters.
+3. After clicking Next, we will see more parameter definitions  
   
    ![新建参数](assets/ide/wizard_new_project_page2.png)  
    
-   ## 项目各个属性的含义及作用：  
-   * **屏保超时时间**  
-   FlyThings系统提供屏保的功能。如果在指定的时间内，串口屏没有任何触摸操作，或者你没有通过代码重置屏保计时，那么，系统将自动进入屏保。  
-  如果时间为 **-1** 秒， 表示禁止屏保功能。
-   * **串口**  
-  指定通讯串口，一般情况下不需要修改。
-   * **波特率**   
-  指定通讯串口的波特率 
-   * **分辨率**  
-  以像素为单位，指定屏幕的宽高
-   * **屏幕旋转**  
-  针对某些屏幕坐标轴方向不同，可勾选该选项，将显示内容旋转90°，达到正常显示。
-   * **字体**  
-  FlyThings支持自定义字体，如果你不满意默认字体，可取消默认，再选择你的字体文件。
-   * **输入法**  
-  如果你有中文输入的需求，可以勾选它， 配合 **[编辑输入框](edittext.md)** 控件，就可以解决中文输入了。      
+   ## The meaning and function of each attribute of the project:  
+   * **Screen saver timeout**  
+   FlyThings system provides screensaver function. If there is no touch operation on the serial port screen within the specified time, or you do not reset the screen saver timing through the code, then the system will automatically enter the screen saver.  
+  If the time is **-1** second, it means that the screen saver function is disabled.
+   * **Serial port**  
+  Specify the communication serial port, and generally do not need to be modified.
+   * **Baud rate**   
+  Specify the baud rate of the communication serial port 
+   * **Resolution**  
+  Specify the width and height of the screen in pixels
+   * **Screen rotation**  
+  For some screen coordinate axis directions, you can check this option to rotate the displayed content by 90° to achieve normal display.
+   * **Font**  
+  FlyThings supports custom fonts. If you are not satisfied with the default fonts, you can cancel the defaults and select your font file.
+   * **Input**  
+  If you have a requirement for Chinese input, you can check it and cooperate with **[Edit input box](edittext.md)** control, you can solve Chinese input.     
   
-    以上属性后续都可以再次修改，所以不必过分担心填写错误。([如何修改已有项目的属性](set_project_properties.md))  
-  属性都填写确认后，点击 **完成** 结束创建，创建过程会花费些许时间，耐心等待。  
+    The above attributes can be modified again later, so don't worry too much about filling in errors. ([How to modify the properties of an existing project](set_project_properties.md))  
+  After the attributes are filled in and confirmed, click **Finish** to end the creation. The creation process will take some time and wait patiently.  
   
-4. 项目创建完成后，你应该先了解 [FlyThings 项目代码结构介绍](project_structure#project_structure.md)
+4. After the project is created, you should first understand [Introduction to FlyThings Project Code Structure](project_structure#project_structure.md)

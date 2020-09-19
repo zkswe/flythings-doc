@@ -1,11 +1,11 @@
-# 如何导入FlyThings项目
-我们可以将下载的示例代码导入到目前的工作空间中。  
-导入步骤如下。
-1. 找到工具顶部的菜单栏，依次选择菜单 **文件** -> **导入** 。
-2. 在弹出框中， 依次选择 **常规** -> **现有项目到工作空间中**， 再选择 **下一步**。  
-3. 在弹出框中 选择 **浏览** 按钮，指定需要导入项目的文件夹。 点击 **确定**, 它会自动解析文件夹内包含的项目。 
-4. 如果项目文件没有损坏，你可以看到已经识别出来的项目，然后直接点击 **完成** ，导入的项目就会出现在 项目资源管理器中，你可以继续查看/编辑它。
+# How to import FlyThings project
+We can import the downloaded sample code into the current workspace.  
+The import steps are as follows.
+1. Locate the menu bar at the top of the tool, and select the menu  **File** -> **Import** in turn.
+2. In the pop-up box, select **General** -> **Existing Project to Workspace**, and then select **Next**。  
+3. In the pop-up box, select the **Browse** button and specify the folder where the project needs to be imported. Click **OK**, it will automatically parse the items contained in the folder.
+4. If the project file is not damaged, you can see the identified project, and then click **Finish** directly, the imported project will appear in the Project Explorer, and you can continue to view/edit it.
 
-具体导入动画  
+Specific import animation 
 
 ![](https://ae01.alicdn.com/kf/HTB1ZGL5aOzxK1Rjy1zk5jaHrVXar.gif)

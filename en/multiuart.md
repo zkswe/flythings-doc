@@ -1,12 +1,12 @@
-# 多串口配置
+# Multiple serial port configuration
 
-常规项目默认只支持一个串口，如果您要使用双串口，甚至多串口，请下载[DoubleUartDemo样例](demo_download.md#demo_download)，
-该样例在常规项目中修改了串口部分代码，以支持多串口。
-## 变更
-变更部分见如下说明。
-* uart部分代码经过修改，所以项目属性里的串口配置失效。
-* 串口号及波特率请参照 `jni/uart/UartContext.cpp` 文件中的 `init()`函数修改。
-  ```c++
+Conventional projects only support one serial port by default. If you want to use dual serial ports or even multiple serial ports, please download [DoubleUartDemo sample](demo_download.md#demo_download),
+In this example, part of the serial port code is modified in the conventional project to support multiple serial ports.
+## Change
+The changes are described below.
+* Some codes of uart have been modified, so the serial port configuration in the project properties is invalid.
+* Please refer to the `init()` function in the `jni/uart/UartContext.cpp` file to modify the serial port number and baud rate.
+  ```c++   
   void UartContext::init() {
       uart0 = new UartContext(UART_TTYS0);
       uart0->openUart("/dev/ttyS0", B9600);
@@ -15,31 +15,31 @@
       uart1->openUart("/dev/ttyS1", B9600);
 }
 ```
-* 发送数据到指定串口 
+* Send data to the designated serial port
 ```c++
     unsigned char buf[2] = {1, 1};
-    sendProtocolTo(UART_TTYS1, 1, buf, 2); //发送到TTYS1串口
+    sendProtocolTo(UART_TTYS1, 1, buf, 2); //Send to TTYS1 serial port
 
     unsigned char buf[2] = {0};
-    sendProtocolTo(UART_TTYS0, 1, buf, 2);//发送到TTYS0串口
+    sendProtocolTo(UART_TTYS0, 1, buf, 2);//Send to TTYS0 serial port
 ```
 
-* 接收串口数据的方式与常规项目相同  
-  如果需要区分数据来自哪一个串口，建议在`SProtocolData` 结构体中添加一个字段标识该帧来自哪一个串口。
+* The way of receiving serial port data is the same as that of regular projects  
+  If you need to distinguish which serial port the data comes from, it is recommended to add a field to the `SProtocolData` structure to identify which serial port the frame comes from.
   
-  修改 `uart/ProtocolData.h`
+  modify `uart/ProtocolData.h`
   ```c++
   typedef struct {
 	    BYTE power;
-	    int uart_from; //来自哪一个串口
+	    int uart_from; //From which serial port
 } SProtocolData;
    ```
 
-  修改 `uart/ProtocolParser.cpp`
+  modify `uart/ProtocolParser.cpp`
 
   ```c++
     /**
-     * 解析每一帧数据
+     * Analyze each frame of data
      */
     static void procParse(int uart, const BYTE *pData, UINT len) {
         // CmdID
@@ -49,23 +49,23 @@
             break;
         }
 
-        sProtocolData.uart_from = uart; //标识该帧来自哪一个串口
-        // 通知协议数据更新
+        sProtocolData.uart_from = uart; //Identify which serial port the frame comes from
+        // Notify protocol data update
         notifyProtocolDataUpdate(sProtocolData);
     }
    ```
 
-   然后在`Logic.cc`中，可以使用`uart_from`字段判断该数据来自哪一个串口。
+   Then in `Logic.cc`, you can use the `uart_from` field to determine which serial port the data comes from.
    
    ```c++  
  static void onProtocolDataUpdate(const SProtocolData &data) {
       LOGD("onProtocol %d", data.uart_from);
 
       char buf[128] = {0};
-      snprintf(buf, sizeof(buf), "收到串口 %d的数据", data.uart_from);
+      snprintf(buf, sizeof(buf), "Received serial port %d data", data.uart_from);
       mTextview1Ptr->setText(buf);
 }
   ```
   
-## 样例代码
-  完整代码见[样例代码](demo_download.md#demo_download) 里的 `DoubleUartDemo` 工程
+## Sample code
+  For the complete code, see the `DoubleUartDemo` project in [Sample Code](demo_download.md#demo_download)

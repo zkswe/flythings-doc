@@ -1,103 +1,104 @@
-# 视频
-FlyThings还提供了视频播放的控件。  
+# Video
+FlyThings also provides controls for video playback. 
 
 > [!Note]
-> 视频播放功能并非所有版本的机器都支持！如果需要正常使用该功能，那么请购买带有多媒体功能的机器版本。 
+> The video playback function is not supported by all versions of the machine! If you need to use this function normally, please purchase a machine version with multimedia functions.
+> 
 
-## 使用控件轮播视频  
-1. 首先，创建一个 **视频** 控件，默认背景色为黑色。
-2. 查看 **视频** 的属性表  
+## Use controls to rotate videos
+1. First, create a **Video** Control, the default background color is black.
+2. View the attribute table of **Video**  
 
    ![](assets/video/properties.png)  
 
-   其中，有个属性为 **是否为轮播视频类型**   
-如果选择 **是** ，那么每次进入这个UI界面时，会自动读取TF卡目录下的配置文件，循环播放配置文件中指定的视频。 退出页面自动停止播放。  这个属性非常适合仅需要播放视频、且不存在用户干预播放的场景，比如轮播广告机、自动播放一段短视频等。  
-如果选择 **否** ，仅仅只会创建一个视频的渲染区域，除此以外没有其他操作。那么，你就需要自己去操作视频播放了。
+   Among them, one attribute is **Whether it is a carousel video type**   
+ If you choose **Yes**, then every time you enter this UI interface, it will automatically read the configuration file in the TF card directory and play the video specified in the configuration file in a loop. Exit the page and automatically stop playing. This attribute is very suitable for scenarios where only the video needs to be played without user intervention, such as carousel advertising machines, automatic playback of a short video, etc.  
+ If you select **No**, only a rendering area of the video will be created, and there will be no other operations. Then, you need to operate the video playback yourself.
 
-3. 创建视频配置文件  
-上面说到，如果是**视频轮播类型**，会自动读取视频配置文件。  你需要自行创建它。  
-这个配置文件需要位于TF卡根目录下，文件名是 **XXXX_video_list.txt** 
-XXXX 表示对应的UI文件前缀名。例如：  我在 **main.ftu** 中添加了一个视频控件，那么，对应的配置文件名为 **main_video_list.txt**  
-配置文件以行为单位， 每行为视频文件的绝对路径，如果视频文件也位于TF卡根目录，那么直接填写 `/mnt/extsd/` 加上 视频文件名即可。   
+3. Create a video profile
 
+ As mentioned above, if it is a **Video carousel type**, the video configuration file will be automatically read. You need to create it yourself.  
+ This configuration file needs to be located in the root directory of the TF card, the file name is  **XXXX_video_list.txt** 
+ XXXX represents the corresponding UI file prefix name.For example: I added a video control to **main.ftu**, then the corresponding configuration file name is **main_video_list.txt**  
+ The configuration file is in line units, Each line is the absolute path of the video file. If the video file is also located in the root directory of the TF card, just fill in `/mnt/extsd/`and add the video file name.
   ![](assets/video/video_list.png)
 
-  **注意： 防止编码问题导致视频文件读取失败，请尽量使用英文命名视频文件。**
-4. 程序运行后，即可自动轮播配置文件中的视频。
+  **Note: To prevent encoding problems from causing video file reading failures, please try to name the video file in English.**
+4. After the program runs, you can automatically rotate the videos in the configuration file.
 
-## 播放指定视频文件
-1. 创建一个 **视频** 控件 
-2. 将属性 `是否为轮播视频类型` 置为 否。
-3. 添加代码，控制播放逻辑  
-  播放
+##Play the specified video file
+1. Create a **Video** control
+2. Set the attribute `Whether it is a carousel video type` to No.
+3. Add code to control the playback logic  
+  Play
   ```c++
-  //播放test.mp4文件， 从时间0开始播
+  //Play the test.mp4 file, starting from time 0
   mVideoView1Ptr->play("/mnt/extsd/test.mp4", 0);
   ```
-  暂停
+  Pause
   ```c++
-  //暂停播放
+  //Pause playback
   mVideoView1Ptr->pause();
   ```
-  恢复播放
+  Resume playback
   ```c++
-  //恢复播放
+  //Resume playback
   mVideoView1Ptr->resume();
   ```
-  停止播放
+  Stop play
   ```c++
   mVideoView1Ptr->stop();
   ```
-  跳转到指定时间播放
+  Jump to the specified time to play
   ```c++
-  //跳转到10秒的位置
+  //Jump to the 10 second position
   mVideoView1Ptr->seekTo(10 * 1000);
   ```
-  设置播放音量， 范围 0~1.0
+  Set playback volume, range 0~1.0
   ```c++
-  //设置音量为0.5
+  //Set the volume to 0.5
   mVideoView1Ptr->setVolume(0.5);
   ```
-  判断是否正在播放
+  Determine if it is playing
   ```c++
   bool state = mVideoView1Ptr->isPlaying();
   if （state) {
-    LOGD("正在播放");
+    LOGD("Now Playing");
   }
   ```
-  获取视频的总时长，单位毫秒
+  Get the total duration of the video, in milliseconds
   ```c++
   int n = mVideoView1Ptr->getDuration();
   ```
   
-  获取视频当前播放位置，单位毫秒
+  Get the current playback position of the video, in milliseconds
   ```c++
   int n = mVideoView1Ptr->getCurrentPosition();
   ```
   
-  视频是异步播放，自动生成的关联函数中，会通知我们视频播放的状态  
+ The video is played asynchronously, and the automatically generated associated function will notify us of the status of the video playback
   ```c++
     static void onVideoViewPlayerMessageListener_VideoView1(ZKVideoView *pVideoView, int msg) {
         switch (msg) {
         case ZKVideoView::E_MSGTYPE_VIDEO_PLAY_STARTED:
-          LOGD("视频开始播放");
+          LOGD("Video starts playing");
             break;
         case ZKVideoView::E_MSGTYPE_VIDEO_PLAY_COMPLETED:
-          LOGD("视频播放结束");
+          LOGD("End of video playback");
             break;
         case ZKVideoView::E_MSGTYPE_VIDEO_PLAY_ERROR:
-          LOGD("视频播放出错");
+          LOGD("Video playback error");
             break;
         }
     }
   ```
   
-## 完整视频播放器的实现
-如果你对视频播放有更高的要求，需要控制播放/暂停、拖动视频进度条等。    
-可以参考[完整视频播放器样例（待续）]()
+## Implementation of a complete video player
+If you have higher requirements for video playback, you need to control play/pause, drag the video progress bar, etc.    
+You can refer to the VideoPlayerDemo project in [Sample Code](demo_download.md#demo_download), which implements a complete player.
 
-## 样例代码
-在该样例中， 实现了视频的循环播放，以及调整视频音量。   
-具体实现，参考[样例代码](demo_download.md#demo_download)中的VideDemo项目。
+## Sample Code
+In this example, the loop playback of the video and the adjustment of the video volume are realized.   
+For specific implementation, refer to the VideDemo project in [Sample Code](demo_download.md#demo_download)
 
 ![](assets/video/preview.png) 

@@ -1,23 +1,23 @@
 
-# ADB 快速下载调试
-FlyThings 可以通过 USB线 或者WIFI 快速下载程序到机器中。具体步骤如下：   
-## 首先确保电脑与机器成功连接，连接方式有两种：
+# ADB fast download and debug
+FlyThings can quickly download programs to the machine via USB cable or WIFI. Specific steps are as follows:   
+## First, make sure that the computer and the machine are successfully connected. There are two ways to connect:
 > [!Note]
-> ##### 注意： 如果您购买的是带有WIFI功能的版本，那么只能通过WIFI连接，USB线不能使用；
-> ##### 以太网版本优先使用USB线连接，如果USB连接不成功才使用WIFI连接（即网络连接）方式，如果都不能成功连接请联系我们。
-> ##### 同理，如果您购买的是不带WIFI功能的版本，那么只能通过USB线连接。
-> ##### USB线连接成功可以看到
+> ##### Note: If you buy a version with WIFI function, you can only connect via WIFI, and the USB cable cannot be used;
+> ##### The Ethernet version prefers to use the USB cable connection. If the USB connection is unsuccessful, the WIFI connection (ie network connection) is used. If the connection fails, please contact us.
+> ##### Similarly, if you buy a version without WIFI function, you can only connect via USB cable.
+> ##### You can see if the USB cable is connected successfully
 ![](assets/ide/ADB.jpg)
 
- 1. 使用USB线连接电脑与机器。如果电脑能将机器识别为Android设备，表示连接正常。    如果不能正常连接，电脑提示驱动问题，可尝试[下载更新驱动](install_adb_driver.md)。
- 2. 通过WIFI方式连接。（这种方式需要机器支持WIFI功能。）  
-   先进入机器的[WIFI设置界面](wifi.md)，将机器连接到与电脑相同的网络，也就是说，电脑和机器必须接入同一个WIFI。（如果不同的网络会导致后续下载程序失败）。网络连接成功后，点击WIFI设置界面右上角菜单按钮查看机器的IP地址，然后，打开FlyThings IDE开发工具，在菜单栏上，依次选择菜单 **调试配置** -> **ADB IP配置**， 将机器IP填入，选择确定。工具将尝试与机器连接，如果提示连接成功，则表示正常。如果提示失败，则需要检查IP是否正确？机器连接WIFI是否正常？     
+ 1. Use a USB cable to connect the computer and the machine. If the computer can recognize the machine as an Android device, the connection is normal. If you can't connect normally, the computer prompts a driver problem, you can try [Download Update Driver](install_adb_driver.md)。
+ 2. Connect via WIFI. (This method requires the machine to support WIFI function.)  
+   First enter the [WIFI setting interface](wifi.md) of the machine, and connect the machine to the same network as the computer, that is, the computer and the machine must be connected to the same WIFI. (If a different network will cause the subsequent download procedure to fail). After the network connection is successful, click the menu button in the upper right corner of the WIFI setting interface to view the IP address of the machine, then open the FlyThings IDE development tool, and on the menu bar, select the menu **Debug Configuration** -> **ADB IP Configuration**, Fill in the machine IP and select OK. The tool will try to connect with the machine. If it prompts that the connection is successful, it means normal. If the prompt fails, you need to check whether the IP is correct? Is the machine connected to WIFI normal?     
 
-     WIFI设置界面  
+     WIFI setting interface  
 
     ![](assets/ide/wifi_ip.jpg)  
 
-    操作过程动画  
+    Operation process animation  
 
     ![](assets/ide/config_ip.gif)  
 
@@ -25,18 +25,26 @@ FlyThings 可以通过 USB线 或者WIFI 快速下载程序到机器中。具体
 
 
 
-## 下载调试  
-完成上一步后，就可以直接下载程序了。在项目资源管理器中，选中项目名，右键，在弹出菜单中选择 **下载调试** 菜单， 选择后，它会先自动编译一次，编译成功后，再将程序下载到机器中，如果没有提示错误，那么你就可以看到机器程序已经得到了更新。  
-同样，在选中项目后，你还可以使用快捷键 **Ctrl + Alt + R** 下载调试。
+## Download and debug  
+After completing the previous step, you can download the program directly. In the Project Explorer, select the project name, right-click, and select the  **Download and Debug** menu in the pop-up menu. After selection, it will automatically compile once. After the compilation is successful, download the program to the machine. If an error is prompted, then you can see that the machine program has been updated.
+Similarly, after selecting the item, you can also use the shortcut keys **Ctrl + Alt + R** to download and debug.
 
 
 
 ![](assets/ide/launch_adb.gif)
 
-[**查看打印日志**](logcat.md)
+[**View print log**](logcat.md)
 
 
 
-# 注意事项  
-* 如果电脑上连接有Android手机，可能会与机器造成冲突，导致下载失败。使用时，建议暂时断开Android手机连接。
-    * **<span id="adb_run_tip">注意</span> ： 通过该方式运行程序，并不能将程序固化到机器中，如果您拔掉TF卡或者断电重启，程序将自动恢复。 如果您希望固化程序到设备中，可以选择[制作升级镜像](make_image.md)，然后升级即可。**
+# Precautions  
+* If an Android phone is connected to the computer, it may conflict with the machine and cause the download to fail. When using it, it is recommended to disconnect the Android phone temporarily.
+    * **<span id="adb_run_tip">Note</span> ： Run the program in this way, and the program cannot be solidified into the machine. If you unplug the TF card or restart after a power failure, the program will automatically resume. If you want the firmware to be stored in the device, you can select [make upgrade image](make_image.md) and then upgrade.**
+
+
+
+## Use ADB on the command line
+We can quickly view the status and log of the device through ADB commands.  
+First select an item arbitrarily, then find the menu bar at the top, and select **Debug Configuration** -> **Open System Command Line**, Now we can enter the command we want to execute in the pop-up command line. Then press Enter to execute the command.  
+Here are some commonly used commands. 
+### adb logcat -v time

@@ -1,28 +1,28 @@
 
-## 数据存储
+## Data storage
 
-在某些应用场景中需要永久存储一些信息，如账号、密码或其他配置的一些信息，这些数据的特点是：总量少，但需要灵活存取。像这类情况，就不必使用数据库。我们提供了一套简单的数据存储接口，以**键-值对**的方式存储。
+In some application scenarios, it is necessary to permanently store some information (save data after power-off), such as account numbers, passwords or other configuration information. The characteristics of these data are: the total amount is small, but it needs flexible access. In such cases, there is no need to use a database. We provide a set of simple data storage interfaces, which are stored in the form of **key-value pairs**.
 
-* 所需头文件 
+* Required header files 
   ```c++
     #include "storage/StoragePreferences.h"
   ```
 
-* 主要接口 
+* Main interface
 
   ```c++
-    // 存储接口
+    // Storage interface
     static bool putString(const std::string &key, const std::string &val);
     static bool putInt(const std::string &key, int val);
     static bool putBool(const std::string &key, bool val);
     static bool putFloat(const std::string &key, float val);
 
-    // 删除指定键
+    // delete the specified key
     static bool remove(const std::string &key);
-    // 清空存储数据
+    // Clear storage data
     static bool clear();
 
-    // 获取接口，获取不到对应键值，返回defVal默认值
+    // Get the interface, if the corresponding key value is not obtained, return the default value of defVal
     static std::string getString(const std::string &key, const std::string &defVal);
     static int getInt(const std::string &key, int defVal);
     static bool getBool(const std::string &key, bool defVal);
@@ -30,59 +30,60 @@
   ```
 
 > [!Warning]
->  1. 该接口是将数据以文件的形式保存在flash中， 所以**请勿频繁写入，造成flash损坏。**
->  2. 该分区大小有限制，屏的型号不同，分区大小也不同。尽量将数据大小控制在**512KB**以内。
+>  1. This interface saves the data in the flash as a file, so **do not write frequently to cause damage to the flash.**  
+>  2. The size of the partition is limited. The size of the partition varies depending on the model of the screen. Try to keep the data size within **512KB**.
 
-### 使用示例  
- * 保存
+
+### Usage example
+ * Save
   ```c++
-  //保存字符串，以“username”为别名，值为name字符串
+  //Save the string, use "username" as the alias, and the value is the name string
   const char* name = "zhang san";
   StoragePreferences::putString("username", name);
   ```
   
   ```
-  //保存布尔变量，以“power”为别名，值为true
+  //Save the boolean variable, use "power" as the alias, the value is true
   StoragePreferences::putBool("power", true);
   ```
   ```
-  //保存浮点数，以“temperature”为别名， 值为30.12
+  //Save the floating point number, using "temperature" as the alias, the value is 30.12
   StoragePreferences::putFloat("temperature", 30.12);
   ```
   ```
-  //保存整型，以“age”为别名，值为20
+  //Save the integer, use "age" as the alias, the value is 20
   StoragePreferences::putInt("age", 20);
   ```
   
- * 读取
+ * Read
    ```c++
-   //读取“username”这个键的值，如果没有值，返回空字符串
+   //Read the value of the "username" key, if there is no value, return an empty string
    std::string name = StoragePreferences::getString("username", "");
-   //日志打印读取到的字符串
+   //Log print the string read
    LOGD("username %s\n", username.c_str());
    ```
    ```
-  //读取布尔变量，如果没有值，则指定返回false
+  //Read Boolean variable, if there is no value, then specify to return false
   bool power = StoragePreferences::getBool("power", false);
   ```
   ```
-  //读取浮点数，如果没有值，则指定返回0
+  //Read floating point number, if there is no value, specify to return 0
   float temperature = StoragePreferences::getFloat("temperature", 0);
   ```
   ```
-  //读取整型，如果没有值，则指定返回18
+  //Read the integer, if there is no value, return 18
   int age = StoragePreferences::getInt("age", 18);
   ```
    
-* 删除
+* Delete
   ```
-  //单独清空某一个值
+  //Clear a value individually
   StoragePreferences::remove("username");
   StoragePreferences::remove("power");
   StoragePreferences::remove("temperature");
   StoragePreferences::remove("age");
-  //清空所有值
+  //Clear all values
   StoragePreferences::clear();
   ```  
-* 修改  
-  如果需要修改某个值，只需要按键值重复保存即可，将自动覆盖旧的值
+* Modify
+  If you need to modify a value, just save the key value repeatedly, and the old value will be automatically overwritten

@@ -1,51 +1,52 @@
-# JSON的构造与解析
+# JSON construction and analysis
 
-默认项目的已经包含开源`cppjson`库，可直接使用。  
+The default project already includes the open source `cppjson` library, which can be used directly.
 
-## 使用步骤
-### 引用头文件
+
+## Steps for usage
+### Quote header file
 ```c++
 #include "json/json.h"
 ```
 
-### 构造JSON字符串
+### Construct JSON string
 ```c++
 Json::Value root;
-//添加整型值
+//Add integer value
 root["int"] = 1;
-//添加字符串
+//Add string
 root["str"] = "hello";
 
-//由于浮点数存在精度打印问题，不推荐使用，尽量转为整型
+/*Due to the accuracy printing problem of floating-point numbers, it is not recommended to use them, try to convert to integers*/
 root["float"] = 3.14f;
 
-//添加数组
+//Add array 
 Json::Value array;
 array.append("123");
 array.append("456");
 array.append("789");
 root["array"] = array;
 
-//json的嵌套
+//json nesting
 Json::Value sub;
 sub["int"] = 1;
 sub["str"] = "sub str value";
 root["subJson"] = sub;
 
-LOGD("生成的json字符串为: ");
+LOGD("The generated json string is: ");
 LOGD("%s", root.toStyledString().c_str());
 ```
 
-### 解析JSON
+### Parse JSON
 ```c++
-//解析json
+//Parse json
 Json::Reader reader;
 Json::Value root2;
-//这里为了方便，使用构造的json字符串作为解析json的输入
+//For convenience, the constructed json string is used as the input for parsing json
 std::string test_json_string = root.toStyledString();
 if (reader.parse(test_json_string, root2, false)) {
-  LOGD("解析成功");
-  //解析json时，一定要多多检查输入的合法性，避免非法输入造成程序崩溃。
+  LOGD("Analysis successful");
+  /*When parsing json, be sure to check the legitimacy of the input more to avoid program crash caused by illegal input.*/
   if (root2.isMember("int")) {
     LOGD("int = %d", root2["int"].asInt());
   }

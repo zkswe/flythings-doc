@@ -1,54 +1,55 @@
 
-# 滑动窗口
-滑动窗口控件与手机主界面九宫格左右滑动的界面效果类似。由一个滑动主窗口和多个图标组成。
-## 如何使用
-1. 首先在UI文件中创建一个 **滑动主窗口** 控件，然后再添加多个 **滑动窗口图标** 控件到 主窗口控件中。 
+# Sliding window
+The sliding window control is similar to the interface effect of sliding left and right on the main interface of the mobile phone. Consists of a sliding main window and multiple icons.
+## How to use
+1. First create a **sliding main window** control in the UI file, and then add multiple **sliding window icon** controls to the main window control. 
 
    ![创建滑动窗口](assets/slidewindow/add_slidewindow.gif)
 
-2.  添加 **滑动窗口图标** 控件时，它会自动按顺序排列图标，如果添加满一页后，继续添加也会自动翻页。所有添加的图标控件都可以在 **大纲视图** 中找到。     
+2.  When adding a **sliding window icon** control, it will automatically arrange the icons in order. If you add a full page, continue adding it will automatically turn the page. All the added icon controls can be found in **Outline View**.     
 
     ![](assets/slidewindow/outline.png)  
     
-    如果想调整 **滑动窗口图标** 排列的位置，你可以在大纲视图中选中节点,然后直接通过拖拽来调整。注意下面动画左下角大纲视图的操作。   
+    If you want to adjust the position of the **sliding window icons**, you can select the node in the outline view, and then directly adjust it by dragging. Note the operation of the outline view in the lower left corner of the animation below.   
     
     ![](assets/slidewindow/outline2.gif)
 
-3. 在 **大纲视图** 中，选中 **滑动窗口图标** 控件，可以分别添加图片以及修改文字；选中整个 **滑动主窗口** 可以调整排列的 行数 和 列数， 还可以统一调整字体大小、图标大小。  
+3. In the **outline view**, select the **sliding window icon** control, you can add pictures and modify text separately; select the entire **sliding main window** to adjust the number of rows and columns, and you can also adjust it uniformly Font size, icon size.  
 
     ![添加icon](assets/slidewindow/add_icon.gif)  
   
   
-## 代码操作  
-1. 如果你添加了滑动窗口控件，那么在编译后，会自动生成关联函数， 函数具体介绍参考[滑动窗口关联函数](relation_function.md#slidewindow)
+## Code manipulation 
+1. If you add a sliding window control, then after compilation, the associated function will be automatically generated. Refer to the function description [Sliding window correlation function](relation_function.md#slidewindow)
 
-2. 一般情况下，我们只需要通过触摸滑动来上下翻页。但是，我们也提供了相应的翻页函数。
-  * 切换下一页
+2. In general, we only need to scroll up and down by touching and sliding. However, we also provide the corresponding page turning function.
+  * Switch to the next page
     ```c++
-    // 切换到下一页，有动画
+    // Switch to the next page with animation
     mSlideWindow1Ptr->turnToNextPage(true);
-    // 切换到下一页，无动画
+    // Switch to the next page, no animation
     mSlideWindow1Ptr->turnToNextPage(false);
     ```
-  * 切换上一页
+  * Switch to the previous page
     ```c++
-    // 切换到上一页，有动画
+    // Switch to the previous page with animation
     mSlideWindow1Ptr->turnToPrevPage(true);
-    // 切换到上一页，无动画
+    // Switch to the previous page, no animation
     mSlideWindow1Ptr->turnToPrevPage(false);
     ```
-3. 我们还可以通过代码监听到滑动窗口翻到了第几页：  
+3. We can also monitor which page the sliding window has turned to through the code:  
   ```c++
-    namespace { // 加个匿名作用域，防止多个源文件定义相同类名，运行时冲突
-    // 实现自己的监听接口
+    namespace { /* Add an anonymous scope to prevent multiple source files from defining the same class name and conflict at 
+    runtime*/
+    // Implement your own listening interface
     class MySlidePageChangeListener : public ZKSlideWindow::ISlidePageChangeListener {
     public:
         virtual void onSlidePageChange(ZKSlideWindow *pSlideWindow, int page) {
-            LOGD("当前切换到第%d页", page);
+            LOGD("Now switch to page %d", page);
         }
     };
     }
-    // 定义监听对象
+    // Define the listening object
     static MySlidePageChangeListener sMySlidePageChangeListener;
 
     static void onUI_init() {
@@ -56,15 +57,15 @@
     }
   ```
 
-4. 获取当前是哪一页
+4. Get the current page
   ```c++
   int i = mSlideWindow1Ptr->getCurrentPage();
-  LOGD("当前是第%d页", i);
+  LOGD("Current page %d", i);
   ```
 
-# 样例代码
-效果图    
+# Sample code
+Effect picture    
 
  ![](assets/slidewindow/preview.png)  
 
-具体滑动窗口控件的使用，参考[样例代码](demo_download.md#demo_download)中的SlideWindowDemo项目。
+For the specific use of sliding window controls, please refer to the SlideWindowDemo project in [Sample Code](demo_download.md#demo_download)

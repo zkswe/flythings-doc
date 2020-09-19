@@ -1,2 +1,2 @@
-# 触摸事件详解
-待续
+# Detailed touch event
+to be continued

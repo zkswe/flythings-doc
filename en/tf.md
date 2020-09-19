@@ -1,31 +1,31 @@
-# TF卡
+# TF card
 
-当插入TF卡后，系统会自动挂载为 `/mnt/extsd`目录。  
-如果想读写TF卡内的文件，可以对该目录进行读写操作。  
+When the TF card is inserted, the system will automatically mount as the `/mnt/extsd` directory.  
+If you want to read and write files in the TF card, you can read and write the directory.  
 
-### 文件路径 
-如果你的TF卡根目录内有一个 `test.txt` 文件，那么在我们的机器上，这个文件的绝对路径就是 `/mnt/extsd/test.txt` 。  
+### File path 
+If there is a `test.txt` file in the root directory of your TF card, then on our machine, the absolute path of this file is `/mnt/extsd/test.txt`.  
 
 
-## 写TF卡注意事项
- 向TF卡内写文件，尽量遵循以下操作顺序，不然可能会造成无法写入的情况。  
- `插卡`->`上电`->`打开文件`->`读写文件`->`fflush()`->`关闭文件`->`sync()`->`拔卡`  
- 换言之，如果有写TF卡的需求，尽量保证在开机前就已经插好TF卡，而不是在已经开机状态下临时插入TF卡。  
- 并且写完后，注意同步的问题。
+## Notes for writing TF card
+ To write files to the TF card, try to follow the following operation sequence, otherwise it may cause the situation that it cannot be written.  
+ `Insert card`->`Power on`->`Open file`->`Read and write files`->`fflush()`->`Close file`->`sync()`->`Unplug card`  
+ In other words, if there is a need to write to a TF card, try to ensure that the TF card has been inserted before turning on the computer, rather than temporarily inserting the TF card when it is turned on.  
+  And after writing, pay attention to synchronization issues.
 
-## 判断是否挂载TF卡
+## Determine whether to mount the TF card
 ```c++
 #include "os/MountMonitor.h"
 ```
 ```c++
   if (MOUNTMONITOR->isMount()) {
-    //TF卡已经挂载
+    //TF card has been mounted
   } else {
-    //TF卡未挂载
+    //TF card is not mounted
   }
 ```
 
 
 > [!Note]
-> `/mnt/extsd` 目录一直存在，与是否插入TF卡无关  
-> 没有插入TF卡的情况下，如果读写该目录，内容会保存在内存中，但断电就会消失。
+> The `/mnt/extsd` directory always exists, regardless of whether the TF card is inserted  
+> Without the TF card inserted, if you read and write the directory, the content will be saved in the memory, but it will disappear if the power is off.

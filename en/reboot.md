@@ -1,13 +1,13 @@
-# 重启系统
-可通过如下代码，主动让系统机器重启。
-* 需要的头文件
+# Reboot the system
+The following code can be used to actively restart the system machine.
+* Required header files
 ```c++
 	#include<unistd.h>
 	#include<sys/reboot.h>
 ```
-* 代码
+* Code
 ```c++
-	//同步数据，将缓存数据保存，以防数据丢失
+	//Synchronize data and save cached data to prevent data loss
 	sync();
 	reboot(RB_AUTOBOOT);
 ```

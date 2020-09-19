@@ -1,3 +1,3 @@
-# 标准C语言读写文件  
+# Standard C language to read and write files  
 
-## 基本流程
+## Basic process

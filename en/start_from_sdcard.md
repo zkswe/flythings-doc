@@ -1,25 +1,25 @@
 
-# 从TF卡启动程序
-当我们不能使用ADB下载程序时，还可以将程序下载到TF卡里，从TF卡来启动程序。  
+# Start the program from the TF card
+When we cannot use ADB to download the program, we can also download the program to the TF card and start the program from the TF card.  
 > [!Note]
-> **注意：TF卡仅支持FAT32格式**
+> **Note: TF card only supports FAT32 format**
 
-## 操作具体步骤  
-首先我们要配置程序的输出目录。
-1. 找到工具栏上的这个按钮  
+## Specific steps 
+First we have to configure the output directory of the program.
+1. Find this button on the toolbar  
   ![](assets/ide/toolbar_debug.png)   
 
-2. 点击旁边的黑色下拉箭头，在弹出的菜单中选择 **路径配置**    
+2. Click the black drop-down arrow next to it, and select **Path Configuration** in the pop-up menu    
 
    ![](assets/ide/toolbar_debug2.png)
 
-3. 在弹出框中，选择TF卡的盘符(请确保TF卡能正常使用），点击确定 。
+3. In the pop-up box, select the drive letter of the TF card (please ensure that the TF card can be used normally), and click OK.
   
    ![](assets/ide/toolbar_debug3.png) 
  
-4. 在上面的步骤中，我们配置好了输出目录，现在点击下图中的按钮开始编译，它会将编译结果  打包输出到配置的盘符下。  
+4. In the above steps, we have configured the output directory, and now click the button in the figure below to start compiling, and it will package and output the compiled results to the configured drive letter.  
 
    ![](assets/ide/toolbar_debug4.png)
 
-5. 操作成功后， 将在配置的盘符下 生成 **EasyUI.cfg 、ui、lib、 font** 等目录和文件。  
-6. 将TF卡拔出，插入机器中，将机器重新上电，这时候，系统检测到TF卡里的文件，就会启动卡里的程序，而不是系统内的程序。
+5. After the operation is successful, directories and files such as **EasyUI.cfg, ui, lib, and font** will be generated under the configured drive letter.  
+6. Pull out the TF card, insert it into the machine, and power on the machine again. At this time, when the system detects the file in the TF card, it will start the program in the card instead of the program in the system.

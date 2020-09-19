@@ -1,66 +1,66 @@
-## GPIO操作
+## GPIO operation
 
 > [!Note]
-> 1. 如果是购买的**SV50PB模组**或者**SV50PC模组**，使用前，需要在[模组配置](https://superv.flythings.cn)中使能 **GPIO** 功能，再重新升级系统,才能正常使用。
-> 3. 更多有关模组的[使用教程](core_module.md)。
+> 1. If you purchased **SV50PB module** or **SV50PC module**, you need to enable it in [Module Configuration](https://superv.flythings.cn) **GPIO** function, and then re-upgrade the system, it can be used normally.
+> 3. More [Usage Tutorial](core_module.md)。
 
-### 引入头文件
+### Introducing header files
 ```c++
 #include "utils/GpioHelper.h"
 ```
 
 
-### 操作函数
+### Operation function
 ```c++
 class GpioHelper {
 public:
     /**
-	 * 将脚位设置为输入模式，并返回脚位的高低状态
-	 * @param pPin 脚位名
-	 * @return  -1 操作失败 
-	 *           1 高电平
-	 *           0 低电平
+	 * Set the pin to input mode and return to the 		high and low state of the pin
+	 * @param pPin pin name
+     * @return -1 operation failed
+	 * 1 high level
+	 * 0 low level
 	 */
 	static int input(const char *pPin);
 	/**
-	 * 将脚位设置为输出模式, 并指定输出高电平或者低电平
-	 * @param pPin 脚位名
-	 * @param val 1 高电平
-	 *            0 低电平
-	 * @return   -1 失败
-	 *            0 成功
+	 *  Set the pin to output mode, and specify the 	output high or low level
+	* @param pPin pin name
+	* @param val 1 high level
+	* 0 low level
+	* @return -1 failed
+	* 0 success
 	 */
 	static int output(const char *pPin, int val);
 };
 ```
 
 
-### 各个平台可操作脚位名称定义
+### Definition of the name of each platform operable pin
 
-  * Z11S平台
+  * Z11S platform
 
-  目前该平台只保留了3组io口可以操作。
+    Currently the platform only retains 3 groups of io ports for operation.
   
   ```c++
-    // 3组io口定义
+    // 3 groups of io port definitions
     #define GPIO_PIN_B_02		"B_02"
     #define GPIO_PIN_B_03		"B_03"
     #define GPIO_PIN_E_20		"E_20"
         
     #include "utils/GpioHelper.h"
 
-    // 读B02 io口状态
+    // read B02 io port status
     GpioHelper::input(GPIO_PIN_B_02);
 
-    // B02 io口输出高电平
+    // B02 io port outputs high level
     GpioHelper::output(GPIO_PIN_B_02, 1);
   ```
 
-  * SV50PB模组
+  * SV50PB module
 
-    有以下12组io口可以操作：
+    The following 12 groups of io ports can be operated:
 
-    ```c++
+  ```c++
     // SV50PB
     #define SV50PB_PIN7         "PIN7"
     #define SV50PB_PIN8         "PIN8"
@@ -77,16 +77,16 @@ public:
 
     #include "utils/GpioHelper.h"
 
-    // 读PIN7 io口状态
+    // ead PIN7 io port status
     GpioHelper::input(SV50PB_PIN7);
 
-    // PIN7 io口输出高电平
+    // PIN7 io port outputs high level
     GpioHelper::output(SV50PB_PIN7, 1);
-    ```
+  ```
 
-* SV50PC模组
+  * SV50PC module
 
- 以下25组io口可以操作。
+    The following 25 groups of io ports can be operated:
 
  ```c++
     // SV50PC
@@ -118,12 +118,32 @@ public:
 
     #include "utils/GpioHelper.h"
 
-    // 读PIN7 io口状态
+    // read PIN7 io port status
     GpioHelper::input(SV50PC_PIN7);
 
-    // PIN7 io口输出高电平
+    // PIN7 io port outputs high level
     GpioHelper::output(SV50PC_PIN7, 1);
  ```
+ 
+  * 86 boxes
 
-### 样例  
-完整源码见[**样例代码包**](demo_download.md#demo_download)中的**GpioDemo**项目
+    The following 4 groups of io ports can be operated:
+
+ ```c++
+    // 86 Box
+    #define Z6X86BOX_PIN7         "PIN7"	// corresponds to IO1 on the hardware
+    #define Z6X86BOX_PIN8         "PIN8"	// IO2
+    #define Z6X86BOX_PIN9         "PIN9"	// IO3
+    #define Z6X86BOX_PIN10        "PIN10"	// IO4
+
+    #include "utils/GpioHelper.h"
+
+    // read PIN7 io port status
+    GpioHelper::input(Z6X86BOX_PIN7);
+
+    // PIN7 io port outputs high level
+    GpioHelper::output(Z6X86BOX_PIN7, 1);
+ ```
+
+### Sample
+The complete source code can be found in the **GpioDemo** project in [**Sample Code Package**](demo_download.md#demo_download)

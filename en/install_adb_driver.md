@@ -1,20 +1,21 @@
 
-# 如何使用适用于Windows XP / Vista / 7/8/10的Android ADB驱动程序安装程序
+# How to use the Android ADB driver installer for Windows XP/Vista/7/8/10
 
-1. 先下载 [驱动安装程序](http://dl.adbdriver.com/upload/adbdriver.zip)。	
-2. 通过USB将Android设备连接到计算机。
-3. 在ADB驱动程序安装程序中，单击 **Install** 按钮继续。    
+
+1. First download the [driver installation program](http://dl.adbdriver.com/upload/adbdriver.zip)。	
+2. Connect the Android device to the computer via USB.
+3. In the ADB driver installer, click the **Install** button to continue.
 
    ![](http://adbdriver.com/images/adb-driver-installer-pending.jpg)   
    
-   > 如果系统提示Windows无法验证此驱动程序软件的发布者，请在“窗口安全性”对话框中选择 **”始终安装此驱动程序软件“**    
+   > If the system prompts that Windows cannot verify the publisher of this driver software, please select **”Always install this driver software“**    
    
    ![](http://adbdriver.com/images/install-this-driver-software-anyway.jpg)  
    
-4.  通用android usb驱动程序将自动安装在您的计算机上。    
+4.  The universal android usb driver will be automatically installed on your computer.  
 
     ![](http://adbdriver.com/images/adb-driver-installer-finished.jpg)  
 
-5.  最后，ADB Driver Installer将显示安装成功  
+5.  Finally, ADB Driver Installer will show that the installation was successful
 
-    > windows xp的用户安装驱动后建议重启。
+    > windows xp users are recommended to restart after installing the driver.

@@ -1,33 +1,33 @@
-## SPI操作
+## SPI operation
 
 > [!Note]
-> 1. 目前仅**SV50PB模组**支持该功能。
-> 2. 使用前，需要在[模组配置](https://superv.flythings.cn)中使能 **SPI** 功能，用生成的新系统包升级，才能正常使用。
-> 3. 更多有关模组的[使用教程](core_module.md)。
+> 1. Currently only **SV50PB module** supports this function.
+> 2. Before use, you need to enable the **SPI** function in the [module configuration](https://superv.flythings.cn) and upgrade with the generated new system package before it can be used normally.
+> 3. More about the module [Using Tutorial](core_module.md)。
 
-### 引入头文件
+### Introduce header files
 
   ```c++
   #include "utils/SpiHelper.h"
   ```
 
-### 具体操作
+### Specific operation
 
   ```c++
-  // 所需头文件
+  // Required header files
   #include "utils/SpiHelper.h"
 
   static void testSpi() {
 	uint8_t tx[512], rx[512];
 
 	/**
-	 * 定义变量
+	 * Define variables
 	 *
-	 * 参数1： spi总线号
-	 * 参数2： 模式，可选值： SPI_MODE_0、SPI_MODE_1、SPI_MODE_2、SPI_MODE_3
-	 * 参数3： spi时钟频率，这里设置了50M
-	 * 参数4： 一个字有多少位，默认值： 8
-	 * 参数5： 位顺序，true： 表示低位在前，false： 表示高位在前； 默认值： false，高位在前
+	 * Parameter 1: SPI bus number
+	 * Parameter 2: Mode, optional values: SPI_MODE_0, SPI_MODE_1, SPI_MODE 2, SPI_MODE_3
+	 * Parameter 3: SPI clock frequency, 50M is set here
+	 * Parameter 4: How many bits does a word have, default value: 8
+	 * Parameter 5: Bit order, true: means low bit first, false: means high bit first; default value: false, high bit first
 	 */
 	SpiHelper spi(1, SPI_MODE_0, 50*1000*1000, 8, false);
 
@@ -37,20 +37,20 @@
 	tx[0] = 0x4B;
 
 	/**
-	 * 单工写
+	 * Simplex write
 	 *
-	 * 参数1： 写数据地址
-	 * 参数2： 数据长度
+	 * Parameter 1: Write data address
+	 * Parameter 2: Data length
 	 */
 	if (!spi.write(tx, 5)) {
 		LOGD("spi tx error!\n");
 	}
 
 	/**
-	 * 单工读
+	 * Simplex read
 	 *
-	 * 参数1： 读数据地址
-	 * 参数2： 数据长度
+	 * Parameter 1: Read data address
+	 * Parameter 2: Data length
 	 */
 	if (!spi.read(rx, 8)) {
 		LOGD("spi rx error!\n");
@@ -61,12 +61,12 @@
 	}
 
 	/**
-	 * 半双工传输
+	 * Half-duplex transmission
 	 *
-	 * 参数1： 写数据地址
-	 * 参数2： 写数据长度
-	 * 参数3： 读数据地址
-	 * 参数4： 读数据长度
+	 * Parameter 1: Write data address
+	 * Parameter 2: Write data length
+	 * Parameter 3: Read data address
+	 * Parameter 4: Read data length
 	 */
 	if (!spi.halfduplexTransfer(tx, 5, rx, 8)) {
 		LOGD("spi spi_halfduplex_transfer rx error!\n");
@@ -78,4 +78,4 @@
   }
   ```
 
-其他接口操作请参见头文件注释说明。
+For other interface operations, please refer to the header file notes.

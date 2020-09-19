@@ -1,30 +1,30 @@
-# 系统时间   
-* 所需头文件
+# System time   
+* Required header files
 
 ```c++
 #include "utils/TimeHelper.h"
 ```
-  > tm 结构体各字段解释
+  > Explanation of each field of tm structure
 
 ```c++
 struct tm {
-    int tm_sec; /* 秒–取值区间为[0,59] */
-	int tm_min; /* 分 - 取值区间为[0,59] */
-	int tm_hour; /* 时 - 取值区间为[0,23] */
-	int tm_mday; /* 一个月中的日期 - 取值区间为[1,31] */
-	int tm_mon; /* 月份（从一月开始，0代表一月） - 取值区间为[0,11] */
-	int tm_year; /* 年份，其值从1900开始 */
+    int tm_sec; /* Seconds-the value range is [0,59] */
+	int tm_min; /* Minutes-the value range is [0,59] */
+	int tm_hour; /* Hour-the value range is [0,23] */
+	int tm_mday; /* The day of the month-the value range is [1,31] */
+	int tm_mon; /* Month (starting from January, 0 means January)-the value range is [0,11] */
+	int tm_year; /* Year, its value starts from 1900 */
     ...
 }
 ```
 
-* 获取当前日期
+* Get the current date
 
 ```c++
 struct tm *t = TimeHelper::getDateTime();
 ```
 
-* 显示时间代码样例
+* Display time code sample
 
 ```c++
 static void updateUI_time() {
@@ -33,37 +33,37 @@ static void updateUI_time() {
     struct tm *t = TimeHelper::getDateTime();
 
     sprintf(timeStr, "%02d:%02d:%02d", t->tm_hour,t->tm_min,t->tm_sec);
-    mTextTimePtr->setText(timeStr); // 注意修改控件名称
+    mTextTimePtr->setText(timeStr); // Pay attention to modify the control name
 
-    sprintf(timeStr, "%d年%02d月%02d日", 1900 + t->tm_year, t->tm_mon + 1, t->tm_mday);
-    mTextDatePtr->setText(timeStr); // 注意修改控件名称
+    sprintf(timeStr, "%d year %02d month %02d day", 1900 + t->tm_year, t->tm_mon + 1, t->tm_mday);
+    mTextDatePtr->setText(timeStr); // Pay attention to modify the control name
 
-    static const char *day[] = { "日", "一", "二", "三", "四", "五", "六" };
-    sprintf(timeStr, "星期%s", day[t->tm_wday]);
-    mTextWeekPtr->setText(timeStr); // 注意修改控件名称
+    static const char *day[] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
+    sprintf(timeStr, "Week %s", day[t->tm_wday]);
+    mTextWeekPtr->setText(timeStr); // Pay attention to modify the control name
 }
 ```  
 
 
 
-* 设置时间代码样例
+* Set time code sample
 
 ```c++
-// 利用tm 结构体设置时间
+// Use tm structure to set time
 static void setSystemTime() {
 	struct tm t;
-	t.tm_year = 2017 - 1900;  //年
-	t.tm_mon = 9 - 1;         //月
-	t.tm_mday = 13;           //日
-	t.tm_hour = 16;           //时
-	t.tm_min = 0;             //分
-	t.tm_sec = 0;             //秒
+	t.tm_year = 2017 - 1900;  //Year
+	t.tm_mon = 9 - 1;         //Month
+	t.tm_mday = 13;           //Day
+	t.tm_hour = 16;           //Hour
+	t.tm_min = 0;             //Minute
+	t.tm_sec = 0;             //second
 
 	TimeHelper::setDateTime(&t);
 }
 
-// 或者用字符串设置时间  date str format: 2017-09-13 16:00:00
+// Or use a string to set the time date str format: 2017-09-13 16:00:00
 TimeHelper::setDateTime("2017-09-13 16:00:00");
 ```
 
-完整源码见[**样例代码包**](demo_download.md#demo_download)中的**DateDemo**工程
+For the complete source code, see the **DateDemo** project in the [**sample code package**](demo_download.md#demo_download)

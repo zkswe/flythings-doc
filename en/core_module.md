@@ -1,36 +1,36 @@
 
       
-## 核心模组
-  核心模组需要自行生成镜像，刷机，方可使用模组的多种功能。
+## Core Module
+  The core module needs to generate its own mirror image and flash the machine before using the various functions of the module.
 
-## 使用教程
-1. 注册并登录网址 [https://superv.flythings.cn](https://superv.flythings.cn/)
+## Tutorial
+1. Register and log in to the website [https://superv.flythings.cn](https://superv.flythings.cn/)
 
-2. 选择硬件版型  
+2. Select the hardware version   
    ![](assets/superv/hardware.png)
-3. 选择每个脚位功能 
+3. Select the function of each pin
  
    ![](assets/superv/pin.png)  
    
    ![](assets/superv/gpio.png)
    
-   > **注意**： 电容触摸PIN：CTPSCL、CTPSDA、CTPINT、CTPRST
-电阻触摸PIN：RTPY2、RTPY1、RTPX2、RTPX1
-4. 选择屏幕分辨率; 如果有需要，可再次调整屏幕参数
+   > **Note**：Capacitive touch PIN:CTPSCL、CTPSDA、CTPINT、CTPRST
+esistive touch PIN：RTPY2、RTPY1、RTPX2、RTPX1
+4. Select the screen resolution; if necessary, adjust the screen parameters again
 
    ![](assets/superv/resolution.png)
-5. 选择触摸类型
+5. Select touch type
 
    ![](assets/superv/touch.png)
-   > **注意**： 触摸类型应该与PIN脚对应。 电容触摸PIN：CTPSCL、CTPSDA、CTPINT、CTPRST
-电阻触摸PIN：RTPY2、RTPY1、RTPX2、RTPX1
+   > **Note**： The touch type should correspond to the PIN pin. Capacitive touch PIN：CTPSCL、CTPSDA、CTPINT、CTPRST
+Resistive touch PIN：RTPY2、RTPY1、RTPX2、RTPX1
 
-6. 以上都设置完毕后，点击提交， 将根据配置下载新的系统镜像。 
+6. After all the above settings are completed, click Submit, and the new system image will be downloaded according to the configuration.
 
   ![](assets/superv/submit.png)
-7. 新的镜像下载完毕后，再参照[制作刷机卡教程](https://docs.flythings.cn/zh-hans/sd_boot)，对设备进行刷机。
+7. After the new image is downloaded, refer to the [How to make a flashing card](https://docs.flythings.cn/zh-hans/sd_boot), to flash the device.
 
-8. 刷机成功后，可查看[FlyThings开发文档](https://docs.flythings.cn/)进行应用开发。
+8. After successfully flashing, you can view [FlyThings Development Document](https://docs.flythings.cn/) vfor application development.
 
 
 

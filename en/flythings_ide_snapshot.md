@@ -1,25 +1,25 @@
 
-# <span id = "first_run">初次使用FlyThings 集成开发工具</span>
-如果你已经成功安装了[FlyThings IDE](download.md),那么在你的桌面上，找到 ![ZKSW-Editor快捷方式](assets/ide/quick_link.png) 快捷方式，双击运行。  
-如果你删除了快捷方式，你还可以在安装目录中的`bin`文件夹下，找到 ![ide](assets/ide/ide.png) 直接运行。
-## 选择工作空间
-当你运行工具之后会弹出如下界面。  
-* **工作空间** 用于存储相关设置及历史纪录，你可以将它理解为一个容器，它可以同时管理多个项目，这样不用同时运行多个开发工具。
+# <span id = "first_run">Use FlyThings integrated development tool for the first time</span>
+If you have successfully installed [FlyThings IDE](download.md), then on your desktop, find the ![ZKSW-Editor shortcut](assets/ide/quick_link.png) shortcut and double-click to run it.  
+If you delete the shortcut, you can also find ![ide](assets/ide/ide.png) in the `bin` folder in the installation directory and run it directly.
+## Choose a workspace
+When you run the tool, the following interface will pop up.
+* **Workspace** is used to store related settings and historical records. You can understand it as a container, which can manage multiple projects at the same time, so there is no need to run multiple development tools at the same time.
 
-   ![选择工作空间](assets/ide/select_workspace.png)
-## 欢迎界面
-如果你第一次打开该软件，或者选择了一个新的工作空间，那么，你会看到下图这样的欢迎界面。
-它提供了两个快捷功能： **新建项目** 和 **导入项目**      
-  * **新建项目**  
-    它会逐步引导你 [如何新建FlyThings项目](new_flythings_project.html)
-  * **导入项目**  
-    通过它，你可以将现有的项目导入到目前的工作空间，继续之前的开发。[如何导入项目](import_project.md)
+   ![Select Workspace](assets/ide/select_workspace.png)
+## Welcome Screen
+If you open the software for the first time, or choose a new workspace, then you will see a welcome interface like the picture below.
+It provides two shortcut functions: **New Project** and **Import Project**      
+  * **New Project**  
+    It will guide you step by step [How to create a new FlyThings project](new_flythings_project.html)
+  * **Immport project**  
+    Through it, you can import existing projects into the current workspace and continue previous development.[How to import a project](import_project.md)
     
-    ![欢迎界面](assets/ide/welcome.png)  
+    ![Welcome interface](assets/ide/welcome.png)  
     
- 我们现在不着急 **新建项目** ，先在左上角选择 ![关闭欢迎界面](assets/ide/welcome_close.png)关闭欢迎界面。    
-如果你想重新打开欢迎界面，在顶部 **菜单栏** 上，依次选择 **帮助 -> 欢迎** 菜单即可。     
+ We are not in a hurry to **New Project** , first select ![Close welcome interface](assets/ide/welcome_close.png) in the upper left corner to close the welcome interface.  
+If you want to reopen the welcome interface, on the top **menubar** , select **Help -> Welcome** menu in turn.     
  
- ![如何打开欢迎界面](assets/ide/reopen_welcome.png)  
+ ![How to open the welcome interface](assets/ide/reopen_welcome.png)  
 
     

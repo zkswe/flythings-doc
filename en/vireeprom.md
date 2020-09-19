@@ -1,19 +1,23 @@
-# 模拟EEPROM功能
+# Emulate EEPROM function
 
-EEPROM（带电可擦写可编程读写存储器）是用户可更改的只读存储器（ROM），其可通过高于普通电压的作用来擦除和重编程（重写）。
-## 模拟原理
-本系统基于Linux，自带文件系统，带均衡擦写算法。将保存的数据写入到 **NorFlash**（不低于10万次擦写次数，注意不是**Nandfalsh**，**NandFlash** 出现坏块后就是各种风险了）。
-FlyThings OS内部预留了 **/data** 分区，用于用户数据，为了方便熟悉单片机操作的用户使用，我们在**/data**分区下创建一个文件来模拟一个EEPROM空间。    （/data分区的大小为1M或几百KB不等，依具体系统版本而定）  
-是不是感觉特别像国内炼丹炉里面出来的STC大法的单片机。  
-## 实现步骤  
-1. 首先在项目的 **jni** 目录下创建一个头文件。  
-   选中项目下的 **jni** ，点击鼠标右键，在弹出的上下文菜单中选择 **头文件** 选项, 然后命名为 **vireeprom.h**， 点击完成。  
+EEPROM (Electrically Erasable Programmable Read-Write Memory) is a user-changeable read-only memory (ROM), which can be erased and reprogrammed (rewritten) by a higher voltage than normal.
+## Simulation principle
+This system is based on Linux, with its own file system and balanced erasing algorithm. Write the saved data to **NorFlash**(Not less than 100,000 erasing and writing times, pay attention not **Nandfalsh**，**NandFlash** There are various risks after bad blocks appear).
+FlyThings OS has reserved **/data** Partition, Used for user data, in order to facilitate the use of users who are familiar with the operation of the microcontroller,We create a file under the **/data** partition to simulate an EEPROM space.    (The size of the /data partition ranges from 1M or several hundred KB, depending on the specific system version)  
+Does it feel particularly like the STC Dafa MCU that comes out of the domestic alchemy furnace?
+## Scenes to be used
+Save data after power failure.
+## Implementation steps  
+1. First create a header file in the **jni** directory of the project.
+
+ Select **jni** under the project, click the right mouse button，Select the **header file** option in the pop-up context menu，Then name it  **vireeprom.h** and click Finish. 
    
    ![](assets/create_head_file.png)  
    ![](assets/create_head_file2.png)  
 
-2. 将以下代码完整拷贝到刚才添加的头文件中. (刚才创建头文件时，可能会自动添加一些内容，将这些内容删除)  
-   这些代码实现了EEPROM的模拟功能。  
+2. Copy the following code completely into the header file just added. (When the header file was created just now, some content may be automatically added and deleted)
+
+    These codes realize the emulation function of EEPROM.
     ```c++
     #ifndef JNI_VIREEPROM_H_
     #define JNI_VIREEPROM_H_
@@ -22,11 +26,11 @@ FlyThings OS内部预留了 **/data** 分区，用于用户数据，为了方便
     #include <string.h>
     #include <unistd.h>
     /**
-     * 模拟EEPROM的存储大小，字节为单位,建议不宜过大
+     * The storage size of the simulated EEPROM, in bytes, it is recommended not to be too large
      */
     #define EEPROM_SIZE 1024
     /**
-     * 实际保存为文件 /data/eeprom.eep
+     * Actually saved as a file /data/eeprom.eep
      */
     #define EEPROM_FILE  "/data/eeprom.eep"
 
@@ -40,7 +44,7 @@ FlyThings OS内部预留了 **/data** 分区，用于用户数据，为了方便
           fread(buff_, 1, EEPROM_SIZE, file_);
           fseek(file_, 0, SEEK_END);
           int f_size = ftell(file_);
-          //调整文件到合适大小
+          //Adjust the file to a suitable size
           if (f_size != sizeof(buff_)) {
             ftruncate(fileno(file_), sizeof(buff_));
             fseek(file_, 0, SEEK_SET);
@@ -50,7 +54,7 @@ FlyThings OS内部预留了 **/data** 分区，用于用户数据，为了方便
           }
         } else {
           file_ = fopen(EEPROM_FILE, "wb+");
-          //调整文件到合适大小
+          //Adjust the file to a suitable size
           ftruncate(fileno(file_), sizeof(buff_));
         }
       }
@@ -62,9 +66,11 @@ FlyThings OS内部预留了 **/data** 分区，用于用户数据，为了方便
         }
       }
       /**
-       * 返回值：小于0 是失败的，大于0是实际写入的字节数
-       * 参数：value需要保存的数据指针，可以是结构体指针，char*,int*……，size是要保存的数据大小
-       * 使用举例：
+       * Return value: less than 0 is failure,greater than 0 is the actual number of bytes 
+       written
+       * Parameter: The data pointer that value needs to save, which can be a structure 
+       pointer, char*, int*..., size is the size of the data to be saved
+       * Examples of use:
        * const char buff[]="12345678";
        * VIREEPROM->WriteEEPROM(0,buff,sizeof(buff);
        */
@@ -73,7 +79,7 @@ FlyThings OS内部预留了 **/data** 分区，用于用户数据，为了方便
           return -1;
         }
         if ((addr >= EEPROM_SIZE) || ((addr + size) > EEPROM_SIZE)) {
-          //超出大小
+          //Oversize
           return -2;
         }
         memcpy(buff_ + addr, value, size);
@@ -86,9 +92,11 @@ FlyThings OS内部预留了 **/data** 分区，用于用户数据，为了方便
         return n;
       }
       /**
-       * 返回值：小于0 是失败的，大于0是实际读取到的字节数
-       * 参数：value需要读取的数据指针，可以是结构体指针，char*,int*……，size是要读取的数据大小
-       * 应用举例：
+       * Return value: less than 0 is a failure, greater than 0 is the number of bytes 
+       actually read
+       * Parameter: the data pointer to be read by value, which can be a structure
+       pointer, char*, int*..., size is the size of the data to be read
+       *Application examples:
        * char buff[9];
        * VIREEPROM->ReadEEPROM(0,buff,sizeof(buff);
        */
@@ -97,16 +105,16 @@ FlyThings OS内部预留了 **/data** 分区，用于用户数据，为了方便
           return -1;
         }
         if ((addr >= EEPROM_SIZE) || ((addr + size) > EEPROM_SIZE)) {
-          //超出大小
+          //Oversize
           return -2;
         }
         memcpy(value, buff_ + addr, size);
         return size;
       }
       /**
-       * 返回值：
-       *     0    成功
-       *     小于0 失败
+       * return value:
+       *     0    success
+       *    Less than 0 failed
        */
       int Erase() {
         if (file_ == NULL) {
@@ -139,26 +147,26 @@ FlyThings OS内部预留了 **/data** 分区，用于用户数据，为了方便
 
     ```
 
-3. 至此准备工作已经完成，我们再写一些例子测试是否正常。  
-   打开 `mainLogic.cc` 源文件，先在文件顶部引用刚才的头文件。  
+3. So far the preparation work has been completed, we will write some examples to test whether it is normal.  
+   Open the `mainLogic.cc` source file and quote the header file just now at the top of the file.
    ```c++
    #include "vireeprom.h"
    ```
    
-   测试代码  
+   Test code  
    ```c++
    static void onUI_init(){
-      //把value数组，从地址0开始，依次写入
+      //The value array, starting from address 0, is written sequentially
       char value[4] = {1, 2, 3, 4};
       VIREEPROM->Write(0, value, sizeof(value));
 
-      //从0地址开始读，依次读取4个字节 ，读取的内容保存到buf中
+      //Start reading from address 0, read 4 bytes in sequence, and save the read content in buf
       char buf[4] = {0};
       VIREEPROM->Read(0, buf, sizeof(buf));
-      //输出日志
-      LOGD("读出的数据： %02x, %02x, %02x, %02x", buf[0], buf[1], buf[2], buf[3]);
+      //Output log
+      LOGD("Data read: %02x, %02x, %02x, %02x", buf[0], buf[1], buf[2], buf[3]);
       
-      //将eeprom全部清空为0
+      //Clear all eeprom to 0
       VIREEPROM->Erase();
    }
    ```

@@ -1,56 +1,56 @@
 
-# 通讯框架讲解
+# Communication framework explanation
 
-这一章节重点讲解通讯框架的实现原理，理论的东西比较多，第一遍可以粗略的过一下，大概清楚这通讯模型，配套[案例](serial_example.md)动手做一下，再回过头来巩固一下原理，多玩几遍，熟悉过后，自己想怎么自定义协议都可以。
+This chapter focuses on the implementation principle of the communication framework. There are many theoretical things. The first time you can give a rough overview of the communication model, you will probably understand the communication model. The supporting [case](serial_example.md) will do it yourself, and then go back to consolidate the principle. After playing it a few times, you can customize the protocol any way you want.
 
-## 代码框架
+## Code frame
 ![](images/screenshot_1510990787282.png)
 
-软件APP部分分为两层
-* uart协议解析和封装的串口HAL层
-	* UartContext：串口的实体控制层，提供串口的开关，发送，接收接口
-	* ProtocolData：定义通讯的数据结构体，用于保存通讯协议转化出来的实际变量；
-	* ProtocolSender：完成数据发送的封装；
-	* ProtocolParser：完成数据的协议解析部分，然后将解析好的数据放到ProtocolData的数据结构中；同时管理了应用监听串口数据变化的回调接口；
-* APP应用接口层
-	* 通过ProtocolParser提供的接口注册串口数据接收监听获取串口更新出来的ProtocolData。
-	* 通过ProtocolSender提供的接口往MCU发送指令信息
+The software APP part is divided into two layers
+* Serial port HAL layer of uart protocol analysis and encapsulation
+	* UartContext: The physical control layer of the serial port, which provides the serial port switch, sending and receiving interfaces
+	* ProtocolData: Define the data structure of the communication, used to save the actual variables converted from the communication protocol;
+	* ProtocolSender: complete the encapsulation of data transmission;
+	* ProtocolParser: Complete the protocol parsing part of the data, and then put the parsed data into the ProtocolData data structure; at the same time, it manages the callback interface for the application to monitor serial data changes;
+* APP application interface layer
+	* Register the serial port data receiving monitor through the interface provided by ProtocolParser to obtain the updated ProtocolData of the serial port.
+	* Send command information to MCU through the interface provided by ProtocolSender
 
-我们再细化一下这流程：
+Let's refine this process:
 
 ![](images/serial_model_detail1.png)
 
-可以清楚的看到 **接收** 和 **发送** 两路流程一上一下，每一层的功能还是比较清晰的；
+You can clearly see that the two processes of **accept** and **send** are up and down, and the functions of each layer are relatively clear;
 
-具体到代码对应的流程：
+Specific to the process corresponding to the code:
 
 ![](images/serial_model_detail2.png)
 
-无论是接收还是发送流程，最终都是要经过 `UartContext` 对串口进行读写操作，这是一些标准化的流程，所以 `UartContext` 我们基本上是不用去修改的，也可以不用理会它是怎么实现的，当然，有兴趣的可以去看一下。
+Regardless of whether it is a receiving or sending process, it is ultimately necessary to read and write to the serial port through the `UartContext`. This is a standardized process, so we basically do not need to modify the `UartContext`, and we can ignore how it is implemented. Yes, of course, you can check it out if you are interested.
 
-到此，我们对这个通讯模型有个大概的了解，之后我们再来看具体代码的实现。
+At this point, we have a general understanding of this communication model, and then we will look at the implementation of the specific code.
 
-## 协议接收部分使用和修改方法
+## How to use and modify the protocol receiving part
 
-### 通讯协议格式修改
-这里我们举一个比较常见的通讯协议例子：
+### Modification of communication protocol format
+Here we give an example of a more common communication protocol:
 
-| 协议头（2字节） | 命令（2字节） | 数据长度（1字节） | 数据（N） | 校验（1字节 可选) |
+| Protocol header (2 bytes) | Command (2 bytes) | Data length (1 byte) | Data (N) | Check (1 byte optional) |
 | --- | --- | --- | --- | --- |
 | 0xFF55 | Cmd | len | data | checksum |
 
-CommDef.h 文件中定义了同步帧头信息及最小数据包大小信息：
+The CommDef.h file defines synchronization frame header information and minimum data packet size information:
 ```c++
-// 需要打印协议数据时，打开以下宏
+// When you need to print the protocol data, open the following macro
 //#define DEBUG_PRO_DATA
 
-// 支持checksum校验，打开以下宏
+// Support checksum verification, open the following macro
 //#define PRO_SUPPORT_CHECK_SUM
 
-/* SynchFrame CmdID  DataLen Data CheckSum (可选) */
+/* SynchFrame CmdID  DataLen Data CheckSum (Optional) */
 /*     2Byte  2Byte   1Byte	N Byte  1Byte */
-// 有CheckSum情况下最小长度: 2 + 2 + 1 + 1 = 6
-// 无CheckSum情况下最小长度: 2 + 2 + 1 = 5
+// Minimum length with CheckSum: 2 + 2 + 1 + 1 = 6
+// Minimum length without CheckSum: 2 + 2 + 1 = 5
 
 #ifdef PRO_SUPPORT_CHECK_SUM
 #define DATA_PACKAGE_MIN_LEN		6
@@ -58,28 +58,28 @@ CommDef.h 文件中定义了同步帧头信息及最小数据包大小信息：
 #define DATA_PACKAGE_MIN_LEN		5
 #endif
 
-// 同步帧头
+// Sync frame header
 #define CMD_HEAD1	0xFF
 #define CMD_HEAD2	0x55
 ```
 
-ProtocolParser.cpp 文件，配置文件命令格式：
+ProtocolParser.cpp file, configuration file command format:
 ```c++
 /**
- * 功能：解析协议
- * 参数：pData 协议数据，len 数据长度
- * 返回值：实际解析协议的长度
+ * Function: Analyze protocol
+ * Parameters: pData protocol data, len data length
+ * Return value: the length of the actual resolution protocol
  */
 int parseProtocol(const BYTE *pData, UINT len) {
-	UINT remainLen = len;	// 剩余数据长度
-	UINT dataLen;	// 数据包长度
-	UINT frameLen;	// 帧长度
+	UINT remainLen = len;	// Remaining data length
+	UINT dataLen;	// Packet length
+	UINT frameLen;	// Frame length
 
 	/**
-	 * 以下部分需要根据协议格式进行相应的修改，解析出每一帧的数据
+	 * The following parts need to be modified according to the protocol format to parse out the data of each frame
 	 */
 	while (remainLen >= DATA_PACKAGE_MIN_LEN) {
-		// 找到一帧数据的数据头
+		// Find the data header of a frame of data
 		while ((remainLen >= 2) && ((pData[0] != CMD_HEAD1) || (pData[1] != CMD_HEAD2))) {
 			pData++;
 			remainLen--;
@@ -93,11 +93,11 @@ int parseProtocol(const BYTE *pData, UINT len) {
 		dataLen = pData[4];
 		frameLen = dataLen + DATA_PACKAGE_MIN_LEN;
 		if (frameLen > remainLen) {
-			// 数据内容不全
+			// Incomplete data content
 			break;
 		}
 
-		// 打印一帧数据，需要时在CommDef.h文件中打开DEBUG_PRO_DATA宏
+		// To print a frame of data, open the DEBUG_PRO_DATA macro in the CommDef.h file when needed
 #ifdef DEBUG_PRO_DATA
 		for (int i = 0; i < frameLen; ++i) {
 			LOGD("%x ", pData[i]);
@@ -105,17 +105,17 @@ int parseProtocol(const BYTE *pData, UINT len) {
 		LOGD("\n");
 #endif
 
-		// 支持checksum校验，需要时在CommDef.h文件中打开PRO_SUPPORT_CHECK_SUM宏
+		// Support checksum verification, open the PRO_SUPPORT_CHECK_SUM macro in CommDef.h file when needed
 #ifdef PRO_SUPPORT_CHECK_SUM
-		// 检测校验码
+		// Check code
 		if (getCheckSum(pData, frameLen - 1) == pData[frameLen - 1]) {
-			// 解析一帧数据
+			// Parse a frame of data
 			procParse(pData, frameLen);
 		} else {
 			LOGE("CheckSum error!!!!!!\n");
 		}
 #else
-		// 解析一帧数据
+		// Parse a frame of data
 		procParse(pData, frameLen);
 #endif
 
@@ -126,43 +126,46 @@ int parseProtocol(const BYTE *pData, UINT len) {
 	return len - remainLen;
 }
 ```
-上面的解析流程有点复杂，下面我们先给出一张图，再来分析可能会容易理解一些；一包数据可能包含0到多帧数据，下面这张图里，我们标出来有3帧数据，另外还有一帧数据不全，还少5个数据，不完整的那一帧数据将会拼接到下一包数据里
+The above analysis process is a bit complicated. Let’s first give a picture, and then analyze it may be easier to understand; a packet of data may contain 0 to multiple frames of data, in the picture below, we have marked 3 frames of data, and There is still a frame of incomplete data, and there are 5 less data. The incomplete frame of data will be spliced into the next packet of data
 
 ![](images/serial_data_package.png)
 
-* 协议头需要修改
+* Protocol header needs to be modified
 
 ```c++
-// 1.修改协议头部分的定义，如果协议头长度有变化，则要注意修改协议头判断部分语句。
+/* 1.Modify the definition of the protocol header. If the length of the protocol header changes, pay attention to modifying the 
+statement of the protocol header judgment part.*/
 #define CMD_HEAD1	0xFF
 #define CMD_HEAD2	0x55
 
-// 2.协议头长度变化的时候需要修改这里。
+// 2.You need to modify this when the length of the protocol header changes.
 while ((mDataBufLen >= 2) && ((pData[0] != CMD_HEAD1) || (pData[1] != CMD_HEAD2)))
 ```
 
-* 协议长度的位置或者长度计算方式发生变化的修改
+* Modification of changes in the position of the protocol length or the length calculation method
 
 ```c++
-// 这里的pData[4] 代表的是第5个数据是长度的字节，如果变化了在这里修改一下。
+// Here pData[4] represents the fifth data is the length byte, if it changes, please modify it here.
 dataLen = pData[4];
-// 帧长度一般是数据长度加上头尾长度。如果协议中传的长度计算方式发生变化修改这个部分。
+/* The frame length is generally the data length plus the head and tail length. If the length calculation method passed in the 
+agreement changes, modify this part.*/
 frameLen = dataLen + DATA_PACKAGE_MIN_LEN;
 ```
 
-* 校验发生变化的情况
+* When the verification changes
 
 ```c++
 /**
- * 默认我们是关闭checksum校验的，如果需要支持checksum校验，在CommDef.h文件中打开PRO_SUPPORT_CHECK_SUM宏
- * 当校验不一样的时候需要修改校验方法，
- * 1.校验内容变化修改这个位置
+ * By default, we turn off checksum verification. If you need to support checksum verification, open the PRO_SUPPORT_CHECK_SUM 
+ * macro in the CommDef.h file
+ * When the verification is different, the verification method needs to be modified.
+ * 1.Check the content changes to modify this location
  *     if (getCheckSum(pData, frameLen - 1) == pData[frameLen - 1])
- * 2.校验计算公式变化修改 getCheckSum函数里边的内容
+ * 2.Check the calculation formula changes to modify the content in the getCheckSum function
  */
 
 /**
- * 获取校验码
+ * Get check code
  */
 BYTE getCheckSum(const BYTE *pData, int len) {
 	int sum = 0;
@@ -174,38 +177,38 @@ BYTE getCheckSum(const BYTE *pData, int len) {
 }
 ```
 
-* 当完成一帧数据的接收后程序会调用procParse 解析
+* When the reception of a frame of data is completed, the program will call procParse to analyze
 
 ```c++
-	// 支持checksum校验，需要时在CommDef.h文件中打开PRO_SUPPORT_CHECK_SUM宏
+	// Support checksum verification, open the PRO_SUPPORT_CHECK_SUM macro in CommDef.h file when needed
 #ifdef PRO_SUPPORT_CHECK_SUM
-	// 检测校验码
+	// Check code
 	if (getCheckSum(pData, frameLen - 1) == pData[frameLen - 1]) {
-		// 解析一帧数据
+		// Parse a frame of data
 		procParse(pData, frameLen);
 	} else {
 		LOGE("CheckSum error!!!!!!\n");
 	}
 #else
-	// 解析一帧数据
+	// Parse a frame of data
 	procParse(pData, frameLen);
 #endif
 ```
 
-### 通讯协议数据怎么和UI控件对接
-继续前面的协议框架我们进入到procParse的解析部分。
-这里重点的代码是：ProtocolParser.cpp
-打开文件然后找到void procParse(const BYTE *pData, UINT len)
+### How to connect communication protocol data with UI controls
+Continuing the previous protocol framework, we enter the parsing part of procParse.
+The key code here is: ProtocolParser.cpp
+Open the file and find void procParse(const BYTE *pData, UINT len)
 ```c++
 /*
- * 协议解析
- * 输入参数:
- *     pData: 一帧数据的起始地址
- *     len: 帧数据的长度
+ * Protocol analysis
+ * Input parameters:
+ *     pData: Start address of a frame of data
+ *     len: Length of frame data
  */
 void procParse(const BYTE *pData, UINT len) {
 	/*
-	 * 解析Cmd值获取数据赋值到sProtocolData结构体中
+	 * Parse the Cmd value to obtain the data and assign it to the sProtocolData structure
      */
 	switch (MAKEWORD(pData[2], pData[3])) {
 	case CMDID_POWER:
@@ -217,28 +220,28 @@ void procParse(const BYTE *pData, UINT len) {
 }
 
 ```
-以上 `MAKEWORD(pData[2], pData[3])` 在我们的协议例子中表示Cmd值；
-当数据解析完成后通过`notifyProtocolDataUpdate` 通知到页面UI更新，这个部分请参照后面的UI更新部分
+The above `MAKEWORD(pData[2], pData[3])` represents the Cmd value in our protocol example;
+When the data analysis is completed, the page UI update is notified by `notifyProtocolDataUpdate`. For this part, please refer to the UI update part below
 
-* 数据结构
+* data structure
 
-上面的协议解析到了sProtocolData 结构体中，sProtocolData 是一个静态的变量，用于保存MCU（或者其他设备）串口发送过来的数据值。
-这个数据结构在ProtocolData.h文件中。这里可以添加整个项目里面需要使用到的通讯变量
+The above protocol is parsed into the sProtocolData structure. sProtocolData is a static variable used to save the data value sent by the MCU (or other device) serial port.
+This data structure is in the ProtocolData.h file. Here you can add communication variables that need to be used in the entire project
 ```c++
 typedef struct {
-	// 可以在这里面添加协议的数据变量
+	// You can add protocol data variables here
 	BYTE power;
 } SProtocolData;
 
 ```
 
-* UI更新
+* UI update
 
-UI界面在工具生成Activity.cpp的时候就已经完成了registerProtocolDataUpdateListener ，也就是说当数据更新的时候logic里面页面程序就会收到数据。
+The UI interface has completed the registerProtocolDataUpdateListener when the tool generates Activity.cpp, which means that the page program in the logic will receive the data when the data is updated.
 
 ```c++
 static void onProtocolDataUpdate(const SProtocolData &data) {
-    // 串口数据回调接口
+    // Serial data callback interface
 	if (mProtocolData.power != data.power) {
 		mProtocolData.power = data.power;
 	}
@@ -255,47 +258,47 @@ static void onProtocolDataUpdate(const SProtocolData &data) {
 }
 
 ```
-在代码里面我们看到一个变量 mProtocolData，这是一个页面里面的static 的变量。在onUI_init()的时候会初始化。
-如：
+In the code, we see a variable ProtocolData, which is a static variable in the page. It will be initialized during onUI_init().
+Such as:
 ```c++
 static SProtocolData mProtocolData;
 static void onUI_init() {
-	//Tips :添加 UI初始化的显示代码到这里,如:mText1->setText("123");
-	mProtocolData = getProtocolData(); // 初始化串口数据的结构体。
-	// 开始初始化页面的UI显示
+	//Tips : Add the display code of UI initialization here, such as: mText1->setText("123");
+	mProtocolData = getProtocolData(); // Initialize the structure of the serial port data.
+	// Start the UI display of the initial page
 }
 
 ```
 
-## 串口数据发送
-打开ProtocolSender.cpp
-当APP层需要发送数据给MCU（或其他设备）的时候直接调用sendProtocol 就可以了。
-具体的协议封装由sendProtocol方法完成。用户可以根据自己的协议要求修改这个部分的代码。
+## Serial data transmission
+Open ProtocolSender.cpp
+When the APP layer needs to send data to the MCU (or other devices), it is enough to call sendProtocol directly.
+The specific protocol encapsulation is completed by the sendProtocol method. Users can modify this part of the code according to their own protocol requirements.
 ```c++
 /**
- * 需要根据协议格式进行拼接，以下只是个模板
+ * Need to be spliced according to the protocol format, the following is just a template
  */
 bool sendProtocol(const UINT16 cmdID, const BYTE *pData, BYTE len) {
 	BYTE dataBuf[256];
 
 	dataBuf[0] = CMD_HEAD1;
-	dataBuf[1] = CMD_HEAD2;			// 同步帧头
+	dataBuf[1] = CMD_HEAD2;			// Sync frame header
 
 	dataBuf[2] = HIBYTE(cmdID);
-	dataBuf[3] = LOBYTE(cmdID);		// 命令字节
+	dataBuf[3] = LOBYTE(cmdID);		// Command byte
 
 	dataBuf[4] = len;
 
 	UINT frameLen = 5;
 
-	// 数据
+	// data
 	for (int i = 0; i < len; ++i) {
 		dataBuf[frameLen] = pData[i];
 		frameLen++;
 	}
 
 #ifdef PRO_SUPPORT_CHECK_SUM
-	// 校验码
+	// Check code
 	dataBuf[frameLen] = getCheckSum(dataBuf, frameLen);
 	frameLen++;
 #endif
@@ -303,7 +306,7 @@ bool sendProtocol(const UINT16 cmdID, const BYTE *pData, BYTE len) {
 	return UARTCONTEXT->send(dataBuf, frameLen);
 }
 ```
-当界面上有个按键按下的时候可以操作：
+You can operate when a button is pressed on the interface:
 ```c++
 BYTE mode[] = { 0x01, 0x02, 0x03, 0x04 };
 sendProtocol(0x01, mode, 4);

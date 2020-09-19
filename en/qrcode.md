@@ -1,21 +1,21 @@
-# 二维码
-## 如何添加二维码？
-如果需要显示二维码，利用现有的`二维码`控件就可以快速实现。具体操作步骤如下：
-1. 双击打开UI文件
-2. 在右侧控件集合中找到`二维码`控件
-3. 鼠标左键点击`二维码`控件不放，然后将其拖拽到任意位置，松开左键，就能看到自动二维码的控件。
-4. 选中刚才生成的二维码控件，在编辑器右侧的属性栏中，可以修改二维码内容，你可以看到二维码图像会同步改变。
+# QR code
+## How to add a QR code?
+If you need to display a two-dimensional code, you can quickly implement it using the existing `two-dimensional code` control. The specific steps are as follows:
+1. Double click to open the UI file
+2. Find the `QR code` control in the control set on the right
+3. Left-click the `QR code` control and hold it, then drag it to any position, release the left button, and you can see the control of the automatic QR code.
+4. Select the QR code control just generated, and in the property bar on the right side of the editor, you can modify the content of the QR code, and you can see that the QR code image will change simultaneously.
 
    ![](assets/QrCode-create.gif)
 
-## 动态更新二维码
-除了通过工具设置二维码内容外，我们还可以通过代码来动态设置二维码内容：
+## Dynamically update the QR code
+In addition to setting the QR code content through the tool, we can also dynamically set the QR code content through the code:
 ```c++
 bool loadQRCode(const char *pStr);
 ```
-# 样例代码
-效果图    
+# Sample code
+Effect picture   
 
  ![](assets/qrcode/preview.png)  
 
-具体二维码控件的使用，参考[样例代码](demo_download.md#demo_download) 中的QrCodeDemo项目。
+For the specific use of the QR code control, please refer to the QrCodeDemo project in [Sample Code](demo_download.md#demo_download)

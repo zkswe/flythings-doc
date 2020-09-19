@@ -1,73 +1,74 @@
-# 文件读写
-如果你熟悉标准C语言的文件读写，可以按照标准C语言的方式读写文件。   
+# File read and write
+f you are familiar with file reading and writing in standard C language, you can read and write files in standard C language.
 
-针对一些常用的文件读写操作，我们基于C语言文件读写接口做了简单的封装，方便使用。 如果需要，可以按步骤，将源码集成到自己的项目中。
+For some commonly used file read and write operations, we made a simple package based on the C language file read and write interface, which is convenient to use. If necessary, you can follow the steps to integrate the source code into your own project.
 
 
 ```c++
 /**
- * 写文件，如果文件存在，将会覆盖，如果文件不存在，则新建文件，再写入内容
- * 成功返回true
+ * Write a file, if the file exists, it will be overwritten, if the file does not exist, create a new file and write the content
+ * Return true if successful
  */
 bool WriteFile(const char* filename, const void* data, int len);
 
 /**
- * 在文件末尾追加内容,如果文件不存在，则先新建文件，再写入内容
- * 成功返回true
+ * Append content at the end of the file, if the file does not exist, create a new file first, and then write the content
+ * Return true if successful
  */
 bool AppendFile(const char* filename, const void* data, int len);
 
 /**
  * 读文件
- * 成功，将文件以二进制的形式保存在string的data中，以 string.data()读取二进制内容
- * 失败返回空串
+ * Read file
+ * Success, save the file in the data of string in binary form, read the binary content with string.data()
+ * Return an empty string on failure
  */
 string ReadFile(const char* filename);
 ```
 
-## 移植步骤  
-1. 在项目的jni文件夹下新建一个文件夹，命名为 `io`  
+## Porting steps 
+1. Create a new folder under the jni folder of the project and name it  `io`  
     
   ![](assets/create_io_folder.png)
-2. 下载 [ioutil.h](https://docs.flythings.cn/src/io/ioutil.h) 、[ioutil.cpp](https://docs.flythings.cn/src/io/ioutil.cpp) 两个文件，保存到`io`文件夹下。  
+2. Downoad [ioutil.h](https://docs.flythings.cn/src/io/ioutil.h) 、[ioutil.cpp](https://docs.flythings.cn/src/io/ioutil.cpp) Two files, save them in the  `io` folder.  
 
   ![](assets/ioutil.png)  
 
-## 如何使用 
-* 引入头文件 
+## How to use 
+* Introduce header files
   ```c++
   #include "io/ioutil.h"
   ```
-* 写文件  
+* Write file
   ```c++
-  //将“0123456789”这个字符串写入到123.txt这个文件中
-  const char* filename = "/mnt/extsd/123.txt"; //文件保存的路径
+  //Write the string "0123456789" into the file 123.txt
+  const char* filename = "/mnt/extsd/123.txt"; //The path where the file is saved
   const char* str = "0123456789";
   ioutil::WriteFile(filename, str, strlen(str));
   ```
 
-* 追加文件
+* Additional files
   ```c++
-  //将内容追加到文件的末尾，如果指定的文件不存在，则新建文件。
+  //Append the content to the end of the file, if the specified file does not exist, create a new file.
   const char* append_str = "abcdefgh";
   ioutil::AppendFile(filename, append_str, strlen(append_str));
   ```
   
-* 读文件
+* Read file
   ```c++
   const char* filename = "/mnt/extsd/123.txt";
-  //读取文件的所有内容，保存在content中
+  //Read all the contents of the file and save it in content
   string content = ioutil::ReadFile(filename);
-  //将读到的每一个字节以16进制输出到日志
+  //Output each byte read to the log in hexadecimal
   for (size_t i = 0 ; i < content.size(); ++i) {
     LOGD("第%02d字节=0x%02X", i, content.data()[i]);
   }
   ```
   > [!Warning]
-  > `ioutil::ReadFile`函数是将文件的所有内容读取到内存里，如果指定的文件过大，会导致内存不够，可能会造成异常。
+  > The `ioutil::ReadFile`function reads all the contents of the file into the memory. If the specified file is too large, it will cause insufficient memory and may cause an exception.
 
 
-* 连续写文件 ，适用于写大文件的情况
+* Write files continuously, suitable for writing large files
   ```c++
   const char* filename = "/mnt/extsd/123.txt";
   const char* append_str = "abcdefgh";
@@ -81,7 +82,7 @@ string ReadFile(const char* filename);
   }
   ```
 
-* 连续读，适用于处理大文件的情况
+* Continuous reading, suitable for processing large files
   ```c++
   const char* filename = "/mnt/extsd/123.txt";
   ioutil::Reader r;
@@ -90,15 +91,15 @@ string ReadFile(const char* filename);
     while (true) {
       int n = r.Read(buf, sizeof(buf));
       if (n > 0) {
-        //有读到内容,输出每一个字节
+        //There is read content, output every byte
         for (int i = 0; i < n; ++i) {
           LOGD("%02x", buf[i]);
         }
       } else if (n == 0) {
-        //读取文件结束
+        //End of reading file
         break;
       } else {
-        //出错
+        //Error
         break;
       }
     }
@@ -108,23 +109,23 @@ string ReadFile(const char* filename);
 
 
 
-## 测试代码  
+## Test code
 ```c++
 /**
- * 当界面构造时触发
+ * Triggered when the interface is constructed
  */
 static void onUI_init() {
-  //写文件
+  //Write file
   const char* filename = "/mnt/extsd/123.txt";
   const char* str = "0123456789";
   ioutil::WriteFile(filename, str, strlen(str));
   string content = ioutil::ReadFile(filename);
-  LOGD("读取字节数%d, 内容:%s", content.size(), content.c_str());
-  //追加文件
+  LOGD("Read bytes%d, content:%s", content.size(), content.c_str());
+  //Append file
   const char* append_str = "abcdefgh";
   ioutil::AppendFile(filename, append_str, strlen(append_str));
   content = ioutil::ReadFile(filename);
-  LOGD("读取字节数%d, 内容:%s", content.size(), content.c_str());
+  LOGD("Read bytes%d, content:%s", content.size(), content.c_str());
 
   ioutil::Writer w;
   if (w.Open(filename, false)) {
@@ -141,15 +142,15 @@ static void onUI_init() {
     while (true) {
       int n = r.Read(buf, sizeof(buf));
       if (n > 0) {
-        //有读到内容,输出每一个字节
+        //There is read content, output every byte
         for (int i = 0; i < n; ++i) {
           LOGD("%02x", buf[i]);
         }
       } else if (n == 0) {
-        //读取文件结束
+        //End of reading file
         break;
       } else {
-        //出错
+        //Error
         break;
       }
     }
@@ -157,12 +158,12 @@ static void onUI_init() {
   }
 
   content = ioutil::ReadFile(filename);
-  LOGD("读取字节数%d, 内容:%s", content.size(), content.c_str());
+  LOGD("Read bytes%d, content:%s", content.size(), content.c_str());
 
-  //如果是读取的二进制文件，不是文本，则应该这样获取二进制
-  //将每一个字节以16进制输出
+  //If it is a read binary file, not text, you should get the binary like this
+  //Output each byte in hexadecimal
   for (size_t i = 0; i < content.size(); ++i) {
-    LOGD("第%02d字节=0x%02X", i, content.data()[i]);
+    LOGD("%02d byte=0x%02X", i, content.data()[i]);
   }
 }
 ```

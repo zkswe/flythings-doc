@@ -1,69 +1,69 @@
-# 远程升级
-目前系统没有直接进行远程升级的接口。   
-但是我们可以了解TF卡检测升级的机制后，再添加上一些自己的代码，即可达到远程升级的目的。  
-我们先介绍一般插TF卡升级的流程。
-## TF卡检测升级流程
-当系统启动或者插入TF卡的时候，如果[TF卡正常挂载](tf.md)，系统会检测**TF卡根目录**下是否存在 **update.img** 文件 (系统内，TF卡根目录映射为 `/mnt/extsd`)。  
-如果存在，进一步校验文件是否符合要求，如果通过校验，然后弹出升级提示界面，用户可以选择进行升级。  
-如果不存在，结束检测流程，界面无任何动作。    
+# Remote upgrade
+Currently, the system does not have an interface for direct remote upgrade.  
+But we can understand the TF card detection and upgrade mechanism, and then add some of our own code to achieve the purpose of remote upgrade.  
+We first introduce the general upgrade process of inserting a TF card.
+## TF card detection upgrade process
+When the system is started or the TF card is inserted, if [TF card is mounted normally](tf.md), The system will check whether there is an **update.img** file in the **TF card root directory** (in the system, the TF card root directory is mapped to `/mnt/extsd`).  
+If it exists, further verify whether the file meets the requirements. If it passes the verification, an upgrade prompt interface will pop up, and the user can choose to upgrade.  
+If it does not exist, the detection process ends and there is no action on the interface.    
 
-## 实现步骤
-1. 首先我们要下载升级镜像 `update.img`。  
-  一般情况下，通过HTTP协议下载文件是最简单的方式，当然，也可以根据实际情况选择其他协议。  
-  下载后，将镜像文件保存到TF卡目录`/mnt/extsd/` 下。   
+## Implementation steps
+1. First we have to download the upgrade image `update.img`.  
+  Under normal circumstances, downloading files through the HTTP protocol is the easiest way, of course, you can also choose other protocols according to the actual situation.  
+  After downloading, save the image file to the TF card directory `/mnt/extsd/`.   
   > [!Note]
-  > 如果机器内没有插TF卡，这个目录仍然可以写入，因为它是保存在内存中的。 受限于内存大小，如果镜像文件过大，会造成设备运行异常、或者升级失败。  
-  如果有插入TF卡，可以忽略内存大小的问题。
-2. 调用升级检测函数   
-   先下载 [UpgradeMonitor.h ](https://docs.flythings.cn/src/UpgradeMonitor.h) 源文件，保存到项目的 `jni/include/os` 目录下。  
+  > If there is no TF card inserted in the machine, this directory can still be written because it is stored in the memory. Limited by the memory size, if the image file is too large, it will cause abnormal device operation or upgrade failure.  
+   If you have inserted a TF card, you can ignore the memory size problem.
+2. Call upgrade detection function   
+   First download the [UpgradeMonitor.h ](https://docs.flythings.cn/src/UpgradeMonitor.h) source file and save it to the `jni/include/os` directory of the project.
    
    ![](assets/upgrade_monitor_header.png)
    
-   然后调用接口检测升级。
+   Then call the interface to detect the upgrade.
    ```c++
    #include "os/UpgradeMonitor.h"
    ```
    ```c++
-   //主动检测 /mnt/extsd目录下是否有正确的update.img文件，
-   //如果有，则弹出升级提示框，
-   //如果没有，则无任何动作
+   //Actively detect whether there is a correct update.img file in the /mnt/extsd directory,
+   //If yes, an upgrade prompt box will pop up,
+   //If not, nothing happens
    UpgradeMonitor::getInstance()->checkUpgradeFile("/mnt/extsd");
    ```
-   弹出升级提示界面后，用户可以选择是否升级。  
-   至此，已完全实现远程升级功能。
+   After the upgrade prompt interface pops up, the user can choose whether to upgrade.  
+   So far, the remote upgrade function has been fully realized.
 
-## 下载文件后自动更新
-如果希望下载升级文件后，强制更新，那么只需要参考[自动升级](autoupgrade.md)文档，用代码创建 `zkautoupgrade`文件即可。
+## Automatically update after downloading the file
+If you want to force the update after downloading the upgrade file, you only need to refer to the [Auto Upgrade](autoupgrade.md) document and create the `zkautoupgrade` file with the code.
 
-## 避免反复升级
-在上面的步骤中，我们将镜像文件保存在 `/mnt/extsd/`目录下，成功升级后，机器会自动重启，  
-这时，系统会执行常规的升级检测流程，由于镜像文件的存在，升级提示界面再一次弹出，导致了重复升级。
+## Avoid repeated upgrades
+In the above steps, we save the image file in the `/mnt/extsd/` directory. After a successful upgrade, the machine will automatically restart.
+At this time, the system will perform the regular upgrade detection process. Due to the existence of the image file, the upgrade prompt interface pops up again, resulting in repeated upgrades.
 
-### 解决方法
-下载镜像文件时，将它保存到非 `/mnt/extsd/` 目录， 例如： `/mnt/extsd/temp/`  ，
-并且，也同步修改调用检测函数的参数。  
+### Solution
+When downloading the image file, save it to a directory other than `/mnt/extsd/`, for example: `/mnt/extsd/temp/`,
+In addition, the parameters of the call detection function are also modified synchronously.  
 ```c++
 UpgradeMonitor::getInstance()->checkUpgradeFile("/mnt/extsd/temp");
 ```
 
 
 
-## 样例参考
-[完整样例下载](https://docs.flythings.cn/src/netupdate.zip)  
-样例中简单实现了http客户端下载文件，参考源码http部分。
-下载文件属于耗时操作，推荐放到独立线程中，这样才不会影响界面的即时响应。    
+## Sample reference
+[Complete sample download](https://docs.flythings.cn/src/netupdate.zip)  
+The sample simply implements the http client to download files, refer to the http part of the source code.
+Downloading files is a time-consuming operation, it is recommended to put them in a separate thread, so as not to affect the immediate response of the interface.    
 
 ![](assets/remote_update1.png)  
-* 关键代码
+* Key code
   ```c++ 
     class DownloadThread : public Thread {
         protected:
         virtual bool threadLoop(){
             http::HttpClient http;
-            mTextview1Ptr->setText("下载升级文件");
-            //创建升级文件的保存路径
+            mTextview1Ptr->setText("download the upgrade file");
+            //Create a save path for the upgrade file
             system("mkdir /mnt/extsd/temp");
-            //这里修改为真实服务IP
+            //Modify here to the real service IP
             string err = http.Download("192.168.1.1/update.img", 80, "/mnt/extsd/temp/update.img");
             mTextview1Ptr->setText(err);
             if (err.empty()) {
@@ -75,14 +75,14 @@ UpgradeMonitor::getInstance()->checkUpgradeFile("/mnt/extsd/temp");
     };
   ```
 
-* 服务端实现  
-  为了方便测试，例程中包含了一个 `http.exe`，它是一个静态文件服务。   
+* Server implementation  
+  For the convenience of testing, the example includes a `http.exe`, which is a static file service.   
   
   ![](assets/remote_update2.png)  
   
-  将制作好的升级镜像文件 `update.img` 和 `http.exe` 放到同一文件夹下，然后在电脑上双击执行 `http.exe`，只要网络正常，即可 通过网址下载同目录下的镜像文件。  
-  例如：  
+  Put the made upgrade image file `update.img` and `http.exe` in the same folder, then double-click on the computer to execute `http.exe`, as long as the network is normal, you can download the file in the same directory through the website Mirror file.  
+  E.g:  
   http://192.168.1.1/update.img    
-  (请注意将IP地址修改为电脑当前IP)  
+  (Please pay attention to modify the IP address to the current IP of the computer)  
 
-服务端开启后，再运行样例代码，即可测试远程升级。
+After the server is started, run the sample code to test the remote upgrade.

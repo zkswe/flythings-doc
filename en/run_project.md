@@ -1,35 +1,35 @@
-# 如何运行项目
-  项目通过[编译](how_to_compile_flythings.md)后，就可以放到真机运行。根据设备型号的不同，有如下几种运行方式：
+# How to run the project
+  After the project passes [compilation](how_to_compile_flythings.md), it can be put to run on the real machine. According to different equipment models, there are several operating modes as follows:
   
-## 使用WIFI连接设备快速运行
-  该方式 **仅支持带WIFI** 的机型，暂支持的设备型号有  
+## Use WIFI to connect devices quickly
+  This method **only supports models with WIFI**, and the currently supported device models are:  
   
- * sw480272043B_CW  4.3普清电容带wifi
- * sw480272043B_CWM 4.3普清wifi网络多媒体  
- * sw80480043B_CW  4.3高清电容带wifi
- * sw48854050B_CW   5寸普清电容带wifi
- * sw80480070A_CW   7寸普清电容带wifi
- * sw80480070A_CWM  7寸普清wifi网络多媒体
- * sw80480070AI_CW     7寸普清电容带wifi
- * sw80480070AI_CWM    7寸普清>电容wifi网络多媒体
- * sw10600070A_CW   7寸高清电容带wifi
+ * sw480272043B_CW  4.3Normal definition capacitor with wifi
+ * sw480272043B_CWM 4.3Normal definition capacitor with wifi and network multimedia 
+ * sw80480043B_CW  4.3High-definition capacitor with wifi
+ * sw48854050B_CW   5 inch Normal definition capacitor with wifi
+ * sw80480070A_CW   7 inch Normal definition capacitor with wifi
+ * sw80480070A_CWM  7 inch Normal definition capacitor with wifi and network multimedia
+ * sw80480070AI_CW     7 inch Normal definition capacitor with wifi
+ * sw80480070AI_CWM    7 inch Normal definition capacitor with wifi and network multimedia
+ * sw10600070A_CW   7 inch High-definition capacitor with wifi
  
- > [产品型号说明](board_tag_explain.md)
+ > [Product model description](board_tag_explain.md)
  
-确定设备支持WIFI后，按照以下步骤完成配置：  
-1. 先进入设备的[WIFI设置界面](wifi.md)，将设备连接到与电脑相同的无线网络，也就是说，电脑和机器必须接入同一个WIFI。（如果不同的网络会导致后续下载程序失败）。  
-2. 无线网络连接成功后，点击WIFI设置界面右上角的菜单，查看设备的IP地址。  
-3. 这时，回到电脑上的开发工具，在菜单栏上，依次选择菜单 **调试配置** -> **ADB配置**， 在弹出框中，ADB连接方式选择**WIFI**， 并填入设备的IP地址，应用保存。
-4. 完成连接配置后，再选择[下载调试](adb_debug.md#下载调试)菜单项，它会[暂时](make_image.md)将项目代码同步到连接的设备中运行。
+After confirming that the device supports WIFI, follow the steps below to complete the configuration:  
+1. First enter the [WIFI setting interface](wifi.md)of the device, and connect the device to the same wireless network as the computer, that is, the computer and the machine must be connected to the same WIFI. (If a different network will cause the subsequent download procedure to fail).  
+2. After the wireless network connection is successful, click the menu in the upper right corner of the WIFI setting interface to check the IP address of the device.  
+3. At this time, back to the development tools on the computer,On the menu bar, select the menu **Debug Configuration** -> **ADB Configuration**,In the pop-up box, select **WIFI** as the ADB connection method, fill in the IP address of the device, and save the application.
+4. After completing the connection configuration, select the [download and debug](adb_debug.md#下载调试) menu item, it will [temporarily](make_image.md) synchronize the project code to the connected device to run.
 
-## 使用USB连接设备快速运行
-对于不带WIFI功能的型号，几乎都支持USB线连接。   **注意：如果带有WIFI功能，USB线连接是无效的。**
+## Fast operation with USB connected device
+For models without WIFI function, almost all support USB cable connection.   **Note: If it has WIFI function, the USB cable connection is invalid.**
   
-1. 将设备与电脑通过USB线连接，如果电脑能将设备识别为Android设备，表示连接正常。 如果不能正常连接，电脑提示驱动问题，可尝试[下载驱动](install_adb_driver.md)。
-2. 当电脑正确识别设备后，回到电脑上的开发工具，在菜单栏，依次选择菜单 **调试配置** -> **ADB配置**， 在弹出框中，ADB连接方式选择**USB**，应用保存。
-3. 配置完成后，再选择[下载调试](adb_debug.md#下载调试)菜单项，它会[暂时](make_image.md)将项目代码同步到连接的设备中运行。
+1. Connect the device to the computer via a USB cable. If the computer can recognize the device as an Android device, the connection is normal. If you can't connect normally, the computer prompts a driver problem, you can try [Download Driver](install_adb_driver.md).
+2. When the computer recognizes the device correctly, return to the development tool on the computer, in the menu bar, select the menu **Debug Configuration** -> **ADB Configuration**, in the pop-up box, select the ADB connection method **USB* *, application save.
+3. After the configuration is completed, select the [Download and Debug](adb_debug.md#下载调试) menu item, it will [temporarily](make_image.md) synchronize the project code to the connected device to run.
 
 
-## 借助TF卡，从TF卡启动
-如果由于其他原因，USB和WIFI都不能正常使用、或者被占用，此可借助TF卡，从TF卡启动程序。
-具体步骤参考[教程-从TF卡启动程序](start_from_sdcard.md)
+## With TF card, boot from TF card
+If for other reasons, both USB and WIFI cannot be used normally or are occupied, you can start the program from the TF card with the help of a TF card.
+Specific steps reference [Tutorial-start the program from TF card](start_from_sdcard.md)

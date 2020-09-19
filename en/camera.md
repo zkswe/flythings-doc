@@ -1,59 +1,59 @@
-# 摄像头
-FlyThings提供了摄像头的控件。  
+# camera
+FlyThings provides camera controls.  
 
 > [!Note]
->  摄像头功能并非所有版本的机器都支持！如果需要正常使用该功能，那么请购买支持USB摄像头功能的版本。 
+>  Not all versions of the camera support the camera function! If you need to use this function normally, please purchase a version that supports the USB camera function. 
 
-## 如何使用  
-1. 首先，创建一个 **摄像头** 控件，默认背景色为黑色。
-2. 查看 **摄像头** 的属性表  
+## How to use   
+1. First, create a **camera** control, the default background color is black.
+2. View the attribute table of **camera**   
 
    ![](assets/camera/properties.png)  
 
-  将自动预览设置为**开**  
-  根据所接摄像头的型号，选择**CVBS**信号与否
-3. 将摄像头与屏连接，再下载运行程序，即可看到摄像头的预览画面。
+  Set Auto Preview to **On**  
+  According to the connected camera model, select **CVBS** signal or not
+3. Connect the camera to the screen, then download and run the program, you can see the camera preview screen.
 
-## 开始/停止预览
-我们可以通过代码控制 开始/停止预览画面
-* 开始预览
+## Start/stop preview
+We can start/stop the preview screen through code control
+* Start preview
 ```c++
 mCameraView1Ptr->startPreview();
 ```
-* 停止预览
+* Stop preview
 ```c++
 mCameraView1Ptr->stopPreview();
 ```
 
-## 摄像头拍照
+## Camera to take pictures
 
-1. 实现拍照回调接口
+1. Implement the camera callback interface
   ```c++
   class PictureCallback : public ZKCamera::IPictureCallback {
   public:
       virtual void onPictureTakenStarted() {
-        mTextView1Ptr->setText("拍照开始");
+        mTextView1Ptr->setText("Start taking pictures");
       }
       virtual void onPictureTakenEnd() {
-        mTextView1Ptr->setText("拍照结束");
+        mTextView1Ptr->setText("Picture is over");
       }
       virtual void onPictureTakenError() {
-        mTextView1Ptr->setText("拍照错误");
+        mTextView1Ptr->setText("Picture error");
       }
       virtual const char* onPictureSavePath() {
-          //照片保存路径
+          //Photo save path
           return "/mnt/extsd/camera.jpg";
       }
   };
   ```
 
-2. 实例化接口，并注册 
+2. Instantiate the interface and register
   ```c++
-  //定义为全局静态变量
+  //Defined as a global static variable
   static PictureCallback picture_callback;
   ```
 
-3. 注册拍照回调接口
+3. Register the camera callback interface
   ```c++
   static void onUI_init(){
       mCameraView1Ptr->setPictureCallback(&picture_callback);
@@ -61,21 +61,21 @@ mCameraView1Ptr->stopPreview();
   ```
   ```c++
   static void onUI_quit() {
-    //记得在界面退出时将注册接口置空
+    //Remember to empty the registration interface when the interface exits
       mCameraView1Ptr->setPictureCallback(NULL);
   }
   ```
-4. 增加一个按键，当点击按键时，请求拍照
+4. Add a button, when you click the button, request a phot
   ```c++
   static bool onButtonClick_Button3(ZKButton *pButton) {
-	  //请求拍照
+	  //Request a photo
 	  mCameraView1Ptr->takePicture();
       return false;
   }
   ```
 
-## 样例代码
-在该样例中， 实现了摄像头的预览及拍照功能、相册功能。   
-具体实现，参考[样例代码](demo_download.md#demo_download) CameraDemo项目
+## Sample code
+In this example, the camera preview and camera functions, and album functions are implemented.  
+For specific implementation, refer to [Sample Code](demo_download.md#demo_download) CameraDemo project
 
 ![](assets/camera/preview.png) 

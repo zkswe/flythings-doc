@@ -1,59 +1,59 @@
 
-# 关于我们
-### 目标
-	让开发更加简单，高效；让普通用户拥有更便易的客制化开发方案。
+# About us
+### Target
+	Make development easier and more efficient; let ordinary users have more convenient customized development programs.
 	
-### 价值
-	专业：用专业的技术铸造专业的产品
-	创新：不断的开拓创新为客户提供源源不断的价值
-	责任：用技术改变生活
+### Value
+	Professional: Casting professional products with professional technology
+	Innovation: Continuous innovation to provide customers with a steady stream of value
+	Responsibility: Use technology to change lives
 
 
-# 关于显示屏模组
-## 我们为什么做Linux的显示解决方案
-目前随着技术的发展，人机交互方案一直在升级。而目前在一些传统领域人机交互发展相对比较缓慢。传统领域里面有不少基于单片机，单片机+FPGA的显示解决方案为不少客户解决了彩屏显示交互开发困难的问题；但是随着用户需求和交互内容的增多，传统的硬件限制已经无法满足大部分的客户需求，所以我们做了这个产品。赋能传统领域便捷的人机交互体验方案+物联网的接入能力，助力物联网的发展。
-## 产品优势
+# About the display module
+## Why do we make Linux display solutions
+With the development of technology, the human-computer interaction scheme has been upgrading. At present, the development of human-computer interaction in some traditional fields is relatively slow. In the traditional field, there are many display solutions based on single-chip microcomputer, single-chip microcomputer + FPGA, which have solved the difficult problem of interactive development of color screen display for many customers; but with the increase of user needs and interactive content, traditional hardware limitations can no longer meet most of the problems Customer demand, so we made this product. Empower the convenient human-computer interaction experience program in the traditional field + the access capability of the Internet of Things, and help the development of the Internet of Things.
+## Product advantages
 
-* **对比传统的单片机串口屏或者单片机+FPGA显示屏的解决方案**
-1. 提供了类手机，平板电脑一样的最新交互体验方式，客户接受程度高，产品使用学习成本低，显示效果好的优势
-2. 通过软件实现了多图层虚拟的技术，解决传统显示方案限制图层数目的问题
-3. 支持png 格式的解码能力，让图片图层叠加效果更佳
-4. 从系统层支持WiFi，以太网，2G，4G的接入能力为客户更加便捷的接入网络；同时方便快速的接入深智云，微信物联，微信支付，支付宝支付等平台，可以为共享行业提供快速的物联终端解决方案。
-5. 提供视频解码的能力，更方便的向用户展示信息。
-* **对比Android和传统的Linux解决方案**
-1. 提供测试稳定的硬件基础，节省了硬件开发的测试验证的周期
-2. 提供针对物联+显示的系统开发工作，节省系统在物联和显示上再次开发和调试系统的时间
-3. 提供低成本高效率的运行能力：目前系统运行于 1G单核的CPU,64MBDDR2,16MB的Flash上，节省50%以上的硬件成本
-4. 提供组态+用户逻辑源码的开发工具，方便客户快速完成客制化的开发；开发周期至少比传统的方式节省60%以上。
-5. 深度定制的系统具备了3秒快速启动和24小时*365天安全运行的能力。
+* **Compare the solution of traditional single-chip serial port screen or single-chip + FPGA display screen**
+1. Provides the latest interactive experience like mobile phones and tablet computers, with high customer acceptance, low product learning costs, and good display effects
+2. Multi-layer virtualization technology is realized through software, which solves the problem of traditional display schemes limiting the number of layers
+3. Support png format decoding ability, so that the image layer overlay effect is better
+4. From the system level, it supports WiFi, Ethernet, 2G, and 4G access capabilities to provide customers with more convenient access to the network; at the same time, it is convenient and fast to access Deep Zhiyun, WeChat Internet of Things, WeChat Pay, Alipay and other platforms, which can be shared The industry provides fast IoT terminal solutions.
+5. Provide video decoding capabilities, more convenient to display information to users.
+* **Compare Android and traditional Linux solutions**
+1. Provides a stable hardware foundation for testing, saving the cycle of testing and verification of hardware development
+2. Provide system development work for the Internet of Things + display, saving the time for the system to re-develop and debug the system on the Internet of Things and display
+3. Provides low-cost and high-efficiency operating capabilities: The current system runs on 1G single-core CPU, 64MBDDR2, 16MB Flash, saving more than 50% of hardware costs
+4. Provide development tools with configuration + user logic source code to facilitate customers to quickly complete customized development; the development cycle is at least 60% less than the traditional method.
+5. The deeply customized system has the ability to quickly start in 3 seconds and operate safely in 24 hours * 365 days.
 
-# 应用场景
-* 智能家居：  
+# Application scenario
+* Smart home: 
 
   ![](https://ae01.alicdn.com/kf/HTB1sFD2aU_rK1Rjy0Fc762EvVXa0.png)
-* 智能家电  
+* Smart Appliances  
   
   ![](https://ae01.alicdn.com/kf/HTB1YNz.aJfvK1RjSspf762zXFXaV.png)![](https://ae01.alicdn.com/kf/HTB18jY5aLvsK1RjSspd763ZepXaN.png)
   
-* 共享行业  
+* Shared industry 
   
   ![](https://ae01.alicdn.com/kf/HTB1Q6L7aI_vK1Rjy0Fo760IxVXaa.png)
   
-* 电梯指示牌  
+* Elevator signs  
   
   ![](https://ae01.alicdn.com/kf/HTB172D8aOzxK1RjSspj763S.pXa0.png)
   
-* 广告机  
+* Advertising player  
 
   ![](https://ae01.alicdn.com/kf/HTB1O9z4aIfrK1RjSszc760GGFXah.png)
 
-* 充电桩
+* Charging pile
   
   ![](https://ae01.alicdn.com/kf/HTB1GUj8aPDuK1RjSszd760GLpXaW.png)
 
-* 评价机  
+* Evaluation machine  
 
   ![](https://ae01.alicdn.com/kf/HTB15Pb6aITxK1Rjy0Fg761ovpXaw.png)  
   
-只要您有需要显示，可能我们就能帮助您
+As long as you need to show, maybe we can help you
 

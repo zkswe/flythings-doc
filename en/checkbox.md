@@ -1,37 +1,37 @@
-# 复选框 CheckBox
-复选框 是基于 按键 的一个控件。 如果你需要一个开关按钮，或一个复选按钮，用复选框控件更合适，也更简单易用。  
-当点击该控件时，它会自动切换为选中状态，再点击一次又切换为非选中状态，切换状态的同时，也会根据属性中设置的图片、颜色等自动切换。
-## 如何使用
-1. 双击打开UI文件
-2. 在右侧控件集合中找到`复选框`控件
-3. 鼠标左键点击`复选框`控件不放，然后将其拖拽到任意位置，松开左键，就能看到自动生成的复选框控件。
-4. 再左键点击刚才生成的复选框控件，在编辑器的右侧就能看到该控件的相关属性。    
-  根据需要，设置各个状态的图片、各个状态的颜色。 这里重点注意 **选中时的图片及颜色**。  
+# CheckBox
+The check box is a control based on the button. If you need a switch button, or a check button, using a check box control is more suitable and easier to use.  
+When the control is clicked, it will automatically switch to the selected state, and click again to switch to the non-selected state. While switching the state, it will automatically switch according to the picture and color set in the properties.
+## how to use
+1. Double-click to open the UI file
+2. Find the `Checkbox` control in the control collection on the right
+3. Left-click the `Checkbox` control and hold it, then drag it to any position, release the left button, and you can see the automatically generated check box control.
+4. Left-click the check box control just generated, and you can see the related properties of the control on the right side of the editor.
+  Set the pictures of each state and the color of each state as needed. Pay attention to the **picture and color when selected**.  
   
   ![](assets/checkbox/properties.png)  
-  如果你设置了图片，发现图片大小显示异常，可以在 **图片位置** 属性中，调整图片的位置及大小。  
-  通常情况下，我们将图片调整到矩形区域的左边，文字放到矩形区域的右边。
-5. 属性设置完成后再编译，对应的`Logic.cc` 中会生成它的关联函数。  
-   当你点击该控件时，关联函数会被系统调用， 其中参数 `bool isChecked` 表示选中状态。     
+  If you set a picture and find that the size of the picture is displayed abnormally, you can adjust the position and size of the picture in the **Picture Position** property.  
+  Normally, we adjust the picture to the left of the rectangular area and the text to the right of the rectangular area.
+5. Compile after the properties are set, and its associated functions will be generated in the corresponding`Logic.cc`.  
+   When you click the control, the associated function will be called by the system, and the parameter `bool isChecked` indicates the selected state.     
   ```c++
   static void onCheckedChanged_Checkbox1(ZKCheckBox* pCheckBox, bool isChecked) {
     if (isChecked) {
-      //复选框 为 选中状态
-      LOGD("选中");
+      //The checkbox is selected
+      LOGD("selected");
     } else {
-      //复选框 为  未选中状态
-      LOGD("未选中");
+      //Checkbox is not selected
+      LOGD("Not selected");
     } 
   }
   ```
  
-6. 下载调试，查看效果。
+6. Download and debug, check the effect.
  
 
-## 样例代码  
+## Sample code
 
-请参考[样例代码](demo_download.md#demo_download)中的CheckBoxDemo工程。   
-样例预览效果图：  
+Please refer to the CheckBoxDemo project in [Sample Code](demo_download.md#demo_download).   
+Sample preview effect diagram:
 
 ![效果图](assets/checkbox/example1.png)
 ![效果图](assets/checkbox/example2.png)

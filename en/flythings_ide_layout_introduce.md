@@ -1,33 +1,33 @@
-# <span id="ide_introduce"> FlyThings IDE 工作区域使用介绍</span>  
-当你新建项目完成后，你将看到如下界面    
+# <span id="ide_introduce"> FlyThings IDE work area usage introduction</span>  
+When your new project is completed, you will see the following interface 
  
-  ![新建项目完成后的界面](https://ae01.alicdn.com/kf/HTB1dXL2aOfrK1RjSspb7634pFXao.png)  
+  ![Interface after the new project is completed](https://ae01.alicdn.com/kf/HTB1dXL2aOfrK1RjSspb7634pFXao.png)  
   
-编辑器大致分为六个区域。分别的作用如下：  
-  1. **① 区域 - 项目资源管理器** 它将项目文件夹内的资源文件、代码文件等以树形图的形式显示。你可以自由展开/收起，双击文件可以直接打开编辑。具体演示如下：  
+The editor is roughly divided into six areas. The respective functions are as follows:  
+  1. **① Area-Project Explorer** It displays the resource files and code files in the project folder in the form of a tree diagram. You can expand/collapse freely, double-click the file to directly open it for editing. The specific demonstration is as follows:
   
-     ![项目展开/收起](assets/ide/project_open_collapsed.gif)   
+     ![Project Expand/Collapse](assets/ide/project_open_collapsed.gif)   
  
-  2. **② 区域 - UI编辑框**  主要负责UI界面的编辑和即时预览，他是开发中主要的操作区域
-  3. **③ 区域 - 控件画板**  它包含了所有内置的控件，你可以点击选择需要的的控件，将其拖拽到 **②区域** 即可完成控件的创建。具体演示如下：   
+  2. **② Area-UI edit box**  Mainly responsible for the editing and instant preview of the UI interface, it is the main operation area in the development
+  3. **③ Area-Control Panel**  It contains all the built-in controls. You can click to select the control you need, and drag it to **②area** to complete the creation of the control. The specific demonstration is as follows:
   
-     ![创建控件演示](assets/ide/create_control.gif)  
+     ![Create control demo](assets/ide/create_control.gif)  
     
-  4. **④ 区域 - 属性表**  当你在 **区域②** 中选择了某个控件后，它的所有属性将在这里以表格的形式显示，你可以在表格中自定义修改。例如修改文字大小，具体演示如下：  
+  4. **④ Area - Property**  When you select a control in  **area②** , all its properties will be displayed here in the form of a table, and you can customize and modify it in the table. For example, to modify the text size, the specific demonstration is as follows: 
    
-     ![修改属性演示](assets/ide/set_properties.gif)  
+     ![Modify Properties Demo](assets/ide/set_properties.gif)  
       
-  5. **⑤ 区域 - 大纲视图** 它将已经创建的所有控件以树形图的形式展示；同样支持自由展开/收起； 可以清晰的了解控件之间的层级关系；并且可以直接拖拽某个节点，快速调整层级位置；双击节点可以快速显示/隐藏控件，这个在层级关系复杂后，非常好用。  具体演示如下：  
+  5. **⑤ Area - Outline View** It displays all the created controls in the form of a tree diagram; also supports free expansion/collapse; can clearly understand the hierarchical relationship between the controls; and can be directly dragged and dropped A certain node can quickly adjust the position of the hierarchy; double-click the node to quickly show/hide the controls. This is very easy to use when the hierarchy is complicated. The specific demonstration is as follows:  
  
-     ![大纲视图演示](assets/ide/usage_outline.gif)
+     ![Outline View Demo](assets/ide/usage_outline.gif)
  
-  6. **⑥ 区域 - 控制台** 编译代码时，这个位置将输出编译日志。如果编译失败，双击**错误提示内容**，可直接跳转到对应代码。  
- 如下图，演示双击错误提示内容，直接跳转代码。  
+  6. **⑥ Area - Console** When compiling the code, this location will output the compilation log. If the compilation fails, double-click **error prompt content**to jump directly to the corresponding code.  
+ As shown in the figure below, it demonstrates that double-click the error message and jump directly to the code. 
  
-     ![演示双击错误提示内容直接跳转代码](assets/ide/usage_console.gif)
+     ![Demonstrate double-clicking the error prompt content to jump directly to the code](assets/ide/usage_console.gif)
 
 
-有了以上的基础后，现在，我们可以正式开始开发。
+With the above foundation, now, we can officially start development.
 
 
 

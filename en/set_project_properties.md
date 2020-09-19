@@ -1,13 +1,13 @@
 
-###  如何配置项目属性
+###  How to configure project properties
 
-1. 在项目资源管理器中选中需要配置的项目名  
+1. Select the project name to be configured in the project explorer  
 
-2. 右键点击，在弹出框中选择 **属性**  选项  
+2. Right click and select **Properties** option in the pop-up box 
 
    ![](assets/set_project_properties.png)  
 
-3. 在弹出框中选择 **FlyThings** 选项，在右侧可以看到目前项目的属性配置，确认后，点击 **应用** 保存配置。  
+3. Select the **FlyThings** option in the pop-up box. On the right side, you can see the property configuration of the current project. After confirming, click **Apply** to save the configuration.  
 
     ![](assets/set_project_properties2.png)
 
