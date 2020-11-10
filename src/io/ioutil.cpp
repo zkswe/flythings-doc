@@ -1,5 +1,6 @@
 #include "ioutil.h"
 #include <unistd.h>
+#include <string>
 
 namespace ioutil {
 
@@ -27,9 +28,9 @@ string ReadFile(const char* filename) {
   string raw;
   char buf[1024] = {0};
   while (true) {
-    int n = r.Read(buf, sizeof(buf));
+    int n = r.Read(buf, (int)sizeof(buf));
     if (n > 0) {
-      raw.append(buf, n);
+      raw.append(buf, (string::size_type)n);
     } else if (n == 0) {
       break;
     } else {
@@ -62,6 +63,9 @@ void Reader::Close() {
   }
 }
 
+Reader::Reader():file_(NULL) {
+}
+
 Reader::~Reader() {
   Close();
 }
@@ -85,6 +89,9 @@ void Writer::Close() {
     sync();
     file_ = NULL;
   }
+}
+
+Writer::Writer():file_(NULL) {
 }
 
 Writer::~Writer() {

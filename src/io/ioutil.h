@@ -28,6 +28,7 @@ string ReadFile(const char* filename);
 
 class Reader {
 public:
+  Reader();
   //打开文件，成功返回true
   bool Open(const char* filename);
   //读取文件, 成功，则返回读取的字节数; 失败，则返回负数; 读取结束返回0
@@ -41,6 +42,7 @@ private:
 
 class Writer {
 public:
+  Writer();
   /**
    * 打开文件,如果文件不存在，会自动创建
    * append:  是否是追加写文件，如果不是则会覆盖原文件
