@@ -5,7 +5,7 @@
 > **Note: The capacity of the TF card supports up to 16G. The oversized machine cannot recognize the TF card and cannot be upgraded.<br/>For the latest software flashing package, please go to QQ group: [371608200](//shang.qq.com/wpa/qunwpa?idkey=da6e12d1773a7e55295a0accd2a46ad51aece61657fe55a2f8277f4cd91dc56a)  group sharing to download, pay attention to find the software of the corresponding version of your machine, see [label](board_tag_explain.md) on the back of the machine, otherwise the upgrade may cause an abnormality!
 
 
-1. Download the [computer flashing tool](http://download.zkswe.com/tool/Flasher.zip)
+1. Download the [computer flashing tool](http://download.zkswe.com/tool/Flasher-1.0.4.zip)
 2. Select the TF card drive letter on the computer
 
    ![](images/screenshot_1522837510660.png)
