@@ -2,7 +2,7 @@
 ## 安装FlyThings集成开发工具及SDK
 
 * ### Windows   
-  <a id="ide-download" href=""> <strong>FlyThings IDE</strong></a>（20200704-0921） 
+  <a id="ide-download" href=""> <strong>FlyThings IDE</strong></a>（20201225-0846） 
   
   
   
