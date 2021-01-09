@@ -31,6 +31,7 @@
    * [480x854 控件样例](http://download.flythings.cn/archive/basedemo_h500s_480_854.zip)
    * [800x480 控件样例](http://download.flythings.cn/archive/basedemo_h500s_800_480.zip)
    * [1024x600 控件样例](http://download.flythings.cn/archive/basedemo_h500s_1024_600.zip)
+   * [第三方库移植代码样例(Modbus、Sqlite、CURL HTTP、Mqtt)](http://download.flythings.cn/archive/H500SThirdPart-master.zip)
    
 * 出厂样例代码
    * [代码样例](http://download.flythings.cn/archive/zkswe_sampleUI-master.zip)
