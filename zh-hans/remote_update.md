@@ -15,7 +15,7 @@
   > 如果机器内没有插TF卡，这个目录仍然可以写入，因为它是保存在内存中的。 受限于内存大小，如果镜像文件过大，会造成设备运行异常、或者升级失败。  
   如果有插入TF卡，可以忽略内存大小的问题。
 2. 调用升级检测函数   
-   先下载 [UpgradeMonitor.h ](https://docs.flythings.cn/src/UpgradeMonitor.h) 源文件，保存到项目的 `jni/include/os` 目录下。  
+   先下载 [UpgradeMonitor.h ](../src/UpgradeMonitor.h) 源文件，保存到项目的 `jni/include/os` 目录下。  
    
    ![](assets/upgrade_monitor_header.png)
    
@@ -49,7 +49,7 @@ UpgradeMonitor::getInstance()->checkUpgradeFile("/mnt/extsd/temp");
 
 
 ## 样例参考
-[完整样例下载](https://docs.flythings.cn/src/netupdate.zip)  
+[完整样例下载](../src/netupdate.zip)  
 样例中简单实现了http客户端下载文件，参考源码http部分。
 下载文件属于耗时操作，推荐放到独立线程中，这样才不会影响界面的即时响应。    
 

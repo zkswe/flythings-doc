@@ -15,7 +15,7 @@ If it does not exist, the detection process ends and there is no action on the i
   > If there is no TF card inserted in the machine, this directory can still be written because it is stored in the memory. Limited by the memory size, if the image file is too large, it will cause abnormal device operation or upgrade failure.  
    If you have inserted a TF card, you can ignore the memory size problem.
 2. Call upgrade detection function   
-   First download the [UpgradeMonitor.h ](https://docs.flythings.cn/src/UpgradeMonitor.h) source file and save it to the `jni/include/os` directory of the project.
+   First download the [UpgradeMonitor.h ](../src/UpgradeMonitor.h) source file and save it to the `jni/include/os` directory of the project.
    
    ![](assets/upgrade_monitor_header.png)
    
@@ -49,7 +49,7 @@ UpgradeMonitor::getInstance()->checkUpgradeFile("/mnt/extsd/temp");
 
 
 ## Sample reference
-[Complete sample download](https://docs.flythings.cn/src/netupdate.zip)  
+[Complete sample download](../src/netupdate.zip)  
 The sample simply implements the http client to download files, refer to the http part of the source code.
 Downloading files is a time-consuming operation, it is recommended to put them in a separate thread, so as not to affect the immediate response of the interface.    
 

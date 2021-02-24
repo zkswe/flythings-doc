@@ -7,7 +7,7 @@ For some commonly used socket programming implementation operations, for example
 1. Create a new folder under the jni folder of the project and name it `net`  
     
   ![](assets/create_net_folder.png)
-2. Download [net.h](https://docs.flythings.cn/src/net/net.h) 、[net.cpp](https://docs.flythings.cn/src/net/net.cpp)  Two files, save them to the `net` folder.
+2. Download <a href="../src/net/net.h" download target="_blank">net.h</a> 、<a href="../src/net/net.cpp" download target="_blank">net.cpp</a>  Two files, save them to the `net` folder.
 
   ![](assets/net_class.png)  
 

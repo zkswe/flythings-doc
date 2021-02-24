@@ -5,7 +5,7 @@ Currently, the system only supports UTF-8 encoding, such as text boxes and other
   Sconv is an open source library for transcoding. We use it to convert between utf-8 and gbk.
 
 ## Ready
-[Download sconv source files](https://docs.flythings.cn/src/utf8cover.rar)，And unzip it to our project `jni` folder.
+[Download sconv source files](../src/utf8cover.rar)，And unzip it to our project `jni` folder.
 
   ![](assets/transcoding.png)
   

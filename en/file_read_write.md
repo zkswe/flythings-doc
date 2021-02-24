@@ -30,7 +30,7 @@ string ReadFile(const char* filename);
 1. Create a new folder under the jni folder of the project and name it  `io`  
     
   ![](assets/create_io_folder.png)
-2. Downoad [ioutil.h](https://docs.flythings.cn/src/io/ioutil.h) 、[ioutil.cpp](https://docs.flythings.cn/src/io/ioutil.cpp) Two files, save them in the  `io` folder.  
+2. Downoad [ioutil.h](../src/io/ioutil.h) 、[ioutil.cpp](../src/io/ioutil.cpp) Two files, save them in the  `io` folder.  
 
   ![](assets/ioutil.png)  
 
