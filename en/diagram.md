@@ -66,7 +66,8 @@ The value of `index` starts from 0.**
   * `void addData(int index, float data)`
   Add a single data to the waveform, `data` bis the y value, you may wonder why there is no x value, because this function number is **local waveform graph refresh**, when you call this function to set the y value every time, The system will automatically offset a certain x value, and the size of this offset is the same as the set [**step**](#step_property) property.  
     Comparing `void setData(int index, const MPPOINT *pPoints, int count)` and `void addData(int index, float data)` two ways to refresh the waveform, it can be concluded that if the amount of data is large, the second This method will have higher refresh efficiency.
-  > setData(index, NULL, 0) to clear the waveform data
+  * `void clear(int index)`
+  to clear the waveform data
 
 
 ## Add the method of wave movement
