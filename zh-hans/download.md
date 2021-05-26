@@ -1,7 +1,7 @@
 # 搭建开发环境
 
 ## 集成开发环境下载   
-  <a id="ide-download" href=""> <strong>FlyThings IDE</strong></a>（20201225-0846） 
+  <a id="ide-download" href=""> <strong>FlyThings IDE</strong></a>（20210526-0806） 
   
   
   ## SDK
