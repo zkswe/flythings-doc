@@ -21,3 +21,4 @@
   * [H500S](http://download.flythings.cn/sdk/platforms/h500s.7z)
   * [SSD](http://download.flythings.cn/sdk/platforms/ssd.7z)
   * [Z20](http://download.flythings.cn/sdk/platforms/z20.7z)
+  * [Z21](http://download.flythings.cn/sdk/platforms/z21.7z)
