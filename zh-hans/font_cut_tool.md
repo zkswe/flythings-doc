@@ -29,4 +29,10 @@
 
 ![](assets/ide/font_cut_tool_test.png)
 
+### 字体文件
+<a href="../src/SourceHanSansCN-Normal.ttf" download target="_blank">完整思源黑体下载</a>
 
+### 常用字TXT
+<a href="../src/常用字一级.txt" download target="_blank">常用字一级下载</a>  
+<a href="../src/常用字一级、二级.txt" download target="_blank">常用字一级、二级下载</a>  
+<a href="../src/繁体字一级、二级.txt" download target="_blank">繁体字一级、二级下载</a>   
