@@ -64,13 +64,22 @@ static bool onButtonClick_Button2(ZKButton *pButton) {
 这个比较简单，修改一下颜色就可以看到效果了；<br/>
 代码设置背景颜色：
 ```c++
-/* color为-1时，背景设置为透明；其他颜色值为0x RGB，颜色值不支持alpha */
+/**
+ * Z6、Z11、A33平台接口定义
+ * color为-1时，背景设置为透明；其他颜色值为0x RGB，颜色值不支持alpha
+ */
 void setBackgroundColor(int color);
+
+/**
+ * H500S、Z20、Z21及以后平台接口定义
+ * color 颜色值为0x ARGB，支持alpha
+ */
+void setBackgroundColor(uint32_t color);
 
 
 /* 操作样例： 点击按钮控件，设置背景颜色为红色 */
 static bool onButtonClick_Button1(ZKButton *pButton) {
-    pButton->setBackgroundColor(0xFF0000);
+    pButton->setBackgroundColor(0xFFFF0000);
     return false;
 }
 ```
@@ -107,12 +116,12 @@ mButton1Ptr->setBackgroundPic("bg.png");    // 设置resources目录下bg.png图
 
 另外，我们还可以通过代码动态的设置控件显示和隐藏：
 ```c++
-void setVisible(BOOL isVisible);
-BOOL isVisible() const;
+void setVisible(bool isVisible);
+bool isVisible() const;
 
 /* 操作样例 */
-mButton1Ptr->setVisible(TRUE);  // 显示按钮控件
-mButton1Ptr->setVisible(FALSE); // 隐藏按钮控件
+mButton1Ptr->setVisible(true);  // 显示按钮控件
+mButton1Ptr->setVisible(false); // 隐藏按钮控件
 
 
 /**
@@ -141,24 +150,24 @@ mWindow1Ptr->hideWnd();
 选中状态和无效状态的代码操作接口：
 ```c++
 // 设置选中状态
-void setSelected(BOOL isSelected);
-BOOL isSelected() const;
+void setSelected(bool isSelected);
+bool isSelected() const;
 
 /* 操作样例 */
-mButton1Ptr->setSelected(TRUE);
-mButton1Ptr->setSelected(FALSE);
+mButton1Ptr->setSelected(true);
+mButton1Ptr->setSelected(false);
 
 
 /**
  * 无效状态作用说明：控件设置为无效状态情况下，触摸控件没有作用，即不响应按下抬起事件
  */
 // 设置无效状态
-void setInvalid(BOOL isInvalid);
-BOOL isInvalid() const;
+void setInvalid(bool isInvalid);
+bool isInvalid() const;
 
 /* 操作样例 */
-mButton1Ptr->setInvalid(TRUE);
-mButton1Ptr->setInvalid(FALSE);
+mButton1Ptr->setInvalid(true);
+mButton1Ptr->setInvalid(false);
 ```
 
 ## 样例说明

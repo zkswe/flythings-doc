@@ -36,7 +36,7 @@
  ![](assets/diagram/location.png)  
  
  一般情况下，**x轴最小值** 属性输入的值 小于 **x轴最大值** 属性 输入的值。但是如果将输入的最小值，最大值颠倒，那么同样的数据， 绘制的波形图像会左右颠倒;  
- 如果使用`void setData(int index, const MPPOINT *pPoints, int count)`函数添加波形数据，那么还会造成刷新方向颠倒。 同理，对于y轴而言，绘制波形图像会造成上下颠倒。   
+ 如果使用`void setData(int index, const SZKPoint *pPoints, int count)`函数添加波形数据，那么还会造成刷新方向颠倒。 同理，对于y轴而言，绘制波形图像会造成上下颠倒。   
  
 ## 代码操作  
   同样，UI文件只帮助我们快速修改波形的样式外观，具体的波形数据还是得通过代码添加。 
@@ -51,29 +51,31 @@
     设置x轴缩放，对应属性表上的 **x轴缩放** 属性， 
   * `void setYScale(int index, double yScale)`  
     设置y轴缩放，对应属性表上的 **y轴缩放** 属性
-  * `void setData(int index, const MPPOINT *pPoints, int count)`  
+  * `void setData(int index, const SZKPoint *pPoints, int count)`  
     ```
-    typedef struct _MPPOINT
-    {
+    typedef struct {
         float x;
         float y;
-    }MPPOINT;
+    } SZKPoint;
     ```
-    `MMPOINT`结构体包含了 单个数据的 x、y值。
+    `SZKPoint`结构体包含了 单个数据的 x、y值。
     函数表示将`pPoints`数组中的`count`个点绘制到 第 `index`个波形上。注意： `count` 值不能大于 `pPoints`数组实际大小, 否则会造成数组越界。  
     **使用该函数绘制波形的思想是：** 先将需要显示的数据填充到`sPoints`数组中，再一次性将数组里的点绘制的波形上。所以，如果想达到 **波形** 向左或向右 移动的动画效果，你需要手动将数组内的值整体偏移一个下标，再显示到波形上， 再整体偏移一个下标，再显示到波形上，如此循环。 通常这样的循环通过 定时器 来实现。   
     所以该方法会造成 **整个波形图像都会刷新**。
   * `void addData(int index, float data)`
   将单个数据增加到波形上， `data`为 y值， 你可能会好奇为什么没有 x 值，因为这个函数数是 **局部波形图形刷新**，当你每次调用该函数设置 y 值时，系统会自动偏移一定 x 值，而这个偏移的大小 与设置的 [**步进**](#step_property) 属性相同。  
-    对比 `void setData(int index, const MPPOINT *pPoints, int count)`和`void addData(int index, float data)` 两种刷新波形的方式，可以得出，如果在大数据量下，采用第二种方式会有更高的刷新效率。
+    对比 `void setData(int index, const SZKPoint *pPoints, int count)`和`void addData(int index, float data)` 两种刷新波形的方式，可以得出，如果在大数据量下，采用第二种方式会有更高的刷新效率。
   * `void clear(int index)`
   清除波形图数据
 
+  > [!Note]
+  > **注意： Z6、Z11、A33平台坐标点结构体为`MPPOINT`，H500S、Z20、Z21及之后的平台结构体改名为`SZKPoint`，这点需要注意下。
+
 
 ## 添加波形移动的方法
-刚才上面也有提到过，如果采用 `void setData(int index, const MPPOINT *pPoints, int count)`方式绘制波形，通常需要自行将数组中的值按下标偏移。
+刚才上面也有提到过，如果采用 `void setData(int index, const SZKPoint *pPoints, int count)`方式绘制波形，通常需要自行将数组中的值按下标偏移。
 ```c++
-static void movePoints(MPPOINT* p,int size){
+static void movePoints(SZKPoint* p,int size){
 	for(int i =0;i < size-1;i++){
 		p[i].y = p[i+1].y;
 	}
