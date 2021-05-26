@@ -45,7 +45,10 @@ sPlayer.isPlaying();	// 是否播放中，返回bool型
 sPlayer.getDuration();		// 获取当前播放歌曲的总时间
 sPlayer.getCurrentPosition();	// 获取当前播放歌曲的当前播放时间点
 
-sPlayer.setVolume(0.5, 0.5);	// 设置媒体音量，音量范围：0.0 ~ 1.0
+// Z6、Z11、A33平台设置音量接口为2个参数
+sPlayer.setVolume(0.5, 0.5);    // 设置媒体音量，音量范围：0.0 ~ 1.0
+// H500S、Z20、Z21及之后的平台设置音量接口为1个参数
+sPlayer.setVolume(0.5);         // 设置媒体音量，音量范围：0.0 ~ 1.0
 ```
 
 > [!Note]
