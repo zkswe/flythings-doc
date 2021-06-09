@@ -11,20 +11,20 @@
   ![](https://ae01.alicdn.com/kf/HTB1nWaJNyLaK1RjSZFx761mPFXaM.png) 
   
 ## 电源接口说明  
-* ### PH2.0-8PIN座子接口定义
+### PH2.0-8PIN座子接口定义  
 
-   | 1PIN | 2PIN |3PIN | 4PIN | 5PIN | 6PIN | 7PIN | 8PIN |
+| 1PIN | 2PIN |3PIN | 4PIN | 5PIN | 6PIN | 7PIN | 8PIN |   
 | --- | --- | --- | --- |--- | --- |--- | --- |
 | DC5V | RESET | CTS | TXOUT/B | RXIN/A | RTS | GND | GND |  
 |直流电源输入4.5-5.5V |模组RESET,默认是NC  |流控CTS  |串口TX或者RS485-B。（接外部设备RX/RS485B） |串口RX或者RS485-A（接外部设备TX/RS485A）| 流控RTS|  电源地 |电源地 |    
 
-<br/>
-*  ### 10PIN1.0FPC座子接口定义  
 
-    | 1/2/3PIN | 4PIN | 5PIN | 6PIN | 7PIN | 8/9/10PIN | 
-    | --- | --- | --- | --- |--- | --- |
-    | DC5V | RTS | RXIN/A | TXOUT/B | CTS | GND |
-    |直流电源输入4.5-5.5V | 流控RTS | 串口RX或者RS485-A（接外部设备TX/RS485A）| 串口TX或者RS485-B。（接外部设备RX/RS485B） | 流控CTS |  电源地 |  
+### 10PIN1.0FPC座子接口定义   
+
+| 1/2/3PIN | 4PIN | 5PIN | 6PIN | 7PIN | 8/9/10PIN | 
+| --- | --- | --- | --- |--- | --- |
+| DC5V | RTS | RXIN/A | TXOUT/B | CTS | GND |
+|直流电源输入4.5-5.5V | 流控RTS | 串口RX或者RS485-A（接外部设备TX/RS485A）| 串口TX或者RS485-B。（接外部设备RX/RS485B） | 流控CTS |  电源地 |  
     
     
     
