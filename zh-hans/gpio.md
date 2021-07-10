@@ -1,7 +1,7 @@
 ## GPIO操作
 
 > [!Note]
-> 1. 如果是购买的**SV50PB模组**或者**SV50PC模组**，使用前，需要在[模组配置](https://superv.flythings.cn)中使能 **GPIO** 功能，再重新升级系统,才能正常使用。
+> 1. 如果是购买的**SV50PB模组**、**SV50PC模组**、**SV50PD模组**，使用前，需要在[模组配置](https://superv.flythings.cn)中使能 **GPIO** 功能，再重新升级系统,才能正常使用。
 > 3. 更多有关模组的[使用教程](core_module.md)。
 
 ### 引入头文件
@@ -144,6 +144,34 @@ public:
     // PIN7 io口输出高电平
     GpioHelper::output(Z6X86BOX_PIN7, 1);
  ```
+
+  * SV50PD模组
+
+    有以下9组io口可以操作：
+
+ ```c++
+    // SV50PD
+    #define SV50PD_A0			"A0"
+    #define SV50PD_A1			"A1"
+    #define SV50PD_A2			"A2"
+    #define SV50PD_A3			"A3"
+    #define SV50PD_A4			"A4"
+    #define SV50PD_A5			"A5"
+    #define SV50PD_A6			"A6"
+    #define SV50PD_A7			"A7"
+    #define SV50PD_A8			"A8"
+
+    #include "utils/GpioHelper.h"
+
+    // 读A5 io口状态
+    GpioHelper::input(SV50PD_A5);
+
+    // A6 io口输出高电平
+    GpioHelper::output(SV50PD_A6, 1);
+ ```
+
+  > [!Note]
+  > **H500S、Z20、Z21及之后的平台支持自定义IO号输入，参数为GPIO_xxx字符串，其中xxx表示IO号，如：GpioHelper::input("GPIO_7");**
 
 ### 样例  
 完整源码见[**样例代码包**](demo_download.md#demo_download)中的**GpioDemo**项目
