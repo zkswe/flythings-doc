@@ -46,7 +46,8 @@
 * [系统内置界面](internal_app.md)
 * [系统应用](system_app.md)
 
-* [定时器](timer.md)
+* [定时器]()
+   * [定时器](timer.md)
    * [手动注册/停止定时器 ](how_to_register_timer.md)
 
 * [串口通讯]()
@@ -66,11 +67,12 @@
   * [音频播放 ](audio.md)
 
 * [线程](thread.md)
-  * [互斥量](mutex.md)
+* [互斥量](mutex.md)
 * [截屏](screenshot.md)
 
 ## 系统操作
-* [数据存储 ](data.md)
+* [数据存储]()
+  * [数据存储](data.md)
   * [模拟EEPROM](vireeprom.md)
 * [屏幕背光操作 ](brightness.md)
 * [系统时间 ](system_time.md)
@@ -118,6 +120,6 @@
     * [转换项目平台](convert_platform.md)
     * [产品规格型号说明 ](board_tag_explain.md)
     * [核心模组使用教程 ](core_module.md)
-
+    * [FlyThings授权](authorization.md)
 
 
