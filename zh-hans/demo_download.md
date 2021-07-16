@@ -34,6 +34,14 @@
    * [第三方库移植代码样例(Modbus、Sqlite、CURL HTTP、Mqtt)](http://download.flythings.cn/archive/H500SThirdPart-master.zip)
  
  
+  * Z20平台
+   * [480x272 控件样例](http://download.flythings.cn/archive/basedemo_z20_480_272.zip)
+   * [480x854 控件样例](http://download.flythings.cn/archive/basedemo_z20_480_854.zip)
+   * [800x480 控件样例](http://download.flythings.cn/archive/basedemo_z20_800_480.zip)
+   * [1024x600 控件样例](http://download.flythings.cn/archive/basedemo_z20_1024_600.zip)
+   * [第三方库移植代码样例(Modbus、Sqlite、CURL HTTP、Mqtt)](http://download.flythings.cn/archive/Z20ThirdPart-master.zip)
+ 
+ 
  * Z21平台
    * [480x272 控件样例](http://download.flythings.cn/archive/basedemo_z21_480_272.zip)
    * [480x854 控件样例](http://download.flythings.cn/archive/basedemo_z21_480_854.zip)
